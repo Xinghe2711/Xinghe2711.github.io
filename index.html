@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>欢迎来到一架国泰航空A330的网站</title>
     <style>
         * {
@@ -18,46 +18,58 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 1rem;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .container {
             text-align: center;
-            padding: 2rem 2rem 2.5rem;
+            padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
             max-width: 600px;
             width: 100%;
+            margin: auto;
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: clamp(1.4rem, 5vw, 2.2rem);
             font-weight: 300;
             color: #1a1a1a;
             letter-spacing: 0.04em;
             line-height: 1.5;
-            margin-bottom: 2rem;
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
             word-break: keep-all;
+            text-wrap: balance;
         }
 
-        /* 极简分割线 */
         .divider {
             width: 48px;
             height: 1px;
             background-color: #cccccc;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto clamp(1.5rem, 4vw, 2rem) auto;
             transition: width 0.4s ease;
         }
 
-        .container:hover .divider {
-            width: 80px;
+        @media (hover: hover) and (pointer: fine) {
+            .container:hover .divider {
+                width: 80px;
+            }
         }
 
-        /* 极简按钮 */
+        /* 按钮组容器：垂直排列，间距1rem */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
         .btn {
             display: inline-block;
-            padding: 0.9rem 2.8rem;
-            font-size: 1rem;
+            padding: clamp(0.7rem, 2.5vw, 0.9rem) clamp(2rem, 8vw, 2.8rem);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             font-weight: 400;
             color: #1a1a1a;
             background-color: transparent;
@@ -72,6 +84,9 @@
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             outline: none;
+            -webkit-touch-callout: none;
+            white-space: nowrap;
+            /* 防止文字换行 */
         }
 
         .btn::after {
@@ -94,56 +109,57 @@
             transition: color 0.35s ease;
         }
 
-        .btn:hover {
-            border-color: #1a1a1a;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-        }
+        @media (hover: hover) and (pointer: fine) {
+            .btn:hover {
+                border-color: #1a1a1a;
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            }
 
-        .btn:hover::after {
-            width: 400px;
-            height: 400px;
-        }
+            .btn:hover::after {
+                width: 400px;
+                height: 400px;
+            }
 
-        .btn:hover span {
-            color: #ffffff;
+            .btn:hover span {
+                color: #ffffff;
+            }
         }
 
         .btn:active {
             transform: scale(0.96);
             transition-duration: 0.15s;
+            background-color: rgba(0, 0, 0, 0.03);
         }
 
-        /* 底部极简小字 */
         .footer-note {
-            margin-top: 2.8rem;
-            font-size: 0.7rem;
+            margin-top: clamp(2rem, 6vw, 2.8rem);
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
             color: #aaaaaa;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             font-weight: 300;
         }
 
-        /* 响应式 */
-        @media (max-width: 480px) {
+        @media (max-width: 360px) {
             h1 {
-                font-size: 1.6rem;
                 letter-spacing: 0.02em;
             }
 
             .btn {
-                padding: 0.8rem 2.2rem;
-                font-size: 0.9rem;
-            }
-
-            .footer-note {
-                font-size: 0.6rem;
-                letter-spacing: 0.1em;
+                padding: 0.7rem 1.8rem;
+                letter-spacing: 0.05em;
             }
         }
 
-        @media (max-width: 360px) {
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
             h1 {
-                font-size: 1.3rem;
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 700px;
             }
         }
     </style>
@@ -157,16 +173,26 @@
 
         <div class="divider"></div>
 
-        <!-- 跳转按钮 -->
-        <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
+        <!-- 按钮组：两个按钮垂直排列 -->
+        <div class="button-group">
+            <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn"
+            aria-label="访问我的 bilibili 空间">
+            <span>我的 bilibili</span>
+        </a>
+
+        <a href="https://share.feijipan.com/s/Pw8OwB3N"
         target="_blank"
         rel="noopener noreferrer"
         class="btn"
-        aria-label="访问我的 bilibili 空间">
-        <span>我的 bilibili</span>
+        aria-label="下载 ojang pe">
+        <span>ojang pe下载</span>
     </a>
+</div>
 
-    <div class="footer-note">Cathay Pacific &bull; A330 &bull; Minimal</div>
+<div class="footer-note">Cathay Pacific &bull; A330 &bull; Minimal</div>
 </div>
 </body>
 </html>
