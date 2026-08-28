@@ -15,7 +15,7 @@
             --btn-hover-bg: #1a1a1a;
             --btn-hover-text: #ffffff;
             --menu-bg: #ffffff;
-            --menu-shadow: rgba(0, 0, 0, 0.08);
+            --menu-shadow: rgba(0, 0, 0, 0.12);
             --menu-item-hover: #f5f5f5;
             --accent: #0077cc;
             --accent-hover: #005fa3;
@@ -25,6 +25,7 @@
             --dial-key-hover: #e0e0e0;
             --dial-display-bg: #f8f8f8;
             --dial-display-text: #1a1a1a;
+            --sidebar-width: 280px;
         }
 
         [data-theme="dark"] {
@@ -36,7 +37,7 @@
             --btn-hover-bg: #f0f0f0;
             --btn-hover-text: #121212;
             --menu-bg: #1e1e1e;
-            --menu-shadow: rgba(0, 0, 0, 0.4);
+            --menu-shadow: rgba(0, 0, 0, 0.6);
             --menu-item-hover: #2a2a2a;
             --accent: #42a5f5;
             --accent-hover: #64b5f6;
@@ -46,6 +47,7 @@
             --dial-key-hover: #3a3a3a;
             --dial-display-bg: #171717;
             --dial-display-text: #f0f0f0;
+            --sidebar-width: 280px;
         }
 
         * {
@@ -68,12 +70,12 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* ========== 右上角汉堡菜单按钮 ========== */
+        /* ========== 汉堡菜单按钮 ========== */
         .hamburger-btn {
             position: fixed;
             top: 20px;
             right: 24px;
-            z-index: 1000;
+            z-index: 1002;
             background: transparent;
             border: none;
             cursor: pointer;
@@ -126,15 +128,15 @@
             transform: translateY(-7.5px) rotate(-45deg);
         }
 
-        /* ========== 下拉菜单面板 ========== */
+        /* ========== 遮罩层 ========== */
         .menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: transparent;
-            z-index: 998;
+            background-color: var(--modal-overlay);
+            z-index: 1000;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -145,34 +147,31 @@
             pointer-events: auto;
         }
 
-        .dropdown-menu {
+        /* ========== 侧边栏菜单 ========== */
+        .sidebar-menu {
             position: fixed;
-            top: 76px;
-            right: 20px;
-            z-index: 999;
+            top: 0;
+            right: 0;
+            z-index: 1001;
             background-color: var(--menu-bg);
-            border-radius: 16px;
-            box-shadow: 0 8px 40px var(--menu-shadow);
-            padding: 8px 0;
-            min-width: 240px;
-            opacity: 0;
-            transform: translateY(-12px) scale(0.96);
-            transform-origin: top right;
-            pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--divider);
+            width: var(--sidebar-width);
+            max-width: 85vw;
+            height: 100%;
+            box-shadow: -4px 0 24px var(--menu-shadow);
+            padding: 24px 0;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            border-left: 1px solid var(--divider);
+            -webkit-overflow-scrolling: touch;
         }
 
-        .dropdown-menu.open {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
+        .sidebar-menu.open {
+            transform: translateX(0);
         }
 
         .menu-section {
-            padding: 8px 12px 4px 12px;
+            padding: 16px 20px 8px 20px;
             font-size: 0.7rem;
             font-weight: 500;
             letter-spacing: 0.12em;
@@ -185,11 +184,11 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 10px 16px;
+            padding: 12px 20px;
             background: transparent;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text);
             transition: background-color 0.2s ease;
             font-family: inherit;
@@ -199,6 +198,7 @@
             user-select: none;
             -webkit-touch-callout: none;
             text-decoration: none;
+            text-align: left;
         }
 
         .menu-item:hover {
@@ -239,7 +239,7 @@
         .menu-divider {
             height: 1px;
             background-color: var(--divider);
-            margin: 6px 0;
+            margin: 8px 0;
             opacity: 0.5;
         }
 
@@ -523,11 +523,9 @@
                 width: 20px;
             }
 
-            .dropdown-menu {
-                top: 64px;
-                right: 12px;
-                min-width: 210px;
-                border-radius: 14px;
+            .sidebar-menu {
+                width: 85vw;
+                max-width: 85vw;
             }
 
             .dialpad-modal {
@@ -546,6 +544,10 @@
             .container {
                 max-width: 700px;
             }
+
+            .sidebar-menu {
+                width: 300px;
+            }
         }
     </style>
 </head>
@@ -558,11 +560,11 @@
         <span class="hamburger-line"></span>
     </button>
 
-    <!-- ========== 点击外部关闭遮罩 ========== -->
+    <!-- ========== 遮罩层 ========== -->
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- ========== 下拉菜单 ========== -->
-    <div class="dropdown-menu" id="dropdownMenu" role="menu">
+    <!-- ========== 侧边栏菜单 ========== -->
+    <aside class="sidebar-menu" id="sidebarMenu" role="menu">
         <div class="menu-section" data-i18n="settings">设置</div>
 
         <button class="menu-item" id="themeToggle" role="menuitem">
@@ -623,7 +625,7 @@
         <span style="font-size: 1.1rem; line-height: 1;">☎</span>
     </span>
 </button>
-</div>
+</aside>
 
 <!-- ========== 拨号盘模态框 ========== -->
 <div class="dialpad-overlay" id="dialpadOverlay">
@@ -664,7 +666,7 @@
     (function() {
         // ========== DOM 引用 ==========
         const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const dropdownMenu = document.getElementById('dropdownMenu');
+        const sidebarMenu = document.getElementById('sidebarMenu');
         const menuOverlay = document.getElementById('menuOverlay');
         const themeToggle = document.getElementById('themeToggle');
         const themeDot = document.getElementById('themeDot');
@@ -704,7 +706,6 @@
                 titleHtml: '欢迎来到<br>一架国泰航空A330官方网站',
                 menuAria: '打开菜单',
                 closeMenuAria: '关闭菜单',
-                dialpadTitle: '拨号盘',
                 delete: '删除',
                 close: '关闭'
             },
@@ -720,7 +721,6 @@
                 titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
                 menuAria: 'Open menu',
                 closeMenuAria: 'Close menu',
-                dialpadTitle: 'Dial Pad',
                 delete: 'Delete',
                 close: 'Close'
             }
@@ -842,7 +842,7 @@
         function openMenu() {
             isMenuOpen = true;
             hamburgerBtn.classList.add('active');
-            dropdownMenu.classList.add('open');
+            sidebarMenu.classList.add('open');
             menuOverlay.classList.add('visible');
             hamburgerBtn.setAttribute('aria-expanded', 'true');
             hamburgerBtn.setAttribute('aria-label', translations[currentLang].closeMenuAria);
@@ -851,7 +851,7 @@
         function closeMenu() {
             isMenuOpen = false;
             hamburgerBtn.classList.remove('active');
-            dropdownMenu.classList.remove('open');
+            sidebarMenu.classList.remove('open');
             menuOverlay.classList.remove('visible');
             hamburgerBtn.setAttribute('aria-expanded', 'false');
             hamburgerBtn.setAttribute('aria-label', translations[currentLang].menuAria);
