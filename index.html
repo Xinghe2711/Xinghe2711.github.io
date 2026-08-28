@@ -19,7 +19,12 @@
             --menu-item-hover: #f5f5f5;
             --accent: #0077cc;
             --accent-hover: #005fa3;
-            --transition-speed: 0.35s;
+            --modal-bg: #ffffff;
+            --modal-overlay: rgba(0, 0, 0, 0.4);
+            --dial-key-bg: #f0f0f0;
+            --dial-key-hover: #e0e0e0;
+            --dial-display-bg: #f8f8f8;
+            --dial-display-text: #1a1a1a;
         }
 
         [data-theme="dark"] {
@@ -35,6 +40,12 @@
             --menu-item-hover: #2a2a2a;
             --accent: #42a5f5;
             --accent-hover: #64b5f6;
+            --modal-bg: #1e1e1e;
+            --modal-overlay: rgba(0, 0, 0, 0.6);
+            --dial-key-bg: #2a2a2a;
+            --dial-key-hover: #3a3a3a;
+            --dial-display-bg: #171717;
+            --dial-display-text: #f0f0f0;
         }
 
         * {
@@ -102,7 +113,6 @@
             transform-origin: center;
         }
 
-        /* 汉堡按钮动画：三条杠变成 X */
         .hamburger-btn.active .hamburger-line:nth-child(1) {
             transform: translateY(7.5px) rotate(45deg);
         }
@@ -144,7 +154,7 @@
             border-radius: 16px;
             box-shadow: 0 8px 40px var(--menu-shadow);
             padding: 8px 0;
-            min-width: 220px;
+            min-width: 240px;
             opacity: 0;
             transform: translateY(-12px) scale(0.96);
             transform-origin: top right;
@@ -189,7 +199,6 @@
             user-select: none;
             -webkit-touch-callout: none;
             text-decoration: none;
-            /* 同时适用于 <a> 标签 */
         }
 
         .menu-item:hover {
@@ -344,6 +353,153 @@
             transition: color 0.4s ease;
         }
 
+        /* ========== 拨号盘模态框 ========== */
+        .dialpad-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1rem;
+        }
+
+        .dialpad-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .dialpad-modal {
+            background-color: var(--modal-bg);
+            border-radius: 20px;
+            padding: 1.5rem 1.5rem 1.8rem;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 12px 60px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1px solid var(--divider);
+        }
+
+        .dialpad-overlay.visible .dialpad-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .dialpad-display {
+            background-color: var(--dial-display-bg);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            font-size: 1.6rem;
+            font-weight: 300;
+            text-align: right;
+            letter-spacing: 0.05em;
+            color: var(--dial-display-text);
+            margin-bottom: 1.2rem;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            overflow-x: auto;
+            white-space: nowrap;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .dialpad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+        }
+
+        .dial-key {
+            background-color: var(--dial-key-bg);
+            border: none;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text);
+            transition: background-color 0.2s ease, transform 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            font-family: inherit;
+        }
+
+        .dial-key:hover {
+            background-color: var(--dial-key-hover);
+        }
+
+        .dial-key:active {
+            transform: scale(0.9);
+            background-color: var(--dial-key-hover);
+        }
+
+        .dial-key .sub {
+            font-size: 0.55rem;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .dial-actions {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 0.6rem;
+        }
+
+        .dial-action {
+            flex: 1;
+            padding: 0.7rem 0;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            font-family: inherit;
+        }
+
+        .dial-action.delete {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--divider);
+        }
+
+        .dial-action.delete:hover {
+            background-color: var(--dial-key-hover);
+        }
+
+        .dial-action.close {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .dial-action.close:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .dial-action:active {
+            transform: scale(0.95);
+        }
+
         /* ========== 响应式 ========== */
         @media (max-width: 360px) {
             h1 {
@@ -370,8 +526,13 @@
             .dropdown-menu {
                 top: 64px;
                 right: 12px;
-                min-width: 200px;
+                min-width: 210px;
                 border-radius: 14px;
+            }
+
+            .dialpad-modal {
+                max-width: 280px;
+                padding: 1.2rem 1.2rem 1.4rem;
             }
         }
 
@@ -432,18 +593,50 @@
 
         <div class="menu-divider"></div>
 
-        <!-- 新增：ojang pe 下载链接 -->
-        <a href="https://share.feijipan.com/s/Pw8OwB3N"
+        <div class="menu-section" data-i18n="links">链接</div>
+
+        <a href="https://mcjs.cc"
         target="_blank"
         rel="noopener noreferrer"
         class="menu-item"
-        role="menuitem"
-        style="display: flex; align-items: center; justify-content: space-between;">
-        <span class="menu-item-label">ojang pe下载</span>
+        role="menuitem">
+        <span class="menu-item-label">网页版MC</span>
         <span class="menu-item-indicator">
             <span style="font-size: 1.1rem; line-height: 1;">↗</span>
         </span>
     </a>
+
+    <a href="https://share.feijipan.com/s/Pw8OwB3N"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="menu-item"
+    role="menuitem">
+    <span class="menu-item-label">ojang pe下载</span>
+    <span class="menu-item-indicator">
+        <span style="font-size: 1.1rem; line-height: 1;">↗</span>
+    </span>
+</a>
+
+<button class="menu-item" id="dialpadTrigger" role="menuitem">
+    <span class="menu-item-label">拨号盘</span>
+    <span class="menu-item-indicator">
+        <span style="font-size: 1.1rem; line-height: 1;">☎</span>
+    </span>
+</button>
+</div>
+
+<!-- ========== 拨号盘模态框 ========== -->
+<div class="dialpad-overlay" id="dialpadOverlay">
+    <div class="dialpad-modal">
+        <div class="dialpad-display" id="dialpadDisplay"></div>
+        <div class="dialpad-grid" id="dialpadGrid">
+            <!-- 按键由 JS 动态生成 -->
+        </div>
+        <div class="dial-actions">
+            <button class="dial-action delete" id="dialDelete">删除</button>
+            <button class="dial-action close" id="dialClose">关闭</button>
+        </div>
+    </div>
 </div>
 
 <!-- ========== 主内容 ========== -->
@@ -484,11 +677,18 @@
         const bilibiliBtn = document.getElementById('bilibiliBtn');
         const footerNote = document.querySelector('.footer-note');
         const htmlElement = document.documentElement;
+        const dialpadOverlay = document.getElementById('dialpadOverlay');
+        const dialpadDisplay = document.getElementById('dialpadDisplay');
+        const dialpadGrid = document.getElementById('dialpadGrid');
+        const dialDelete = document.getElementById('dialDelete');
+        const dialClose = document.getElementById('dialClose');
+        const dialpadTrigger = document.getElementById('dialpadTrigger');
 
         // ========== 状态 ==========
         let isMenuOpen = false;
         let currentTheme = localStorage.getItem('theme') || 'light';
         let currentLang = localStorage.getItem('lang') || 'zh';
+        let dialValue = '';
 
         // ========== 翻译字典 ==========
         const translations = {
@@ -498,11 +698,15 @@
                 light: '浅色',
                 dark: '深色',
                 language: '语言',
+                links: '链接',
                 bilibili: '我的 bilibili',
                 footer: 'Cathay Pacific • A330 • Minimal',
                 titleHtml: '欢迎来到<br>一架国泰航空A330官方网站',
                 menuAria: '打开菜单',
-                closeMenuAria: '关闭菜单'
+                closeMenuAria: '关闭菜单',
+                dialpadTitle: '拨号盘',
+                delete: '删除',
+                close: '关闭'
             },
             en: {
                 settings: 'Settings',
@@ -510,13 +714,64 @@
                 light: 'Light',
                 dark: 'Dark',
                 language: 'Language',
+                links: 'Links',
                 bilibili: 'My bilibili',
                 footer: 'Cathay Pacific • A330 • Minimal',
                 titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
                 menuAria: 'Open menu',
-                closeMenuAria: 'Close menu'
+                closeMenuAria: 'Close menu',
+                dialpadTitle: 'Dial Pad',
+                delete: 'Delete',
+                close: 'Close'
             }
         };
+
+        // ========== 拨号盘按键数据 ==========
+        const dialKeys = [
+            { digit: '1', sub: '' },
+            { digit: '2', sub: 'ABC' },
+            { digit: '3', sub: 'DEF' },
+            { digit: '4', sub: 'GHI' },
+            { digit: '5', sub: 'JKL' },
+            { digit: '6', sub: 'MNO' },
+            { digit: '7', sub: 'PQRS' },
+            { digit: '8', sub: 'TUV' },
+            { digit: '9', sub: 'WXYZ' },
+            { digit: '*', sub: '' },
+            { digit: '0', sub: '+' },
+            { digit: '#', sub: '' },
+        ];
+
+        // ========== 初始化拨号盘 ==========
+        function buildDialpad() {
+            dialKeys.forEach(key => {
+                const btn = document.createElement('button');
+                btn.className = 'dial-key';
+                btn.setAttribute('data-digit', key.digit);
+                btn.innerHTML = key.digit + (key.sub ? `<span class="sub">${key.sub}</span>` : '');
+                btn.addEventListener('click', function() {
+                    dialValue += key.digit;
+                    updateDialDisplay();
+                });
+                dialpadGrid.appendChild(btn);
+            });
+            updateDialDisplay();
+        }
+
+        function updateDialDisplay() {
+            dialpadDisplay.textContent = dialValue || '';
+        }
+
+        function openDialpad() {
+            dialValue = '';
+            updateDialDisplay();
+            dialpadOverlay.classList.add('visible');
+            closeMenu();
+        }
+
+        function closeDialpad() {
+            dialpadOverlay.classList.remove('visible');
+        }
 
         // ========== 初始化 ==========
         function initTheme() {
@@ -540,19 +795,15 @@
         }
 
         function updateLanguageUI() {
-            // 更新标题
             mainTitle.innerHTML = translations[currentLang].titleHtml;
 
-            // 更新按钮文字
             const btnSpan = bilibiliBtn.querySelector('span');
             if (btnSpan) {
                 btnSpan.textContent = translations[currentLang].bilibili;
             }
 
-            // 更新底部文字
             footerNote.textContent = translations[currentLang].footer;
 
-            // 更新菜单区域标题
             document.querySelectorAll('[data-i18n="settings"]').forEach(el => {
                 el.textContent = translations[currentLang].settings;
             });
@@ -562,17 +813,19 @@
             document.querySelectorAll('[data-i18n="language"]').forEach(el => {
                 el.textContent = translations[currentLang].language;
             });
+            document.querySelectorAll('[data-i18n="links"]').forEach(el => {
+                el.textContent = translations[currentLang].links;
+            });
 
-            // 更新主题标签
             updateThemeUI();
-
-            // 更新语言指示器
             updateLanguageIndicators();
 
-            // 更新 aria-label
             const menuAria = isMenuOpen ? translations[currentLang].closeMenuAria : translations[currentLang]
                 .menuAria;
             hamburgerBtn.setAttribute('aria-label', menuAria);
+
+            dialDelete.textContent = translations[currentLang].delete;
+            dialClose.textContent = translations[currentLang].close;
         }
 
         function updateLanguageIndicators() {
@@ -620,14 +873,13 @@
 
         menuOverlay.addEventListener('click', closeMenu);
 
-        // ESC 键关闭菜单
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && isMenuOpen) {
-                closeMenu();
+            if (e.key === 'Escape') {
+                if (isMenuOpen) closeMenu();
+                if (dialpadOverlay.classList.contains('visible')) closeDialpad();
             }
         });
 
-        // 主题切换
         themeToggle.addEventListener('click', function() {
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
             htmlElement.setAttribute('data-theme', currentTheme);
@@ -635,7 +887,6 @@
             updateThemeUI();
         });
 
-        // 语言切换
         langZh.addEventListener('click', function() {
             if (currentLang !== 'zh') {
                 currentLang = 'zh';
@@ -656,7 +907,26 @@
             closeMenu();
         });
 
+        // 拨号盘
+        dialpadTrigger.addEventListener('click', function() {
+            openDialpad();
+        });
+
+        dialDelete.addEventListener('click', function() {
+            dialValue = dialValue.slice(0, -1);
+            updateDialDisplay();
+        });
+
+        dialClose.addEventListener('click', closeDialpad);
+
+        dialpadOverlay.addEventListener('click', function(e) {
+            if (e.target === dialpadOverlay) {
+                closeDialpad();
+            }
+        });
+
         // ========== 启动 ==========
+        buildDialpad();
         initTheme();
         initLanguage();
         updateLanguageIndicators();
