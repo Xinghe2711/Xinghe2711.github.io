@@ -1,55 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>欢迎来到一架国泰航空A330官方网站</title>
+    <title>欢迎来到一架国泰航空A330的网站</title>
     <style>
-        /* ========== CSS 变量（主题） ========== */
-        :root {
-            --bg-gradient: linear-gradient(135deg, #add8e6 0%, #00008b 100%);
-            --text: #1a1a1a;
-            --text-secondary: #aaaaaa;
-            --divider: #cccccc;
-            --btn-border: #1a1a1a;
-            --btn-hover-bg: #1a1a1a;
-            --btn-hover-text: #ffffff;
-            --menu-bg: rgba(255, 255, 255, 0.9);
-            --menu-shadow: rgba(0, 0, 0, 0.12);
-            --menu-item-hover: #f5f5f5;
-            --accent: #0077cc;
-            --accent-hover: #005fa3;
-            --modal-bg: #ffffff;
-            --modal-overlay: rgba(0, 0, 0, 0.4);
-            --dial-key-bg: #f0f0f0;
-            --dial-key-hover: #e0e0e0;
-            --dial-display-bg: #f8f8f8;
-            --dial-display-text: #1a1a1a;
-            --sidebar-width: 280px;
-        }
-
-        [data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #1a2a3a 0%, #001f3f 100%);
-            --text: #f0f0f0;
-            --text-secondary: #888888;
-            --divider: #3a3a3a;
-            --btn-border: #f0f0f0;
-            --btn-hover-bg: #f0f0f0;
-            --btn-hover-text: #121212;
-            --menu-bg: rgba(30, 30, 30, 0.95);
-            --menu-shadow: rgba(0, 0, 0, 0.6);
-            --menu-item-hover: #2a2a2a;
-            --accent: #42a5f5;
-            --accent-hover: #64b5f6;
-            --modal-bg: #1e1e1e;
-            --modal-overlay: rgba(0, 0, 0, 0.6);
-            --dial-key-bg: #2a2a2a;
-            --dial-key-hover: #3a3a3a;
-            --dial-display-bg: #171717;
-            --dial-display-text: #f0f0f0;
-            --sidebar-width: 280px;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -57,8 +12,7 @@
         }
 
         body {
-            background: var(--bg-gradient);
-            background-attachment: fixed;
+            background-color: #ffffff;
             font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
             display: flex;
             justify-content: center;
@@ -68,241 +22,67 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            transition: background 0.5s ease, color 0.4s ease;
+            /* 防止横向滚动 */
         }
 
-        /* ========== 汉堡菜单按钮 ========== */
-        .hamburger-btn {
-            position: fixed;
-            top: 20px;
-            right: 24px;
-            z-index: 1002;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 12px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            width: 48px;
-            height: 48px;
-            transition: background-color 0.25s ease, transform 0.25s ease;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-        }
-
-        .hamburger-btn:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .hamburger-btn:active {
-            transform: scale(0.92);
-        }
-
-        .hamburger-line {
-            display: block;
-            width: 24px;
-            height: 2.5px;
-            background-color: var(--accent);
-            border-radius: 4px;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-                opacity 0.3s ease,
-                width 0.3s ease;
-            transform-origin: center;
-        }
-
-        .hamburger-btn.active .hamburger-line:nth-child(1) {
-            transform: translateY(7.5px) rotate(45deg);
-        }
-
-        .hamburger-btn.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-            width: 0;
-        }
-
-        .hamburger-btn.active .hamburger-line:nth-child(3) {
-            transform: translateY(-7.5px) rotate(-45deg);
-        }
-
-        /* ========== 遮罩层 ========== */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--modal-overlay);
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .menu-overlay.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* ========== 侧边栏菜单 ========== */
-        .sidebar-menu {
-            position: fixed;
-            top: 0;
-            right: 0;
-            z-index: 1001;
-            background-color: var(--menu-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            width: var(--sidebar-width);
-            max-width: 85vw;
-            height: 100%;
-            box-shadow: -4px 0 24px var(--menu-shadow);
-            padding: 24px 0;
-            overflow-y: auto;
-            transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            border-left: 1px solid var(--divider);
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .sidebar-menu.open {
-            transform: translateX(0);
-        }
-
-        .menu-section {
-            padding: 16px 20px 8px 20px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 12px 20px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            color: var(--text);
-            transition: background-color 0.2s ease;
-            font-family: inherit;
-            letter-spacing: 0.04em;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            text-decoration: none;
-            text-align: left;
-        }
-
-        .menu-item:hover {
-            background-color: var(--menu-item-hover);
-        }
-
-        .menu-item:active {
-            background-color: var(--menu-item-hover);
-        }
-
-        .menu-item-label {
-            font-weight: 400;
-        }
-
-        .menu-item-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .menu-item-indicator .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .menu-item-indicator .dot.inactive {
-            background-color: var(--text-secondary);
-            transform: scale(0.7);
-        }
-
-        .menu-divider {
-            height: 1px;
-            background-color: var(--divider);
-            margin: 8px 0;
-            opacity: 0.5;
-        }
-
-        /* ========== 主内容容器 ========== */
         .container {
             text-align: center;
             padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
             max-width: 600px;
             width: 100%;
             margin: auto;
-            transition: color 0.4s ease;
         }
 
         h1 {
             font-size: clamp(1.4rem, 5vw, 2.2rem);
+            /* 随视口平滑缩放 */
             font-weight: 300;
-            color: var(--text);
+            color: #1a1a1a;
             letter-spacing: 0.04em;
             line-height: 1.5;
             margin-bottom: clamp(1.5rem, 4vw, 2rem);
             word-break: keep-all;
+            /* 防止单词断开 */
             text-wrap: balance;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            transition: color 0.4s ease;
+            /* 现代浏览器平衡换行 */
         }
 
         .divider {
             width: 48px;
             height: 1px;
-            background-color: var(--divider);
+            background-color: #cccccc;
             margin: 0 auto clamp(1.5rem, 4vw, 2rem) auto;
-            transition: width 0.4s ease, background-color 0.4s ease;
+            transition: width 0.4s ease;
         }
 
+        /* 桌面端悬停分割线伸长 */
         @media (hover: hover) and (pointer: fine) {
             .container:hover .divider {
                 width: 80px;
             }
         }
 
+        /* 按钮基础样式 */
         .btn {
             display: inline-block;
             padding: clamp(0.7rem, 2.5vw, 0.9rem) clamp(2rem, 8vw, 2.8rem);
             font-size: clamp(0.9rem, 2.5vw, 1rem);
             font-weight: 400;
-            color: var(--btn-border);
+            color: #1a1a1a;
             background-color: transparent;
-            border: 1px solid var(--btn-border);
+            border: 1px solid #1a1a1a;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             letter-spacing: 0.08em;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             outline: none;
             -webkit-touch-callout: none;
-            white-space: nowrap;
+            /* 禁止iOS长按弹出菜单 */
         }
 
         .btn::after {
@@ -313,9 +93,9 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background-color: var(--btn-hover-bg);
+            background-color: #1a1a1a;
             transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease, background-color 0.4s ease;
+            transition: width 0.5s ease, height 0.5s ease;
             z-index: 0;
         }
 
@@ -325,10 +105,11 @@
             transition: color 0.35s ease;
         }
 
+        /* 仅对支持悬停的设备启用悬停效果 */
         @media (hover: hover) and (pointer: fine) {
             .btn:hover {
-                border-color: var(--btn-hover-bg);
-                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+                border-color: #1a1a1a;
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
             }
 
             .btn:hover::after {
@@ -337,174 +118,28 @@
             }
 
             .btn:hover span {
-                color: var(--btn-hover-text);
+                color: #ffffff;
             }
         }
 
+        /* 触屏设备点击反馈 */
         .btn:active {
             transform: scale(0.96);
             transition-duration: 0.15s;
-            background-color: rgba(128, 128, 128, 0.06);
+            background-color: rgba(0, 0, 0, 0.03);
+            /* 轻微背景反馈，移动端可见 */
         }
 
         .footer-note {
             margin-top: clamp(2rem, 6vw, 2.8rem);
             font-size: clamp(0.6rem, 2vw, 0.7rem);
-            color: var(--text-secondary);
+            color: #aaaaaa;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             font-weight: 300;
-            transition: color 0.4s ease;
         }
 
-        /* ========== 拨号盘模态框 ========== */
-        .dialpad-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--modal-overlay);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 1rem;
-        }
-
-        .dialpad-overlay.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .dialpad-modal {
-            background-color: var(--modal-bg);
-            border-radius: 20px;
-            padding: 1.5rem 1.5rem 1.8rem;
-            width: 100%;
-            max-width: 320px;
-            box-shadow: 0 12px 60px rgba(0, 0, 0, 0.2);
-            transform: translateY(20px) scale(0.95);
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            border: 1px solid var(--divider);
-        }
-
-        .dialpad-overlay.visible .dialpad-modal {
-            transform: translateY(0) scale(1);
-        }
-
-        .dialpad-display {
-            background-color: var(--dial-display-bg);
-            border-radius: 12px;
-            padding: 0.8rem 1rem;
-            font-size: 1.6rem;
-            font-weight: 300;
-            text-align: right;
-            letter-spacing: 0.05em;
-            color: var(--dial-display-text);
-            margin-bottom: 1.2rem;
-            min-height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            overflow-x: auto;
-            white-space: nowrap;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .dialpad-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.6rem;
-        }
-
-        .dial-key {
-            background-color: var(--dial-key-bg);
-            border: none;
-            border-radius: 50%;
-            aspect-ratio: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--text);
-            transition: background-color 0.2s ease, transform 0.15s ease;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            font-family: inherit;
-        }
-
-        .dial-key:hover {
-            background-color: var(--dial-key-hover);
-        }
-
-        .dial-key:active {
-            transform: scale(0.9);
-            background-color: var(--dial-key-hover);
-        }
-
-        .dial-key .sub {
-            font-size: 0.55rem;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-            margin-top: 2px;
-        }
-
-        .dial-actions {
-            display: flex;
-            gap: 0.6rem;
-            margin-top: 0.6rem;
-        }
-
-        .dial-action {
-            flex: 1;
-            padding: 0.7rem 0;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            transition: background-color 0.2s ease, transform 0.15s ease;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            font-family: inherit;
-        }
-
-        .dial-action.delete {
-            background-color: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--divider);
-        }
-
-        .dial-action.delete:hover {
-            background-color: var(--dial-key-hover);
-        }
-
-        .dial-action.close {
-            background-color: var(--accent);
-            color: #ffffff;
-        }
-
-        .dial-action.close:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .dial-action:active {
-            transform: scale(0.95);
-        }
-
-        /* ========== 响应式 ========== */
+        /* 针对极窄屏幕进一步优化 */
         @media (max-width: 360px) {
             h1 {
                 letter-spacing: 0.02em;
@@ -514,433 +149,41 @@
                 padding: 0.7rem 1.8rem;
                 letter-spacing: 0.05em;
             }
-
-            .hamburger-btn {
-                top: 12px;
-                right: 12px;
-                width: 42px;
-                height: 42px;
-                padding: 10px;
-            }
-
-            .hamburger-line {
-                width: 20px;
-            }
-
-            .sidebar-menu {
-                width: 85vw;
-                max-width: 85vw;
-            }
-
-            .dialpad-modal {
-                max-width: 280px;
-                padding: 1.2rem 1.2rem 1.4rem;
-            }
         }
 
+        /* 横屏手机或小平板 */
         @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
             h1 {
                 font-size: 2.2rem;
             }
         }
 
+        /* 大桌面微调 */
         @media (min-width: 1200px) {
             .container {
                 max-width: 700px;
-            }
-
-            .sidebar-menu {
-                width: 300px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>
+            欢迎来到<br>
+            一架国泰航空A330的网站
+        </h1>
 
-    <!-- ========== 汉堡菜单按钮 ========== -->
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-    </button>
+        <div class="divider"></div>
 
-    <!-- ========== 遮罩层 ========== -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-
-    <!-- ========== 侧边栏菜单 ========== -->
-    <aside class="sidebar-menu" id="sidebarMenu" role="menu">
-        <div class="menu-section" data-i18n="settings">设置</div>
-
-        <button class="menu-item" id="themeToggle" role="menuitem">
-            <span class="menu-item-label" data-i18n="theme">主题模式</span>
-            <span class="menu-item-indicator" id="themeIndicator">
-                <span class="dot" id="themeDot"></span>
-                <span id="themeLabel" data-i18n="light">浅色</span>
-            </span>
-        </button>
-
-        <div class="menu-divider"></div>
-
-        <div class="menu-section" data-i18n="language">语言</div>
-
-        <button class="menu-item" id="langZh" role="menuitem">
-            <span class="menu-item-label">中文</span>
-            <span class="menu-item-indicator">
-                <span class="dot" id="langZhDot"></span>
-            </span>
-        </button>
-
-        <button class="menu-item" id="langEn" role="menuitem">
-            <span class="menu-item-label">English</span>
-            <span class="menu-item-indicator">
-                <span class="dot" id="langEnDot"></span>
-            </span>
-        </button>
-
-        <div class="menu-divider"></div>
-
-        <div class="menu-section" data-i18n="links">链接</div>
-
-        <a href="https://mcjs.cc"
+        <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
         target="_blank"
         rel="noopener noreferrer"
-        class="menu-item"
-        role="menuitem">
-        <span class="menu-item-label">网页版MC</span>
-        <span class="menu-item-indicator">
-            <span style="font-size: 1.1rem; line-height: 1;">↗</span>
-        </span>
+        class="btn"
+        aria-label="访问我的 bilibili 空间">
+        <span>我的 bilibili</span>
     </a>
 
-    <a href="https://share.feijipan.com/s/Pw8OwB3N"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="menu-item"
-    role="menuitem">
-    <span class="menu-item-label">ojang pe下载</span>
-    <span class="menu-item-indicator">
-        <span style="font-size: 1.1rem; line-height: 1;">↗</span>
-    </span>
-</a>
-
-<button class="menu-item" id="dialpadTrigger" role="menuitem">
-    <span class="menu-item-label">拨号盘</span>
-    <span class="menu-item-indicator">
-        <span style="font-size: 1.1rem; line-height: 1;">☎</span>
-    </span>
-</button>
-</aside>
-
-<!-- ========== 拨号盘模态框 ========== -->
-<div class="dialpad-overlay" id="dialpadOverlay">
-    <div class="dialpad-modal">
-        <div class="dialpad-display" id="dialpadDisplay"></div>
-        <div class="dialpad-grid" id="dialpadGrid">
-            <!-- 按键由 JS 动态生成 -->
-        </div>
-        <div class="dial-actions">
-            <button class="dial-action delete" id="dialDelete">删除</button>
-            <button class="dial-action close" id="dialClose">关闭</button>
-        </div>
-    </div>
+    <div class="footer-note">Cathay Pacific &bull; A330 &bull; Minimal</div>
 </div>
-
-<!-- ========== 主内容 ========== -->
-<div class="container">
-    <h1 id="mainTitle">
-        欢迎来到<br>
-        一架国泰航空A330官方网站
-    </h1>
-
-    <div class="divider"></div>
-
-    <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn"
-    aria-label="访问我的 bilibili 空间"
-    id="bilibiliBtn">
-    <span data-i18n="bilibili">我的 bilibili</span>
-</a>
-
-<div class="footer-note" data-i18n="footer">Cathay Pacific &bull; A330 &bull; Minimal</div>
-</div>
-
-<script>
-    (function() {
-        // ========== DOM 引用 ==========
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const sidebarMenu = document.getElementById('sidebarMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const themeToggle = document.getElementById('themeToggle');
-        const themeDot = document.getElementById('themeDot');
-        const themeLabel = document.getElementById('themeLabel');
-        const langZh = document.getElementById('langZh');
-        const langEn = document.getElementById('langEn');
-        const langZhDot = document.getElementById('langZhDot');
-        const langEnDot = document.getElementById('langEnDot');
-        const mainTitle = document.getElementById('mainTitle');
-        const bilibiliBtn = document.getElementById('bilibiliBtn');
-        const footerNote = document.querySelector('.footer-note');
-        const htmlElement = document.documentElement;
-        const dialpadOverlay = document.getElementById('dialpadOverlay');
-        const dialpadDisplay = document.getElementById('dialpadDisplay');
-        const dialpadGrid = document.getElementById('dialpadGrid');
-        const dialDelete = document.getElementById('dialDelete');
-        const dialClose = document.getElementById('dialClose');
-        const dialpadTrigger = document.getElementById('dialpadTrigger');
-
-        // ========== 状态 ==========
-        let isMenuOpen = false;
-        let currentTheme = localStorage.getItem('theme') || 'light';
-        let currentLang = localStorage.getItem('lang') || 'zh';
-        let dialValue = '';
-
-        // ========== 翻译字典 ==========
-        const translations = {
-            zh: {
-                settings: '设置',
-                theme: '主题模式',
-                light: '浅色',
-                dark: '深色',
-                language: '语言',
-                links: '链接',
-                bilibili: '我的 bilibili',
-                footer: 'Cathay Pacific • A330 • Minimal',
-                titleHtml: '欢迎来到<br>一架国泰航空A330官方网站',
-                menuAria: '打开菜单',
-                closeMenuAria: '关闭菜单',
-                delete: '删除',
-                close: '关闭'
-            },
-            en: {
-                settings: 'Settings',
-                theme: 'Theme',
-                light: 'Light',
-                dark: 'Dark',
-                language: 'Language',
-                links: 'Links',
-                bilibili: 'My bilibili',
-                footer: 'Cathay Pacific • A330 • Minimal',
-                titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
-                menuAria: 'Open menu',
-                closeMenuAria: 'Close menu',
-                delete: 'Delete',
-                close: 'Close'
-            }
-        };
-
-        // ========== 拨号盘按键数据 ==========
-        const dialKeys = [
-            { digit: '1', sub: '' },
-            { digit: '2', sub: 'ABC' },
-            { digit: '3', sub: 'DEF' },
-            { digit: '4', sub: 'GHI' },
-            { digit: '5', sub: 'JKL' },
-            { digit: '6', sub: 'MNO' },
-            { digit: '7', sub: 'PQRS' },
-            { digit: '8', sub: 'TUV' },
-            { digit: '9', sub: 'WXYZ' },
-            { digit: '*', sub: '' },
-            { digit: '0', sub: '+' },
-            { digit: '#', sub: '' },
-        ];
-
-        // ========== 初始化拨号盘 ==========
-        function buildDialpad() {
-            dialKeys.forEach(key => {
-                const btn = document.createElement('button');
-                btn.className = 'dial-key';
-                btn.setAttribute('data-digit', key.digit);
-                btn.innerHTML = key.digit + (key.sub ? `<span class="sub">${key.sub}</span>` : '');
-                btn.addEventListener('click', function() {
-                    dialValue += key.digit;
-                    updateDialDisplay();
-                });
-                dialpadGrid.appendChild(btn);
-            });
-            updateDialDisplay();
-        }
-
-        function updateDialDisplay() {
-            dialpadDisplay.textContent = dialValue || '';
-        }
-
-        function openDialpad() {
-            dialValue = '';
-            updateDialDisplay();
-            dialpadOverlay.classList.add('visible');
-            closeMenu();
-        }
-
-        function closeDialpad() {
-            dialpadOverlay.classList.remove('visible');
-        }
-
-        // ========== 初始化 ==========
-        function initTheme() {
-            htmlElement.setAttribute('data-theme', currentTheme);
-            updateThemeUI();
-        }
-
-        function updateThemeUI() {
-            const isDark = currentTheme === 'dark';
-            if (isDark) {
-                themeDot.classList.remove('inactive');
-                themeLabel.textContent = translations[currentLang].dark;
-            } else {
-                themeDot.classList.add('inactive');
-                themeLabel.textContent = translations[currentLang].light;
-            }
-        }
-
-        function initLanguage() {
-            updateLanguageUI();
-        }
-
-        function updateLanguageUI() {
-            mainTitle.innerHTML = translations[currentLang].titleHtml;
-
-            const btnSpan = bilibiliBtn.querySelector('span');
-            if (btnSpan) {
-                btnSpan.textContent = translations[currentLang].bilibili;
-            }
-
-            footerNote.textContent = translations[currentLang].footer;
-
-            document.querySelectorAll('[data-i18n="settings"]').forEach(el => {
-                el.textContent = translations[currentLang].settings;
-            });
-            document.querySelectorAll('[data-i18n="theme"]').forEach(el => {
-                el.textContent = translations[currentLang].theme;
-            });
-            document.querySelectorAll('[data-i18n="language"]').forEach(el => {
-                el.textContent = translations[currentLang].language;
-            });
-            document.querySelectorAll('[data-i18n="links"]').forEach(el => {
-                el.textContent = translations[currentLang].links;
-            });
-
-            updateThemeUI();
-            updateLanguageIndicators();
-
-            const menuAria = isMenuOpen ? translations[currentLang].closeMenuAria : translations[currentLang]
-                .menuAria;
-            hamburgerBtn.setAttribute('aria-label', menuAria);
-
-            dialDelete.textContent = translations[currentLang].delete;
-            dialClose.textContent = translations[currentLang].close;
-        }
-
-        function updateLanguageIndicators() {
-            if (currentLang === 'zh') {
-                langZhDot.classList.remove('inactive');
-                langEnDot.classList.add('inactive');
-            } else {
-                langZhDot.classList.add('inactive');
-                langEnDot.classList.remove('inactive');
-            }
-        }
-
-        // ========== 菜单开关 ==========
-        function openMenu() {
-            isMenuOpen = true;
-            hamburgerBtn.classList.add('active');
-            sidebarMenu.classList.add('open');
-            menuOverlay.classList.add('visible');
-            hamburgerBtn.setAttribute('aria-expanded', 'true');
-            hamburgerBtn.setAttribute('aria-label', translations[currentLang].closeMenuAria);
-        }
-
-        function closeMenu() {
-            isMenuOpen = false;
-            hamburgerBtn.classList.remove('active');
-            sidebarMenu.classList.remove('open');
-            menuOverlay.classList.remove('visible');
-            hamburgerBtn.setAttribute('aria-expanded', 'false');
-            hamburgerBtn.setAttribute('aria-label', translations[currentLang].menuAria);
-        }
-
-        function toggleMenu() {
-            if (isMenuOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        }
-
-        // ========== 事件监听 ==========
-        hamburgerBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleMenu();
-        });
-
-        menuOverlay.addEventListener('click', closeMenu);
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                if (isMenuOpen) closeMenu();
-                if (dialpadOverlay.classList.contains('visible')) closeDialpad();
-            }
-        });
-
-        themeToggle.addEventListener('click', function() {
-            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-            htmlElement.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('theme', currentTheme);
-            updateThemeUI();
-        });
-
-        langZh.addEventListener('click', function() {
-            if (currentLang !== 'zh') {
-                currentLang = 'zh';
-                localStorage.setItem('lang', 'zh');
-                htmlElement.setAttribute('lang', 'zh-CN');
-                updateLanguageUI();
-            }
-            closeMenu();
-        });
-
-        langEn.addEventListener('click', function() {
-            if (currentLang !== 'en') {
-                currentLang = 'en';
-                localStorage.setItem('lang', 'en');
-                htmlElement.setAttribute('lang', 'en');
-                updateLanguageUI();
-            }
-            closeMenu();
-        });
-
-        // 拨号盘
-        dialpadTrigger.addEventListener('click', function() {
-            openDialpad();
-        });
-
-        dialDelete.addEventListener('click', function() {
-            dialValue = dialValue.slice(0, -1);
-            updateDialDisplay();
-        });
-
-        dialClose.addEventListener('click', closeDialpad);
-
-        dialpadOverlay.addEventListener('click', function(e) {
-            if (e.target === dialpadOverlay) {
-                closeDialpad();
-            }
-        });
-
-        // ========== 启动 ==========
-        buildDialpad();
-        initTheme();
-        initLanguage();
-        updateLanguageIndicators();
-
-        if (currentTheme === 'dark') {
-            themeDot.classList.remove('inactive');
-        } else {
-            themeDot.classList.add('inactive');
-        }
-    })();
-</script>
 </body>
 </html>
