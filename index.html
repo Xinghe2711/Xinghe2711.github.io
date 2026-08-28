@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>欢迎来到一架国泰航空A330的网站</title>
+    <title>欢迎来到一架国泰航空A330官方网站</title>
     <style>
         /* ========== CSS 变量（主题） ========== */
         :root {
@@ -188,6 +188,8 @@
             outline: none;
             user-select: none;
             -webkit-touch-callout: none;
+            text-decoration: none;
+            /* 同时适用于 <a> 标签 */
         }
 
         .menu-item:hover {
@@ -427,27 +429,42 @@
                 <span class="dot" id="langEnDot"></span>
             </span>
         </button>
-    </div>
 
-    <!-- ========== 主内容 ========== -->
-    <div class="container">
-        <h1 id="mainTitle">
-            欢迎来到<br>
-            一架国泰航空A330的网站
-        </h1>
+        <div class="menu-divider"></div>
 
-        <div class="divider"></div>
-
-        <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
+        <!-- 新增：ojang pe 下载链接 -->
+        <a href="https://share.feijipan.com/s/Pw8OwB3N"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn"
-        aria-label="访问我的 bilibili 空间"
-        id="bilibiliBtn">
-        <span data-i18n="bilibili">我的 bilibili</span>
+        class="menu-item"
+        role="menuitem"
+        style="display: flex; align-items: center; justify-content: space-between;">
+        <span class="menu-item-label">ojang pe下载</span>
+        <span class="menu-item-indicator">
+            <span style="font-size: 1.1rem; line-height: 1;">↗</span>
+        </span>
     </a>
+</div>
 
-    <div class="footer-note" data-i18n="footer">Cathay Pacific &bull; A330 &bull; Minimal</div>
+<!-- ========== 主内容 ========== -->
+<div class="container">
+    <h1 id="mainTitle">
+        欢迎来到<br>
+        一架国泰航空A330官方网站
+    </h1>
+
+    <div class="divider"></div>
+
+    <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn"
+    aria-label="访问我的 bilibili 空间"
+    id="bilibiliBtn">
+    <span data-i18n="bilibili">我的 bilibili</span>
+</a>
+
+<div class="footer-note" data-i18n="footer">Cathay Pacific &bull; A330 &bull; Minimal</div>
 </div>
 
 <script>
@@ -483,7 +500,7 @@
                 language: '语言',
                 bilibili: '我的 bilibili',
                 footer: 'Cathay Pacific • A330 • Minimal',
-                titleHtml: '欢迎来到<br>一架国泰航空A330的网站',
+                titleHtml: '欢迎来到<br>一架国泰航空A330官方网站',
                 menuAria: '打开菜单',
                 closeMenuAria: '关闭菜单'
             },
@@ -495,7 +512,7 @@
                 language: 'Language',
                 bilibili: 'My bilibili',
                 footer: 'Cathay Pacific • A330 • Minimal',
-                titleHtml: 'Welcome to<br>a Cathay Pacific A330 website',
+                titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
                 menuAria: 'Open menu',
                 closeMenuAria: 'Close menu'
             }
@@ -642,11 +659,8 @@
         // ========== 启动 ==========
         initTheme();
         initLanguage();
-
-        // 初始化时设置语言指示器状态
         updateLanguageIndicators();
 
-        // 如果保存的主题是深色，更新主题指示器
         if (currentTheme === 'dark') {
             themeDot.classList.remove('inactive');
         } else {
