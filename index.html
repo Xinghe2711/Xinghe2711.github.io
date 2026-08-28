@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>欢迎来到一架国泰航空A330的网站</title>
     <style>
+        /* ========== CSS 变量（主题） ========== */
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #aaaaaa;
+            --divider: #cccccc;
+            --btn-border: #1a1a1a;
+            --btn-hover-bg: #1a1a1a;
+            --btn-hover-text: #ffffff;
+            --menu-bg: #ffffff;
+            --menu-shadow: rgba(0, 0, 0, 0.08);
+            --menu-item-hover: #f5f5f5;
+            --accent: #0077cc;
+            --accent-hover: #005fa3;
+            --transition-speed: 0.35s;
+        }
+
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #f0f0f0;
+            --text-secondary: #777777;
+            --divider: #3a3a3a;
+            --btn-border: #f0f0f0;
+            --btn-hover-bg: #f0f0f0;
+            --btn-hover-text: #121212;
+            --menu-bg: #1e1e1e;
+            --menu-shadow: rgba(0, 0, 0, 0.4);
+            --menu-item-hover: #2a2a2a;
+            --accent: #42a5f5;
+            --accent-hover: #64b5f6;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,7 +44,7 @@
         }
 
         body {
-            background-color: #ffffff;
+            background-color: var(--bg);
             font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
             display: flex;
             justify-content: center;
@@ -22,33 +54,212 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
+        /* ========== 右上角汉堡菜单按钮 ========== */
+        .hamburger-btn {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 1000;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 48px;
+            height: 48px;
+            transition: background-color 0.25s ease, transform 0.25s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        .hamburger-btn:hover {
+            background-color: rgba(0, 119, 204, 0.08);
+        }
+
+        .hamburger-btn:active {
+            transform: scale(0.92);
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background-color: var(--accent);
+            border-radius: 4px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                opacity 0.3s ease,
+                width 0.3s ease;
+            transform-origin: center;
+        }
+
+        /* 汉堡按钮动画：三条杠变成 X */
+        .hamburger-btn.active .hamburger-line:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        /* ========== 下拉菜单面板 ========== */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .dropdown-menu {
+            position: fixed;
+            top: 76px;
+            right: 20px;
+            z-index: 999;
+            background-color: var(--menu-bg);
+            border-radius: 16px;
+            box-shadow: 0 8px 40px var(--menu-shadow);
+            padding: 8px 0;
+            min-width: 220px;
+            opacity: 0;
+            transform: translateY(-12px) scale(0.96);
+            transform-origin: top right;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--divider);
+        }
+
+        .dropdown-menu.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .menu-section {
+            padding: 8px 12px 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 16px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text);
+            transition: background-color 0.2s ease;
+            font-family: inherit;
+            letter-spacing: 0.04em;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        .menu-item:hover {
+            background-color: var(--menu-item-hover);
+        }
+
+        .menu-item:active {
+            background-color: var(--menu-item-hover);
+        }
+
+        .menu-item-label {
+            font-weight: 400;
+        }
+
+        .menu-item-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .menu-item-indicator .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-item-indicator .dot.inactive {
+            background-color: var(--text-secondary);
+            transform: scale(0.7);
+        }
+
+        .menu-divider {
+            height: 1px;
+            background-color: var(--divider);
+            margin: 6px 0;
+            opacity: 0.5;
+        }
+
+        /* ========== 主内容容器 ========== */
         .container {
             text-align: center;
             padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
             max-width: 600px;
             width: 100%;
             margin: auto;
+            transition: color 0.4s ease;
         }
 
         h1 {
             font-size: clamp(1.4rem, 5vw, 2.2rem);
             font-weight: 300;
-            color: #1a1a1a;
+            color: var(--text);
             letter-spacing: 0.04em;
             line-height: 1.5;
             margin-bottom: clamp(1.5rem, 4vw, 2rem);
             word-break: keep-all;
             text-wrap: balance;
+            transition: color 0.4s ease;
         }
 
         .divider {
             width: 48px;
             height: 1px;
-            background-color: #cccccc;
+            background-color: var(--divider);
             margin: 0 auto clamp(1.5rem, 4vw, 2rem) auto;
-            transition: width 0.4s ease;
+            transition: width 0.4s ease, background-color 0.4s ease;
         }
 
         @media (hover: hover) and (pointer: fine) {
@@ -57,28 +268,19 @@
             }
         }
 
-        /* 按钮组容器：垂直排列，间距1rem */
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            width: 100%;
-        }
-
         .btn {
             display: inline-block;
             padding: clamp(0.7rem, 2.5vw, 0.9rem) clamp(2rem, 8vw, 2.8rem);
             font-size: clamp(0.9rem, 2.5vw, 1rem);
             font-weight: 400;
-            color: #1a1a1a;
+            color: var(--btn-border);
             background-color: transparent;
-            border: 1px solid #1a1a1a;
+            border: 1px solid var(--btn-border);
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             letter-spacing: 0.08em;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
             position: relative;
             overflow: hidden;
             -webkit-tap-highlight-color: transparent;
@@ -86,7 +288,6 @@
             outline: none;
             -webkit-touch-callout: none;
             white-space: nowrap;
-            /* 防止文字换行 */
         }
 
         .btn::after {
@@ -97,9 +298,9 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background-color: #1a1a1a;
+            background-color: var(--btn-hover-bg);
             transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease;
+            transition: width 0.5s ease, height 0.5s ease, background-color 0.4s ease;
             z-index: 0;
         }
 
@@ -111,7 +312,7 @@
 
         @media (hover: hover) and (pointer: fine) {
             .btn:hover {
-                border-color: #1a1a1a;
+                border-color: var(--btn-hover-bg);
                 box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
             }
 
@@ -121,25 +322,27 @@
             }
 
             .btn:hover span {
-                color: #ffffff;
+                color: var(--btn-hover-text);
             }
         }
 
         .btn:active {
             transform: scale(0.96);
             transition-duration: 0.15s;
-            background-color: rgba(0, 0, 0, 0.03);
+            background-color: rgba(128, 128, 128, 0.06);
         }
 
         .footer-note {
             margin-top: clamp(2rem, 6vw, 2.8rem);
             font-size: clamp(0.6rem, 2vw, 0.7rem);
-            color: #aaaaaa;
+            color: var(--text-secondary);
             letter-spacing: 0.15em;
             text-transform: uppercase;
             font-weight: 300;
+            transition: color 0.4s ease;
         }
 
+        /* ========== 响应式 ========== */
         @media (max-width: 360px) {
             h1 {
                 letter-spacing: 0.02em;
@@ -148,6 +351,25 @@
             .btn {
                 padding: 0.7rem 1.8rem;
                 letter-spacing: 0.05em;
+            }
+
+            .hamburger-btn {
+                top: 12px;
+                right: 12px;
+                width: 42px;
+                height: 42px;
+                padding: 10px;
+            }
+
+            .hamburger-line {
+                width: 20px;
+            }
+
+            .dropdown-menu {
+                top: 64px;
+                right: 12px;
+                min-width: 200px;
+                border-radius: 14px;
             }
         }
 
@@ -165,34 +387,272 @@
     </style>
 </head>
 <body>
+
+    <!-- ========== 汉堡菜单按钮 ========== -->
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- ========== 点击外部关闭遮罩 ========== -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- ========== 下拉菜单 ========== -->
+    <div class="dropdown-menu" id="dropdownMenu" role="menu">
+        <div class="menu-section" data-i18n="settings">设置</div>
+
+        <button class="menu-item" id="themeToggle" role="menuitem">
+            <span class="menu-item-label" data-i18n="theme">主题模式</span>
+            <span class="menu-item-indicator" id="themeIndicator">
+                <span class="dot" id="themeDot"></span>
+                <span id="themeLabel" data-i18n="light">浅色</span>
+            </span>
+        </button>
+
+        <div class="menu-divider"></div>
+
+        <div class="menu-section" data-i18n="language">语言</div>
+
+        <button class="menu-item" id="langZh" role="menuitem">
+            <span class="menu-item-label">中文</span>
+            <span class="menu-item-indicator">
+                <span class="dot" id="langZhDot"></span>
+            </span>
+        </button>
+
+        <button class="menu-item" id="langEn" role="menuitem">
+            <span class="menu-item-label">English</span>
+            <span class="menu-item-indicator">
+                <span class="dot" id="langEnDot"></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- ========== 主内容 ========== -->
     <div class="container">
-        <h1>
+        <h1 id="mainTitle">
             欢迎来到<br>
             一架国泰航空A330的网站
         </h1>
 
         <div class="divider"></div>
 
-        <!-- 按钮组：两个按钮垂直排列 -->
-        <div class="button-group">
-            <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn"
-            aria-label="访问我的 bilibili 空间">
-            <span>我的 bilibili</span>
-        </a>
-
-        <a href="https://share.feijipan.com/s/Pw8OwB3N"
+        <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
         target="_blank"
         rel="noopener noreferrer"
         class="btn"
-        aria-label="下载 ojang pe">
-        <span>ojang pe下载</span>
+        aria-label="访问我的 bilibili 空间"
+        id="bilibiliBtn">
+        <span data-i18n="bilibili">我的 bilibili</span>
     </a>
+
+    <div class="footer-note" data-i18n="footer">Cathay Pacific &bull; A330 &bull; Minimal</div>
 </div>
 
-<div class="footer-note">Cathay Pacific &bull; A330 &bull; Minimal</div>
-</div>
+<script>
+    (function() {
+        // ========== DOM 引用 ==========
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeDot = document.getElementById('themeDot');
+        const themeLabel = document.getElementById('themeLabel');
+        const langZh = document.getElementById('langZh');
+        const langEn = document.getElementById('langEn');
+        const langZhDot = document.getElementById('langZhDot');
+        const langEnDot = document.getElementById('langEnDot');
+        const mainTitle = document.getElementById('mainTitle');
+        const bilibiliBtn = document.getElementById('bilibiliBtn');
+        const footerNote = document.querySelector('.footer-note');
+        const htmlElement = document.documentElement;
+
+        // ========== 状态 ==========
+        let isMenuOpen = false;
+        let currentTheme = localStorage.getItem('theme') || 'light';
+        let currentLang = localStorage.getItem('lang') || 'zh';
+
+        // ========== 翻译字典 ==========
+        const translations = {
+            zh: {
+                settings: '设置',
+                theme: '主题模式',
+                light: '浅色',
+                dark: '深色',
+                language: '语言',
+                bilibili: '我的 bilibili',
+                footer: 'Cathay Pacific • A330 • Minimal',
+                titleHtml: '欢迎来到<br>一架国泰航空A330的网站',
+                menuAria: '打开菜单',
+                closeMenuAria: '关闭菜单'
+            },
+            en: {
+                settings: 'Settings',
+                theme: 'Theme',
+                light: 'Light',
+                dark: 'Dark',
+                language: 'Language',
+                bilibili: 'My bilibili',
+                footer: 'Cathay Pacific • A330 • Minimal',
+                titleHtml: 'Welcome to<br>a Cathay Pacific A330 website',
+                menuAria: 'Open menu',
+                closeMenuAria: 'Close menu'
+            }
+        };
+
+        // ========== 初始化 ==========
+        function initTheme() {
+            htmlElement.setAttribute('data-theme', currentTheme);
+            updateThemeUI();
+        }
+
+        function updateThemeUI() {
+            const isDark = currentTheme === 'dark';
+            if (isDark) {
+                themeDot.classList.remove('inactive');
+                themeLabel.textContent = translations[currentLang].dark;
+            } else {
+                themeDot.classList.add('inactive');
+                themeLabel.textContent = translations[currentLang].light;
+            }
+        }
+
+        function initLanguage() {
+            updateLanguageUI();
+        }
+
+        function updateLanguageUI() {
+            // 更新标题
+            mainTitle.innerHTML = translations[currentLang].titleHtml;
+
+            // 更新按钮文字
+            const btnSpan = bilibiliBtn.querySelector('span');
+            if (btnSpan) {
+                btnSpan.textContent = translations[currentLang].bilibili;
+            }
+
+            // 更新底部文字
+            footerNote.textContent = translations[currentLang].footer;
+
+            // 更新菜单区域标题
+            document.querySelectorAll('[data-i18n="settings"]').forEach(el => {
+                el.textContent = translations[currentLang].settings;
+            });
+            document.querySelectorAll('[data-i18n="theme"]').forEach(el => {
+                el.textContent = translations[currentLang].theme;
+            });
+            document.querySelectorAll('[data-i18n="language"]').forEach(el => {
+                el.textContent = translations[currentLang].language;
+            });
+
+            // 更新主题标签
+            updateThemeUI();
+
+            // 更新语言指示器
+            updateLanguageIndicators();
+
+            // 更新 aria-label
+            const menuAria = isMenuOpen ? translations[currentLang].closeMenuAria : translations[currentLang]
+                .menuAria;
+            hamburgerBtn.setAttribute('aria-label', menuAria);
+        }
+
+        function updateLanguageIndicators() {
+            if (currentLang === 'zh') {
+                langZhDot.classList.remove('inactive');
+                langEnDot.classList.add('inactive');
+            } else {
+                langZhDot.classList.add('inactive');
+                langEnDot.classList.remove('inactive');
+            }
+        }
+
+        // ========== 菜单开关 ==========
+        function openMenu() {
+            isMenuOpen = true;
+            hamburgerBtn.classList.add('active');
+            dropdownMenu.classList.add('open');
+            menuOverlay.classList.add('visible');
+            hamburgerBtn.setAttribute('aria-expanded', 'true');
+            hamburgerBtn.setAttribute('aria-label', translations[currentLang].closeMenuAria);
+        }
+
+        function closeMenu() {
+            isMenuOpen = false;
+            hamburgerBtn.classList.remove('active');
+            dropdownMenu.classList.remove('open');
+            menuOverlay.classList.remove('visible');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+            hamburgerBtn.setAttribute('aria-label', translations[currentLang].menuAria);
+        }
+
+        function toggleMenu() {
+            if (isMenuOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        }
+
+        // ========== 事件监听 ==========
+        hamburgerBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        menuOverlay.addEventListener('click', closeMenu);
+
+        // ESC 键关闭菜单
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                closeMenu();
+            }
+        });
+
+        // 主题切换
+        themeToggle.addEventListener('click', function() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            updateThemeUI();
+        });
+
+        // 语言切换
+        langZh.addEventListener('click', function() {
+            if (currentLang !== 'zh') {
+                currentLang = 'zh';
+                localStorage.setItem('lang', 'zh');
+                htmlElement.setAttribute('lang', 'zh-CN');
+                updateLanguageUI();
+            }
+            closeMenu();
+        });
+
+        langEn.addEventListener('click', function() {
+            if (currentLang !== 'en') {
+                currentLang = 'en';
+                localStorage.setItem('lang', 'en');
+                htmlElement.setAttribute('lang', 'en');
+                updateLanguageUI();
+            }
+            closeMenu();
+        });
+
+        // ========== 启动 ==========
+        initTheme();
+        initLanguage();
+
+        // 初始化时设置语言指示器状态
+        updateLanguageIndicators();
+
+        // 如果保存的主题是深色，更新主题指示器
+        if (currentTheme === 'dark') {
+            themeDot.classList.remove('inactive');
+        } else {
+            themeDot.classList.add('inactive');
+        }
+    })();
+</script>
 </body>
 </html>
