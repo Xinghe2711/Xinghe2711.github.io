@@ -148,33 +148,10 @@
         .btn-download:hover { background-color:var(--download-btn-hover-bg); border-color:var(--download-btn-hover-bg); color:var(--download-btn-hover-text); }
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
-        .ios-switch {
-            position: relative;
-            width: 51px;
-            height: 31px;
-            background-color: var(--toggle-off);
-            border-radius: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            flex-shrink: 0;
-            border: none;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-            padding: 0;
-        }
-        .ios-switch .knob {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 27px;
-            height: 27px;
-            background-color: #fff;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        .ios-switch.on { background-color: var(--toggle-on); }
-        .ios-switch.on .knob { transform: translateX(20px); }
+        .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; }
+        .ios-switch .knob { position:absolute; top:2px; left:2px; width:27px; height:27px; background-color:#fff; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
+        .ios-switch.on { background-color:var(--toggle-on); }
+        .ios-switch.on .knob { transform:translateX(20px); }
 
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -194,70 +171,18 @@
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .calc-modal { background-color:var(--calc-bg); border-radius:20px; padding:1rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
         .calc-overlay.visible .calc-modal { transform:translateY(0) scale(1); }
-        .calc-display {
-            background-color: var(--calc-display-bg);
-            border-radius: 10px;
-            padding: 0.8rem 1rem;
-            font-size: 2rem;
-            font-weight: 300;
-            text-align: right;
-            color: var(--text);
-            margin-bottom: 0.8rem;
-            min-height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            overflow-x: auto;
-            white-space: nowrap;
-            letter-spacing: 0.05em;
-            border: 1px solid var(--divider);
-        }
-        .calc-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.5rem;
-        }
-        .calc-key {
-            background-color: var(--calc-key-bg);
-            border: none;
-            border-radius: 50%;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.3rem;
-            color: var(--text);
-            transition: all 0.15s ease;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            font-family: inherit;
-            font-weight: 400;
-        }
-        .calc-key:hover { background-color: var(--calc-key-hover); }
-        .calc-key:active { transform: scale(0.9); }
-        .calc-key.operator {
-            background-color: var(--calc-operator-bg);
-            color: var(--calc-operator-text);
-        }
-        .calc-key.operator:hover { opacity: 0.85; }
-        .calc-key.equals {
-            background-color: var(--calc-equals-bg);
-            color: #fff;
-        }
-        .calc-key.equals:hover { opacity: 0.85; }
-        .calc-key.zero {
-            grid-column: span 2;
-            border-radius: 50px;
-        }
-        .calc-key.clear {
-            background-color: #d4d4d2;
-            color: #1a1a1a;
-        }
-        [data-theme="dark"] .calc-key.clear {
-            background-color: #5a5a5a;
-            color: #f0f0f0;
-        }
+        .calc-display { background-color:var(--calc-display-bg); border-radius:10px; padding:0.8rem 1rem; font-size:2rem; font-weight:300; text-align:right; color:var(--text); margin-bottom:0.8rem; min-height:64px; display:flex; align-items:center; justify-content:flex-end; overflow-x:auto; white-space:nowrap; letter-spacing:0.05em; border:1px solid var(--divider); }
+        .calc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; }
+        .calc-key { background-color:var(--calc-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.3rem; color:var(--text); transition:all 0.15s ease; -webkit-tap-highlight-color:transparent; outline:none; font-family:inherit; font-weight:400; }
+        .calc-key:hover { background-color:var(--calc-key-hover); }
+        .calc-key:active { transform:scale(0.9); }
+        .calc-key.operator { background-color:var(--calc-operator-bg); color:var(--calc-operator-text); }
+        .calc-key.operator:hover { opacity:0.85; }
+        .calc-key.equals { background-color:var(--calc-equals-bg); color:#fff; }
+        .calc-key.equals:hover { opacity:0.85; }
+        .calc-key.zero { grid-column:span 2; border-radius:50px; }
+        .calc-key.clear { background-color:#d4d4d2; color:#1a1a1a; }
+        [data-theme="dark"] .calc-key.clear { background-color:#5a5a5a; color:#f0f0f0; }
 
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -273,7 +198,28 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* ===== 侧边栏及所有弹窗在三种模式下的样式 ===== */
+        /* ===== 主界面元素（按钮、公告栏、下载按钮）在三种模式下的样式 ===== */
+        body.glass-mode .btn { background-color:rgba(0,122,255,0.8); border-color:rgba(255,255,255,0.35); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+        body.glass-mode .btn-download { background-color:rgba(255,255,255,0.55); border-color:rgba(0,0,0,0.18); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+        [data-theme="dark"] body.glass-mode .btn-download { background-color:rgba(44,44,46,0.55); border-color:rgba(255,255,255,0.12); color:#f0f0f0; }
+        body.glass-mode .announcement { background-color:rgba(255,255,255,0.55); border-color:rgba(0,0,0,0.18); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+        [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55); border-color:rgba(255,255,255,0.12); }
+
+        body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(0,119,204,0.65), rgba(0,119,204,0.35) 50%, rgba(0,119,204,0.55)); backdrop-filter:blur(10px) saturate(150%); -webkit-backdrop-filter:blur(10px) saturate(150%); border:1px solid rgba(255,255,255,0.3); color:#fff; }
+        [data-theme="dark"] body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(66,165,245,0.65), rgba(66,165,245,0.35) 50%, rgba(66,165,245,0.55)); color:#121212; }
+        body.liquid-glass-mode .btn-download { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)); backdrop-filter:blur(10px) saturate(140%); -webkit-backdrop-filter:blur(10px) saturate(140%); border:1px solid rgba(0,0,0,0.15); }
+        [data-theme="dark"] body.liquid-glass-mode .btn-download { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)); border-color:rgba(255,255,255,0.1); color:#f0f0f0; }
+        body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(20px) saturate(170%); -webkit-backdrop-filter:blur(20px) saturate(170%); border:1px solid rgba(255,255,255,0.35); }
+        [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border-color:rgba(255,255,255,0.1); }
+
+        body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2,#1e69de); border:1px solid #1c4f9c; border-radius:6px; text-shadow:0 -1px 0 rgba(0,0,0,0.4); box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3); }
+        [data-theme="dark"] body.retro-mode .btn { background:linear-gradient(to bottom,#5c8ccf,#2b5c9e); border-color:#1c3f6c; }
+        body.retro-mode .btn-download { background:#fff; border:1px solid #8f8f8f; border-radius:5px; color:#333; text-shadow:0 1px 0 #fff; box-shadow:0 2px 3px rgba(0,0,0,0.25), inset 0 1px 0 #fff; }
+        [data-theme="dark"] body.retro-mode .btn-download { background:#5a5a5a; border-color:#3a3a3a; color:#eee; text-shadow:0 -1px 0 #000; }
+        body.retro-mode .announcement { background:#fafafa; border:1px solid #a0a0a0; border-radius:6px; box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(0,0,0,0.25); }
+        [data-theme="dark"] body.retro-mode .announcement { background:#505050; border-color:#2a2a2a; }
+
+        /* 侧边栏和弹窗模式样式 */
         body.glass-mode .sidebar-menu { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-left:1px solid rgba(255,255,255,0.5); }
         [data-theme="dark"] body.glass-mode .sidebar-menu { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-left:1px solid rgba(255,255,255,0.1); }
         body.glass-mode .settings-modal { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.6); }
@@ -316,7 +262,7 @@
 <body>
 
     <header class="top-bar">
-        <div class="site-title" data-i18n="siteTitle">一架国泰航空A330官方网站</div>
+        <div class="site-title">一架国泰航空A330官方网站</div>
     </header>
 
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单">
@@ -405,7 +351,7 @@
     </div>
 
     <div class="container">
-        <h1 id="mainTitle">欢迎来到<br>一架国泰航空A330官方网站</h1>
+        <h1>欢迎来到<br>一架国泰航空A330官方网站</h1>
         <div class="divider"></div>
         <div class="button-group">
             <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0" target="_blank" class="btn">我的 bilibili</a>
@@ -431,7 +377,6 @@
             const themeLightBtn = $('themeLightBtn'), themeDarkBtn = $('themeDarkBtn');
             const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), bingWallpaperSwitch = $('bingWallpaperSwitch');
             const langButtons = document.querySelectorAll('.lang-btn');
-            const mainTitle = $('mainTitle'), siteTitle = document.querySelector('.site-title');
             const dialpadOverlay = $('dialpadOverlay'), dialpadDisplay = $('dialpadDisplay'), dialpadGrid = $('dialpadGrid');
             const dialDelete = $('dialDelete'), dialClose = $('dialClose'), dialpadTrigger = $('dialpadTrigger');
             const htmlElement = document.documentElement;
@@ -445,15 +390,6 @@
             let retroEnabled = localStorage.getItem('retroMode') === 'enabled';
             let dialValue = '';
             let calcFirstOperand = null, calcOperator = null, calcShouldResetDisplay = false;
-
-            const translations = {
-                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', titleHtml:'欢迎来到<br>一架国泰航空A330官方网站' },
-                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', titleHtml:'歡迎來到<br>一架國泰航空A330官方網站' },
-                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', titleHtml:'ようこそ<br>A330公式サイトへ' },
-                'en-GB': { siteTitle:'Cathay Pacific A330 Official', titleHtml:'Welcome to<br>A330 Official' },
-                'en-US': { siteTitle:'Cathay Pacific A330 Official', titleHtml:'Welcome to<br>A330 Official' },
-                'ko': { siteTitle:'캐세이퍼시픽 A330 공식', titleHtml:'환영합니다<br>A330 공식' }
-            };
 
             const dialKeys = [
                 { digit:'1', sub:'' }, { digit:'2', sub:'ABC' }, { digit:'3', sub:'DEF' },
@@ -484,9 +420,6 @@
                 themeLightBtn.classList.toggle('active', currentTheme === 'light');
                 themeDarkBtn.classList.toggle('active', currentTheme === 'dark');
                 htmlElement.setAttribute('data-theme', currentTheme);
-                const t = translations[currentLang] || translations['zh-CN'];
-                siteTitle.textContent = t.siteTitle;
-                mainTitle.innerHTML = t.titleHtml;
                 if (bingEnabled) {
                     fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1')
                         .then(r => r.json())
@@ -513,37 +446,19 @@
                 calcOverlay.classList.remove('visible');
             }
 
-            settingsTrigger.addEventListener('click', () => {
-                closeAllModals();
-                toggleMenu(false);
-                settingsOverlay.classList.add('visible');
-                updateUI();
-            });
+            settingsTrigger.addEventListener('click', () => { closeAllModals(); toggleMenu(false); settingsOverlay.classList.add('visible'); updateUI(); });
             settingsCloseBtn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
             settingsOverlay.addEventListener('click', e => { if(e.target === settingsOverlay) settingsOverlay.classList.remove('visible'); });
 
-            calcTrigger.addEventListener('click', () => {
-                closeAllModals();
-                toggleMenu(false);
-                calcOverlay.classList.add('visible');
-            });
+            calcTrigger.addEventListener('click', () => { closeAllModals(); toggleMenu(false); calcOverlay.classList.add('visible'); });
             calcOverlay.addEventListener('click', e => { if(e.target === calcOverlay) calcOverlay.classList.remove('visible'); });
 
-            dialpadTrigger.addEventListener('click', () => {
-                closeAllModals();
-                toggleMenu(false);
-                dialpadOverlay.classList.add('visible');
-            });
+            dialpadTrigger.addEventListener('click', () => { closeAllModals(); toggleMenu(false); dialpadOverlay.classList.add('visible'); });
             dialClose.addEventListener('click', () => dialpadOverlay.classList.remove('visible'));
             dialDelete.addEventListener('click', () => { dialValue = dialValue.slice(0,-1); dialpadDisplay.textContent = dialValue; });
             dialpadOverlay.addEventListener('click', e => { if(e.target === dialpadOverlay) dialpadOverlay.classList.remove('visible'); });
 
-            document.addEventListener('keydown', e => {
-                if(e.key === 'Escape') {
-                    toggleMenu(false);
-                    closeAllModals();
-                }
-            });
+            document.addEventListener('keydown', e => { if(e.key === 'Escape') { toggleMenu(false); closeAllModals(); } });
 
             themeLightBtn.addEventListener('click', () => { currentTheme = 'light'; localStorage.setItem('theme','light'); updateUI(); });
             themeDarkBtn.addEventListener('click', () => { currentTheme = 'dark'; localStorage.setItem('theme','dark'); updateUI(); });
@@ -562,72 +477,27 @@
                 updateUI();
             }
 
-            glassModeSwitch.addEventListener('click', () => {
-                const newVal = !glassEnabled;
-                setMode('glassMode', newVal);
-                if(newVal) {
-                    liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled');
-                    retroEnabled = false; localStorage.setItem('retroMode','disabled');
-                }
-                updateUI();
-            });
-            liquidGlassModeSwitch.addEventListener('click', () => {
-                const newVal = !liquidGlassEnabled;
-                setMode('liquidGlassMode', newVal);
-                if(newVal) {
-                    glassEnabled = false; localStorage.setItem('glassMode','disabled');
-                    retroEnabled = false; localStorage.setItem('retroMode','disabled');
-                }
-                updateUI();
-            });
-            retroModeSwitch.addEventListener('click', () => {
-                const newVal = !retroEnabled;
-                setMode('retroMode', newVal);
-                if(newVal) {
-                    glassEnabled = false; localStorage.setItem('glassMode','disabled');
-                    liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled');
-                }
-                updateUI();
-            });
-            bingWallpaperSwitch.addEventListener('click', () => {
-                bingEnabled = !bingEnabled;
-                localStorage.setItem('bingWallpaper', bingEnabled?'enabled':'disabled');
-                updateUI();
-            });
+            glassModeSwitch.addEventListener('click', () => { const v = !glassEnabled; setMode('glassMode', v); if(v) { liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); } updateUI(); });
+            liquidGlassModeSwitch.addEventListener('click', () => { const v = !liquidGlassEnabled; setMode('liquidGlassMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); } updateUI(); });
+            retroModeSwitch.addEventListener('click', () => { const v = !retroEnabled; setMode('retroMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); } updateUI(); });
+            bingWallpaperSwitch.addEventListener('click', () => { bingEnabled = !bingEnabled; localStorage.setItem('bingWallpaper', bingEnabled?'enabled':'disabled'); updateUI(); });
 
             langButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentLang = btn.getAttribute('data-lang');
-                    localStorage.setItem('lang', currentLang);
-                    htmlElement.setAttribute('lang', currentLang);
-                    updateUI();
-                });
+                btn.addEventListener('click', () => { currentLang = btn.getAttribute('data-lang'); localStorage.setItem('lang', currentLang); htmlElement.setAttribute('lang', currentLang); updateUI(); });
             });
 
             function calcInput(value) {
-                if (calcShouldResetDisplay) {
-                    calcDisplay.textContent = '0';
-                    calcShouldResetDisplay = false;
-                }
+                if (calcShouldResetDisplay) { calcDisplay.textContent = '0'; calcShouldResetDisplay = false; }
                 const current = calcDisplay.textContent;
                 if (value === '.' && current.includes('.')) return;
-                if (current === '0' && value !== '.') {
-                    calcDisplay.textContent = value;
-                } else {
-                    calcDisplay.textContent = current + value;
-                }
+                if (current === '0' && value !== '.') calcDisplay.textContent = value;
+                else calcDisplay.textContent = current + value;
             }
             function calcSetOperator(op) {
                 const currentValue = parseFloat(calcDisplay.textContent);
-                if (calcOperator && !calcShouldResetDisplay) {
-                    const result = calcCalculate();
-                    calcDisplay.textContent = String(result);
-                    calcFirstOperand = result;
-                } else {
-                    calcFirstOperand = currentValue;
-                }
-                calcOperator = op;
-                calcShouldResetDisplay = true;
+                if (calcOperator && !calcShouldResetDisplay) { const result = calcCalculate(); calcDisplay.textContent = String(result); calcFirstOperand = result; }
+                else calcFirstOperand = currentValue;
+                calcOperator = op; calcShouldResetDisplay = true;
             }
             function calcCalculate() {
                 const second = parseFloat(calcDisplay.textContent);
@@ -642,33 +512,15 @@
                 return Math.round(result * 1000000) / 1000000;
             }
             function calcEquals() {
-                if (calcOperator !== null) {
-                    const result = calcCalculate();
-                    calcDisplay.textContent = String(result);
-                    calcFirstOperand = null;
-                    calcOperator = null;
-                    calcShouldResetDisplay = true;
-                }
+                if (calcOperator !== null) { const result = calcCalculate(); calcDisplay.textContent = String(result); calcFirstOperand = null; calcOperator = null; calcShouldResetDisplay = true; }
             }
-            function calcClear() {
-                calcDisplay.textContent = '0';
-                calcFirstOperand = null;
-                calcOperator = null;
-                calcShouldResetDisplay = false;
-            }
+            function calcClear() { calcDisplay.textContent = '0'; calcFirstOperand = null; calcOperator = null; calcShouldResetDisplay = false; }
             function calcBackspace() {
                 const current = calcDisplay.textContent;
-                if (current.length > 1 && !calcShouldResetDisplay) {
-                    calcDisplay.textContent = current.slice(0, -1);
-                } else {
-                    calcDisplay.textContent = '0';
-                    calcShouldResetDisplay = false;
-                }
+                if (current.length > 1 && !calcShouldResetDisplay) calcDisplay.textContent = current.slice(0, -1);
+                else { calcDisplay.textContent = '0'; calcShouldResetDisplay = false; }
             }
-            function calcPercent() {
-                const current = parseFloat(calcDisplay.textContent);
-                calcDisplay.textContent = String(current / 100);
-            }
+            function calcPercent() { calcDisplay.textContent = String(parseFloat(calcDisplay.textContent) / 100); }
             document.querySelectorAll('.calc-key').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const value = btn.getAttribute('data-value');
