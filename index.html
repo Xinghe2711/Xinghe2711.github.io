@@ -8,6 +8,7 @@
         /* ========== CSS 变量（主题） ========== */
         :root {
             --bg: #ffffff;
+            --default-bg-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80');
             --text: #1a1a1a;
             --text-secondary: #aaaaaa;
             --divider: #cccccc;
@@ -43,6 +44,7 @@
 
         [data-theme="dark"] {
             --bg: #121212;
+            --default-bg-image: none;
             --text: #f0f0f0;
             --text-secondary: #888888;
             --divider: #3a3a3a;
@@ -84,6 +86,10 @@
 
         body {
             background-color: var(--bg);
+            background-image: var(--default-bg-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
             display: flex;
             justify-content: center;
@@ -94,7 +100,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.4s ease;
+            transition: background-color 0.5s ease, color 0.4s ease, background-image 0.5s ease;
         }
 
         /* ========== 顶部栏 ========== */
@@ -113,118 +119,15 @@
             transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
         }
 
-        /* iOS 16 风格毛玻璃透明模式 */
-        body.glass-mode {
-            background-color: rgba(255, 255, 255, 0.4);
-        }
-        [data-theme="dark"] body.glass-mode {
-            background-color: rgba(18, 18, 18, 0.4);
-        }
-
-        body.glass-mode .top-bar {
-            background-color: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
-        }
-        [data-theme="dark"] body.glass-mode .top-bar {
-            background-color: rgba(28, 28, 30, 0.72);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
-        }
-
-        body.glass-mode .container {
-            background-color: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.65);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
-                0 1px 4px rgba(0, 0, 0, 0.04),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            padding: 2rem 1.5rem;
-        }
-        [data-theme="dark"] body.glass-mode .container {
-            background-color: rgba(44, 44, 46, 0.72);
-            backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25),
-                0 1px 4px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.06);
-        }
-
-        body.glass-mode .sidebar-menu {
-            background-color: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-left: 1px solid rgba(255, 255, 255, 0.55);
-            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.06);
-        }
-        [data-theme="dark"] body.glass-mode .sidebar-menu {
-            background-color: rgba(28, 28, 30, 0.72);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.2);
-        }
-
-        body.glass-mode .btn {
-            background-color: rgba(0, 122, 255, 0.85);
-            border-color: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(5px) saturate(150%);
-            -webkit-backdrop-filter: blur(5px) saturate(150%);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        }
-        [data-theme="dark"] body.glass-mode .btn {
-            background-color: rgba(0, 122, 255, 0.75);
-            border-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-        }
-
-        body.glass-mode .btn-download {
-            background-color: rgba(255, 255, 255, 0.6);
-            border-color: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px) saturate(150%);
-            -webkit-backdrop-filter: blur(8px) saturate(150%);
-            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-        }
-        [data-theme="dark"] body.glass-mode .btn-download {
-            background-color: rgba(44, 44, 46, 0.6);
-            border-color: rgba(255, 255, 255, 0.15);
-            color: #f0f0f0;
-        }
-
-        body.glass-mode .announcement {
-            background-color: rgba(255, 255, 255, 0.6);
-            border-color: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px) saturate(150%);
-            -webkit-backdrop-filter: blur(10px) saturate(150%);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        }
-        [data-theme="dark"] body.glass-mode .announcement {
-            background-color: rgba(44, 44, 46, 0.6);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        body.glass-mode .dialpad-modal {
-            background-color: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
-        }
-        [data-theme="dark"] body.glass-mode .dialpad-modal {
-            background-color: rgba(28, 28, 30, 0.75);
-            backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+        .site-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text);
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color 0.4s ease;
         }
 
         /* ========== 汉堡按钮 ========== */
@@ -281,7 +184,7 @@
         }
         .menu-overlay.visible { opacity: 1; pointer-events: auto; }
 
-        /* ========== 侧边栏菜单（默认状态） ========== */
+        /* ========== 侧边栏 ========== */
         .sidebar-menu {
             position: fixed;
             top: 0;
@@ -313,48 +216,25 @@
         .menu-item-indicator .dot.inactive { background-color: var(--text-secondary); transform: scale(0.7); }
         .menu-divider { height: 1px; background-color: var(--divider); margin: 8px 0; opacity: 0.5; }
 
-        /* ========== 主内容容器（默认） ========== */
-        .container {
-            text-align: center;
-            padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
-            max-width: 600px;
-            width: 100%;
-            margin: auto;
-            transition: color 0.4s ease, background-color 0.3s ease, backdrop-filter 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        h1 {
-            font-size: clamp(1.4rem, 5vw, 2.2rem);
-            font-weight: 300;
-            color: var(--text);
-            letter-spacing: 0.04em;
-            line-height: 1.5;
-            margin-bottom: clamp(1.5rem, 4vw, 2rem);
-            word-break: keep-all;
-            text-wrap: balance;
-            transition: color 0.4s ease;
-        }
-
+        /* ========== 主内容 ========== */
+        .container { text-align: center; padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem); max-width: 600px; width: 100%; margin: auto; transition: color 0.4s ease, background-color 0.3s ease, backdrop-filter 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease; }
+        h1 { font-size: clamp(1.4rem, 5vw, 2.2rem); font-weight: 300; color: var(--text); letter-spacing: 0.04em; line-height: 1.5; margin-bottom: clamp(1.5rem, 4vw, 2rem); word-break: keep-all; text-wrap: balance; transition: color 0.4s ease; }
         .divider { width: 48px; height: 1px; background-color: var(--divider); margin: 0 auto clamp(1.5rem, 4vw, 2rem) auto; transition: width 0.4s ease, background-color 0.4s ease; }
         @media (hover: hover) and (pointer: fine) { .container:hover .divider { width: 80px; } }
-
         .button-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 0.5rem; }
         .btn { display: inline-block; padding: clamp(0.7rem, 2.5vw, 0.9rem) clamp(2rem, 8vw, 2.8rem); font-size: clamp(0.9rem, 2.5vw, 1rem); font-weight: 400; color: var(--btn-primary-text); background-color: var(--btn-primary); border: 1px solid var(--btn-primary); border-radius: 50px; cursor: pointer; text-decoration: none; letter-spacing: 0.08em; transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.15s ease, backdrop-filter 0.3s ease; -webkit-tap-highlight-color: transparent; user-select: none; outline: none; -webkit-touch-callout: none; white-space: nowrap; }
         @media (hover: hover) and (pointer: fine) { .btn:hover { background-color: var(--btn-primary-hover); border-color: var(--btn-primary-hover); box-shadow: 0 4px 16px rgba(0,0,0,0.15); } }
         .btn:active { transform: scale(0.96); }
-
         .announcement { margin: 1.8rem auto 1.8rem auto; max-width: 360px; width: 100%; padding: 0.8rem 1.2rem; border: 1.5px solid var(--announcement-border); border-radius: 12px; background-color: var(--announcement-bg); text-align: center; transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; }
         .announcement-title { font-size: 1.3rem; font-weight: 500; letter-spacing: 0.1em; color: var(--announcement-title); margin-bottom: 0.2rem; }
         .announcement-subtitle { font-size: 0.75rem; color: var(--announcement-subtitle); letter-spacing: 0.05em; }
-
         .download-group { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; margin-top: 1.8rem; width: 100%; }
         .btn-download { display: block; width: 100%; max-width: 360px; padding: 0.8rem 1.5rem; font-size: 0.95rem; font-weight: 400; text-align: center; color: var(--download-btn-text); background-color: var(--download-btn-bg); border: 1.5px solid var(--download-btn-border); border-radius: 8px; cursor: pointer; text-decoration: none; letter-spacing: 0.04em; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.15s ease, backdrop-filter 0.3s ease; -webkit-tap-highlight-color: transparent; user-select: none; outline: none; -webkit-touch-callout: none; white-space: nowrap; }
         @media (hover: hover) and (pointer: fine) { .btn-download:hover { background-color: var(--download-btn-hover-bg); border-color: var(--download-btn-hover-bg); color: var(--download-btn-hover-text); box-shadow: 0 4px 14px rgba(0,0,0,0.1); } }
         .btn-download:active { background-color: var(--download-btn-hover-bg); border-color: var(--download-btn-hover-bg); color: var(--download-btn-hover-text); transform: scale(0.98); }
-
         .footer-note { margin-top: clamp(2rem, 6vw, 2.8rem); font-size: clamp(0.6rem, 2vw, 0.7rem); color: var(--text-secondary); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300; transition: color 0.4s ease; }
 
-        /* ========== 拨号盘模态框（默认） ========== */
+        /* ========== 拨号盘 ========== */
         .dialpad-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--modal-overlay); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 1rem; }
         .dialpad-overlay.visible { opacity: 1; pointer-events: auto; }
         .dialpad-modal { background-color: var(--modal-bg); border-radius: 20px; padding: 1.5rem 1.5rem 1.8rem; width: 100%; max-width: 320px; box-shadow: 0 12px 60px rgba(0,0,0,0.2); transform: translateY(20px) scale(0.95); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background-color 0.3s ease, backdrop-filter 0.3s ease; border: 1px solid var(--divider); }
@@ -384,44 +264,40 @@
 </head>
 <body>
 
-    <!-- 顶部栏（左上角标题 + 横线） -->
     <header class="top-bar">
         <div class="site-title" data-i18n="siteTitle">一架国泰航空A330官方网站</div>
     </header>
 
-    <!-- 汉堡按钮 -->
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
     </button>
 
-    <!-- 遮罩层 -->
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- 侧边栏菜单 -->
     <aside class="sidebar-menu" id="sidebarMenu" role="menu">
         <div class="menu-section" data-i18n="settings">设置</div>
-        <button class="menu-item" id="themeToggle" role="menuitem"><span class="menu-item-label" data-i18n="theme">主题模式</span><span class="menu-item-indicator" id="themeIndicator"><span class="dot" id="themeDot"></span><span id="themeLabel" data-i18n="light">浅色</span></span></button>
-        <button class="menu-item" id="glassToggle" role="menuitem"><span class="menu-item-label" data-i18n="glassMode">透明模式</span><span class="menu-item-indicator"><span class="dot" id="glassDot"></span></span></button>
-        <button class="menu-item" id="liquidGlassToggle" role="menuitem"><span class="menu-item-label" data-i18n="liquidGlassMode">液态玻璃模式</span><span class="menu-item-indicator"><span class="dot" id="liquidGlassDot"></span></span></button>
-        <button class="menu-item" id="bingWallpaperToggle" role="menuitem"><span class="menu-item-label" data-i18n="bingWallpaper">必应每日一图</span><span class="menu-item-indicator"><span class="dot" id="bingWallpaperDot"></span></span></button>
+        <button class="menu-item" id="themeToggle"><span class="menu-item-label" data-i18n="theme">主题模式</span><span class="menu-item-indicator" id="themeIndicator"><span class="dot" id="themeDot"></span><span id="themeLabel" data-i18n="light">浅色</span></span></button>
+        <button class="menu-item" id="glassToggle"><span class="menu-item-label" data-i18n="glassMode">透明模式</span><span class="menu-item-indicator"><span class="dot" id="glassDot"></span></span></button>
+        <button class="menu-item" id="liquidGlassToggle"><span class="menu-item-label" data-i18n="liquidGlassMode">液态玻璃模式</span><span class="menu-item-indicator"><span class="dot" id="liquidGlassDot"></span></span></button>
+        <button class="menu-item" id="bingWallpaperToggle"><span class="menu-item-label" data-i18n="bingWallpaper">必应每日一图</span><span class="menu-item-indicator"><span class="dot" id="bingWallpaperDot"></span></span></button>
+        <button class="menu-item" id="retroToggle"><span class="menu-item-label" data-i18n="retroMode">怀旧模式</span><span class="menu-item-indicator"><span class="dot" id="retroDot"></span></span></button>
         <div class="menu-divider"></div>
         <div class="menu-section" data-i18n="language">语言</div>
-        <button class="menu-item" id="langZhCN" role="menuitem"><span class="menu-item-label">简体中文</span><span class="menu-item-indicator"><span class="dot" id="langZhCNDot"></span></span></button>
-        <button class="menu-item" id="langZhTW" role="menuitem"><span class="menu-item-label">繁體中文</span><span class="menu-item-indicator"><span class="dot" id="langZhTWDot"></span></span></button>
-        <button class="menu-item" id="langJa" role="menuitem"><span class="menu-item-label">日本語</span><span class="menu-item-indicator"><span class="dot" id="langJaDot"></span></span></button>
-        <button class="menu-item" id="langEnGB" role="menuitem"><span class="menu-item-label">English (UK)</span><span class="menu-item-indicator"><span class="dot" id="langEnGBDot"></span></span></button>
-        <button class="menu-item" id="langEnUS" role="menuitem"><span class="menu-item-label">English (US)</span><span class="menu-item-indicator"><span class="dot" id="langEnUSDot"></span></span></button>
-        <button class="menu-item" id="langKo" role="menuitem"><span class="menu-item-label">한국어</span><span class="menu-item-indicator"><span class="dot" id="langKoDot"></span></span></button>
+        <button class="menu-item" id="langZhCN"><span class="menu-item-label">简体中文</span><span class="menu-item-indicator"><span class="dot" id="langZhCNDot"></span></span></button>
+        <button class="menu-item" id="langZhTW"><span class="menu-item-label">繁體中文</span><span class="menu-item-indicator"><span class="dot" id="langZhTWDot"></span></span></button>
+        <button class="menu-item" id="langJa"><span class="menu-item-label">日本語</span><span class="menu-item-indicator"><span class="dot" id="langJaDot"></span></span></button>
+        <button class="menu-item" id="langEnGB"><span class="menu-item-label">English (UK)</span><span class="menu-item-indicator"><span class="dot" id="langEnGBDot"></span></span></button>
+        <button class="menu-item" id="langEnUS"><span class="menu-item-label">English (US)</span><span class="menu-item-indicator"><span class="dot" id="langEnUSDot"></span></span></button>
+        <button class="menu-item" id="langKo"><span class="menu-item-label">한국어</span><span class="menu-item-indicator"><span class="dot" id="langKoDot"></span></span></button>
         <div class="menu-divider"></div>
         <div class="menu-section" data-i18n="links">链接</div>
-        <a href="https://mcjs.cc" target="_blank" rel="noopener noreferrer" class="menu-item" role="menuitem"><span class="menu-item-label">网页版MC</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">↗</span></span></a>
-        <a href="https://share.feijipan.com/s/Pw8OwB3N" target="_blank" rel="noopener noreferrer" class="menu-item" role="menuitem"><span class="menu-item-label">ojang pe下载</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">↗</span></span></a>
-        <button class="menu-item" id="dialpadTrigger" role="menuitem"><span class="menu-item-label">拨号盘</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">☎</span></span></button>
+        <a href="https://mcjs.cc" target="_blank" rel="noopener noreferrer" class="menu-item"><span class="menu-item-label">网页版MC</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">↗</span></span></a>
+        <a href="https://share.feijipan.com/s/Pw8OwB3N" target="_blank" rel="noopener noreferrer" class="menu-item"><span class="menu-item-label">ojang pe下载</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">↗</span></span></a>
+        <button class="menu-item" id="dialpadTrigger"><span class="menu-item-label">拨号盘</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">☎</span></span></button>
     </aside>
 
-    <!-- 拨号盘模态框 -->
     <div class="dialpad-overlay" id="dialpadOverlay">
         <div class="dialpad-modal">
             <div class="dialpad-display" id="dialpadDisplay"></div>
@@ -433,7 +309,6 @@
         </div>
     </div>
 
-    <!-- 主内容 -->
     <div class="container">
         <h1 id="mainTitle">欢迎来到<br>一架国泰航空A330官方网站</h1>
         <div class="divider"></div>
@@ -454,7 +329,7 @@
 
     <script>
         (function() {
-            // ========== DOM 引用 ==========
+            // DOM 引用
             const hamburgerBtn = document.getElementById('hamburgerBtn');
             const sidebarMenu = document.getElementById('sidebarMenu');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -467,6 +342,8 @@
             const liquidGlassDot = document.getElementById('liquidGlassDot');
             const bingWallpaperToggle = document.getElementById('bingWallpaperToggle');
             const bingWallpaperDot = document.getElementById('bingWallpaperDot');
+            const retroToggle = document.getElementById('retroToggle');
+            const retroDot = document.getElementById('retroDot');
             const langButtons = {
                 'zh-CN': document.getElementById('langZhCN'),
                 'zh-TW': document.getElementById('langZhTW'),
@@ -497,82 +374,34 @@
             const announcementSubtitle = document.querySelector('.announcement-subtitle');
             const siteTitle = document.querySelector('.site-title');
 
-            // ========== 状态 ==========
+            // 状态
             let isMenuOpen = false;
             let currentTheme = localStorage.getItem('theme') || 'light';
             let currentLang = localStorage.getItem('lang') || 'zh-CN';
             let bingEnabled = localStorage.getItem('bingWallpaper') === 'enabled';
             let glassEnabled = localStorage.getItem('glassMode') === 'enabled';
             let liquidGlassEnabled = localStorage.getItem('liquidGlassMode') === 'enabled';
+            let retroEnabled = localStorage.getItem('retroMode') === 'enabled';
             let dialValue = '';
 
-            // ========== 翻译字典 ==========
+            // 翻译字典
             const translations = {
-                'zh-CN': {
-                    siteTitle: '一架国泰航空A330官方网站',
-                    settings: '设置', theme: '主题模式', light: '浅色', dark: '深色',
-                    glassMode: '透明模式', liquidGlassMode: '液态玻璃模式', bingWallpaper: '必应每日一图',
-                    language: '语言', links: '链接', bilibili: '我的 bilibili', fanGroup: '加入粉丝群',
-                    announcementTitle: '公告栏', announcementSubtitle: '支持多语言',
-                    footer: 'Cathay Pacific • A330 • Minimal', titleHtml: '欢迎来到<br>一架国泰航空A330官方网站',
-                    menuAria: '打开菜单', closeMenuAria: '关闭菜单', delete: '删除', close: '关闭'
-                },
-                'zh-TW': {
-                    siteTitle: '一架國泰航空A330官方網站',
-                    settings: '設置', theme: '主題模式', light: '淺色', dark: '深色',
-                    glassMode: '透明模式', liquidGlassMode: '液態玻璃模式', bingWallpaper: '必應每日一圖',
-                    language: '語言', links: '連結', bilibili: '我的 bilibili', fanGroup: '加入粉絲群',
-                    announcementTitle: '公告欄', announcementSubtitle: '支援多語言',
-                    footer: 'Cathay Pacific • A330 • Minimal', titleHtml: '歡迎來到<br>一架國泰航空A330官方網站',
-                    menuAria: '打開菜單', closeMenuAria: '關閉菜單', delete: '刪除', close: '關閉'
-                },
-                'ja': {
-                    siteTitle: 'キャセイパシフィックA330公式サイト',
-                    settings: '設定', theme: 'テーマ', light: 'ライト', dark: 'ダーク',
-                    glassMode: 'グラスモード', liquidGlassMode: 'リキッドグラス', bingWallpaper: 'Bing 毎日の壁紙',
-                    language: '言語', links: 'リンク', bilibili: 'My bilibili', fanGroup: 'ファングループに参加',
-                    announcementTitle: 'お知らせ', announcementSubtitle: '多言語対応',
-                    footer: 'Cathay Pacific • A330 • Minimal', titleHtml: 'ようこそ<br>キャセイパシフィックA330公式サイトへ',
-                    menuAria: 'メニューを開く', closeMenuAria: 'メニューを閉じる', delete: '削除', close: '閉じる'
-                },
-                'en-GB': {
-                    siteTitle: 'Cathay Pacific A330 Official Website',
-                    settings: 'Settings', theme: 'Theme', light: 'Light', dark: 'Dark',
-                    glassMode: 'Glass Mode', liquidGlassMode: 'Liquid Glass', bingWallpaper: 'Bing Daily Wallpaper',
-                    language: 'Language', links: 'Links', bilibili: 'My bilibili', fanGroup: 'Join Fan Group',
-                    announcementTitle: 'Announcement', announcementSubtitle: 'Supports multiple languages',
-                    footer: 'Cathay Pacific • A330 • Minimal', titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
-                    menuAria: 'Open menu', closeMenuAria: 'Close menu', delete: 'Delete', close: 'Close'
-                },
-                'en-US': {
-                    siteTitle: 'Cathay Pacific A330 Official Website',
-                    settings: 'Settings', theme: 'Theme', light: 'Light', dark: 'Dark',
-                    glassMode: 'Glass Mode', liquidGlassMode: 'Liquid Glass', bingWallpaper: 'Bing Daily Wallpaper',
-                    language: 'Language', links: 'Links', bilibili: 'My bilibili', fanGroup: 'Join Fan Group',
-                    announcementTitle: 'Announcement', announcementSubtitle: 'Supports multiple languages',
-                    footer: 'Cathay Pacific • A330 • Minimal', titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
-                    menuAria: 'Open menu', closeMenuAria: 'Close menu', delete: 'Delete', close: 'Close'
-                },
-                'ko': {
-                    siteTitle: '캐세이퍼시픽 A330 공식 웹사이트',
-                    settings: '설정', theme: '테마', light: '라이트', dark: '다크',
-                    glassMode: '글래스 모드', liquidGlassMode: '리퀴드 글래스', bingWallpaper: 'Bing 일일 배경화면',
-                    language: '언어', links: '링크', bilibili: 'My bilibili', fanGroup: '팬 그룹 가입',
-                    announcementTitle: '공지사항', announcementSubtitle: '다국어 지원',
-                    footer: 'Cathay Pacific • A330 • Minimal', titleHtml: '캐세이퍼시픽 A330<br>공식 웹사이트에 오신 것을 환영합니다',
-                    menuAria: '메뉴 열기', closeMenuAria: '메뉴 닫기', delete: '삭제', close: '닫기'
-                }
+                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', theme:'主题模式', light:'浅色', dark:'深色', glassMode:'透明模式', liquidGlassMode:'液态玻璃模式', bingWallpaper:'必应每日一图', retroMode:'怀旧模式', language:'语言', links:'链接', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'欢迎来到<br>一架国泰航空A330官方网站', menuAria:'打开菜单', closeMenuAria:'关闭菜单', delete:'删除', close:'关闭' },
+                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', theme:'主題模式', light:'淺色', dark:'深色', glassMode:'透明模式', liquidGlassMode:'液態玻璃模式', bingWallpaper:'必應每日一圖', retroMode:'懷舊模式', language:'語言', links:'連結', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'歡迎來到<br>一架國泰航空A330官方網站', menuAria:'打開菜單', closeMenuAria:'關閉菜單', delete:'刪除', close:'關閉' },
+                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', theme:'テーマ', light:'ライト', dark:'ダーク', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', bingWallpaper:'Bing 毎日の壁紙', retroMode:'レトロモード', language:'言語', links:'リンク', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'ようこそ<br>キャセイパシフィックA330公式サイトへ', menuAria:'メニューを開く', closeMenuAria:'メニューを閉じる', delete:'削除', close:'閉じる' },
+                'en-GB': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', theme:'Theme', light:'Light', dark:'Dark', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', bingWallpaper:'Bing Daily Wallpaper', retroMode:'Retro Mode', language:'Language', links:'Links', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'Welcome to<br>the official website of a Cathay Pacific A330', menuAria:'Open menu', closeMenuAria:'Close menu', delete:'Delete', close:'Close' },
+                'en-US': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', theme:'Theme', light:'Light', dark:'Dark', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', bingWallpaper:'Bing Daily Wallpaper', retroMode:'Retro Mode', language:'Language', links:'Links', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'Welcome to<br>the official website of a Cathay Pacific A330', menuAria:'Open menu', closeMenuAria:'Close menu', delete:'Delete', close:'Close' },
+                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', theme:'테마', light:'라이트', dark:'다크', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', bingWallpaper:'Bing 일일 배경화면', retroMode:'레트로 모드', language:'언어', links:'링크', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'캐세이퍼시픽 A330<br>공식 웹사이트에 오신 것을 환영합니다', menuAria:'메뉴 열기', closeMenuAria:'메뉴 닫기', delete:'삭제', close:'닫기' }
             };
 
-            // ========== 拨号盘按键数据 ==========
+            // 拨号盘按键
             const dialKeys = [
-                { digit: '1', sub: '' }, { digit: '2', sub: 'ABC' }, { digit: '3', sub: 'DEF' },
-                { digit: '4', sub: 'GHI' }, { digit: '5', sub: 'JKL' }, { digit: '6', sub: 'MNO' },
-                { digit: '7', sub: 'PQRS' }, { digit: '8', sub: 'TUV' }, { digit: '9', sub: 'WXYZ' },
-                { digit: '*', sub: '' }, { digit: '0', sub: '+' }, { digit: '#', sub: '' },
+                { digit:'1', sub:'' }, { digit:'2', sub:'ABC' }, { digit:'3', sub:'DEF' },
+                { digit:'4', sub:'GHI' }, { digit:'5', sub:'JKL' }, { digit:'6', sub:'MNO' },
+                { digit:'7', sub:'PQRS' }, { digit:'8', sub:'TUV' }, { digit:'9', sub:'WXYZ' },
+                { digit:'*', sub:'' }, { digit:'0', sub:'+' }, { digit:'#', sub:'' },
             ];
 
-            // ========== 初始化拨号盘 ==========
             function buildDialpad() {
                 dialKeys.forEach(key => {
                     const btn = document.createElement('button');
@@ -588,10 +417,9 @@
                 updateDialDisplay();
             }
             function updateDialDisplay() { dialpadDisplay.textContent = dialValue || ''; }
-            function openDialpad() { dialValue = ''; updateDialDisplay(); dialpadOverlay.classList.add('visible'); closeMenu(); }
+            function openDialpad() { dialValue=''; updateDialDisplay(); dialpadOverlay.classList.add('visible'); closeMenu(); }
             function closeDialpad() { dialpadOverlay.classList.remove('visible'); }
 
-            // ========== 必应壁纸 ==========
             async function fetchBingWallpaper() {
                 try {
                     const response = await fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1');
@@ -601,7 +429,6 @@
                         applyBingBackground(url);
                     }
                 } catch (error) {
-                    console.warn('获取必应壁纸失败，使用默认背景', error);
                     clearBingBackground();
                 }
             }
@@ -616,69 +443,69 @@
                 document.body.style.backgroundSize = '';
                 document.body.style.backgroundPosition = '';
                 document.body.style.backgroundAttachment = '';
+                // 恢复默认背景由CSS处理
             }
             function updateBackground() {
-                if (bingEnabled) { fetchBingWallpaper(); } else { clearBingBackground(); }
+                if (bingEnabled) fetchBingWallpaper(); else clearBingBackground();
             }
-            function updateBingIndicator() {
-                bingWallpaperDot.classList.toggle('inactive', !bingEnabled);
-            }
+            function updateBingIndicator() { bingWallpaperDot.classList.toggle('inactive', !bingEnabled); }
 
-            // ========== 玻璃模式 ==========
             function updateGlassMode() {
-                if (glassEnabled && !liquidGlassEnabled) {
+                if (glassEnabled && !liquidGlassEnabled && !retroEnabled) {
                     document.body.classList.add('glass-mode');
                     document.body.classList.remove('liquid-glass-mode');
                     glassDot.classList.remove('inactive');
-                } else if (!glassEnabled && !liquidGlassEnabled) {
-                    document.body.classList.remove('glass-mode');
-                    glassDot.classList.add('inactive');
                 } else {
+                    document.body.classList.remove('glass-mode');
                     glassDot.classList.add('inactive');
                 }
             }
             function updateLiquidGlassMode() {
-                if (liquidGlassEnabled) {
+                if (liquidGlassEnabled && !retroEnabled) {
                     document.body.classList.add('liquid-glass-mode');
                     document.body.classList.remove('glass-mode');
                     liquidGlassDot.classList.remove('inactive');
-                    glassDot.classList.add('inactive');
                 } else {
                     document.body.classList.remove('liquid-glass-mode');
                     liquidGlassDot.classList.add('inactive');
-                    if (glassEnabled) {
-                        document.body.classList.add('glass-mode');
-                        glassDot.classList.remove('inactive');
-                    }
+                }
+            }
+            function updateRetroMode() {
+                if (retroEnabled) {
+                    document.body.classList.add('retro-mode');
+                    document.body.classList.remove('glass-mode','liquid-glass-mode');
+                    retroDot.classList.remove('inactive');
+                } else {
+                    document.body.classList.remove('retro-mode');
+                    retroDot.classList.add('inactive');
                 }
             }
 
-            // ========== 主题 ==========
             function initTheme() { htmlElement.setAttribute('data-theme', currentTheme); updateThemeUI(); }
             function updateThemeUI() {
                 const isDark = currentTheme === 'dark';
                 themeDot.classList.toggle('inactive', !isDark);
-                themeLabel.textContent = translations[currentLang][isDark ? 'dark' : 'light'];
+                themeLabel.textContent = translations[currentLang][isDark ? 'dark':'light'];
             }
 
-            // ========== 语言 ==========
             function initLanguage() { updateLanguageUI(); }
             function updateLanguageUI() {
                 const t = translations[currentLang];
                 siteTitle.textContent = t.siteTitle;
                 mainTitle.innerHTML = t.titleHtml;
-                document.querySelectorAll('[data-i18n="bilibili"]').forEach(el => el.textContent = t.bilibili);
-                document.querySelectorAll('[data-i18n="fanGroup"]').forEach(el => el.textContent = t.fanGroup);
-                if (announcementTitle) announcementTitle.textContent = t.announcementTitle;
-                if (announcementSubtitle) announcementSubtitle.textContent = t.announcementSubtitle;
-                footerNote.textContent = t.footer;
-                document.querySelectorAll('[data-i18n="settings"]').forEach(el => el.textContent = t.settings);
-                document.querySelectorAll('[data-i18n="theme"]').forEach(el => el.textContent = t.theme);
-                document.querySelectorAll('[data-i18n="glassMode"]').forEach(el => el.textContent = t.glassMode);
-                document.querySelectorAll('[data-i18n="liquidGlassMode"]').forEach(el => el.textContent = t.liquidGlassMode);
-                document.querySelectorAll('[data-i18n="bingWallpaper"]').forEach(el => el.textContent = t.bingWallpaper);
-                document.querySelectorAll('[data-i18n="language"]').forEach(el => el.textContent = t.language);
-                document.querySelectorAll('[data-i18n="links"]').forEach(el => el.textContent = t.links);
+                document.querySelectorAll('[data-i18n="bilibili"]').forEach(el=>el.textContent=t.bilibili);
+                document.querySelectorAll('[data-i18n="fanGroup"]').forEach(el=>el.textContent=t.fanGroup);
+                if(announcementTitle) announcementTitle.textContent=t.announcementTitle;
+                if(announcementSubtitle) announcementSubtitle.textContent=t.announcementSubtitle;
+                footerNote.textContent=t.footer;
+                document.querySelectorAll('[data-i18n="settings"]').forEach(el=>el.textContent=t.settings);
+                document.querySelectorAll('[data-i18n="theme"]').forEach(el=>el.textContent=t.theme);
+                document.querySelectorAll('[data-i18n="glassMode"]').forEach(el=>el.textContent=t.glassMode);
+                document.querySelectorAll('[data-i18n="liquidGlassMode"]').forEach(el=>el.textContent=t.liquidGlassMode);
+                document.querySelectorAll('[data-i18n="bingWallpaper"]').forEach(el=>el.textContent=t.bingWallpaper);
+                document.querySelectorAll('[data-i18n="retroMode"]').forEach(el=>el.textContent=t.retroMode);
+                document.querySelectorAll('[data-i18n="language"]').forEach(el=>el.textContent=t.language);
+                document.querySelectorAll('[data-i18n="links"]').forEach(el=>el.textContent=t.links);
                 updateLanguageIndicators();
                 updateThemeUI();
                 const menuAria = isMenuOpen ? t.closeMenuAria : t.menuAria;
@@ -692,13 +519,12 @@
                 });
             }
 
-            // ========== 菜单开关 ==========
             function openMenu() {
                 isMenuOpen = true;
                 hamburgerBtn.classList.add('active');
                 sidebarMenu.classList.add('open');
                 menuOverlay.classList.add('visible');
-                hamburgerBtn.setAttribute('aria-expanded', 'true');
+                hamburgerBtn.setAttribute('aria-expanded','true');
                 hamburgerBtn.setAttribute('aria-label', translations[currentLang].closeMenuAria);
             }
             function closeMenu() {
@@ -706,71 +532,68 @@
                 hamburgerBtn.classList.remove('active');
                 sidebarMenu.classList.remove('open');
                 menuOverlay.classList.remove('visible');
-                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                hamburgerBtn.setAttribute('aria-expanded','false');
                 hamburgerBtn.setAttribute('aria-label', translations[currentLang].menuAria);
             }
-            function toggleMenu() {
-                if (isMenuOpen) { closeMenu(); } else { openMenu(); }
-            }
+            function toggleMenu() { if(isMenuOpen) closeMenu(); else openMenu(); }
 
-            // ========== 事件监听 ==========
-            hamburgerBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                toggleMenu();
-            });
+            // 事件监听
+            hamburgerBtn.addEventListener('click', e=>{ e.stopPropagation(); toggleMenu(); });
             menuOverlay.addEventListener('click', closeMenu);
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    if (isMenuOpen) closeMenu();
-                    if (dialpadOverlay.classList.contains('visible')) closeDialpad();
+            document.addEventListener('keydown', e=>{
+                if(e.key === 'Escape') {
+                    if(isMenuOpen) closeMenu();
+                    if(dialpadOverlay.classList.contains('visible')) closeDialpad();
                 }
             });
 
-            themeToggle.addEventListener('click', function() {
+            themeToggle.addEventListener('click', ()=>{
                 currentTheme = currentTheme === 'light' ? 'dark' : 'light';
                 htmlElement.setAttribute('data-theme', currentTheme);
                 localStorage.setItem('theme', currentTheme);
                 updateThemeUI();
-                if (!bingEnabled) { clearBingBackground(); }
+                if(!bingEnabled) clearBingBackground();
             });
 
-            glassToggle.addEventListener('click', function() {
+            glassToggle.addEventListener('click', ()=>{
                 glassEnabled = !glassEnabled;
-                localStorage.setItem('glassMode', glassEnabled ? 'enabled' : 'disabled');
-                if (glassEnabled && liquidGlassEnabled) {
-                    liquidGlassEnabled = false;
-                    localStorage.setItem('liquidGlassMode', 'disabled');
-                    document.body.classList.remove('liquid-glass-mode');
-                    liquidGlassDot.classList.add('inactive');
+                localStorage.setItem('glassMode', glassEnabled?'enabled':'disabled');
+                if(glassEnabled){
+                    liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled');
+                    retroEnabled=false; localStorage.setItem('retroMode','disabled');
                 }
-                updateGlassMode();
-                updateLiquidGlassMode();
+                updateGlassMode(); updateLiquidGlassMode(); updateRetroMode();
             });
 
-            liquidGlassToggle.addEventListener('click', function() {
+            liquidGlassToggle.addEventListener('click', ()=>{
                 liquidGlassEnabled = !liquidGlassEnabled;
-                localStorage.setItem('liquidGlassMode', liquidGlassEnabled ? 'enabled' : 'disabled');
-                if (liquidGlassEnabled && glassEnabled) {
-                    glassEnabled = false;
-                    localStorage.setItem('glassMode', 'disabled');
-                    document.body.classList.remove('glass-mode');
-                    glassDot.classList.add('inactive');
+                localStorage.setItem('liquidGlassMode', liquidGlassEnabled?'enabled':'disabled');
+                if(liquidGlassEnabled){
+                    glassEnabled=false; localStorage.setItem('glassMode','disabled');
+                    retroEnabled=false; localStorage.setItem('retroMode','disabled');
                 }
-                updateGlassMode();
-                updateLiquidGlassMode();
+                updateGlassMode(); updateLiquidGlassMode(); updateRetroMode();
             });
 
-            bingWallpaperToggle.addEventListener('click', function() {
+            bingWallpaperToggle.addEventListener('click', ()=>{
                 bingEnabled = !bingEnabled;
-                localStorage.setItem('bingWallpaper', bingEnabled ? 'enabled' : 'disabled');
-                updateBingIndicator();
-                updateBackground();
+                localStorage.setItem('bingWallpaper', bingEnabled?'enabled':'disabled');
+                updateBingIndicator(); updateBackground();
             });
 
-            // 语言按钮
-            Object.keys(langButtons).forEach(lang => {
-                langButtons[lang].addEventListener('click', function() {
-                    if (currentLang !== lang) {
+            retroToggle.addEventListener('click', ()=>{
+                retroEnabled = !retroEnabled;
+                localStorage.setItem('retroMode', retroEnabled?'enabled':'disabled');
+                if(retroEnabled){
+                    glassEnabled=false; localStorage.setItem('glassMode','disabled');
+                    liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled');
+                }
+                updateGlassMode(); updateLiquidGlassMode(); updateRetroMode();
+            });
+
+            Object.keys(langButtons).forEach(lang=>{
+                langButtons[lang].addEventListener('click', ()=>{
+                    if(currentLang !== lang){
                         currentLang = lang;
                         localStorage.setItem('lang', lang);
                         htmlElement.setAttribute('lang', lang);
@@ -780,15 +603,12 @@
                 });
             });
 
-            // 拨号盘
-            dialpadTrigger.addEventListener('click', function() { openDialpad(); });
-            dialDelete.addEventListener('click', function() { dialValue = dialValue.slice(0, -1); updateDialDisplay(); });
+            dialpadTrigger.addEventListener('click', openDialpad);
+            dialDelete.addEventListener('click', ()=>{ dialValue=dialValue.slice(0,-1); updateDialDisplay(); });
             dialClose.addEventListener('click', closeDialpad);
-            dialpadOverlay.addEventListener('click', function(e) {
-                if (e.target === dialpadOverlay) { closeDialpad(); }
-            });
+            dialpadOverlay.addEventListener('click', e=>{ if(e.target===dialpadOverlay) closeDialpad(); });
 
-            // ========== 启动 ==========
+            // 启动
             buildDialpad();
             initTheme();
             initLanguage();
@@ -796,13 +616,10 @@
             updateBingIndicator();
             updateGlassMode();
             updateLiquidGlassMode();
+            updateRetroMode();
             updateBackground();
 
-            if (currentTheme === 'dark') {
-                themeDot.classList.remove('inactive');
-            } else {
-                themeDot.classList.add('inactive');
-            }
+            if(currentTheme === 'dark') themeDot.classList.remove('inactive'); else themeDot.classList.add('inactive');
         })();
     </script>
 </body>
