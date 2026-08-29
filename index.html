@@ -112,7 +112,6 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* ========== 顶部栏 ========== */
         .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; transition: all 0.3s ease; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
@@ -142,7 +141,6 @@
         .announcement-title { font-size:1.1rem; font-weight:500; color:var(--announcement-title); }
         .announcement-subtitle { font-size:0.7rem; color:var(--announcement-subtitle); }
 
-        /* 下载区域新样式 */
         .download-group { display:flex; flex-direction:column; align-items:center; gap:0.6rem; margin-top:1.2rem; }
         .download-item {
             display:flex;
@@ -187,13 +185,11 @@
 
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
-        /* iOS 开关 */
         .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; }
         .ios-switch .knob { position:absolute; top:2px; left:2px; width:27px; height:27px; background-color:#fff; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
 
-        /* 设置弹窗 */
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -206,9 +202,10 @@
         .settings-option-label { font-size:0.85rem; color:var(--text); }
         .settings-btn { padding:0.35rem 0.9rem; font-size:0.75rem; border-radius:16px; border:1px solid var(--divider); background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; }
         .settings-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
+        .wallpaper-btn { display:block; width:100%; text-align:left; margin:2px 0; padding:0.5rem 1rem; font-size:0.85rem; border:1px solid var(--divider); border-radius:8px; background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; }
+        .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; }
 
-        /* 计算器 */
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .calc-modal { background-color:var(--calc-bg); border-radius:20px; padding:1rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -226,7 +223,6 @@
         .calc-key.clear { background-color:#d4d4d2; color:#1a1a1a; }
         [data-theme="dark"] .calc-key.clear { background-color:#5a5a5a; color:#f0f0f0; }
 
-        /* 拨号盘 */
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .dialpad-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:280px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -355,6 +351,13 @@
                 <div class="settings-option"><span class="settings-option-label">必应壁纸</span><button class="ios-switch" id="bingWallpaperSwitch"><span class="knob"></span></button></div>
             </div>
             <div class="settings-section">
+                <div class="settings-section-title">壁纸选择</div>
+                <button class="wallpaper-btn" data-wallpaper="default">默认</button>
+                <button class="wallpaper-btn" data-wallpaper="creeper_sleep">苦力怕娘睡觉</button>
+                <button class="wallpaper-btn" data-wallpaper="minecart">矿车</button>
+                <button class="wallpaper-btn" data-wallpaper="tnt">TNT！</button>
+            </div>
+            <div class="settings-section">
                 <div class="settings-section-title">语言</div>
                 <div class="settings-option"><span class="settings-option-label">简体中文</span><button class="ios-switch lang-switch" data-lang="zh-CN"><span class="knob"></span></button></div>
                 <div class="settings-option"><span class="settings-option-label">繁體中文</span><button class="ios-switch lang-switch" data-lang="zh-TW"><span class="knob"></span></button></div>
@@ -438,6 +441,7 @@
             const themeDarkSwitch = $('themeDarkSwitch');
             const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), bingWallpaperSwitch = $('bingWallpaperSwitch');
             const langSwitches = document.querySelectorAll('.lang-switch');
+            const wallpaperBtns = document.querySelectorAll('.wallpaper-btn');
             const dialpadOverlay = $('dialpadOverlay'), dialpadDisplay = $('dialpadDisplay'), dialpadGrid = $('dialpadGrid');
             const dialDelete = $('dialDelete'), dialClose = $('dialClose'), dialpadTrigger = $('dialpadTrigger');
             const htmlElement = document.documentElement;
@@ -449,8 +453,16 @@
             let glassEnabled = localStorage.getItem('glassMode') === 'enabled';
             let liquidGlassEnabled = localStorage.getItem('liquidGlassMode') === 'enabled';
             let retroEnabled = localStorage.getItem('retroMode') === 'enabled';
+            let wallpaperChoice = localStorage.getItem('wallpaperChoice') || 'default';
             let dialValue = '';
             let calcFirstOperand = null, calcOperator = null, calcShouldResetDisplay = false;
+
+            const wallpaperURLs = {
+                default: '',
+                creeper_sleep: 'https://raw.githubusercontent.com/Xinghe2711/Xinghe2711.github.io/refs/heads/main/IMG_6140.jpeg',
+                minecart: 'https://raw.githubusercontent.com/Xinghe2711/Xinghe2711.github.io/refs/heads/main/IMG_6134.jpeg',
+                tnt: 'https://raw.githubusercontent.com/Xinghe2711/Xinghe2711.github.io/refs/heads/main/IMG_6141.jpeg'
+            };
 
             const dialKeys = [
                 { digit:'1', sub:'' }, { digit:'2', sub:'ABC' }, { digit:'3', sub:'DEF' },
@@ -475,7 +487,7 @@
                 if (cached) {
                     try {
                         const { date, url } = JSON.parse(cached);
-                        if (date === today) { applyBingBackground(url); return; }
+                        if (date === today) { applyWallpaper(url); return; }
                     } catch(e) {}
                 }
                 try {
@@ -484,21 +496,24 @@
                     if (data && data.images && data.images.length > 0) {
                         const imageUrl = 'https://www.bing.com' + data.images[0].url;
                         localStorage.setItem('bingWallpaperData', JSON.stringify({ date: today, url: imageUrl }));
-                        applyBingBackground(imageUrl);
+                        applyWallpaper(imageUrl);
                     }
-                } catch(e) { clearBingBackground(); }
+                } catch(e) { applyWallpaper(''); }
             }
-            function applyBingBackground(url) {
-                document.body.style.backgroundImage = `url("${url}")`;
-                document.body.style.backgroundSize = 'cover';
-                document.body.style.backgroundPosition = 'center';
-                document.body.style.backgroundAttachment = 'fixed';
-            }
-            function clearBingBackground() {
-                document.body.style.backgroundImage = '';
-                document.body.style.backgroundSize = '';
-                document.body.style.backgroundPosition = '';
-                document.body.style.backgroundAttachment = '';
+
+            function applyWallpaper(url) {
+                if (url) {
+                    document.body.style.backgroundImage = `url("${url}")`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center';
+                    document.body.style.backgroundAttachment = 'fixed';
+                } else {
+                    // 清除内联背景，恢复CSS默认
+                    document.body.style.backgroundImage = '';
+                    document.body.style.backgroundSize = '';
+                    document.body.style.backgroundPosition = '';
+                    document.body.style.backgroundAttachment = '';
+                }
             }
 
             function updateUI() {
@@ -519,7 +534,22 @@
                     sw.classList.toggle('on', sw.getAttribute('data-lang') === currentLang);
                 });
 
-                if (bingEnabled) fetchBingWallpaper(); else clearBingBackground();
+                wallpaperBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-wallpaper') === wallpaperChoice);
+                });
+
+                // 设置背景
+                if (bingEnabled) {
+                    fetchBingWallpaper();
+                } else {
+                    if (wallpaperChoice === 'default') {
+                        applyWallpaper('');
+                    } else {
+                        const url = wallpaperURLs[wallpaperChoice];
+                        if (url) applyWallpaper(url);
+                        else applyWallpaper('');
+                    }
+                }
             }
 
             function toggleMenu(force) {
@@ -552,14 +582,12 @@
 
             document.addEventListener('keydown', e => { if(e.key === 'Escape') { toggleMenu(false); closeAllModals(); } });
 
-            // 主题开关
             themeDarkSwitch.addEventListener('click', () => {
                 currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 localStorage.setItem('theme', currentTheme);
                 updateUI();
             });
 
-            // 显示模式开关
             function setMode(key, value) {
                 if(key === 'glassMode') glassEnabled = value;
                 if(key === 'liquidGlassMode') liquidGlassEnabled = value;
@@ -578,6 +606,19 @@
             liquidGlassModeSwitch.addEventListener('click', () => { const v = !liquidGlassEnabled; setMode('liquidGlassMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); } updateUI(); });
             retroModeSwitch.addEventListener('click', () => { const v = !retroEnabled; setMode('retroMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); } updateUI(); });
             bingWallpaperSwitch.addEventListener('click', () => { bingEnabled = !bingEnabled; localStorage.setItem('bingWallpaper', bingEnabled?'enabled':'disabled'); updateUI(); });
+
+            // 壁纸选择
+            wallpaperBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const choice = btn.getAttribute('data-wallpaper');
+                    wallpaperChoice = choice;
+                    localStorage.setItem('wallpaperChoice', choice);
+                    // 选择手动壁纸时关闭必应壁纸
+                    bingEnabled = false;
+                    localStorage.setItem('bingWallpaper', 'disabled');
+                    updateUI();
+                });
+            });
 
             // 语言开关互斥
             langSwitches.forEach(sw => {
