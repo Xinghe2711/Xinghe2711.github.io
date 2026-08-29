@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>欢迎来到一架国泰航空A330官方网站</title>
     <style>
         :root {
@@ -88,6 +88,11 @@
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
+
+        html, body {
+            touch-action: manipulation;
+            -ms-touch-action: manipulation;
+        }
 
         body {
             background-color: var(--bg);
@@ -447,11 +452,9 @@
                 retroModeSwitch.classList.toggle('on', retroEnabled);
                 bingWallpaperSwitch.classList.toggle('on', bingEnabled);
 
-                // 深色模式开关状态
                 themeDarkSwitch.classList.toggle('on', currentTheme === 'dark');
                 htmlElement.setAttribute('data-theme', currentTheme);
 
-                // 语言开关互斥
                 langSwitches.forEach(sw => {
                     sw.classList.toggle('on', sw.getAttribute('data-lang') === currentLang);
                 });
