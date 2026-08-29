@@ -148,8 +148,8 @@
         .footer-note { margin-top:2rem; font-size:0.65rem; color:var(--text-secondary); letter-spacing:0.15em; text-transform:uppercase; font-weight:300; }
 
         /* ========== 设置模态窗口 ========== */
-        .settings-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s ease; padding:1rem; }
-        .settings-overlay.visible { opacity:1; pointer-events:auto; }
+        .settings-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s ease; padding:1rem; visibility:hidden; }
+        .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:20px; padding:1.5rem; width:100%; max-width:360px; max-height:80vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(20px) scale(0.95); transition:all 0.35s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
         .settings-overlay.visible .settings-modal { transform:translateY(0) scale(1); }
         .settings-title { font-size:1.3rem; font-weight:600; color:var(--text); margin-bottom:1.2rem; text-align:center; letter-spacing:0.05em; }
@@ -166,7 +166,7 @@
         .settings-close-btn { display:block; width:100%; margin-top:1rem; padding:0.6rem; background-color:var(--accent); color:#fff; border:none; border-radius:12px; font-size:0.9rem; cursor:pointer; transition:background-color 0.2s ease; }
         .settings-close-btn:hover { background-color:var(--accent-hover); }
 
-        /* 设置窗口在玻璃模式、液态玻璃模式、怀旧模式下的适配 */
+        /* 设置窗口模式适配 */
         body.glass-mode .settings-modal {
             background-color: rgba(255,255,255,0.72);
             backdrop-filter: blur(22px) saturate(190%);
@@ -204,7 +204,23 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
         }
 
-        /* ========== 怀旧模式样式 ========== */
+        /* ========== 拨号盘 ========== */
+        .dialpad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s ease; padding:1rem; visibility:hidden; }
+        .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
+        .dialpad-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(20px) scale(0.95); transition:all 0.35s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
+        .dialpad-overlay.visible .dialpad-modal { transform:translateY(0) scale(1); }
+        .dialpad-display { background-color:var(--dial-display-bg); border-radius:10px; padding:0.7rem 0.8rem; font-size:1.4rem; text-align:right; color:var(--dial-display-text); margin-bottom:1rem; min-height:48px; display:flex; align-items:center; justify-content:flex-end; overflow-x:auto; white-space:nowrap; }
+        .dialpad-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; }
+        .dial-key { background-color:var(--dial-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; font-size:1.2rem; color:var(--text); transition:all 0.2s ease; -webkit-tap-highlight-color:transparent; outline:none; font-family:inherit; }
+        .dial-key:hover { background-color:var(--dial-key-hover); }
+        .dial-key:active { transform:scale(0.9); }
+        .dial-key .sub { font-size:0.5rem; color:var(--text-secondary); margin-top:2px; }
+        .dial-actions { display:flex; gap:0.5rem; margin-top:0.5rem; }
+        .dial-action { flex:1; padding:0.6rem 0; border:none; border-radius:50px; cursor:pointer; font-size:0.85rem; font-weight:500; transition:all 0.2s ease; -webkit-tap-highlight-color:transparent; font-family:inherit; }
+        .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
+        .dial-action.close { background-color:var(--accent); color:#fff; }
+
+        /* 怀旧模式等样式 */
         body.retro-mode { background-color:#a0a8b0; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="%23b8c0c8"/><path d="M0 0 L80 0 L80 80 L0 80 Z" fill="none" stroke="%23a0a8b0" stroke-width="1"/></svg>'); background-size:160px 160px; }
         [data-theme="dark"] body.retro-mode { background-color:#2a2f35; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="%233a4048"/><path d="M0 0 L80 0 L80 80 L0 80 Z" fill="none" stroke="%232a2f35" stroke-width="1"/></svg>'); background-size:160px 160px; }
         body.retro-mode .top-bar { background:linear-gradient(to bottom,#f0f0f0 0%,#c8c8c8 100%); border-bottom:1px solid #7f7f7f; box-shadow:0 2px 6px rgba(0,0,0,0.35); height:52px; }
@@ -228,7 +244,6 @@
         body.retro-mode .hamburger-line { background-color:#333; }
         [data-theme="dark"] body.retro-mode .hamburger-line { background-color:#ccc; }
 
-        /* ========== 响应式 ========== */
         @media (max-width: 480px) {
             :root { --topbar-height:52px; }
             .site-title { font-size:0.95rem; }
@@ -271,7 +286,6 @@
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-modal">
             <div class="settings-title" data-i18n="settings">设置</div>
-            <!-- 主题模式 -->
             <div class="settings-section">
                 <div class="settings-section-title" data-i18n="theme">主题模式</div>
                 <div class="settings-option">
@@ -282,7 +296,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 显示模式 -->
             <div class="settings-section">
                 <div class="settings-section-title" data-i18n="displayMode">显示模式</div>
                 <div class="settings-option">
@@ -302,7 +315,6 @@
                     <button class="settings-btn" id="bingWallpaperBtn">开启/关闭</button>
                 </div>
             </div>
-            <!-- 语言 -->
             <div class="settings-section">
                 <div class="settings-section-title" data-i18n="language">语言</div>
                 <div class="settings-option">
@@ -471,7 +483,6 @@
                 } else if (glassEnabled) {
                     document.body.classList.add('glass-mode');
                 }
-                // 更新按钮状态
                 glassModeBtn.classList.toggle('active', glassEnabled);
                 liquidGlassModeBtn.classList.toggle('active', liquidGlassEnabled);
                 retroModeBtn.classList.toggle('active', retroEnabled);
@@ -528,6 +539,7 @@
             function toggleMenu() { if(isMenuOpen) closeMenu(); else openMenu(); }
 
             function openSettings() {
+                closeDialpad(); // 关键修复：关闭可能打开的拨号盘
                 settingsOverlay.classList.add('visible');
                 closeMenu();
                 applyModeClasses();
