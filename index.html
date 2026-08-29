@@ -113,173 +113,266 @@
             transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
         }
 
-        /* ========== 怀旧模式 (iOS 6 拟物化) ========== */
-        body.retro-mode {
-            background-color: #c0c0c0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23d6d6d6"/><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23b8b8b8" stroke-width="2"/><circle cx="50" cy="50" r="2" fill="%23b8b8b8"/></svg>');
-            background-size: 200px 200px;
+        /* iOS 16 风格毛玻璃透明模式 */
+        body.glass-mode {
+            background-color: rgba(255, 255, 255, 0.4);
         }
-        [data-theme="dark"] body.retro-mode {
-            background-color: #3a3a3a;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232a2a2a"/><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23404040" stroke-width="2"/><circle cx="50" cy="50" r="2" fill="%23404040"/></svg>');
-            background-size: 200px 200px;
+        [data-theme="dark"] body.glass-mode {
+            background-color: rgba(18, 18, 18, 0.4);
         }
 
-        body.retro-mode .top-bar {
-            background: linear-gradient(to bottom, #e5e5e5 0%, #c0c0c0 100%);
-            border-bottom: 1px solid #7f7f7f;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            height: 56px;
+        body.glass-mode .top-bar {
+            background-color: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
         }
-        [data-theme="dark"] body.retro-mode .top-bar {
-            background: linear-gradient(to bottom, #4a4a4a 0%, #3a3a3a 100%);
-            border-bottom: 1px solid #1a1a1a;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.6);
-        }
-
-        body.retro-mode .site-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.8);
-        }
-        [data-theme="dark"] body.retro-mode .site-title {
-            color: #eee;
-            text-shadow: 0 1px 0 rgba(0,0,0,0.8);
+        [data-theme="dark"] body.glass-mode .top-bar {
+            background-color: rgba(28, 28, 30, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
-        body.retro-mode .container {
-            background: #f5f5f5;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.8);
-            border: 1px solid #b0b0b0;
+        body.glass-mode .container {
+            background-color: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+                0 1px 4px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
             padding: 2rem 1.5rem;
         }
-        [data-theme="dark"] body.retro-mode .container {
-            background: #4a4a4a;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
-            border: 1px solid #2a2a2a;
+        [data-theme="dark"] body.glass-mode .container {
+            background-color: rgba(44, 44, 46, 0.72);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25),
+                0 1px 4px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
         }
 
-        body.retro-mode .btn {
-            background: linear-gradient(to bottom, #6db3f2 0%, #1e69de 100%);
-            border: 1px solid #1c4f9c;
-            color: #fff;
-            text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
-            box-shadow: 0 2px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
-            border-radius: 8px;
-            padding: 0.7rem 2rem;
+        body.glass-mode .sidebar-menu {
+            background-color: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-left: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.06);
         }
-        [data-theme="dark"] body.retro-mode .btn {
-            background: linear-gradient(to bottom, #5c8ccf 0%, #2b5c9e 100%);
-            border-color: #1c3f6c;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
-        }
-
-        body.retro-mode .btn-download {
-            background: #ffffff;
-            border: 1px solid #8f8f8f;
-            color: #333;
-            text-shadow: 0 1px 0 #fff;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.2), inset 0 1px 0 #fff;
-            border-radius: 6px;
-        }
-        [data-theme="dark"] body.retro-mode .btn-download {
-            background: #5a5a5a;
-            border-color: #3a3a3a;
-            color: #eee;
-            text-shadow: 0 -1px 0 #000;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+        [data-theme="dark"] body.glass-mode .sidebar-menu {
+            background-color: rgba(28, 28, 30, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.2);
         }
 
-        body.retro-mode .announcement {
-            background: #fafafa;
-            border: 1px solid #a0a0a0;
-            box-shadow: inset 0 1px 0 #fff, 0 2px 3px rgba(0,0,0,0.2);
-            border-radius: 8px;
+        body.glass-mode .btn {
+            background-color: rgba(0, 122, 255, 0.85);
+            border-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px) saturate(150%);
+            -webkit-backdrop-filter: blur(5px) saturate(150%);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
-        [data-theme="dark"] body.retro-mode .announcement {
-            background: #505050;
-            border-color: #2a2a2a;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 3px rgba(0,0,0,0.5);
-        }
-
-        body.retro-mode .sidebar-menu {
-            background: #e5e5e5;
-            border-left: 1px solid #7f7f7f;
-            box-shadow: -3px 0 6px rgba(0,0,0,0.2);
-            background-image: linear-gradient(to bottom, #f0f0f0 0%, #d0d0d0 100%);
-        }
-        [data-theme="dark"] body.retro-mode .sidebar-menu {
-            background: #3a3a3a;
-            border-left: 1px solid #1a1a1a;
-            box-shadow: -3px 0 6px rgba(0,0,0,0.4);
-            background-image: linear-gradient(to bottom, #4a4a4a 0%, #2a2a2a 100%);
+        [data-theme="dark"] body.glass-mode .btn {
+            background-color: rgba(0, 122, 255, 0.75);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
         }
 
-        body.retro-mode .menu-item {
-            color: #333;
-            border-bottom: 1px solid #b0b0b0;
+        body.glass-mode .btn-download {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px) saturate(150%);
+            -webkit-backdrop-filter: blur(8px) saturate(150%);
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
-        [data-theme="dark"] body.retro-mode .menu-item {
-            color: #ddd;
-            border-bottom: 1px solid #555;
-        }
-        body.retro-mode .menu-item:hover {
-            background: #c0c0c0;
-        }
-        [data-theme="dark"] body.retro-mode .menu-item:hover {
-            background: #555;
-        }
-
-        body.retro-mode .dialpad-modal {
-            background: #f5f5f5;
-            border: 1px solid #8f8f8f;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            border-radius: 14px;
-        }
-        [data-theme="dark"] body.retro-mode .dialpad-modal {
-            background: #4a4a4a;
-            border-color: #2a2a2a;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-        }
-        body.retro-mode .dial-key {
-            background: #e0e0e0;
-            border: 1px solid #a0a0a0;
-            box-shadow: 0 2px 2px rgba(0,0,0,0.2), inset 0 1px 0 #fff;
-            border-radius: 8px;
-        }
-        [data-theme="dark"] body.retro-mode .dial-key {
-            background: #5a5a5a;
-            border-color: #3a3a3a;
-            box-shadow: 0 2px 2px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+        [data-theme="dark"] body.glass-mode .btn-download {
+            background-color: rgba(44, 44, 46, 0.6);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: #f0f0f0;
         }
 
-        /* 其他玻璃模式的样式在怀旧模式下应被覆盖，所以怀旧模式样式放在最后，优先级最高 */
-        /* 确保怀旧模式优先于透明/液态玻璃 */
-        body.retro-mode.glass-mode .container,
-        body.retro-mode.liquid-glass-mode .container,
-        body.retro-mode.glass-mode .sidebar-menu,
-        body.retro-mode.liquid-glass-mode .sidebar-menu,
-        body.retro-mode.glass-mode .top-bar,
-        body.retro-mode.liquid-glass-mode .top-bar {
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            background-image: none;
+        body.glass-mode .announcement {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+        [data-theme="dark"] body.glass-mode .announcement {
+            background-color: rgba(44, 44, 46, 0.6);
+            border-color: rgba(255, 255, 255, 0.15);
         }
 
-        /* ========== 其他模式样式（保留原有，但被怀旧模式覆盖） ========== */
-        /* ... 原有玻璃/液态玻璃样式保持不变 ... */
-
-        /* 确保汉堡按钮在怀旧模式下颜色合适 */
-        body.retro-mode .hamburger-line {
-            background-color: #333;
+        body.glass-mode .dialpad-modal {
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
         }
-        [data-theme="dark"] body.retro-mode .hamburger-line {
-            background-color: #ccc;
+        [data-theme="dark"] body.glass-mode .dialpad-modal {
+            background-color: rgba(28, 28, 30, 0.75);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
         }
 
-        /* 响应式 */
+        /* ========== 汉堡按钮 ========== */
+        .hamburger-btn {
+            position: fixed;
+            top: calc((var(--topbar-height) - 48px) / 2);
+            right: 24px;
+            z-index: 1004;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 48px;
+            height: 48px;
+            transition: background-color 0.25s ease, transform 0.25s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+        .hamburger-btn:hover { background-color: rgba(0, 119, 204, 0.08); }
+        .hamburger-btn:active { transform: scale(0.92); }
+        .hamburger-line {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background-color: var(--accent);
+            border-radius: 4px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease, width 0.3s ease;
+            transform-origin: center;
+        }
+        .hamburger-btn.active .hamburger-line:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+        .hamburger-btn.active .hamburger-line:nth-child(2) { opacity: 0; width: 0; }
+        .hamburger-btn.active .hamburger-line:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+        /* ========== 遮罩层 ========== */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .menu-overlay.visible { opacity: 1; pointer-events: auto; }
+
+        /* ========== 侧边栏菜单（默认状态） ========== */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1001;
+            background-color: var(--menu-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: var(--sidebar-width);
+            max-width: 85vw;
+            height: 100%;
+            box-shadow: -4px 0 24px var(--menu-shadow);
+            padding: 24px 0;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+            border-left: 1px solid var(--divider);
+            -webkit-overflow-scrolling: touch;
+        }
+        .sidebar-menu.open { transform: translateX(0); }
+
+        .menu-section { padding: 16px 20px 8px 20px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+        .menu-item { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 12px 20px; background: transparent; border: none; cursor: pointer; font-size: 0.95rem; color: var(--text); transition: background-color 0.2s ease; font-family: inherit; letter-spacing: 0.04em; -webkit-tap-highlight-color: transparent; outline: none; user-select: none; -webkit-touch-callout: none; text-decoration: none; text-align: left; }
+        .menu-item:hover { background-color: var(--menu-item-hover); }
+        .menu-item:active { background-color: var(--menu-item-hover); }
+        .menu-item-label { font-weight: 400; }
+        .menu-item-indicator { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--accent); font-weight: 500; transition: color 0.2s ease; }
+        .menu-item-indicator .dot { width: 8px; height: 8px; border-radius: 50%; background-color: var(--accent); transition: background-color 0.3s ease, transform 0.3s ease; }
+        .menu-item-indicator .dot.inactive { background-color: var(--text-secondary); transform: scale(0.7); }
+        .menu-divider { height: 1px; background-color: var(--divider); margin: 8px 0; opacity: 0.5; }
+
+        /* ========== 主内容容器（默认） ========== */
+        .container {
+            text-align: center;
+            padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+            max-width: 600px;
+            width: 100%;
+            margin: auto;
+            transition: color 0.4s ease, background-color 0.3s ease, backdrop-filter 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        h1 {
+            font-size: clamp(1.4rem, 5vw, 2.2rem);
+            font-weight: 300;
+            color: var(--text);
+            letter-spacing: 0.04em;
+            line-height: 1.5;
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
+            word-break: keep-all;
+            text-wrap: balance;
+            transition: color 0.4s ease;
+        }
+
+        .divider { width: 48px; height: 1px; background-color: var(--divider); margin: 0 auto clamp(1.5rem, 4vw, 2rem) auto; transition: width 0.4s ease, background-color 0.4s ease; }
+        @media (hover: hover) and (pointer: fine) { .container:hover .divider { width: 80px; } }
+
+        .button-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 0.5rem; }
+        .btn { display: inline-block; padding: clamp(0.7rem, 2.5vw, 0.9rem) clamp(2rem, 8vw, 2.8rem); font-size: clamp(0.9rem, 2.5vw, 1rem); font-weight: 400; color: var(--btn-primary-text); background-color: var(--btn-primary); border: 1px solid var(--btn-primary); border-radius: 50px; cursor: pointer; text-decoration: none; letter-spacing: 0.08em; transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.15s ease, backdrop-filter 0.3s ease; -webkit-tap-highlight-color: transparent; user-select: none; outline: none; -webkit-touch-callout: none; white-space: nowrap; }
+        @media (hover: hover) and (pointer: fine) { .btn:hover { background-color: var(--btn-primary-hover); border-color: var(--btn-primary-hover); box-shadow: 0 4px 16px rgba(0,0,0,0.15); } }
+        .btn:active { transform: scale(0.96); }
+
+        .announcement { margin: 1.8rem auto 1.8rem auto; max-width: 360px; width: 100%; padding: 0.8rem 1.2rem; border: 1.5px solid var(--announcement-border); border-radius: 12px; background-color: var(--announcement-bg); text-align: center; transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; }
+        .announcement-title { font-size: 1.3rem; font-weight: 500; letter-spacing: 0.1em; color: var(--announcement-title); margin-bottom: 0.2rem; }
+        .announcement-subtitle { font-size: 0.75rem; color: var(--announcement-subtitle); letter-spacing: 0.05em; }
+
+        .download-group { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; margin-top: 1.8rem; width: 100%; }
+        .btn-download { display: block; width: 100%; max-width: 360px; padding: 0.8rem 1.5rem; font-size: 0.95rem; font-weight: 400; text-align: center; color: var(--download-btn-text); background-color: var(--download-btn-bg); border: 1.5px solid var(--download-btn-border); border-radius: 8px; cursor: pointer; text-decoration: none; letter-spacing: 0.04em; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.15s ease, backdrop-filter 0.3s ease; -webkit-tap-highlight-color: transparent; user-select: none; outline: none; -webkit-touch-callout: none; white-space: nowrap; }
+        @media (hover: hover) and (pointer: fine) { .btn-download:hover { background-color: var(--download-btn-hover-bg); border-color: var(--download-btn-hover-bg); color: var(--download-btn-hover-text); box-shadow: 0 4px 14px rgba(0,0,0,0.1); } }
+        .btn-download:active { background-color: var(--download-btn-hover-bg); border-color: var(--download-btn-hover-bg); color: var(--download-btn-hover-text); transform: scale(0.98); }
+
+        .footer-note { margin-top: clamp(2rem, 6vw, 2.8rem); font-size: clamp(0.6rem, 2vw, 0.7rem); color: var(--text-secondary); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300; transition: color 0.4s ease; }
+
+        /* ========== 拨号盘模态框（默认） ========== */
+        .dialpad-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--modal-overlay); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 1rem; }
+        .dialpad-overlay.visible { opacity: 1; pointer-events: auto; }
+        .dialpad-modal { background-color: var(--modal-bg); border-radius: 20px; padding: 1.5rem 1.5rem 1.8rem; width: 100%; max-width: 320px; box-shadow: 0 12px 60px rgba(0,0,0,0.2); transform: translateY(20px) scale(0.95); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background-color 0.3s ease, backdrop-filter 0.3s ease; border: 1px solid var(--divider); }
+        .dialpad-overlay.visible .dialpad-modal { transform: translateY(0) scale(1); }
+        .dialpad-display { background-color: var(--dial-display-bg); border-radius: 12px; padding: 0.8rem 1rem; font-size: 1.6rem; font-weight: 300; text-align: right; letter-spacing: 0.05em; color: var(--dial-display-text); margin-bottom: 1.2rem; min-height: 56px; display: flex; align-items: center; justify-content: flex-end; overflow-x: auto; white-space: nowrap; transition: background-color 0.3s ease, color 0.3s ease; }
+        .dialpad-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; }
+        .dial-key { background-color: var(--dial-key-bg); border: none; border-radius: 50%; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; font-size: 1.3rem; font-weight: 400; color: var(--text); transition: background-color 0.2s ease, transform 0.15s ease; -webkit-tap-highlight-color: transparent; outline: none; user-select: none; -webkit-touch-callout: none; font-family: inherit; }
+        .dial-key:hover { background-color: var(--dial-key-hover); }
+        .dial-key:active { transform: scale(0.9); background-color: var(--dial-key-hover); }
+        .dial-key .sub { font-size: 0.55rem; letter-spacing: 0.1em; color: var(--text-secondary); margin-top: 2px; }
+        .dial-actions { display: flex; gap: 0.6rem; margin-top: 0.6rem; }
+        .dial-action { flex: 1; padding: 0.7rem 0; border: none; border-radius: 50px; cursor: pointer; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; transition: background-color 0.2s ease, transform 0.15s ease; -webkit-tap-highlight-color: transparent; outline: none; user-select: none; -webkit-touch-callout: none; font-family: inherit; }
+        .dial-action.delete { background-color: transparent; color: var(--text-secondary); border: 1px solid var(--divider); }
+        .dial-action.delete:hover { background-color: var(--dial-key-hover); }
+        .dial-action.close { background-color: var(--accent); color: #fff; }
+        .dial-action.close:hover { background-color: var(--accent-hover); }
+        .dial-action:active { transform: scale(0.95); }
+
         @media (max-width: 360px) {
             :root { --topbar-height: 56px; }
             .site-title { font-size: 0.95rem; }
@@ -313,7 +406,6 @@
         <button class="menu-item" id="glassToggle" role="menuitem"><span class="menu-item-label" data-i18n="glassMode">透明模式</span><span class="menu-item-indicator"><span class="dot" id="glassDot"></span></span></button>
         <button class="menu-item" id="liquidGlassToggle" role="menuitem"><span class="menu-item-label" data-i18n="liquidGlassMode">液态玻璃模式</span><span class="menu-item-indicator"><span class="dot" id="liquidGlassDot"></span></span></button>
         <button class="menu-item" id="bingWallpaperToggle" role="menuitem"><span class="menu-item-label" data-i18n="bingWallpaper">必应每日一图</span><span class="menu-item-indicator"><span class="dot" id="bingWallpaperDot"></span></span></button>
-        <button class="menu-item" id="retroToggle" role="menuitem"><span class="menu-item-label" data-i18n="retroMode">怀旧模式</span><span class="menu-item-indicator"><span class="dot" id="retroDot"></span></span></button>
         <div class="menu-divider"></div>
         <div class="menu-section" data-i18n="language">语言</div>
         <button class="menu-item" id="langZhCN" role="menuitem"><span class="menu-item-label">简体中文</span><span class="menu-item-indicator"><span class="dot" id="langZhCNDot"></span></span></button>
@@ -362,7 +454,7 @@
 
     <script>
         (function() {
-            // DOM 引用
+            // ========== DOM 引用 ==========
             const hamburgerBtn = document.getElementById('hamburgerBtn');
             const sidebarMenu = document.getElementById('sidebarMenu');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -375,8 +467,6 @@
             const liquidGlassDot = document.getElementById('liquidGlassDot');
             const bingWallpaperToggle = document.getElementById('bingWallpaperToggle');
             const bingWallpaperDot = document.getElementById('bingWallpaperDot');
-            const retroToggle = document.getElementById('retroToggle');
-            const retroDot = document.getElementById('retroDot');
             const langButtons = {
                 'zh-CN': document.getElementById('langZhCN'),
                 'zh-TW': document.getElementById('langZhTW'),
@@ -407,23 +497,21 @@
             const announcementSubtitle = document.querySelector('.announcement-subtitle');
             const siteTitle = document.querySelector('.site-title');
 
-            // 状态
+            // ========== 状态 ==========
             let isMenuOpen = false;
             let currentTheme = localStorage.getItem('theme') || 'light';
             let currentLang = localStorage.getItem('lang') || 'zh-CN';
             let bingEnabled = localStorage.getItem('bingWallpaper') === 'enabled';
             let glassEnabled = localStorage.getItem('glassMode') === 'enabled';
             let liquidGlassEnabled = localStorage.getItem('liquidGlassMode') === 'enabled';
-            let retroEnabled = localStorage.getItem('retroMode') === 'enabled';
             let dialValue = '';
 
-            // 翻译字典
+            // ========== 翻译字典 ==========
             const translations = {
                 'zh-CN': {
                     siteTitle: '一架国泰航空A330官方网站',
                     settings: '设置', theme: '主题模式', light: '浅色', dark: '深色',
                     glassMode: '透明模式', liquidGlassMode: '液态玻璃模式', bingWallpaper: '必应每日一图',
-                    retroMode: '怀旧模式',
                     language: '语言', links: '链接', bilibili: '我的 bilibili', fanGroup: '加入粉丝群',
                     announcementTitle: '公告栏', announcementSubtitle: '支持多语言',
                     footer: 'Cathay Pacific • A330 • Minimal', titleHtml: '欢迎来到<br>一架国泰航空A330官方网站',
@@ -433,7 +521,6 @@
                     siteTitle: '一架國泰航空A330官方網站',
                     settings: '設置', theme: '主題模式', light: '淺色', dark: '深色',
                     glassMode: '透明模式', liquidGlassMode: '液態玻璃模式', bingWallpaper: '必應每日一圖',
-                    retroMode: '懷舊模式',
                     language: '語言', links: '連結', bilibili: '我的 bilibili', fanGroup: '加入粉絲群',
                     announcementTitle: '公告欄', announcementSubtitle: '支援多語言',
                     footer: 'Cathay Pacific • A330 • Minimal', titleHtml: '歡迎來到<br>一架國泰航空A330官方網站',
@@ -443,7 +530,6 @@
                     siteTitle: 'キャセイパシフィックA330公式サイト',
                     settings: '設定', theme: 'テーマ', light: 'ライト', dark: 'ダーク',
                     glassMode: 'グラスモード', liquidGlassMode: 'リキッドグラス', bingWallpaper: 'Bing 毎日の壁紙',
-                    retroMode: 'レトロモード',
                     language: '言語', links: 'リンク', bilibili: 'My bilibili', fanGroup: 'ファングループに参加',
                     announcementTitle: 'お知らせ', announcementSubtitle: '多言語対応',
                     footer: 'Cathay Pacific • A330 • Minimal', titleHtml: 'ようこそ<br>キャセイパシフィックA330公式サイトへ',
@@ -453,7 +539,6 @@
                     siteTitle: 'Cathay Pacific A330 Official Website',
                     settings: 'Settings', theme: 'Theme', light: 'Light', dark: 'Dark',
                     glassMode: 'Glass Mode', liquidGlassMode: 'Liquid Glass', bingWallpaper: 'Bing Daily Wallpaper',
-                    retroMode: 'Retro Mode',
                     language: 'Language', links: 'Links', bilibili: 'My bilibili', fanGroup: 'Join Fan Group',
                     announcementTitle: 'Announcement', announcementSubtitle: 'Supports multiple languages',
                     footer: 'Cathay Pacific • A330 • Minimal', titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
@@ -463,7 +548,6 @@
                     siteTitle: 'Cathay Pacific A330 Official Website',
                     settings: 'Settings', theme: 'Theme', light: 'Light', dark: 'Dark',
                     glassMode: 'Glass Mode', liquidGlassMode: 'Liquid Glass', bingWallpaper: 'Bing Daily Wallpaper',
-                    retroMode: 'Retro Mode',
                     language: 'Language', links: 'Links', bilibili: 'My bilibili', fanGroup: 'Join Fan Group',
                     announcementTitle: 'Announcement', announcementSubtitle: 'Supports multiple languages',
                     footer: 'Cathay Pacific • A330 • Minimal', titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
@@ -473,7 +557,6 @@
                     siteTitle: '캐세이퍼시픽 A330 공식 웹사이트',
                     settings: '설정', theme: '테마', light: '라이트', dark: '다크',
                     glassMode: '글래스 모드', liquidGlassMode: '리퀴드 글래스', bingWallpaper: 'Bing 일일 배경화면',
-                    retroMode: '레트로 모드',
                     language: '언어', links: '링크', bilibili: 'My bilibili', fanGroup: '팬 그룹 가입',
                     announcementTitle: '공지사항', announcementSubtitle: '다국어 지원',
                     footer: 'Cathay Pacific • A330 • Minimal', titleHtml: '캐세이퍼시픽 A330<br>공식 웹사이트에 오신 것을 환영합니다',
@@ -481,7 +564,7 @@
                 }
             };
 
-            // 拨号盘按键
+            // ========== 拨号盘按键数据 ==========
             const dialKeys = [
                 { digit: '1', sub: '' }, { digit: '2', sub: 'ABC' }, { digit: '3', sub: 'DEF' },
                 { digit: '4', sub: 'GHI' }, { digit: '5', sub: 'JKL' }, { digit: '6', sub: 'MNO' },
@@ -489,6 +572,7 @@
                 { digit: '*', sub: '' }, { digit: '0', sub: '+' }, { digit: '#', sub: '' },
             ];
 
+            // ========== 初始化拨号盘 ==========
             function buildDialpad() {
                 dialKeys.forEach(key => {
                     const btn = document.createElement('button');
@@ -507,18 +591,46 @@
             function openDialpad() { dialValue = ''; updateDialDisplay(); dialpadOverlay.classList.add('visible'); closeMenu(); }
             function closeDialpad() { dialpadOverlay.classList.remove('visible'); }
 
-            async function fetchBingWallpaper() { /* 原实现 */ }
-            function applyBingBackground(url) { /* 原实现 */ }
-            function clearBingBackground() { /* 原实现 */ }
-            function updateBackground() { if (bingEnabled) fetchBingWallpaper(); else clearBingBackground(); }
-            function updateBingIndicator() { bingWallpaperDot.classList.toggle('inactive', !bingEnabled); }
+            // ========== 必应壁纸 ==========
+            async function fetchBingWallpaper() {
+                try {
+                    const response = await fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1');
+                    const data = await response.json();
+                    if (data && data.images && data.images.length > 0) {
+                        const url = 'https://www.bing.com' + data.images[0].url;
+                        applyBingBackground(url);
+                    }
+                } catch (error) {
+                    console.warn('获取必应壁纸失败，使用默认背景', error);
+                    clearBingBackground();
+                }
+            }
+            function applyBingBackground(url) {
+                document.body.style.backgroundImage = `url("${url}")`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center';
+                document.body.style.backgroundAttachment = 'fixed';
+            }
+            function clearBingBackground() {
+                document.body.style.backgroundImage = '';
+                document.body.style.backgroundSize = '';
+                document.body.style.backgroundPosition = '';
+                document.body.style.backgroundAttachment = '';
+            }
+            function updateBackground() {
+                if (bingEnabled) { fetchBingWallpaper(); } else { clearBingBackground(); }
+            }
+            function updateBingIndicator() {
+                bingWallpaperDot.classList.toggle('inactive', !bingEnabled);
+            }
 
+            // ========== 玻璃模式 ==========
             function updateGlassMode() {
-                if (glassEnabled && !liquidGlassEnabled && !retroEnabled) {
+                if (glassEnabled && !liquidGlassEnabled) {
                     document.body.classList.add('glass-mode');
                     document.body.classList.remove('liquid-glass-mode');
                     glassDot.classList.remove('inactive');
-                } else if (!glassEnabled && !liquidGlassEnabled && !retroEnabled) {
+                } else if (!glassEnabled && !liquidGlassEnabled) {
                     document.body.classList.remove('glass-mode');
                     glassDot.classList.add('inactive');
                 } else {
@@ -526,7 +638,7 @@
                 }
             }
             function updateLiquidGlassMode() {
-                if (liquidGlassEnabled && !retroEnabled) {
+                if (liquidGlassEnabled) {
                     document.body.classList.add('liquid-glass-mode');
                     document.body.classList.remove('glass-mode');
                     liquidGlassDot.classList.remove('inactive');
@@ -534,25 +646,14 @@
                 } else {
                     document.body.classList.remove('liquid-glass-mode');
                     liquidGlassDot.classList.add('inactive');
-                    if (glassEnabled && !retroEnabled) {
+                    if (glassEnabled) {
                         document.body.classList.add('glass-mode');
                         glassDot.classList.remove('inactive');
                     }
                 }
             }
-            function updateRetroMode() {
-                if (retroEnabled) {
-                    document.body.classList.add('retro-mode');
-                    document.body.classList.remove('glass-mode', 'liquid-glass-mode');
-                    retroDot.classList.remove('inactive');
-                    glassDot.classList.add('inactive');
-                    liquidGlassDot.classList.add('inactive');
-                } else {
-                    document.body.classList.remove('retro-mode');
-                    retroDot.classList.add('inactive');
-                }
-            }
 
+            // ========== 主题 ==========
             function initTheme() { htmlElement.setAttribute('data-theme', currentTheme); updateThemeUI(); }
             function updateThemeUI() {
                 const isDark = currentTheme === 'dark';
@@ -560,6 +661,7 @@
                 themeLabel.textContent = translations[currentLang][isDark ? 'dark' : 'light'];
             }
 
+            // ========== 语言 ==========
             function initLanguage() { updateLanguageUI(); }
             function updateLanguageUI() {
                 const t = translations[currentLang];
@@ -575,7 +677,6 @@
                 document.querySelectorAll('[data-i18n="glassMode"]').forEach(el => el.textContent = t.glassMode);
                 document.querySelectorAll('[data-i18n="liquidGlassMode"]').forEach(el => el.textContent = t.liquidGlassMode);
                 document.querySelectorAll('[data-i18n="bingWallpaper"]').forEach(el => el.textContent = t.bingWallpaper);
-                document.querySelectorAll('[data-i18n="retroMode"]').forEach(el => el.textContent = t.retroMode);
                 document.querySelectorAll('[data-i18n="language"]').forEach(el => el.textContent = t.language);
                 document.querySelectorAll('[data-i18n="links"]').forEach(el => el.textContent = t.links);
                 updateLanguageIndicators();
@@ -591,6 +692,7 @@
                 });
             }
 
+            // ========== 菜单开关 ==========
             function openMenu() {
                 isMenuOpen = true;
                 hamburgerBtn.classList.add('active');
@@ -607,77 +709,67 @@
                 hamburgerBtn.setAttribute('aria-expanded', 'false');
                 hamburgerBtn.setAttribute('aria-label', translations[currentLang].menuAria);
             }
-            function toggleMenu() { if (isMenuOpen) closeMenu(); else openMenu(); }
+            function toggleMenu() {
+                if (isMenuOpen) { closeMenu(); } else { openMenu(); }
+            }
 
-            // 事件监听
-            hamburgerBtn.addEventListener('click', e => { e.stopPropagation(); toggleMenu(); });
+            // ========== 事件监听 ==========
+            hamburgerBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
             menuOverlay.addEventListener('click', closeMenu);
-            document.addEventListener('keydown', e => {
+            document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     if (isMenuOpen) closeMenu();
                     if (dialpadOverlay.classList.contains('visible')) closeDialpad();
                 }
             });
 
-            themeToggle.addEventListener('click', () => {
+            themeToggle.addEventListener('click', function() {
                 currentTheme = currentTheme === 'light' ? 'dark' : 'light';
                 htmlElement.setAttribute('data-theme', currentTheme);
                 localStorage.setItem('theme', currentTheme);
                 updateThemeUI();
-                if (!bingEnabled) clearBingBackground();
+                if (!bingEnabled) { clearBingBackground(); }
             });
 
-            glassToggle.addEventListener('click', () => {
+            glassToggle.addEventListener('click', function() {
                 glassEnabled = !glassEnabled;
                 localStorage.setItem('glassMode', glassEnabled ? 'enabled' : 'disabled');
-                if (glassEnabled) {
+                if (glassEnabled && liquidGlassEnabled) {
                     liquidGlassEnabled = false;
                     localStorage.setItem('liquidGlassMode', 'disabled');
-                    retroEnabled = false;
-                    localStorage.setItem('retroMode', 'disabled');
+                    document.body.classList.remove('liquid-glass-mode');
+                    liquidGlassDot.classList.add('inactive');
                 }
                 updateGlassMode();
                 updateLiquidGlassMode();
-                updateRetroMode();
             });
 
-            liquidGlassToggle.addEventListener('click', () => {
+            liquidGlassToggle.addEventListener('click', function() {
                 liquidGlassEnabled = !liquidGlassEnabled;
                 localStorage.setItem('liquidGlassMode', liquidGlassEnabled ? 'enabled' : 'disabled');
-                if (liquidGlassEnabled) {
+                if (liquidGlassEnabled && glassEnabled) {
                     glassEnabled = false;
                     localStorage.setItem('glassMode', 'disabled');
-                    retroEnabled = false;
-                    localStorage.setItem('retroMode', 'disabled');
+                    document.body.classList.remove('glass-mode');
+                    glassDot.classList.add('inactive');
                 }
                 updateGlassMode();
                 updateLiquidGlassMode();
-                updateRetroMode();
             });
 
-            bingWallpaperToggle.addEventListener('click', () => {
+            bingWallpaperToggle.addEventListener('click', function() {
                 bingEnabled = !bingEnabled;
                 localStorage.setItem('bingWallpaper', bingEnabled ? 'enabled' : 'disabled');
                 updateBingIndicator();
                 updateBackground();
             });
 
-            retroToggle.addEventListener('click', () => {
-                retroEnabled = !retroEnabled;
-                localStorage.setItem('retroMode', retroEnabled ? 'enabled' : 'disabled');
-                if (retroEnabled) {
-                    glassEnabled = false;
-                    liquidGlassEnabled = false;
-                    localStorage.setItem('glassMode', 'disabled');
-                    localStorage.setItem('liquidGlassMode', 'disabled');
-                }
-                updateGlassMode();
-                updateLiquidGlassMode();
-                updateRetroMode();
-            });
-
+            // 语言按钮
             Object.keys(langButtons).forEach(lang => {
-                langButtons[lang].addEventListener('click', () => {
+                langButtons[lang].addEventListener('click', function() {
                     if (currentLang !== lang) {
                         currentLang = lang;
                         localStorage.setItem('lang', lang);
@@ -688,12 +780,15 @@
                 });
             });
 
-            dialpadTrigger.addEventListener('click', openDialpad);
-            dialDelete.addEventListener('click', () => { dialValue = dialValue.slice(0, -1); updateDialDisplay(); });
+            // 拨号盘
+            dialpadTrigger.addEventListener('click', function() { openDialpad(); });
+            dialDelete.addEventListener('click', function() { dialValue = dialValue.slice(0, -1); updateDialDisplay(); });
             dialClose.addEventListener('click', closeDialpad);
-            dialpadOverlay.addEventListener('click', e => { if (e.target === dialpadOverlay) closeDialpad(); });
+            dialpadOverlay.addEventListener('click', function(e) {
+                if (e.target === dialpadOverlay) { closeDialpad(); }
+            });
 
-            // 启动
+            // ========== 启动 ==========
             buildDialpad();
             initTheme();
             initLanguage();
@@ -701,11 +796,13 @@
             updateBingIndicator();
             updateGlassMode();
             updateLiquidGlassMode();
-            updateRetroMode();
             updateBackground();
 
-            if (currentTheme === 'dark') themeDot.classList.remove('inactive');
-            else themeDot.classList.add('inactive');
+            if (currentTheme === 'dark') {
+                themeDot.classList.remove('inactive');
+            } else {
+                themeDot.classList.add('inactive');
+            }
         })();
     </script>
 </body>
