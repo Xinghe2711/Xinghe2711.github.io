@@ -34,8 +34,17 @@
             --dial-key-hover: #e0e0e0;
             --dial-display-bg: #f8f8f8;
             --dial-display-text: #1a1a1a;
+            --calc-bg: #f0f0f0;
+            --calc-display-bg: #ffffff;
+            --calc-key-bg: #e0e0e0;
+            --calc-key-hover: #d0d0d0;
+            --calc-operator-bg: #ff9500;
+            --calc-operator-text: #fff;
+            --calc-equals-bg: #0077cc;
             --sidebar-width: 300px;
             --topbar-height: 60px;
+            --toggle-on: #34c759;
+            --toggle-off: #e9e9ea;
         }
 
         [data-theme="dark"] {
@@ -67,6 +76,15 @@
             --dial-key-hover: #3a3a3a;
             --dial-display-bg: #171717;
             --dial-display-text: #f0f0f0;
+            --calc-bg: #1a1a1a;
+            --calc-display-bg: #2a2a2a;
+            --calc-key-bg: #3a3a3a;
+            --calc-key-hover: #4a4a4a;
+            --calc-operator-bg: #ff9500;
+            --calc-operator-text: #fff;
+            --calc-equals-bg: #42a5f5;
+            --toggle-on: #30d158;
+            --toggle-off: #39393d;
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -89,7 +107,6 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* ========== 顶部栏 ========== */
         .top-bar {
             position: fixed; top:0; left:0; right:0;
             height: var(--topbar-height);
@@ -101,18 +118,15 @@
         }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-        /* ========== 汉堡按钮 ========== */
         .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1004; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; -webkit-tap-highlight-color:transparent; outline:none; }
         .hamburger-line { display:block; width:22px; height:2.5px; background-color:var(--accent); border-radius:4px; transition:all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); }
         .hamburger-btn.active .hamburger-line:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
         .hamburger-btn.active .hamburger-line:nth-child(2) { opacity:0; }
         .hamburger-btn.active .hamburger-line:nth-child(3) { transform:translateY(-7.5px) rotate(-45deg); }
 
-        /* ========== 遮罩 ========== */
         .menu-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:1000; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         .menu-overlay.visible { opacity:1; pointer-events:auto; }
 
-        /* ========== 侧边栏 ========== */
         .sidebar-menu { position:fixed; top:0; right:0; z-index:1001; background-color:var(--menu-bg); width:var(--sidebar-width); max-width:85vw; height:100%; box-shadow:-4px 0 24px var(--menu-shadow); padding:20px 0; overflow-y:auto; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.22,1,0.36,1); border-left:1px solid var(--divider); }
         .sidebar-menu.open { transform:translateX(0); }
         .menu-section { padding:14px 20px 6px; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); }
@@ -120,7 +134,6 @@
         .menu-item:hover { background-color:var(--menu-item-hover); }
         .menu-divider { height:1px; background-color:var(--divider); margin:6px 0; opacity:0.5; }
 
-        /* ========== 主容器 ========== */
         .container { text-align:center; padding:clamp(1.2rem,4vw,2rem); max-width:540px; width:100%; margin:auto; transition:all 0.35s ease; }
         h1 { font-size:clamp(1.3rem,4vw,2rem); font-weight:300; color:var(--text); letter-spacing:0.04em; line-height:1.5; margin-bottom:1.2rem; }
         .divider { width:48px; height:1px; background-color:var(--divider); margin:0 auto 1.2rem auto; }
@@ -135,7 +148,39 @@
         .btn-download:hover { background-color:var(--download-btn-hover-bg); border-color:var(--download-btn-hover-bg); color:var(--download-btn-hover-text); }
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
-        /* ========== 设置弹窗 ========== */
+        /* iOS 开关 */
+        .ios-switch {
+            position: relative;
+            width: 51px;
+            height: 31px;
+            background-color: var(--toggle-off);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex-shrink: 0;
+            border: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            padding: 0;
+        }
+        .ios-switch .knob {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 27px;
+            height: 27px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .ios-switch.on {
+            background-color: var(--toggle-on);
+        }
+        .ios-switch.on .knob {
+            transform: translateX(20px);
+        }
+
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -150,7 +195,77 @@
         .settings-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; }
 
-        /* ========== 拨号盘 ========== */
+        /* 计算器 */
+        .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
+        .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
+        .calc-modal { background-color:var(--calc-bg); border-radius:20px; padding:1rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
+        .calc-overlay.visible .calc-modal { transform:translateY(0) scale(1); }
+        .calc-display {
+            background-color: var(--calc-display-bg);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            font-size: 2rem;
+            font-weight: 300;
+            text-align: right;
+            color: var(--text);
+            margin-bottom: 0.8rem;
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            overflow-x: auto;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            border: 1px solid var(--divider);
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        .calc-key {
+            background-color: var(--calc-key-bg);
+            border: none;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--text);
+            transition: all 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            font-family: inherit;
+            font-weight: 400;
+        }
+        .calc-key:hover { background-color: var(--calc-key-hover); }
+        .calc-key:active { transform: scale(0.9); }
+        .calc-key.operator {
+            background-color: var(--calc-operator-bg);
+            color: var(--calc-operator-text);
+        }
+        .calc-key.operator:hover { opacity: 0.85; }
+        .calc-key.equals {
+            background-color: var(--calc-equals-bg);
+            color: #fff;
+        }
+        .calc-key.equals:hover { opacity: 0.85; }
+        .calc-key.zero {
+            grid-column: span 2;
+            border-radius: 50px;
+        }
+        .calc-key.clear {
+            background-color: #d4d4d2;
+            color: #1a1a1a;
+        }
+        [data-theme="dark"] .calc-key.clear {
+            background-color: #5a5a5a;
+            color: #f0f0f0;
+        }
+
+        /* 拨号盘 */
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .dialpad-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:280px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -165,7 +280,7 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* ========== 透明模式 iOS16 ========== */
+        /* 模式样式 */
         body.glass-mode { background-color:rgba(255,255,255,0.35); }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35); }
         body.glass-mode .top-bar { background-color:rgba(255,255,255,0.75); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-bottom:1px solid rgba(255,255,255,0.5); }
@@ -174,17 +289,13 @@
         [data-theme="dark"] body.glass-mode .container { background-color:rgba(44,44,46,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.1); }
         body.glass-mode .sidebar-menu { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-left:1px solid rgba(255,255,255,0.5); }
         [data-theme="dark"] body.glass-mode .sidebar-menu { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-left:1px solid rgba(255,255,255,0.1); }
-        body.glass-mode .btn { background-color:rgba(0,122,255,0.8); border-color:rgba(255,255,255,0.35); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
-        body.glass-mode .btn-download { background-color:rgba(255,255,255,0.55); border-color:rgba(0,0,0,0.18); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-        [data-theme="dark"] body.glass-mode .btn-download { background-color:rgba(44,44,46,0.55); border-color:rgba(255,255,255,0.12); color:#f0f0f0; }
-        body.glass-mode .announcement { background-color:rgba(255,255,255,0.55); border-color:rgba(0,0,0,0.18); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
-        [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55); border-color:rgba(255,255,255,0.12); }
         body.glass-mode .settings-modal { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.6); }
         [data-theme="dark"] body.glass-mode .settings-modal { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.1); }
+        body.glass-mode .calc-modal { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.6); }
+        [data-theme="dark"] body.glass-mode .calc-modal { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.1); }
         body.glass-mode .dialpad-modal { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.55); }
         [data-theme="dark"] body.glass-mode .dialpad-modal { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.1); }
 
-        /* ========== 液态玻璃 iOS26 ========== */
         body.liquid-glass-mode { background-color:rgba(255,255,255,0.2); }
         [data-theme="dark"] body.liquid-glass-mode { background-color:rgba(18,18,18,0.2); }
         body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15)); backdrop-filter:blur(28px) saturate(200%); -webkit-backdrop-filter:blur(28px) saturate(200%); border-bottom:1px solid rgba(255,255,255,0.4); }
@@ -193,24 +304,17 @@
         [data-theme="dark"] body.liquid-glass-mode .container { background:linear-gradient(135deg, rgba(55,55,55,0.4), rgba(25,25,25,0.15) 35%, rgba(40,40,40,0.3) 65%, rgba(55,55,55,0.45)); border:1px solid rgba(255,255,255,0.12); }
         body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(28px) saturate(200%); -webkit-backdrop-filter:blur(28px) saturate(200%); border-left:1px solid rgba(255,255,255,0.35); }
         [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border-left:1px solid rgba(255,255,255,0.1); }
-        body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(0,119,204,0.65), rgba(0,119,204,0.35) 50%, rgba(0,119,204,0.55)); backdrop-filter:blur(10px) saturate(150%); -webkit-backdrop-filter:blur(10px) saturate(150%); border:1px solid rgba(255,255,255,0.3); color:#fff; }
-        [data-theme="dark"] body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(66,165,245,0.65), rgba(66,165,245,0.35) 50%, rgba(66,165,245,0.55)); color:#121212; }
-        body.liquid-glass-mode .btn-download { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)); backdrop-filter:blur(10px) saturate(140%); -webkit-backdrop-filter:blur(10px) saturate(140%); border:1px solid rgba(0,0,0,0.15); }
-        [data-theme="dark"] body.liquid-glass-mode .btn-download { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)); border-color:rgba(255,255,255,0.1); color:#f0f0f0; }
-        body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(20px) saturate(170%); -webkit-backdrop-filter:blur(20px) saturate(170%); border:1px solid rgba(255,255,255,0.35); }
-        [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border-color:rgba(255,255,255,0.1); }
         body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(28px) saturate(200%); -webkit-backdrop-filter:blur(28px) saturate(200%); border:1px solid rgba(255,255,255,0.4); }
         [data-theme="dark"] body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border:1px solid rgba(255,255,255,0.12); }
+        body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(28px) saturate(200%); -webkit-backdrop-filter:blur(28px) saturate(200%); border:1px solid rgba(255,255,255,0.4); }
+        [data-theme="dark"] body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border:1px solid rgba(255,255,255,0.12); }
         body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.38)); backdrop-filter:blur(28px) saturate(190%); -webkit-backdrop-filter:blur(28px) saturate(190%); border:1px solid rgba(255,255,255,0.45); }
         [data-theme="dark"] body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(50,50,50,0.5), rgba(22,22,22,0.25) 50%, rgba(40,40,40,0.4)); border:1px solid rgba(255,255,255,0.12); }
 
-        /* ========== 怀旧模式 iOS6 ========== */
         body.retro-mode { background-color:#a0a8b0; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="%23b8c0c8"/></svg>'); background-size:160px 160px; }
         [data-theme="dark"] body.retro-mode { background-color:#2a2f35; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="%233a4048"/></svg>'); }
         body.retro-mode .top-bar { background:linear-gradient(to bottom,#f0f0f0,#c8c8c8); border-bottom:1px solid #7f7f7f; box-shadow:0 2px 6px rgba(0,0,0,0.35); }
         [data-theme="dark"] body.retro-mode .top-bar { background:linear-gradient(to bottom,#555,#3a3a3a); border-bottom:1px solid #1a1a1a; }
-        body.retro-mode .site-title { font-weight:bold; color:#333; text-shadow:0 1px 0 rgba(255,255,255,0.7); }
-        [data-theme="dark"] body.retro-mode .site-title { color:#eee; text-shadow:0 1px 0 rgba(0,0,0,0.7); }
         body.retro-mode .container { background:#f8f8f8; border-radius:10px; border:1px solid #9a9a9a; box-shadow:0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.8); }
         [data-theme="dark"] body.retro-mode .container { background:#4a4f55; border-color:#2a2f35; }
         body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2,#1e69de); border:1px solid #1c4f9c; border-radius:6px; text-shadow:0 -1px 0 rgba(0,0,0,0.4); box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3); }
@@ -225,6 +329,8 @@
         [data-theme="dark"] body.retro-mode .menu-item { color:#ddd; border-bottom:1px solid #555; }
         body.retro-mode .settings-modal { background:#f5f5f5; border:1px solid #8f8f8f; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff; }
         [data-theme="dark"] body.retro-mode .settings-modal { background:#4a4a4a; border-color:#2a2a2a; }
+        body.retro-mode .calc-modal { background:#f5f5f5; border:1px solid #8f8f8f; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff; }
+        [data-theme="dark"] body.retro-mode .calc-modal { background:#4a4a4a; border-color:#2a2a2a; }
         body.retro-mode .dialpad-modal { background:#f5f5f5; border:1px solid #8f8f8f; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.4); }
         [data-theme="dark"] body.retro-mode .dialpad-modal { background:#4a4a4a; border-color:#2a2a2a; }
         body.retro-mode .dial-key { background:#e0e0e0; border:1px solid #a0a0a0; border-radius:7px; box-shadow:0 2px 3px rgba(0,0,0,0.2), inset 0 1px 0 #fff; }
@@ -240,6 +346,7 @@
             body { padding-top:calc(var(--topbar-height) + 0.5rem); }
             .btn { padding:0.55rem 1.2rem; font-size:0.8rem; }
             .btn-download { padding:0.6rem 0.7rem; font-size:0.75rem; }
+            .calc-modal { max-width:280px; }
         }
     </style>
 </head>
@@ -258,10 +365,11 @@
     <div class="menu-overlay" id="menuOverlay"></div>
 
     <aside class="sidebar-menu" id="sidebarMenu">
-        <div class="menu-section" data-i18n="menu">菜单</div>
-        <button class="menu-item" id="settingsTrigger"><span data-i18n="settings">设置</span><span>⚙️</span></button>
+        <div class="menu-section">菜单</div>
+        <button class="menu-item" id="settingsTrigger"><span>设置</span><span>⚙️</span></button>
+        <button class="menu-item" id="calcTrigger"><span>计算器</span><span>🔢</span></button>
         <div class="menu-divider"></div>
-        <div class="menu-section" data-i18n="links">链接</div>
+        <div class="menu-section">链接</div>
         <a href="https://mcjs.cc" target="_blank" class="menu-item">网页版MC <span>↗</span></a>
         <a href="https://share.feijipan.com/s/Pw8OwB3N" target="_blank" class="menu-item">ojang pe下载 <span>↗</span></a>
         <button class="menu-item" id="dialpadTrigger">拨号盘 <span>☎</span></button>
@@ -269,21 +377,21 @@
 
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-modal">
-            <div class="settings-title" data-i18n="settings">设置</div>
+            <div class="settings-title">设置</div>
             <div class="settings-section">
-                <div class="settings-section-title" data-i18n="theme">主题模式</div>
-                <div class="settings-option"><span data-i18n="light">浅色</span><button class="settings-btn" id="themeLightBtn">浅色</button></div>
-                <div class="settings-option"><span data-i18n="dark">深色</span><button class="settings-btn" id="themeDarkBtn">深色</button></div>
+                <div class="settings-section-title">主题模式</div>
+                <div class="settings-option"><span class="settings-option-label">浅色</span><button class="settings-btn" id="themeLightBtn">浅色</button></div>
+                <div class="settings-option"><span class="settings-option-label">深色</span><button class="settings-btn" id="themeDarkBtn">深色</button></div>
             </div>
             <div class="settings-section">
-                <div class="settings-section-title" data-i18n="displayMode">显示模式</div>
-                <div class="settings-option"><span data-i18n="glassMode">透明模式</span><button class="settings-btn" id="glassModeBtn">开关</button></div>
-                <div class="settings-option"><span data-i18n="liquidGlassMode">液态玻璃</span><button class="settings-btn" id="liquidGlassModeBtn">开关</button></div>
-                <div class="settings-option"><span data-i18n="retroMode">怀旧模式</span><button class="settings-btn" id="retroModeBtn">开关</button></div>
-                <div class="settings-option"><span data-i18n="bingWallpaper">必应壁纸</span><button class="settings-btn" id="bingWallpaperBtn">开关</button></div>
+                <div class="settings-section-title">显示模式</div>
+                <div class="settings-option"><span class="settings-option-label">透明模式</span><button class="ios-switch" id="glassModeSwitch" aria-label="透明模式开关"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label">液态玻璃</span><button class="ios-switch" id="liquidGlassModeSwitch" aria-label="液态玻璃模式开关"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label">怀旧模式</span><button class="ios-switch" id="retroModeSwitch" aria-label="怀旧模式开关"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label">必应壁纸</span><button class="ios-switch" id="bingWallpaperSwitch" aria-label="必应壁纸开关"><span class="knob"></span></button></div>
             </div>
             <div class="settings-section">
-                <div class="settings-section-title" data-i18n="language">语言</div>
+                <div class="settings-section-title">语言</div>
                 <button class="settings-btn lang-btn" data-lang="zh-CN" style="margin:2px;">简体中文</button>
                 <button class="settings-btn lang-btn" data-lang="zh-TW" style="margin:2px;">繁體中文</button>
                 <button class="settings-btn lang-btn" data-lang="ja" style="margin:2px;">日本語</button>
@@ -291,7 +399,34 @@
                 <button class="settings-btn lang-btn" data-lang="en-US" style="margin:2px;">English (US)</button>
                 <button class="settings-btn lang-btn" data-lang="ko" style="margin:2px;">한국어</button>
             </div>
-            <button class="settings-close-btn" id="settingsCloseBtn" data-i18n="close">关闭</button>
+            <button class="settings-close-btn" id="settingsCloseBtn">关闭</button>
+        </div>
+    </div>
+
+    <div class="calc-overlay" id="calcOverlay">
+        <div class="calc-modal">
+            <div class="calc-display" id="calcDisplay">0</div>
+            <div class="calc-grid" id="calcGrid">
+                <button class="calc-key clear" data-action="clear">C</button>
+                <button class="calc-key" data-action="backspace">⌫</button>
+                <button class="calc-key" data-action="percent">%</button>
+                <button class="calc-key operator" data-action="divide">÷</button>
+                <button class="calc-key" data-value="7">7</button>
+                <button class="calc-key" data-value="8">8</button>
+                <button class="calc-key" data-value="9">9</button>
+                <button class="calc-key operator" data-action="multiply">×</button>
+                <button class="calc-key" data-value="4">4</button>
+                <button class="calc-key" data-value="5">5</button>
+                <button class="calc-key" data-value="6">6</button>
+                <button class="calc-key operator" data-action="subtract">−</button>
+                <button class="calc-key" data-value="1">1</button>
+                <button class="calc-key" data-value="2">2</button>
+                <button class="calc-key" data-value="3">3</button>
+                <button class="calc-key operator" data-action="add">+</button>
+                <button class="calc-key zero" data-value="0">0</button>
+                <button class="calc-key" data-value=".">.</button>
+                <button class="calc-key equals" data-action="equals">=</button>
+            </div>
         </div>
     </div>
 
@@ -310,7 +445,7 @@
         <h1 id="mainTitle">欢迎来到<br>一架国泰航空A330官方网站</h1>
         <div class="divider"></div>
         <div class="button-group">
-            <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0" target="_blank" class="btn" id="bilibiliBtn">我的 bilibili</a>
+            <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0" target="_blank" class="btn">我的 bilibili</a>
             <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=tR1lPtOfDCeQ7X7EhR0%2BtmavDrNaxJ831B8mpYbP4K0w5SXrYdRbSvWcoAnsoZ4%2F&busi_data=eyJncm91cENvZGUiOiIxMDgxMTA0MzM0IiwidG9rZW4iOiJPOVVsVUxlSDFCL0ZwMHJTSm5QdGZCall5Q3paNld6LzNrVjZ5UFpCOUNQL3R3Q1FiV3V4SmdtTWJUajRVVmZxIiwidWluIjoiMzk5NTQ5MzQ1MyJ9&data=2Di3RQOCRkJZft-Fq-4Mgb7-jYVOWyYNzbmHOgH74lXne5vtTYX4s-80Gs0ZUwhl6ZOFqssj1Ebn3lcV7YDnfg&svctype=4&tempid=h5_group_info" target="_blank" class="btn">加入粉丝群</a>
         </div>
         <div class="announcement">
@@ -329,8 +464,9 @@
             const $ = id => document.getElementById(id);
             const hamburgerBtn = $('hamburgerBtn'), sidebarMenu = $('sidebarMenu'), menuOverlay = $('menuOverlay');
             const settingsTrigger = $('settingsTrigger'), settingsOverlay = $('settingsOverlay'), settingsCloseBtn = $('settingsCloseBtn');
+            const calcTrigger = $('calcTrigger'), calcOverlay = $('calcOverlay'), calcDisplay = $('calcDisplay');
             const themeLightBtn = $('themeLightBtn'), themeDarkBtn = $('themeDarkBtn');
-            const glassModeBtn = $('glassModeBtn'), liquidGlassModeBtn = $('liquidGlassModeBtn'), retroModeBtn = $('retroModeBtn'), bingWallpaperBtn = $('bingWallpaperBtn');
+            const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), bingWallpaperSwitch = $('bingWallpaperSwitch');
             const langButtons = document.querySelectorAll('.lang-btn');
             const mainTitle = $('mainTitle'), siteTitle = document.querySelector('.site-title');
             const dialpadOverlay = $('dialpadOverlay'), dialpadDisplay = $('dialpadDisplay'), dialpadGrid = $('dialpadGrid');
@@ -346,13 +482,18 @@
             let retroEnabled = localStorage.getItem('retroMode') === 'enabled';
             let dialValue = '';
 
+            // 计算器状态
+            let calcFirstOperand = null;
+            let calcOperator = null;
+            let calcShouldResetDisplay = false;
+
             const translations = {
-                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', theme:'主题模式', light:'浅色', dark:'深色', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', bingWallpaper:'必应壁纸', retroMode:'怀旧模式', language:'语言', links:'链接', menu:'菜单', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'欢迎来到<br>一架国泰航空A330官方网站', close:'关闭', delete:'删除' },
-                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', theme:'主題模式', light:'淺色', dark:'深色', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', bingWallpaper:'必應壁紙', retroMode:'懷舊模式', language:'語言', links:'連結', menu:'菜單', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'歡迎來到<br>一架國泰航空A330官方網站', close:'關閉', delete:'刪除' },
-                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', theme:'テーマ', light:'ライト', dark:'ダーク', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', bingWallpaper:'Bing壁紙', retroMode:'レトロモード', language:'言語', links:'リンク', menu:'メニュー', bilibili:'My bilibili', fanGroup:'ファングループ', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', footer:'Cathay Pacific • A330', titleHtml:'ようこそ<br>A330公式サイトへ', close:'閉じる', delete:'削除' },
-                'en-GB': { siteTitle:'Cathay Pacific A330 Official', settings:'Settings', theme:'Theme', light:'Light', dark:'Dark', displayMode:'Display', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', bingWallpaper:'Bing Wallpaper', retroMode:'Retro Mode', language:'Language', links:'Links', menu:'Menu', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Multi-language', footer:'Cathay Pacific • A330', titleHtml:'Welcome to<br>A330 Official', close:'Close', delete:'Delete' },
-                'en-US': { siteTitle:'Cathay Pacific A330 Official', settings:'Settings', theme:'Theme', light:'Light', dark:'Dark', displayMode:'Display', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', bingWallpaper:'Bing Wallpaper', retroMode:'Retro Mode', language:'Language', links:'Links', menu:'Menu', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Multi-language', footer:'Cathay Pacific • A330', titleHtml:'Welcome to<br>A330 Official', close:'Close', delete:'Delete' },
-                'ko': { siteTitle:'캐세이퍼시픽 A330 공식', settings:'설정', theme:'테마', light:'라이트', dark:'다크', displayMode:'디스플레이', glassMode:'글래스', liquidGlassMode:'리퀴드', bingWallpaper:'Bing 배경', retroMode:'레트로', language:'언어', links:'링크', menu:'메뉴', bilibili:'My bilibili', fanGroup:'팬그룹', announcementTitle:'공지', announcementSubtitle:'다국어', footer:'Cathay Pacific', titleHtml:'환영합니다<br>A330 공식', close:'닫기', delete:'삭제' }
+                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', titleHtml:'欢迎来到<br>一架国泰航空A330官方网站' },
+                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', titleHtml:'歡迎來到<br>一架國泰航空A330官方網站' },
+                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', titleHtml:'ようこそ<br>A330公式サイトへ' },
+                'en-GB': { siteTitle:'Cathay Pacific A330 Official', titleHtml:'Welcome to<br>A330 Official' },
+                'en-US': { siteTitle:'Cathay Pacific A330 Official', titleHtml:'Welcome to<br>A330 Official' },
+                'ko': { siteTitle:'캐세이퍼시픽 A330 공식', titleHtml:'환영합니다<br>A330 공식' }
             };
 
             const dialKeys = [
@@ -373,28 +514,20 @@
             }
 
             function updateUI() {
-                // 应用模式类
                 document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode');
                 if (retroEnabled) document.body.classList.add('retro-mode');
                 else if (liquidGlassEnabled) document.body.classList.add('liquid-glass-mode');
                 else if (glassEnabled) document.body.classList.add('glass-mode');
-                // 更新按钮状态
-                glassModeBtn.classList.toggle('active', glassEnabled);
-                liquidGlassModeBtn.classList.toggle('active', liquidGlassEnabled);
-                retroModeBtn.classList.toggle('active', retroEnabled);
-                bingWallpaperBtn.classList.toggle('active', bingEnabled);
+                glassModeSwitch.classList.toggle('on', glassEnabled);
+                liquidGlassModeSwitch.classList.toggle('on', liquidGlassEnabled);
+                retroModeSwitch.classList.toggle('on', retroEnabled);
+                bingWallpaperSwitch.classList.toggle('on', bingEnabled);
                 themeLightBtn.classList.toggle('active', currentTheme === 'light');
                 themeDarkBtn.classList.toggle('active', currentTheme === 'dark');
-                // 更新主题
                 htmlElement.setAttribute('data-theme', currentTheme);
-                // 更新语言
-                const t = translations[currentLang];
+                const t = translations[currentLang] || translations['zh-CN'];
                 siteTitle.textContent = t.siteTitle;
                 mainTitle.innerHTML = t.titleHtml;
-                document.querySelector('.announcement-title').textContent = t.announcementTitle;
-                document.querySelector('.announcement-subtitle').textContent = t.announcementSubtitle;
-                document.querySelector('.footer-note').textContent = t.footer;
-                // 更新背景
                 if (bingEnabled) {
                     fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1')
                         .then(r => r.json())
@@ -405,62 +538,104 @@
                 }
             }
 
-            // 菜单控制
-            hamburgerBtn.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
+            function toggleMenu(force) {
+                isMenuOpen = force !== undefined ? force : !isMenuOpen;
                 hamburgerBtn.classList.toggle('active', isMenuOpen);
                 sidebarMenu.classList.toggle('open', isMenuOpen);
                 menuOverlay.classList.toggle('visible', isMenuOpen);
-            });
-            menuOverlay.addEventListener('click', () => {
-                isMenuOpen = false;
-                hamburgerBtn.classList.remove('active');
-                sidebarMenu.classList.remove('open');
-                menuOverlay.classList.remove('visible');
-            });
+            }
 
-            // 设置弹窗
+            hamburgerBtn.addEventListener('click', () => toggleMenu());
+            menuOverlay.addEventListener('click', () => toggleMenu(false));
+
+            function closeAllModals() {
+                settingsOverlay.classList.remove('visible');
+                dialpadOverlay.classList.remove('visible');
+                calcOverlay.classList.remove('visible');
+            }
+
             settingsTrigger.addEventListener('click', () => {
+                closeAllModals();
+                toggleMenu(false);
                 settingsOverlay.classList.add('visible');
-                isMenuOpen = false;
-                hamburgerBtn.classList.remove('active');
-                sidebarMenu.classList.remove('open');
-                menuOverlay.classList.remove('visible');
                 updateUI();
             });
             settingsCloseBtn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
             settingsOverlay.addEventListener('click', e => { if(e.target === settingsOverlay) settingsOverlay.classList.remove('visible'); });
 
-            // 主题
+            calcTrigger.addEventListener('click', () => {
+                closeAllModals();
+                toggleMenu(false);
+                calcOverlay.classList.add('visible');
+            });
+            calcOverlay.addEventListener('click', e => { if(e.target === calcOverlay) calcOverlay.classList.remove('visible'); });
+
+            dialpadTrigger.addEventListener('click', () => {
+                closeAllModals();
+                toggleMenu(false);
+                dialpadOverlay.classList.add('visible');
+            });
+            dialClose.addEventListener('click', () => dialpadOverlay.classList.remove('visible'));
+            dialDelete.addEventListener('click', () => { dialValue = dialValue.slice(0,-1); dialpadDisplay.textContent = dialValue; });
+            dialpadOverlay.addEventListener('click', e => { if(e.target === dialpadOverlay) dialpadOverlay.classList.remove('visible'); });
+
+            document.addEventListener('keydown', e => {
+                if(e.key === 'Escape') {
+                    toggleMenu(false);
+                    closeAllModals();
+                }
+            });
+
             themeLightBtn.addEventListener('click', () => { currentTheme = 'light'; localStorage.setItem('theme','light'); updateUI(); });
             themeDarkBtn.addEventListener('click', () => { currentTheme = 'dark'; localStorage.setItem('theme','dark'); updateUI(); });
 
-            // 模式
-            glassModeBtn.addEventListener('click', () => {
-                glassEnabled = !glassEnabled;
-                localStorage.setItem('glassMode', glassEnabled?'enabled':'disabled');
-                if(glassEnabled) { liquidGlassEnabled=false; retroEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); localStorage.setItem('retroMode','disabled'); }
+            function setMode(key, value, switchEl) {
+                if(key === 'glassMode') glassEnabled = value;
+                if(key === 'liquidGlassMode') liquidGlassEnabled = value;
+                if(key === 'retroMode') retroEnabled = value;
+                if(key === 'bingWallpaper') bingEnabled = value;
+                localStorage.setItem(key, value ? 'enabled' : 'disabled');
+                if(value && key !== 'bingWallpaper') {
+                    if(key !== 'glassMode') { glassEnabled = false; localStorage.setItem('glassMode','disabled'); }
+                    if(key !== 'liquidGlassMode') { liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled'); }
+                    if(key !== 'retroMode') { retroEnabled = false; localStorage.setItem('retroMode','disabled'); }
+                }
+                updateUI();
+            }
+
+            glassModeSwitch.addEventListener('click', () => {
+                const newVal = !glassEnabled;
+                setMode('glassMode', newVal, glassModeSwitch);
+                if(newVal) {
+                    liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled');
+                    retroEnabled = false; localStorage.setItem('retroMode','disabled');
+                }
                 updateUI();
             });
-            liquidGlassModeBtn.addEventListener('click', () => {
-                liquidGlassEnabled = !liquidGlassEnabled;
-                localStorage.setItem('liquidGlassMode', liquidGlassEnabled?'enabled':'disabled');
-                if(liquidGlassEnabled) { glassEnabled=false; retroEnabled=false; localStorage.setItem('glassMode','disabled'); localStorage.setItem('retroMode','disabled'); }
+            liquidGlassModeSwitch.addEventListener('click', () => {
+                const newVal = !liquidGlassEnabled;
+                setMode('liquidGlassMode', newVal, liquidGlassModeSwitch);
+                if(newVal) {
+                    glassEnabled = false; localStorage.setItem('glassMode','disabled');
+                    retroEnabled = false; localStorage.setItem('retroMode','disabled');
+                }
                 updateUI();
             });
-            retroModeBtn.addEventListener('click', () => {
-                retroEnabled = !retroEnabled;
-                localStorage.setItem('retroMode', retroEnabled?'enabled':'disabled');
-                if(retroEnabled) { glassEnabled=false; liquidGlassEnabled=false; localStorage.setItem('glassMode','disabled'); localStorage.setItem('liquidGlassMode','disabled'); }
+            retroModeSwitch.addEventListener('click', () => {
+                const newVal = !retroEnabled;
+                setMode('retroMode', newVal, retroModeSwitch);
+                if(newVal) {
+                    glassEnabled = false; localStorage.setItem('glassMode','disabled');
+                    liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled');
+                }
                 updateUI();
             });
-            bingWallpaperBtn.addEventListener('click', () => {
+            bingWallpaperSwitch.addEventListener('click', () => {
                 bingEnabled = !bingEnabled;
                 localStorage.setItem('bingWallpaper', bingEnabled?'enabled':'disabled');
                 updateUI();
             });
 
-            // 语言
             langButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentLang = btn.getAttribute('data-lang');
@@ -470,24 +645,98 @@
                 });
             });
 
-            // 拨号盘
-            dialpadTrigger.addEventListener('click', () => {
-                dialpadOverlay.classList.add('visible');
-                isMenuOpen = false;
-                hamburgerBtn.classList.remove('active');
-                sidebarMenu.classList.remove('open');
-                menuOverlay.classList.remove('visible');
-            });
-            dialClose.addEventListener('click', () => dialpadOverlay.classList.remove('visible'));
-            dialDelete.addEventListener('click', () => { dialValue = dialValue.slice(0,-1); dialpadDisplay.textContent = dialValue; });
-            dialpadOverlay.addEventListener('click', e => { if(e.target === dialpadOverlay) dialpadOverlay.classList.remove('visible'); });
-
-            document.addEventListener('keydown', e => {
-                if(e.key === 'Escape') {
-                    if(isMenuOpen) { isMenuOpen=false; hamburgerBtn.classList.remove('active'); sidebarMenu.classList.remove('open'); menuOverlay.classList.remove('visible'); }
-                    if(settingsOverlay.classList.contains('visible')) settingsOverlay.classList.remove('visible');
-                    if(dialpadOverlay.classList.contains('visible')) dialpadOverlay.classList.remove('visible');
+            // 计算器逻辑
+            function calcInput(value) {
+                if (calcShouldResetDisplay) {
+                    calcDisplay.textContent = '0';
+                    calcShouldResetDisplay = false;
                 }
+                const current = calcDisplay.textContent;
+                if (value === '.' && current.includes('.')) return;
+                if (current === '0' && value !== '.') {
+                    calcDisplay.textContent = value;
+                } else {
+                    calcDisplay.textContent = current + value;
+                }
+            }
+
+            function calcSetOperator(op) {
+                const currentValue = parseFloat(calcDisplay.textContent);
+                if (calcOperator && !calcShouldResetDisplay) {
+                    const result = calcCalculate();
+                    calcDisplay.textContent = String(result);
+                    calcFirstOperand = result;
+                } else {
+                    calcFirstOperand = currentValue;
+                }
+                calcOperator = op;
+                calcShouldResetDisplay = true;
+            }
+
+            function calcCalculate() {
+                const second = parseFloat(calcDisplay.textContent);
+                let result = 0;
+                switch(calcOperator) {
+                    case 'add': result = calcFirstOperand + second; break;
+                    case 'subtract': result = calcFirstOperand - second; break;
+                    case 'multiply': result = calcFirstOperand * second; break;
+                    case 'divide': result = calcFirstOperand / second; break;
+                    default: result = second;
+                }
+                return Math.round(result * 1000000) / 1000000;
+            }
+
+            function calcEquals() {
+                if (calcOperator !== null) {
+                    const result = calcCalculate();
+                    calcDisplay.textContent = String(result);
+                    calcFirstOperand = null;
+                    calcOperator = null;
+                    calcShouldResetDisplay = true;
+                }
+            }
+
+            function calcClear() {
+                calcDisplay.textContent = '0';
+                calcFirstOperand = null;
+                calcOperator = null;
+                calcShouldResetDisplay = false;
+            }
+
+            function calcBackspace() {
+                const current = calcDisplay.textContent;
+                if (current.length > 1 && !calcShouldResetDisplay) {
+                    calcDisplay.textContent = current.slice(0, -1);
+                } else {
+                    calcDisplay.textContent = '0';
+                    calcShouldResetDisplay = false;
+                }
+            }
+
+            function calcPercent() {
+                const current = parseFloat(calcDisplay.textContent);
+                calcDisplay.textContent = String(current / 100);
+            }
+
+            document.querySelectorAll('.calc-key').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const value = btn.getAttribute('data-value');
+                    const action = btn.getAttribute('data-action');
+                    if (value !== null) {
+                        calcInput(value);
+                    } else if (action) {
+                        switch(action) {
+                            case 'clear': calcClear(); break;
+                            case 'backspace': calcBackspace(); break;
+                            case 'percent': calcPercent(); break;
+                            case 'add': calcSetOperator('add'); break;
+                            case 'subtract': calcSetOperator('subtract'); break;
+                            case 'multiply': calcSetOperator('multiply'); break;
+                            case 'divide': calcSetOperator('divide'); break;
+                            case 'equals': calcEquals(); break;
+                        }
+                    }
+                });
             });
 
             buildDialpad();
