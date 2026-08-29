@@ -155,6 +155,28 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
+        /* 透明模式下让按钮也半透明 */
+        body.glass-mode .btn,
+        body.glass-mode .btn-download {
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        body.glass-mode .btn {
+            background-color: rgba(0, 119, 204, 0.75);
+            border-color: rgba(0, 119, 204, 0.5);
+        }
+
+        body.glass-mode .btn-download {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] body.glass-mode .btn-download {
+            background-color: rgba(30, 30, 30, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
         /* ========== 液态玻璃模式（iOS 26 风格） ========== */
         body.liquid-glass-mode {
             background-color: rgba(255, 255, 255, 0.25);
@@ -176,8 +198,7 @@
             border-radius: 28px;
             border: 1px solid rgba(255, 255, 255, 0.45);
             padding: 2.2rem 1.6rem;
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.25),
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25),
                 0 12px 48px rgba(0, 0, 0, 0.12),
                 0 2px 12px rgba(0, 0, 0, 0.05),
                 inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -194,15 +215,13 @@
             right: 0;
             height: 45%;
             border-radius: 28px 28px 50% 50%;
-            background: linear-gradient(180deg,
-                    rgba(255, 255, 255, 0.55) 0%,
-                    rgba(255, 255, 255, 0.1) 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.1) 100%);
             pointer-events: none;
             z-index: 1;
             opacity: 0.7;
         }
 
-        body.liquid-glass-mode .container>* {
+        body.liquid-glass-mode .container > * {
             position: relative;
             z-index: 2;
         }
@@ -214,19 +233,11 @@
                     rgba(45, 45, 45, 0.35) 70%,
                     rgba(60, 60, 60, 0.5) 100%);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.08),
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
                 0 12px 48px rgba(0, 0, 0, 0.4),
                 0 2px 12px rgba(0, 0, 0, 0.15),
                 inset 0 1px 0 rgba(255, 255, 255, 0.15),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        body.liquid-glass-mode .container::before {
-            background: linear-gradient(180deg,
-                    rgba(255, 255, 255, 0.18) 0%,
-                    rgba(255, 255, 255, 0.03) 100%);
-            opacity: 0.5;
         }
 
         /* 侧边栏液态玻璃 */
@@ -238,8 +249,7 @@
             backdrop-filter: blur(30px) saturate(200%);
             -webkit-backdrop-filter: blur(30px) saturate(200%);
             border-left: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow:
-                -2px 0 20px rgba(0, 0, 0, 0.06),
+            box-shadow: -2px 0 20px rgba(0, 0, 0, 0.06),
                 inset 1px 0 0 rgba(255, 255, 255, 0.4);
         }
 
@@ -249,8 +259,7 @@
                     rgba(25, 25, 25, 0.25) 50%,
                     rgba(40, 40, 40, 0.4) 100%);
             border-left: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow:
-                -2px 0 20px rgba(0, 0, 0, 0.25),
+            box-shadow: -2px 0 20px rgba(0, 0, 0, 0.25),
                 inset 1px 0 0 rgba(255, 255, 255, 0.1);
         }
 
@@ -263,8 +272,7 @@
             backdrop-filter: blur(30px) saturate(180%);
             -webkit-backdrop-filter: blur(30px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.3),
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3),
                 0 16px 56px rgba(0, 0, 0, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
@@ -275,8 +283,7 @@
                     rgba(28, 28, 28, 0.3) 50%,
                     rgba(45, 45, 45, 0.45) 100%);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.08),
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
                 0 16px 56px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.12);
         }
@@ -290,8 +297,7 @@
             backdrop-filter: blur(24px) saturate(180%);
             -webkit-backdrop-filter: blur(24px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.45);
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.2),
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2),
                 0 4px 20px rgba(0, 0, 0, 0.06),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
@@ -302,10 +308,55 @@
                     rgba(28, 28, 28, 0.25) 50%,
                     rgba(45, 45, 45, 0.4) 100%);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.05),
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05),
                 0 4px 20px rgba(0, 0, 0, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        /* 液态玻璃模式下的按钮 */
+        body.liquid-glass-mode .btn {
+            background: linear-gradient(135deg,
+                    rgba(0, 119, 204, 0.7) 0%,
+                    rgba(0, 119, 204, 0.4) 50%,
+                    rgba(0, 119, 204, 0.6) 100%);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15),
+                0 4px 16px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] body.liquid-glass-mode .btn {
+            background: linear-gradient(135deg,
+                    rgba(66, 165, 245, 0.7) 0%,
+                    rgba(66, 165, 245, 0.4) 50%,
+                    rgba(66, 165, 245, 0.6) 100%);
+            color: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        body.liquid-glass-mode .btn-download {
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.6) 0%,
+                    rgba(255, 255, 255, 0.25) 50%,
+                    rgba(255, 255, 255, 0.45) 100%);
+            backdrop-filter: blur(12px) saturate(140%);
+            -webkit-backdrop-filter: blur(12px) saturate(140%);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2),
+                0 4px 16px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        [data-theme="dark"] body.liquid-glass-mode .btn-download {
+            background: linear-gradient(135deg,
+                    rgba(55, 55, 55, 0.6) 0%,
+                    rgba(28, 28, 28, 0.3) 50%,
+                    rgba(45, 45, 45, 0.5) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f0f0f0;
         }
 
         /* ========== 汉堡菜单按钮 ========== */
@@ -540,7 +591,7 @@
             cursor: pointer;
             text-decoration: none;
             letter-spacing: 0.08em;
-            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.15s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.15s ease, backdrop-filter 0.3s ease;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             outline: none;
@@ -612,7 +663,7 @@
             cursor: pointer;
             text-decoration: none;
             letter-spacing: 0.04em;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.15s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.15s ease, backdrop-filter 0.3s ease;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             outline: none;
@@ -894,7 +945,6 @@
             </span>
         </button>
 
-        <!-- 液态玻璃模式开关 -->
         <button class="menu-item" id="liquidGlassToggle" role="menuitem">
             <span class="menu-item-label" data-i18n="liquidGlassMode">液态玻璃模式</span>
             <span class="menu-item-indicator">
@@ -1219,7 +1269,6 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 document.body.classList.remove('glass-mode');
                 glassDot.classList.add('inactive');
             } else {
-                // 液态玻璃优先
                 glassDot.classList.add('inactive');
             }
         }
@@ -1234,7 +1283,6 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             } else {
                 document.body.classList.remove('liquid-glass-mode');
                 liquidGlassDot.classList.add('inactive');
-                // 如果透明模式开启，恢复透明模式
                 if (glassEnabled) {
                     document.body.classList.add('glass-mode');
                     glassDot.classList.remove('inactive');
@@ -1382,7 +1430,6 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         glassToggle.addEventListener('click', function() {
             glassEnabled = !glassEnabled;
             localStorage.setItem('glassMode', glassEnabled ? 'enabled' : 'disabled');
-            // 如果开启液态玻璃，关闭透明模式
             if (glassEnabled && liquidGlassEnabled) {
                 liquidGlassEnabled = false;
                 localStorage.setItem('liquidGlassMode', 'disabled');
@@ -1396,7 +1443,6 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         liquidGlassToggle.addEventListener('click', function() {
             liquidGlassEnabled = !liquidGlassEnabled;
             localStorage.setItem('liquidGlassMode', liquidGlassEnabled ? 'enabled' : 'disabled');
-            // 如果开启液态玻璃，关闭透明模式
             if (liquidGlassEnabled && glassEnabled) {
                 glassEnabled = false;
                 localStorage.setItem('glassMode', 'disabled');
