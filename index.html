@@ -155,7 +155,6 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* 透明模式下让按钮也半透明 */
         body.glass-mode .btn,
         body.glass-mode .btn-download {
             backdrop-filter: blur(5px);
@@ -186,7 +185,6 @@
             background-color: rgba(18, 18, 18, 0.25);
         }
 
-        /* 主容器液态玻璃效果 */
         body.liquid-glass-mode .container {
             background: linear-gradient(135deg,
                     rgba(255, 255, 255, 0.45) 0%,
@@ -240,7 +238,6 @@
                 inset 0 -1px 0 rgba(0, 0, 0, 0.2);
         }
 
-        /* 侧边栏液态玻璃 */
         body.liquid-glass-mode .sidebar-menu {
             background: linear-gradient(180deg,
                     rgba(255, 255, 255, 0.5) 0%,
@@ -263,7 +260,6 @@
                 inset 1px 0 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* 拨号盘液态玻璃 */
         body.liquid-glass-mode .dialpad-modal {
             background: linear-gradient(135deg,
                     rgba(255, 255, 255, 0.55) 0%,
@@ -288,7 +284,6 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.12);
         }
 
-        /* 公告栏液态玻璃 */
         body.liquid-glass-mode .announcement {
             background: linear-gradient(135deg,
                     rgba(255, 255, 255, 0.5) 0%,
@@ -313,7 +308,6 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
-        /* 液态玻璃模式下的按钮 */
         body.liquid-glass-mode .btn {
             background: linear-gradient(135deg,
                     rgba(0, 119, 204, 0.7) 0%,
@@ -963,17 +957,51 @@
 
         <div class="menu-section" data-i18n="language">语言</div>
 
-        <button class="menu-item" id="langZh" role="menuitem">
-            <span class="menu-item-label">中文</span>
+        <!-- 语言选项：简体中文 -->
+        <button class="menu-item" id="langZhCN" role="menuitem">
+            <span class="menu-item-label">简体中文</span>
             <span class="menu-item-indicator">
-                <span class="dot" id="langZhDot"></span>
+                <span class="dot" id="langZhCNDot"></span>
             </span>
         </button>
 
-        <button class="menu-item" id="langEn" role="menuitem">
-            <span class="menu-item-label">English</span>
+        <!-- 繁体中文 -->
+        <button class="menu-item" id="langZhTW" role="menuitem">
+            <span class="menu-item-label">繁體中文</span>
             <span class="menu-item-indicator">
-                <span class="dot" id="langEnDot"></span>
+                <span class="dot" id="langZhTWDot"></span>
+            </span>
+        </button>
+
+        <!-- 日本语 -->
+        <button class="menu-item" id="langJa" role="menuitem">
+            <span class="menu-item-label">日本語</span>
+            <span class="menu-item-indicator">
+                <span class="dot" id="langJaDot"></span>
+            </span>
+        </button>
+
+        <!-- 英式英语 -->
+        <button class="menu-item" id="langEnGB" role="menuitem">
+            <span class="menu-item-label">English (UK)</span>
+            <span class="menu-item-indicator">
+                <span class="dot" id="langEnGBDot"></span>
+            </span>
+        </button>
+
+        <!-- 美式英语 -->
+        <button class="menu-item" id="langEnUS" role="menuitem">
+            <span class="menu-item-label">English (US)</span>
+            <span class="menu-item-indicator">
+                <span class="dot" id="langEnUSDot"></span>
+            </span>
+        </button>
+
+        <!-- 韩语 -->
+        <button class="menu-item" id="langKo" role="menuitem">
+            <span class="menu-item-label">한국어</span>
+            <span class="menu-item-indicator">
+                <span class="dot" id="langKoDot"></span>
             </span>
         </button>
 
@@ -1095,10 +1123,22 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         const liquidGlassDot = document.getElementById('liquidGlassDot');
         const bingWallpaperToggle = document.getElementById('bingWallpaperToggle');
         const bingWallpaperDot = document.getElementById('bingWallpaperDot');
-        const langZh = document.getElementById('langZh');
-        const langEn = document.getElementById('langEn');
-        const langZhDot = document.getElementById('langZhDot');
-        const langEnDot = document.getElementById('langEnDot');
+        const langButtons = {
+            'zh-CN': document.getElementById('langZhCN'),
+            'zh-TW': document.getElementById('langZhTW'),
+            'ja': document.getElementById('langJa'),
+            'en-GB': document.getElementById('langEnGB'),
+            'en-US': document.getElementById('langEnUS'),
+            'ko': document.getElementById('langKo'),
+        };
+        const langDots = {
+            'zh-CN': document.getElementById('langZhCNDot'),
+            'zh-TW': document.getElementById('langZhTWDot'),
+            'ja': document.getElementById('langJaDot'),
+            'en-GB': document.getElementById('langEnGBDot'),
+            'en-US': document.getElementById('langEnUSDot'),
+            'ko': document.getElementById('langKoDot'),
+        };
         const mainTitle = document.getElementById('mainTitle');
         const bilibiliBtn = document.getElementById('bilibiliBtn');
         const footerNote = document.querySelector('.footer-note');
@@ -1115,15 +1155,15 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         // ========== 状态 ==========
         let isMenuOpen = false;
         let currentTheme = localStorage.getItem('theme') || 'light';
-        let currentLang = localStorage.getItem('lang') || 'zh';
+        let currentLang = localStorage.getItem('lang') || 'zh-CN';
         let bingEnabled = localStorage.getItem('bingWallpaper') === 'enabled';
         let glassEnabled = localStorage.getItem('glassMode') === 'enabled';
         let liquidGlassEnabled = localStorage.getItem('liquidGlassMode') === 'enabled';
         let dialValue = '';
 
-        // ========== 翻译字典 ==========
+        // ========== 翻译字典（6种语言） ==========
         const translations = {
-            zh: {
+            'zh-CN': {
                 settings: '设置',
                 theme: '主题模式',
                 light: '浅色',
@@ -1144,7 +1184,49 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 delete: '删除',
                 close: '关闭'
             },
-            en: {
+            'zh-TW': {
+                settings: '設置',
+                theme: '主題模式',
+                light: '淺色',
+                dark: '深色',
+                glassMode: '透明模式',
+                liquidGlassMode: '液態玻璃模式',
+                bingWallpaper: '必應每日一圖',
+                language: '語言',
+                links: '連結',
+                bilibili: '我的 bilibili',
+                fanGroup: '加入粉絲群',
+                announcementTitle: '公告欄',
+                announcementSubtitle: '支援多語言',
+                footer: 'Cathay Pacific • A330 • Minimal',
+                titleHtml: '歡迎來到<br>一架國泰航空A330官方網站',
+                menuAria: '打開菜單',
+                closeMenuAria: '關閉菜單',
+                delete: '刪除',
+                close: '關閉'
+            },
+            'ja': {
+                settings: '設定',
+                theme: 'テーマ',
+                light: 'ライト',
+                dark: 'ダーク',
+                glassMode: 'グラスモード',
+                liquidGlassMode: 'リキッドグラス',
+                bingWallpaper: 'Bing 毎日の壁紙',
+                language: '言語',
+                links: 'リンク',
+                bilibili: 'My bilibili',
+                fanGroup: 'ファングループに参加',
+                announcementTitle: 'お知らせ',
+                announcementSubtitle: '多言語対応',
+                footer: 'Cathay Pacific • A330 • Minimal',
+                titleHtml: 'ようこそ<br>キャセイパシフィックA330公式サイトへ',
+                menuAria: 'メニューを開く',
+                closeMenuAria: 'メニューを閉じる',
+                delete: '削除',
+                close: '閉じる'
+            },
+            'en-GB': {
                 settings: 'Settings',
                 theme: 'Theme',
                 light: 'Light',
@@ -1164,6 +1246,48 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 closeMenuAria: 'Close menu',
                 delete: 'Delete',
                 close: 'Close'
+            },
+            'en-US': {
+                settings: 'Settings',
+                theme: 'Theme',
+                light: 'Light',
+                dark: 'Dark',
+                glassMode: 'Glass Mode',
+                liquidGlassMode: 'Liquid Glass',
+                bingWallpaper: 'Bing Daily Wallpaper',
+                language: 'Language',
+                links: 'Links',
+                bilibili: 'My bilibili',
+                fanGroup: 'Join Fan Group',
+                announcementTitle: 'Announcement',
+                announcementSubtitle: 'Supports multiple languages',
+                footer: 'Cathay Pacific • A330 • Minimal',
+                titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
+                menuAria: 'Open menu',
+                closeMenuAria: 'Close menu',
+                delete: 'Delete',
+                close: 'Close'
+            },
+            'ko': {
+                settings: '설정',
+                theme: '테마',
+                light: '라이트',
+                dark: '다크',
+                glassMode: '글래스 모드',
+                liquidGlassMode: '리퀴드 글래스',
+                bingWallpaper: 'Bing 일일 배경화면',
+                language: '언어',
+                links: '링크',
+                bilibili: 'My bilibili',
+                fanGroup: '팬 그룹 가입',
+                announcementTitle: '공지사항',
+                announcementSubtitle: '다국어 지원',
+                footer: 'Cathay Pacific • A330 • Minimal',
+                titleHtml: '캐세이퍼시픽 A330<br>공식 웹사이트에 오신 것을 환영합니다',
+                menuAria: '메뉴 열기',
+                closeMenuAria: '메뉴 닫기',
+                delete: '삭제',
+                close: '닫기'
             }
         };
 
@@ -1313,66 +1437,53 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         }
 
         function updateLanguageUI() {
-            mainTitle.innerHTML = translations[currentLang].titleHtml;
+            const t = translations[currentLang];
+            mainTitle.innerHTML = t.titleHtml;
 
-            const btnSpan = bilibiliBtn.querySelector('span');
-            if (btnSpan) {
-                btnSpan.textContent = translations[currentLang].bilibili;
-            }
-
+            document.querySelectorAll('[data-i18n="bilibili"]').forEach(el => {
+                el.textContent = t.bilibili;
+            });
             document.querySelectorAll('[data-i18n="fanGroup"]').forEach(el => {
-                el.textContent = translations[currentLang].fanGroup;
+                el.textContent = t.fanGroup;
             });
 
-            if (announcementTitle) announcementTitle.textContent = translations[currentLang].announcementTitle;
-            if (announcementSubtitle) announcementSubtitle.textContent = translations[currentLang].announcementSubtitle;
+            if (announcementTitle) announcementTitle.textContent = t.announcementTitle;
+            if (announcementSubtitle) announcementSubtitle.textContent = t.announcementSubtitle;
 
-            footerNote.textContent = translations[currentLang].footer;
+            footerNote.textContent = t.footer;
 
-            document.querySelectorAll('[data-i18n="settings"]').forEach(el => {
-                el.textContent = translations[currentLang].settings;
-            });
-            document.querySelectorAll('[data-i18n="theme"]').forEach(el => {
-                el.textContent = translations[currentLang].theme;
-            });
-            document.querySelectorAll('[data-i18n="glassMode"]').forEach(el => {
-                el.textContent = translations[currentLang].glassMode;
-            });
-            document.querySelectorAll('[data-i18n="liquidGlassMode"]').forEach(el => {
-                el.textContent = translations[currentLang].liquidGlassMode;
-            });
-            document.querySelectorAll('[data-i18n="bingWallpaper"]').forEach(el => {
-                el.textContent = translations[currentLang].bingWallpaper;
-            });
-            document.querySelectorAll('[data-i18n="language"]').forEach(el => {
-                el.textContent = translations[currentLang].language;
-            });
-            document.querySelectorAll('[data-i18n="links"]').forEach(el => {
-                el.textContent = translations[currentLang].links;
-            });
+            document.querySelectorAll('[data-i18n="settings"]').forEach(el => el.textContent = t.settings);
+            document.querySelectorAll('[data-i18n="theme"]').forEach(el => el.textContent = t.theme);
+            document.querySelectorAll('[data-i18n="glassMode"]').forEach(el => el.textContent = t.glassMode);
+            document.querySelectorAll('[data-i18n="liquidGlassMode"]').forEach(el => el.textContent = t.liquidGlassMode);
+            document.querySelectorAll('[data-i18n="bingWallpaper"]').forEach(el => el.textContent = t.bingWallpaper);
+            document.querySelectorAll('[data-i18n="language"]').forEach(el => el.textContent = t.language);
+            document.querySelectorAll('[data-i18n="links"]').forEach(el => el.textContent = t.links);
 
-            updateThemeUI();
+            // 更新语言指示器
             updateLanguageIndicators();
-            updateBingIndicator();
-            updateGlassMode();
-            updateLiquidGlassMode();
 
-            const menuAria = isMenuOpen ? translations[currentLang].closeMenuAria : translations[currentLang]
-                .menuAria;
+            // 更新主题标签
+            updateThemeUI();
+
+            // 更新菜单 aria
+            const menuAria = isMenuOpen ? t.closeMenuAria : t.menuAria;
             hamburgerBtn.setAttribute('aria-label', menuAria);
 
-            dialDelete.textContent = translations[currentLang].delete;
-            dialClose.textContent = translations[currentLang].close;
+            // 更新拨号盘按钮
+            dialDelete.textContent = t.delete;
+            dialClose.textContent = t.close;
         }
 
         function updateLanguageIndicators() {
-            if (currentLang === 'zh') {
-                langZhDot.classList.remove('inactive');
-                langEnDot.classList.add('inactive');
-            } else {
-                langZhDot.classList.add('inactive');
-                langEnDot.classList.remove('inactive');
-            }
+            Object.keys(langDots).forEach(key => {
+                const dot = langDots[key];
+                if (key === currentLang) {
+                    dot.classList.remove('inactive');
+                } else {
+                    dot.classList.add('inactive');
+                }
+            });
         }
 
         // ========== 菜单开关 ==========
@@ -1460,24 +1571,17 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             updateBackground();
         });
 
-        langZh.addEventListener('click', function() {
-            if (currentLang !== 'zh') {
-                currentLang = 'zh';
-                localStorage.setItem('lang', 'zh');
-                htmlElement.setAttribute('lang', 'zh-CN');
-                updateLanguageUI();
-            }
-            closeMenu();
-        });
-
-        langEn.addEventListener('click', function() {
-            if (currentLang !== 'en') {
-                currentLang = 'en';
-                localStorage.setItem('lang', 'en');
-                htmlElement.setAttribute('lang', 'en');
-                updateLanguageUI();
-            }
-            closeMenu();
+        // 绑定语言按钮
+        Object.keys(langButtons).forEach(lang => {
+            langButtons[lang].addEventListener('click', function() {
+                if (currentLang !== lang) {
+                    currentLang = lang;
+                    localStorage.setItem('lang', lang);
+                    htmlElement.setAttribute('lang', lang);
+                    updateLanguageUI();
+                }
+                closeMenu();
+            });
         });
 
         dialpadTrigger.addEventListener('click', function() {
