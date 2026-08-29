@@ -22,6 +22,11 @@
             --btn-primary: #0077cc;
             --btn-primary-hover: #005fa3;
             --btn-primary-text: #ffffff;
+            --download-btn-bg: #ffffff;
+            --download-btn-border: #1a1a1a;
+            --download-btn-text: #1a1a1a;
+            --download-btn-hover-bg: #0077cc;
+            --download-btn-hover-text: #ffffff;
             --modal-bg: #ffffff;
             --modal-overlay: rgba(0, 0, 0, 0.4);
             --dial-key-bg: #f0f0f0;
@@ -47,6 +52,11 @@
             --btn-primary: #42a5f5;
             --btn-primary-hover: #64b5f6;
             --btn-primary-text: #121212;
+            --download-btn-bg: #1e1e1e;
+            --download-btn-border: #f0f0f0;
+            --download-btn-text: #f0f0f0;
+            --download-btn-hover-bg: #42a5f5;
+            --download-btn-hover-text: #121212;
             --modal-bg: #1e1e1e;
             --modal-overlay: rgba(0, 0, 0, 0.6);
             --dial-key-bg: #2a2a2a;
@@ -287,7 +297,7 @@
             }
         }
 
-        /* 蓝色按钮组 */
+        /* 主按钮组 */
         .button-group {
             display: flex;
             flex-wrap: wrap;
@@ -326,6 +336,55 @@
 
         .btn:active {
             transform: scale(0.96);
+        }
+
+        /* 下载按钮组（长条形） */
+        .download-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1.8rem;
+            width: 100%;
+        }
+
+        .btn-download {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 400;
+            text-align: center;
+            color: var(--download-btn-text);
+            background-color: var(--download-btn-bg);
+            border: 1.5px solid var(--download-btn-border);
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            outline: none;
+            -webkit-touch-callout: none;
+            white-space: nowrap;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .btn-download:hover {
+                background-color: var(--download-btn-hover-bg);
+                border-color: var(--download-btn-hover-bg);
+                color: var(--download-btn-hover-text);
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .btn-download:active {
+            background-color: var(--download-btn-hover-bg);
+            border-color: var(--download-btn-hover-bg);
+            color: var(--download-btn-hover-text);
+            transform: scale(0.98);
         }
 
         .footer-note {
@@ -496,6 +555,12 @@
                 letter-spacing: 0.05em;
             }
 
+            .btn-download {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+                max-width: 100%;
+            }
+
             .hamburger-btn {
                 top: 12px;
                 right: 12px;
@@ -519,6 +584,10 @@
             }
 
             .button-group {
+                gap: 0.6rem;
+            }
+
+            .download-group {
                 gap: 0.6rem;
             }
         }
@@ -646,6 +715,7 @@
 
     <div class="divider"></div>
 
+    <!-- 主按钮组 -->
     <div class="button-group">
         <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0"
         target="_blank"
@@ -661,6 +731,24 @@
     class="btn"
     aria-label="加入粉丝群">
     <span data-i18n="fanGroup">加入粉丝群</span>
+</a>
+</div>
+
+<!-- 下载按钮组（长条形） -->
+<div class="download-group">
+    <a href="https://share.feijipan.com/s/Az5pwlUT"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn-download"
+    aria-label="下载 bilibili 国际版 3.19.2">
+    bilibili国际版3.19.2下载
+</a>
+<a href="https://share.feijipan.com/s/2G5pg0br"
+target="_blank"
+rel="noopener noreferrer"
+class="btn-download"
+aria-label="下载 网易云音乐极速版 1.0.0">
+网易云音乐极速版1.0.0下载
 </a>
 </div>
 
