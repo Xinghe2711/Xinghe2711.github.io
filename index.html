@@ -27,6 +27,10 @@
             --download-btn-text: #1a1a1a;
             --download-btn-hover-bg: #0077cc;
             --download-btn-hover-text: #ffffff;
+            --announcement-bg: #ffffff;
+            --announcement-border: #1a1a1a;
+            --announcement-title: #1a1a1a;
+            --announcement-subtitle: #888888;
             --modal-bg: #ffffff;
             --modal-overlay: rgba(0, 0, 0, 0.4);
             --dial-key-bg: #f0f0f0;
@@ -57,6 +61,10 @@
             --download-btn-text: #f0f0f0;
             --download-btn-hover-bg: #42a5f5;
             --download-btn-hover-text: #121212;
+            --announcement-bg: #1e1e1e;
+            --announcement-border: #f0f0f0;
+            --announcement-title: #f0f0f0;
+            --announcement-subtitle: #888888;
             --modal-bg: #1e1e1e;
             --modal-overlay: rgba(0, 0, 0, 0.6);
             --dial-key-bg: #2a2a2a;
@@ -84,6 +92,67 @@
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
             transition: background-color 0.5s ease, color 0.4s ease;
+        }
+
+        /* ========== 透明模式（毛玻璃） ========== */
+        body.glass-mode {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        [data-theme="dark"] body.glass-mode {
+            background-color: rgba(18, 18, 18, 0.4);
+        }
+
+        body.glass-mode .container {
+            background-color: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] body.glass-mode .container {
+            background-color: rgba(30, 30, 30, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        body.glass-mode .sidebar-menu {
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        [data-theme="dark"] body.glass-mode .sidebar-menu {
+            background-color: rgba(30, 30, 30, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.glass-mode .dialpad-modal {
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        [data-theme="dark"] body.glass-mode .dialpad-modal {
+            background-color: rgba(30, 30, 30, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.glass-mode .announcement {
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] body.glass-mode .announcement {
+            background-color: rgba(30, 30, 30, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         /* ========== 汉堡菜单按钮 ========== */
@@ -179,7 +248,7 @@
             padding: 24px 0;
             overflow-y: auto;
             transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
             border-left: 1px solid var(--divider);
             -webkit-overflow-scrolling: touch;
         }
@@ -268,7 +337,7 @@
             max-width: 600px;
             width: 100%;
             margin: auto;
-            transition: color 0.4s ease;
+            transition: color 0.4s ease, background-color 0.3s ease, backdrop-filter 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
         }
 
         h1 {
@@ -336,6 +405,33 @@
 
         .btn:active {
             transform: scale(0.96);
+        }
+
+        /* 公告栏 */
+        .announcement {
+            margin: 1.8rem auto 1.8rem auto;
+            max-width: 360px;
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 1.5px solid var(--announcement-border);
+            border-radius: 12px;
+            background-color: var(--announcement-bg);
+            text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .announcement-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--announcement-title);
+            margin-bottom: 0.2rem;
+        }
+
+        .announcement-subtitle {
+            font-size: 0.75rem;
+            color: var(--announcement-subtitle);
+            letter-spacing: 0.05em;
         }
 
         /* 下载按钮组（长条形） */
@@ -428,7 +524,7 @@
             max-width: 320px;
             box-shadow: 0 12px 60px rgba(0, 0, 0, 0.2);
             transform: translateY(20px) scale(0.95);
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease, backdrop-filter 0.3s ease;
             border: 1px solid var(--divider);
         }
 
@@ -561,6 +657,11 @@
                 max-width: 100%;
             }
 
+            .announcement {
+                max-width: 100%;
+                padding: 0.7rem 1rem;
+            }
+
             .hamburger-btn {
                 top: 12px;
                 right: 12px;
@@ -630,6 +731,13 @@
             <span class="menu-item-indicator" id="themeIndicator">
                 <span class="dot" id="themeDot"></span>
                 <span id="themeLabel" data-i18n="light">浅色</span>
+            </span>
+        </button>
+
+        <button class="menu-item" id="glassToggle" role="menuitem">
+            <span class="menu-item-label" data-i18n="glassMode">透明模式</span>
+            <span class="menu-item-indicator">
+                <span class="dot" id="glassDot"></span>
             </span>
         </button>
 
@@ -734,6 +842,12 @@
 </a>
 </div>
 
+<!-- 公告栏 -->
+<div class="announcement" id="announcement">
+    <div class="announcement-title" data-i18n="announcementTitle">公告栏</div>
+    <div class="announcement-subtitle" data-i18n="announcementSubtitle">支持多语言</div>
+</div>
+
 <!-- 下载按钮组（长条形） -->
 <div class="download-group">
     <a href="https://share.feijipan.com/s/Az5pwlUT"
@@ -764,6 +878,8 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         const themeToggle = document.getElementById('themeToggle');
         const themeDot = document.getElementById('themeDot');
         const themeLabel = document.getElementById('themeLabel');
+        const glassToggle = document.getElementById('glassToggle');
+        const glassDot = document.getElementById('glassDot');
         const bingWallpaperToggle = document.getElementById('bingWallpaperToggle');
         const bingWallpaperDot = document.getElementById('bingWallpaperDot');
         const langZh = document.getElementById('langZh');
@@ -780,12 +896,15 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         const dialDelete = document.getElementById('dialDelete');
         const dialClose = document.getElementById('dialClose');
         const dialpadTrigger = document.getElementById('dialpadTrigger');
+        const announcementTitle = document.querySelector('.announcement-title');
+        const announcementSubtitle = document.querySelector('.announcement-subtitle');
 
         // ========== 状态 ==========
         let isMenuOpen = false;
         let currentTheme = localStorage.getItem('theme') || 'light';
         let currentLang = localStorage.getItem('lang') || 'zh';
         let bingEnabled = localStorage.getItem('bingWallpaper') === 'enabled';
+        let glassEnabled = localStorage.getItem('glassMode') === 'enabled';
         let dialValue = '';
 
         // ========== 翻译字典 ==========
@@ -795,11 +914,14 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 theme: '主题模式',
                 light: '浅色',
                 dark: '深色',
+                glassMode: '透明模式',
                 bingWallpaper: '必应每日一图',
                 language: '语言',
                 links: '链接',
                 bilibili: '我的 bilibili',
                 fanGroup: '加入粉丝群',
+                announcementTitle: '公告栏',
+                announcementSubtitle: '支持多语言',
                 footer: 'Cathay Pacific • A330 • Minimal',
                 titleHtml: '欢迎来到<br>一架国泰航空A330官方网站',
                 menuAria: '打开菜单',
@@ -812,11 +934,14 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 theme: 'Theme',
                 light: 'Light',
                 dark: 'Dark',
+                glassMode: 'Glass Mode',
                 bingWallpaper: 'Bing Daily Wallpaper',
                 language: 'Language',
                 links: 'Links',
                 bilibili: 'My bilibili',
                 fanGroup: 'Join Fan Group',
+                announcementTitle: 'Announcement',
+                announcementSubtitle: 'Supports multiple languages',
                 footer: 'Cathay Pacific • A330 • Minimal',
                 titleHtml: 'Welcome to<br>the official website of a Cathay Pacific A330',
                 menuAria: 'Open menu',
@@ -918,6 +1043,17 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             }
         }
 
+        // ========== 透明模式 ==========
+        function updateGlassMode() {
+            if (glassEnabled) {
+                document.body.classList.add('glass-mode');
+                glassDot.classList.remove('inactive');
+            } else {
+                document.body.classList.remove('glass-mode');
+                glassDot.classList.add('inactive');
+            }
+        }
+
         // ========== 初始化主题 ==========
         function initTheme() {
             htmlElement.setAttribute('data-theme', currentTheme);
@@ -952,6 +1088,10 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 el.textContent = translations[currentLang].fanGroup;
             });
 
+            // 更新公告栏
+            if (announcementTitle) announcementTitle.textContent = translations[currentLang].announcementTitle;
+            if (announcementSubtitle) announcementSubtitle.textContent = translations[currentLang].announcementSubtitle;
+
             footerNote.textContent = translations[currentLang].footer;
 
             document.querySelectorAll('[data-i18n="settings"]').forEach(el => {
@@ -959,6 +1099,9 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             });
             document.querySelectorAll('[data-i18n="theme"]').forEach(el => {
                 el.textContent = translations[currentLang].theme;
+            });
+            document.querySelectorAll('[data-i18n="glassMode"]').forEach(el => {
+                el.textContent = translations[currentLang].glassMode;
             });
             document.querySelectorAll('[data-i18n="bingWallpaper"]').forEach(el => {
                 el.textContent = translations[currentLang].bingWallpaper;
@@ -973,6 +1116,7 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             updateThemeUI();
             updateLanguageIndicators();
             updateBingIndicator();
+            updateGlassMode();
 
             const menuAria = isMenuOpen ? translations[currentLang].closeMenuAria : translations[currentLang]
                 .menuAria;
@@ -1044,6 +1188,12 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             }
         });
 
+        glassToggle.addEventListener('click', function() {
+            glassEnabled = !glassEnabled;
+            localStorage.setItem('glassMode', glassEnabled ? 'enabled' : 'disabled');
+            updateGlassMode();
+        });
+
         bingWallpaperToggle.addEventListener('click', function() {
             bingEnabled = !bingEnabled;
             localStorage.setItem('bingWallpaper', bingEnabled ? 'enabled' : 'disabled');
@@ -1095,6 +1245,7 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         initLanguage();
         updateLanguageIndicators();
         updateBingIndicator();
+        updateGlassMode();
         updateBackground();
 
         if (currentTheme === 'dark') {
