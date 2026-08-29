@@ -155,6 +155,159 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
+        /* ========== 液态玻璃模式（iOS 26 风格） ========== */
+        body.liquid-glass-mode {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        [data-theme="dark"] body.liquid-glass-mode {
+            background-color: rgba(18, 18, 18, 0.25);
+        }
+
+        /* 主容器液态玻璃效果 */
+        body.liquid-glass-mode .container {
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.45) 0%,
+                    rgba(255, 255, 255, 0.18) 40%,
+                    rgba(255, 255, 255, 0.32) 70%,
+                    rgba(255, 255, 255, 0.5) 100%);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            padding: 2.2rem 1.6rem;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.25),
+                0 12px 48px rgba(0, 0, 0, 0.12),
+                0 2px 12px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+            position: relative;
+            transition: background 0.5s ease, box-shadow 0.5s ease, border-radius 0.5s ease, backdrop-filter 0.5s ease;
+        }
+
+        body.liquid-glass-mode .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 45%;
+            border-radius: 28px 28px 50% 50%;
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.55) 0%,
+                    rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        body.liquid-glass-mode .container>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        [data-theme="dark"] body.liquid-glass-mode .container {
+            background: linear-gradient(135deg,
+                    rgba(60, 60, 60, 0.45) 0%,
+                    rgba(30, 30, 30, 0.2) 40%,
+                    rgba(45, 45, 45, 0.35) 70%,
+                    rgba(60, 60, 60, 0.5) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.08),
+                0 12px 48px rgba(0, 0, 0, 0.4),
+                0 2px 12px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        body.liquid-glass-mode .container::before {
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.18) 0%,
+                    rgba(255, 255, 255, 0.03) 100%);
+            opacity: 0.5;
+        }
+
+        /* 侧边栏液态玻璃 */
+        body.liquid-glass-mode .sidebar-menu {
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.5) 0%,
+                    rgba(255, 255, 255, 0.22) 50%,
+                    rgba(255, 255, 255, 0.4) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow:
+                -2px 0 20px rgba(0, 0, 0, 0.06),
+                inset 1px 0 0 rgba(255, 255, 255, 0.4);
+        }
+
+        [data-theme="dark"] body.liquid-glass-mode .sidebar-menu {
+            background: linear-gradient(180deg,
+                    rgba(50, 50, 50, 0.5) 0%,
+                    rgba(25, 25, 25, 0.25) 50%,
+                    rgba(40, 40, 40, 0.4) 100%);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow:
+                -2px 0 20px rgba(0, 0, 0, 0.25),
+                inset 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* 拨号盘液态玻璃 */
+        body.liquid-glass-mode .dialpad-modal {
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.55) 0%,
+                    rgba(255, 255, 255, 0.25) 50%,
+                    rgba(255, 255, 255, 0.45) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.3),
+                0 16px 56px rgba(0, 0, 0, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        [data-theme="dark"] body.liquid-glass-mode .dialpad-modal {
+            background: linear-gradient(135deg,
+                    rgba(55, 55, 55, 0.55) 0%,
+                    rgba(28, 28, 28, 0.3) 50%,
+                    rgba(45, 45, 45, 0.45) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.08),
+                0 16px 56px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        /* 公告栏液态玻璃 */
+        body.liquid-glass-mode .announcement {
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.5) 0%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    rgba(255, 255, 255, 0.4) 100%);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                0 4px 20px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        [data-theme="dark"] body.liquid-glass-mode .announcement {
+            background: linear-gradient(135deg,
+                    rgba(55, 55, 55, 0.5) 0%,
+                    rgba(28, 28, 28, 0.25) 50%,
+                    rgba(45, 45, 45, 0.4) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 4px 20px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
         /* ========== 汉堡菜单按钮 ========== */
         .hamburger-btn {
             position: fixed;
@@ -417,7 +570,7 @@
             border-radius: 12px;
             background-color: var(--announcement-bg);
             text-align: center;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
         }
 
         .announcement-title {
@@ -741,6 +894,14 @@
             </span>
         </button>
 
+        <!-- 液态玻璃模式开关 -->
+        <button class="menu-item" id="liquidGlassToggle" role="menuitem">
+            <span class="menu-item-label" data-i18n="liquidGlassMode">液态玻璃模式</span>
+            <span class="menu-item-indicator">
+                <span class="dot" id="liquidGlassDot"></span>
+            </span>
+        </button>
+
         <button class="menu-item" id="bingWallpaperToggle" role="menuitem">
             <span class="menu-item-label" data-i18n="bingWallpaper">必应每日一图</span>
             <span class="menu-item-indicator">
@@ -880,6 +1041,8 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         const themeLabel = document.getElementById('themeLabel');
         const glassToggle = document.getElementById('glassToggle');
         const glassDot = document.getElementById('glassDot');
+        const liquidGlassToggle = document.getElementById('liquidGlassToggle');
+        const liquidGlassDot = document.getElementById('liquidGlassDot');
         const bingWallpaperToggle = document.getElementById('bingWallpaperToggle');
         const bingWallpaperDot = document.getElementById('bingWallpaperDot');
         const langZh = document.getElementById('langZh');
@@ -905,6 +1068,7 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         let currentLang = localStorage.getItem('lang') || 'zh';
         let bingEnabled = localStorage.getItem('bingWallpaper') === 'enabled';
         let glassEnabled = localStorage.getItem('glassMode') === 'enabled';
+        let liquidGlassEnabled = localStorage.getItem('liquidGlassMode') === 'enabled';
         let dialValue = '';
 
         // ========== 翻译字典 ==========
@@ -915,6 +1079,7 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 light: '浅色',
                 dark: '深色',
                 glassMode: '透明模式',
+                liquidGlassMode: '液态玻璃模式',
                 bingWallpaper: '必应每日一图',
                 language: '语言',
                 links: '链接',
@@ -935,6 +1100,7 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 light: 'Light',
                 dark: 'Dark',
                 glassMode: 'Glass Mode',
+                liquidGlassMode: 'Liquid Glass',
                 bingWallpaper: 'Bing Daily Wallpaper',
                 language: 'Language',
                 links: 'Links',
@@ -1045,12 +1211,34 @@ aria-label="下载 网易云音乐极速版 1.0.0">
 
         // ========== 透明模式 ==========
         function updateGlassMode() {
-            if (glassEnabled) {
+            if (glassEnabled && !liquidGlassEnabled) {
                 document.body.classList.add('glass-mode');
+                document.body.classList.remove('liquid-glass-mode');
                 glassDot.classList.remove('inactive');
-            } else {
+            } else if (!glassEnabled && !liquidGlassEnabled) {
                 document.body.classList.remove('glass-mode');
                 glassDot.classList.add('inactive');
+            } else {
+                // 液态玻璃优先
+                glassDot.classList.add('inactive');
+            }
+        }
+
+        // ========== 液态玻璃模式 ==========
+        function updateLiquidGlassMode() {
+            if (liquidGlassEnabled) {
+                document.body.classList.add('liquid-glass-mode');
+                document.body.classList.remove('glass-mode');
+                liquidGlassDot.classList.remove('inactive');
+                glassDot.classList.add('inactive');
+            } else {
+                document.body.classList.remove('liquid-glass-mode');
+                liquidGlassDot.classList.add('inactive');
+                // 如果透明模式开启，恢复透明模式
+                if (glassEnabled) {
+                    document.body.classList.add('glass-mode');
+                    glassDot.classList.remove('inactive');
+                }
             }
         }
 
@@ -1088,7 +1276,6 @@ aria-label="下载 网易云音乐极速版 1.0.0">
                 el.textContent = translations[currentLang].fanGroup;
             });
 
-            // 更新公告栏
             if (announcementTitle) announcementTitle.textContent = translations[currentLang].announcementTitle;
             if (announcementSubtitle) announcementSubtitle.textContent = translations[currentLang].announcementSubtitle;
 
@@ -1102,6 +1289,9 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             });
             document.querySelectorAll('[data-i18n="glassMode"]').forEach(el => {
                 el.textContent = translations[currentLang].glassMode;
+            });
+            document.querySelectorAll('[data-i18n="liquidGlassMode"]').forEach(el => {
+                el.textContent = translations[currentLang].liquidGlassMode;
             });
             document.querySelectorAll('[data-i18n="bingWallpaper"]').forEach(el => {
                 el.textContent = translations[currentLang].bingWallpaper;
@@ -1117,6 +1307,7 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             updateLanguageIndicators();
             updateBingIndicator();
             updateGlassMode();
+            updateLiquidGlassMode();
 
             const menuAria = isMenuOpen ? translations[currentLang].closeMenuAria : translations[currentLang]
                 .menuAria;
@@ -1191,7 +1382,29 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         glassToggle.addEventListener('click', function() {
             glassEnabled = !glassEnabled;
             localStorage.setItem('glassMode', glassEnabled ? 'enabled' : 'disabled');
+            // 如果开启液态玻璃，关闭透明模式
+            if (glassEnabled && liquidGlassEnabled) {
+                liquidGlassEnabled = false;
+                localStorage.setItem('liquidGlassMode', 'disabled');
+                document.body.classList.remove('liquid-glass-mode');
+                liquidGlassDot.classList.add('inactive');
+            }
             updateGlassMode();
+            updateLiquidGlassMode();
+        });
+
+        liquidGlassToggle.addEventListener('click', function() {
+            liquidGlassEnabled = !liquidGlassEnabled;
+            localStorage.setItem('liquidGlassMode', liquidGlassEnabled ? 'enabled' : 'disabled');
+            // 如果开启液态玻璃，关闭透明模式
+            if (liquidGlassEnabled && glassEnabled) {
+                glassEnabled = false;
+                localStorage.setItem('glassMode', 'disabled');
+                document.body.classList.remove('glass-mode');
+                glassDot.classList.add('inactive');
+            }
+            updateGlassMode();
+            updateLiquidGlassMode();
         });
 
         bingWallpaperToggle.addEventListener('click', function() {
@@ -1221,7 +1434,6 @@ aria-label="下载 网易云音乐极速版 1.0.0">
             closeMenu();
         });
 
-        // 拨号盘
         dialpadTrigger.addEventListener('click', function() {
             openDialpad();
         });
@@ -1246,6 +1458,7 @@ aria-label="下载 网易云音乐极速版 1.0.0">
         updateLanguageIndicators();
         updateBingIndicator();
         updateGlassMode();
+        updateLiquidGlassMode();
         updateBackground();
 
         if (currentTheme === 'dark') {
