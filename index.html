@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>欢迎来到一架国泰航空A330官方网站</title>
     <style>
-        /* ========== CSS 变量（主题） ========== */
         :root {
             --bg: #ffffff;
             --default-bg-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80');
@@ -108,19 +107,15 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* ========== 顶部栏 ========== */
         .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; transition: all 0.3s ease; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-
         .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1004; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; -webkit-tap-highlight-color:transparent; outline:none; }
         .hamburger-line { display:block; width:22px; height:2.5px; background-color:var(--accent); border-radius:4px; transition:all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); }
         .hamburger-btn.active .hamburger-line:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
         .hamburger-btn.active .hamburger-line:nth-child(2) { opacity:0; }
         .hamburger-btn.active .hamburger-line:nth-child(3) { transform:translateY(-7.5px) rotate(-45deg); }
-
         .menu-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:1000; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         .menu-overlay.visible { opacity:1; pointer-events:auto; }
-
         .sidebar-menu { position:fixed; top:0; right:0; z-index:1001; background-color:var(--menu-bg); width:var(--sidebar-width); max-width:85vw; height:100%; box-shadow:-4px 0 24px var(--menu-shadow); padding:20px 0; overflow-y:auto; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.22,1,0.36,1); border-left:1px solid var(--divider); }
         .sidebar-menu.open { transform:translateX(0); }
         .menu-section { padding:14px 20px 6px; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); }
@@ -142,13 +137,11 @@
         .btn-download:hover { background-color:var(--download-btn-hover-bg); border-color:var(--download-btn-hover-bg); color:var(--download-btn-hover-text); }
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
-        /* iOS 开关 */
         .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; }
         .ios-switch .knob { position:absolute; top:2px; left:2px; width:27px; height:27px; background-color:#fff; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
 
-        /* 设置弹窗 */
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -163,7 +156,6 @@
         .settings-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; }
 
-        /* 计算器 */
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .calc-modal { background-color:var(--calc-bg); border-radius:20px; padding:1rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -181,7 +173,6 @@
         .calc-key.clear { background-color:#d4d4d2; color:#1a1a1a; }
         [data-theme="dark"] .calc-key.clear { background-color:#5a5a5a; color:#f0f0f0; }
 
-        /* 拨号盘 */
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .dialpad-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:280px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -196,7 +187,7 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* ========== 显示模式样式 ========== */
+        /* 显示模式样式 */
         body.glass-mode { background-color:rgba(255,255,255,0.35); }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35); }
         body.glass-mode .btn { background-color:rgba(0,122,255,0.8) !important; border-color:rgba(255,255,255,0.35) !important; backdrop-filter:blur(6px) !important; -webkit-backdrop-filter:blur(6px) !important; }
@@ -292,8 +283,10 @@
             <div class="settings-title">设置</div>
             <div class="settings-section">
                 <div class="settings-section-title">主题模式</div>
-                <div class="settings-option"><span class="settings-option-label">浅色</span><button class="settings-btn" id="themeLightBtn">浅色</button></div>
-                <div class="settings-option"><span class="settings-option-label">深色</span><button class="settings-btn" id="themeDarkBtn">深色</button></div>
+                <div class="settings-option">
+                    <span class="settings-option-label">深色模式</span>
+                    <button class="ios-switch" id="themeDarkSwitch"><span class="knob"></span></button>
+                </div>
             </div>
             <div class="settings-section">
                 <div class="settings-section-title">显示模式</div>
@@ -304,12 +297,12 @@
             </div>
             <div class="settings-section">
                 <div class="settings-section-title">语言</div>
-                <button class="settings-btn lang-btn" data-lang="zh-CN" style="margin:2px;">简体中文</button>
-                <button class="settings-btn lang-btn" data-lang="zh-TW" style="margin:2px;">繁體中文</button>
-                <button class="settings-btn lang-btn" data-lang="ja" style="margin:2px;">日本語</button>
-                <button class="settings-btn lang-btn" data-lang="en-GB" style="margin:2px;">English (UK)</button>
-                <button class="settings-btn lang-btn" data-lang="en-US" style="margin:2px;">English (US)</button>
-                <button class="settings-btn lang-btn" data-lang="ko" style="margin:2px;">한국어</button>
+                <div class="settings-option"><span class="settings-option-label">简体中文</span><button class="ios-switch lang-switch" data-lang="zh-CN"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label">繁體中文</span><button class="ios-switch lang-switch" data-lang="zh-TW"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label">日本語</span><button class="ios-switch lang-switch" data-lang="ja"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label">English (UK)</span><button class="ios-switch lang-switch" data-lang="en-GB"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label">English (US)</span><button class="ios-switch lang-switch" data-lang="en-US"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label">한국어</span><button class="ios-switch lang-switch" data-lang="ko"><span class="knob"></span></button></div>
             </div>
             <button class="settings-close-btn" id="settingsCloseBtn">关闭</button>
         </div>
@@ -377,9 +370,9 @@
             const hamburgerBtn = $('hamburgerBtn'), sidebarMenu = $('sidebarMenu'), menuOverlay = $('menuOverlay');
             const settingsTrigger = $('settingsTrigger'), settingsOverlay = $('settingsOverlay'), settingsCloseBtn = $('settingsCloseBtn');
             const calcTrigger = $('calcTrigger'), calcOverlay = $('calcOverlay'), calcDisplay = $('calcDisplay');
-            const themeLightBtn = $('themeLightBtn'), themeDarkBtn = $('themeDarkBtn');
+            const themeDarkSwitch = $('themeDarkSwitch');
             const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), bingWallpaperSwitch = $('bingWallpaperSwitch');
-            const langButtons = document.querySelectorAll('.lang-btn');
+            const langSwitches = document.querySelectorAll('.lang-switch');
             const dialpadOverlay = $('dialpadOverlay'), dialpadDisplay = $('dialpadDisplay'), dialpadGrid = $('dialpadGrid');
             const dialDelete = $('dialDelete'), dialClose = $('dialClose'), dialpadTrigger = $('dialpadTrigger');
             const htmlElement = document.documentElement;
@@ -411,31 +404,13 @@
                 });
             }
 
-            // ========== 必应每日一图（优化版） ==========
-            function applyBingBackground(url) {
-                document.body.style.backgroundImage = `url("${url}")`;
-                document.body.style.backgroundSize = 'cover';
-                document.body.style.backgroundPosition = 'center';
-                document.body.style.backgroundAttachment = 'fixed';
-            }
-
-            function clearBingBackground() {
-                document.body.style.backgroundImage = '';
-                document.body.style.backgroundSize = '';
-                document.body.style.backgroundPosition = '';
-                document.body.style.backgroundAttachment = '';
-            }
-
             async function fetchBingWallpaper() {
                 const today = new Date().toISOString().slice(0,10);
                 const cached = localStorage.getItem('bingWallpaperData');
                 if (cached) {
                     try {
                         const { date, url } = JSON.parse(cached);
-                        if (date === today) {
-                            applyBingBackground(url);
-                            return;
-                        }
+                        if (date === today) { applyBingBackground(url); return; }
                     } catch(e) {}
                 }
                 try {
@@ -446,18 +421,19 @@
                         localStorage.setItem('bingWallpaperData', JSON.stringify({ date: today, url: imageUrl }));
                         applyBingBackground(imageUrl);
                     }
-                } catch (error) {
-                    console.warn('获取必应壁纸失败，回退到默认背景', error);
-                    clearBingBackground();
-                }
+                } catch(e) { clearBingBackground(); }
             }
-
-            function updateBackground() {
-                if (bingEnabled) {
-                    fetchBingWallpaper();
-                } else {
-                    clearBingBackground();
-                }
+            function applyBingBackground(url) {
+                document.body.style.backgroundImage = `url("${url}")`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center';
+                document.body.style.backgroundAttachment = 'fixed';
+            }
+            function clearBingBackground() {
+                document.body.style.backgroundImage = '';
+                document.body.style.backgroundSize = '';
+                document.body.style.backgroundPosition = '';
+                document.body.style.backgroundAttachment = '';
             }
 
             function updateUI() {
@@ -465,14 +441,22 @@
                 if (retroEnabled) document.body.classList.add('retro-mode');
                 else if (liquidGlassEnabled) document.body.classList.add('liquid-glass-mode');
                 else if (glassEnabled) document.body.classList.add('glass-mode');
+
                 glassModeSwitch.classList.toggle('on', glassEnabled);
                 liquidGlassModeSwitch.classList.toggle('on', liquidGlassEnabled);
                 retroModeSwitch.classList.toggle('on', retroEnabled);
                 bingWallpaperSwitch.classList.toggle('on', bingEnabled);
-                themeLightBtn.classList.toggle('active', currentTheme === 'light');
-                themeDarkBtn.classList.toggle('active', currentTheme === 'dark');
+
+                // 深色模式开关状态
+                themeDarkSwitch.classList.toggle('on', currentTheme === 'dark');
                 htmlElement.setAttribute('data-theme', currentTheme);
-                updateBackground();
+
+                // 语言开关互斥
+                langSwitches.forEach(sw => {
+                    sw.classList.toggle('on', sw.getAttribute('data-lang') === currentLang);
+                });
+
+                if (bingEnabled) fetchBingWallpaper(); else clearBingBackground();
             }
 
             function toggleMenu(force) {
@@ -505,9 +489,14 @@
 
             document.addEventListener('keydown', e => { if(e.key === 'Escape') { toggleMenu(false); closeAllModals(); } });
 
-            themeLightBtn.addEventListener('click', () => { currentTheme = 'light'; localStorage.setItem('theme','light'); updateUI(); });
-            themeDarkBtn.addEventListener('click', () => { currentTheme = 'dark'; localStorage.setItem('theme','dark'); updateUI(); });
+            // 主题开关
+            themeDarkSwitch.addEventListener('click', () => {
+                currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('theme', currentTheme);
+                updateUI();
+            });
 
+            // 显示模式开关
             function setMode(key, value) {
                 if(key === 'glassMode') glassEnabled = value;
                 if(key === 'liquidGlassMode') liquidGlassEnabled = value;
@@ -527,11 +516,19 @@
             retroModeSwitch.addEventListener('click', () => { const v = !retroEnabled; setMode('retroMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); } updateUI(); });
             bingWallpaperSwitch.addEventListener('click', () => { bingEnabled = !bingEnabled; localStorage.setItem('bingWallpaper', bingEnabled?'enabled':'disabled'); updateUI(); });
 
-            langButtons.forEach(btn => {
-                btn.addEventListener('click', () => { currentLang = btn.getAttribute('data-lang'); localStorage.setItem('lang', currentLang); htmlElement.setAttribute('lang', currentLang); updateUI(); });
+            // 语言开关互斥
+            langSwitches.forEach(sw => {
+                sw.addEventListener('click', () => {
+                    const lang = sw.getAttribute('data-lang');
+                    if (currentLang !== lang) {
+                        currentLang = lang;
+                        localStorage.setItem('lang', lang);
+                        htmlElement.setAttribute('lang', lang);
+                        updateUI();
+                    }
+                });
             });
 
-            // 计算器逻辑（保持不变）
             function calcInput(value) {
                 if (calcShouldResetDisplay) { calcDisplay.textContent = '0'; calcShouldResetDisplay = false; }
                 const current = calcDisplay.textContent;
