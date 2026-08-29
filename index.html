@@ -90,7 +90,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 1rem;
-            padding-top: calc(var(--topbar-height) + 1rem); /* 预留顶栏高度 */
+            padding-top: calc(var(--topbar-height) + 1rem);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
@@ -113,33 +113,25 @@
             transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
         }
 
-        /* 玻璃模式下的顶栏 */
         body.glass-mode .top-bar {
             background-color: rgba(255, 255, 255, 0.55);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
-
         [data-theme="dark"] body.glass-mode .top-bar {
             background-color: rgba(30, 30, 30, 0.55);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         body.liquid-glass-mode .top-bar {
-            background: linear-gradient(180deg,
-                    rgba(255, 255, 255, 0.5) 0%,
-                    rgba(255, 255, 255, 0.25) 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.25) 100%);
             backdrop-filter: blur(28px) saturate(180%);
             -webkit-backdrop-filter: blur(28px) saturate(180%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.45);
             box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
         }
-
         [data-theme="dark"] body.liquid-glass-mode .top-bar {
-            background: linear-gradient(180deg,
-                    rgba(50, 50, 50, 0.5) 0%,
-                    rgba(25, 25, 25, 0.3) 100%);
+            background: linear-gradient(180deg, rgba(50, 50, 50, 0.5) 0%, rgba(25, 25, 25, 0.3) 100%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
 
@@ -154,10 +146,10 @@
             transition: color 0.4s ease;
         }
 
-        /* 调整汉堡按钮位置，使其位于顶栏内右上角 */
+        /* ========== 汉堡按钮 ========== */
         .hamburger-btn {
             position: fixed;
-            top: calc((var(--topbar-height) - 48px) / 2); /* 垂直居中 */
+            top: calc((var(--topbar-height) - 48px) / 2);
             right: 24px;
             z-index: 1004;
             background: transparent;
@@ -178,39 +170,20 @@
             user-select: none;
             -webkit-touch-callout: none;
         }
-
-        .hamburger-btn:hover {
-            background-color: rgba(0, 119, 204, 0.08);
-        }
-
-        .hamburger-btn:active {
-            transform: scale(0.92);
-        }
-
+        .hamburger-btn:hover { background-color: rgba(0, 119, 204, 0.08); }
+        .hamburger-btn:active { transform: scale(0.92); }
         .hamburger-line {
             display: block;
             width: 24px;
             height: 2.5px;
             background-color: var(--accent);
             border-radius: 4px;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-                opacity 0.3s ease,
-                width 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease, width 0.3s ease;
             transform-origin: center;
         }
-
-        .hamburger-btn.active .hamburger-line:nth-child(1) {
-            transform: translateY(7.5px) rotate(45deg);
-        }
-
-        .hamburger-btn.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-            width: 0;
-        }
-
-        .hamburger-btn.active .hamburger-line:nth-child(3) {
-            transform: translateY(-7.5px) rotate(-45deg);
-        }
+        .hamburger-btn.active .hamburger-line:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+        .hamburger-btn.active .hamburger-line:nth-child(2) { opacity: 0; width: 0; }
+        .hamburger-btn.active .hamburger-line:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
         /* ========== 遮罩层 ========== */
         .menu-overlay {
@@ -225,11 +198,7 @@
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-
-        .menu-overlay.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .menu-overlay.visible { opacity: 1; pointer-events: auto; }
 
         /* ========== 侧边栏菜单 ========== */
         .sidebar-menu {
@@ -251,12 +220,8 @@
             border-left: 1px solid var(--divider);
             -webkit-overflow-scrolling: touch;
         }
+        .sidebar-menu.open { transform: translateX(0); }
 
-        .sidebar-menu.open {
-            transform: translateX(0);
-        }
-
-        /* 其余样式与原版一致，为避免过长省略，实际已包含全部样式 */
         .menu-section { padding: 16px 20px 8px 20px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
         .menu-item { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 12px 20px; background: transparent; border: none; cursor: pointer; font-size: 0.95rem; color: var(--text); transition: background-color 0.2s ease; font-family: inherit; letter-spacing: 0.04em; -webkit-tap-highlight-color: transparent; outline: none; user-select: none; -webkit-touch-callout: none; text-decoration: none; text-align: left; }
         .menu-item:hover { background-color: var(--menu-item-hover); }
@@ -267,6 +232,7 @@
         .menu-item-indicator .dot.inactive { background-color: var(--text-secondary); transform: scale(0.7); }
         .menu-divider { height: 1px; background-color: var(--divider); margin: 8px 0; opacity: 0.5; }
 
+        /* ========== 主内容 ========== */
         .container { text-align: center; padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem); max-width: 600px; width: 100%; margin: auto; transition: color 0.4s ease, background-color 0.3s ease, backdrop-filter 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease; }
         h1 { font-size: clamp(1.4rem, 5vw, 2.2rem); font-weight: 300; color: var(--text); letter-spacing: 0.04em; line-height: 1.5; margin-bottom: clamp(1.5rem, 4vw, 2rem); word-break: keep-all; text-wrap: balance; transition: color 0.4s ease; }
         .divider { width: 48px; height: 1px; background-color: var(--divider); margin: 0 auto clamp(1.5rem, 4vw, 2rem) auto; transition: width 0.4s ease, background-color 0.4s ease; }
@@ -284,7 +250,7 @@
         .btn-download:active { background-color: var(--download-btn-hover-bg); border-color: var(--download-btn-hover-bg); color: var(--download-btn-hover-text); transform: scale(0.98); }
         .footer-note { margin-top: clamp(2rem, 6vw, 2.8rem); font-size: clamp(0.6rem, 2vw, 0.7rem); color: var(--text-secondary); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300; transition: color 0.4s ease; }
 
-        /* 拨号盘等样式保持不变 */
+        /* ========== 拨号盘等模态 ========== */
         .dialpad-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--modal-overlay); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 1rem; }
         .dialpad-overlay.visible { opacity: 1; pointer-events: auto; }
         .dialpad-modal { background-color: var(--modal-bg); border-radius: 20px; padding: 1.5rem 1.5rem 1.8rem; width: 100%; max-width: 320px; box-shadow: 0 12px 60px rgba(0,0,0,0.2); transform: translateY(20px) scale(0.95); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background-color 0.3s ease, backdrop-filter 0.3s ease; border: 1px solid var(--divider); }
@@ -314,22 +280,22 @@
 </head>
 <body>
 
-    <!-- ========== 顶部栏（左上角标题 + 底部横线） ========== -->
+    <!-- 顶部栏（左上角标题 + 横线） -->
     <header class="top-bar">
         <div class="site-title" data-i18n="siteTitle">一架国泰航空A330官方网站</div>
     </header>
 
-    <!-- ========== 汉堡菜单按钮（固定于顶栏右侧） ========== -->
+    <!-- 汉堡按钮 -->
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
     </button>
 
-    <!-- ========== 遮罩层 ========== -->
+    <!-- 遮罩层 -->
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- ========== 侧边栏菜单 ========== -->
+    <!-- 侧边栏菜单 -->
     <aside class="sidebar-menu" id="sidebarMenu" role="menu">
         <div class="menu-section" data-i18n="settings">设置</div>
         <button class="menu-item" id="themeToggle" role="menuitem"><span class="menu-item-label" data-i18n="theme">主题模式</span><span class="menu-item-indicator" id="themeIndicator"><span class="dot" id="themeDot"></span><span id="themeLabel" data-i18n="light">浅色</span></span></button>
@@ -351,7 +317,7 @@
         <button class="menu-item" id="dialpadTrigger" role="menuitem"><span class="menu-item-label">拨号盘</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">☎</span></span></button>
     </aside>
 
-    <!-- ========== 拨号盘模态框 ========== -->
+    <!-- 拨号盘模态框 -->
     <div class="dialpad-overlay" id="dialpadOverlay">
         <div class="dialpad-modal">
             <div class="dialpad-display" id="dialpadDisplay"></div>
@@ -363,7 +329,7 @@
         </div>
     </div>
 
-    <!-- ========== 主内容 ========== -->
+    <!-- 主内容 -->
     <div class="container">
         <h1 id="mainTitle">欢迎来到<br>一架国泰航空A330官方网站</h1>
         <div class="divider"></div>
@@ -436,7 +402,7 @@
             let liquidGlassEnabled = localStorage.getItem('liquidGlassMode') === 'enabled';
             let dialValue = '';
 
-            // ========== 翻译字典（6种语言） ==========
+            // ========== 翻译字典 ==========
             const translations = {
                 'zh-CN': {
                     siteTitle: '一架国泰航空A330官方网站',
@@ -494,7 +460,7 @@
                 }
             };
 
-            // 拨号盘按键数据等保持不变
+            // ========== 拨号盘按键数据 ==========
             const dialKeys = [
                 { digit: '1', sub: '' }, { digit: '2', sub: 'ABC' }, { digit: '3', sub: 'DEF' },
                 { digit: '4', sub: 'GHI' }, { digit: '5', sub: 'JKL' }, { digit: '6', sub: 'MNO' },
@@ -502,12 +468,97 @@
                 { digit: '*', sub: '' }, { digit: '0', sub: '+' }, { digit: '#', sub: '' },
             ];
 
-            function buildDialpad() { /* 原有实现 */ }
+            // ========== 初始化拨号盘 ==========
+            function buildDialpad() {
+                dialKeys.forEach(key => {
+                    const btn = document.createElement('button');
+                    btn.className = 'dial-key';
+                    btn.setAttribute('data-digit', key.digit);
+                    btn.innerHTML = key.digit + (key.sub ? `<span class="sub">${key.sub}</span>` : '');
+                    btn.addEventListener('click', function() {
+                        dialValue += key.digit;
+                        updateDialDisplay();
+                    });
+                    dialpadGrid.appendChild(btn);
+                });
+                updateDialDisplay();
+            }
             function updateDialDisplay() { dialpadDisplay.textContent = dialValue || ''; }
             function openDialpad() { dialValue = ''; updateDialDisplay(); dialpadOverlay.classList.add('visible'); closeMenu(); }
             function closeDialpad() { dialpadOverlay.classList.remove('visible'); }
 
-            // 其他函数保持相同逻辑，仅新增 siteTitle 更新
+            // ========== 必应壁纸 ==========
+            async function fetchBingWallpaper() {
+                try {
+                    const response = await fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1');
+                    const data = await response.json();
+                    if (data && data.images && data.images.length > 0) {
+                        const url = 'https://www.bing.com' + data.images[0].url;
+                        applyBingBackground(url);
+                    }
+                } catch (error) {
+                    console.warn('获取必应壁纸失败，使用默认背景', error);
+                    clearBingBackground();
+                }
+            }
+            function applyBingBackground(url) {
+                document.body.style.backgroundImage = `url("${url}")`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center';
+                document.body.style.backgroundAttachment = 'fixed';
+            }
+            function clearBingBackground() {
+                document.body.style.backgroundImage = '';
+                document.body.style.backgroundSize = '';
+                document.body.style.backgroundPosition = '';
+                document.body.style.backgroundAttachment = '';
+            }
+            function updateBackground() {
+                if (bingEnabled) { fetchBingWallpaper(); } else { clearBingBackground(); }
+            }
+            function updateBingIndicator() {
+                bingWallpaperDot.classList.toggle('inactive', !bingEnabled);
+            }
+
+            // ========== 玻璃模式 ==========
+            function updateGlassMode() {
+                if (glassEnabled && !liquidGlassEnabled) {
+                    document.body.classList.add('glass-mode');
+                    document.body.classList.remove('liquid-glass-mode');
+                    glassDot.classList.remove('inactive');
+                } else if (!glassEnabled && !liquidGlassEnabled) {
+                    document.body.classList.remove('glass-mode');
+                    glassDot.classList.add('inactive');
+                } else {
+                    glassDot.classList.add('inactive');
+                }
+            }
+            function updateLiquidGlassMode() {
+                if (liquidGlassEnabled) {
+                    document.body.classList.add('liquid-glass-mode');
+                    document.body.classList.remove('glass-mode');
+                    liquidGlassDot.classList.remove('inactive');
+                    glassDot.classList.add('inactive');
+                } else {
+                    document.body.classList.remove('liquid-glass-mode');
+                    liquidGlassDot.classList.add('inactive');
+                    if (glassEnabled) {
+                        document.body.classList.add('glass-mode');
+                        glassDot.classList.remove('inactive');
+                    }
+                }
+            }
+
+            // ========== 主题 ==========
+            function initTheme() { htmlElement.setAttribute('data-theme', currentTheme); updateThemeUI(); }
+            function updateThemeUI() {
+                const isDark = currentTheme === 'dark';
+                themeDot.classList.toggle('inactive', !isDark);
+                themeLabel.textContent = translations[currentLang][isDark ? 'dark' : 'light'];
+            }
+
+            // ========== 语言 ==========
+            function initLanguage() { updateLanguageUI(); }
             function updateLanguageUI() {
                 const t = translations[currentLang];
                 siteTitle.textContent = t.siteTitle;
@@ -531,31 +582,109 @@
                 dialDelete.textContent = t.delete;
                 dialClose.textContent = t.close;
             }
-
             function updateLanguageIndicators() {
                 Object.keys(langDots).forEach(key => {
                     langDots[key].classList.toggle('inactive', key !== currentLang);
                 });
             }
 
-            function updateThemeUI() {
-                const isDark = currentTheme === 'dark';
-                themeDot.classList.toggle('inactive', !isDark);
-                themeLabel.textContent = translations[currentLang][isDark ? 'dark' : 'light'];
+            // ========== 菜单开关 ==========
+            function openMenu() {
+                isMenuOpen = true;
+                hamburgerBtn.classList.add('active');
+                sidebarMenu.classList.add('open');
+                menuOverlay.classList.add('visible');
+                hamburgerBtn.setAttribute('aria-expanded', 'true');
+                hamburgerBtn.setAttribute('aria-label', translations[currentLang].closeMenuAria);
+            }
+            function closeMenu() {
+                isMenuOpen = false;
+                hamburgerBtn.classList.remove('active');
+                sidebarMenu.classList.remove('open');
+                menuOverlay.classList.remove('visible');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                hamburgerBtn.setAttribute('aria-label', translations[currentLang].menuAria);
+            }
+            function toggleMenu() {
+                if (isMenuOpen) { closeMenu(); } else { openMenu(); }
             }
 
-            function updateGlassMode() { /* 保持原有逻辑 */ }
-            function updateLiquidGlassMode() { /* 保持原有逻辑 */ }
-            function updateBackground() { /* 保持原有逻辑 */ }
-            function updateBingIndicator() { /* 保持原有逻辑 */ }
+            // ========== 事件监听 ==========
+            hamburgerBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+            menuOverlay.addEventListener('click', closeMenu);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (isMenuOpen) closeMenu();
+                    if (dialpadOverlay.classList.contains('visible')) closeDialpad();
+                }
+            });
 
-            function initTheme() { htmlElement.setAttribute('data-theme', currentTheme); updateThemeUI(); }
-            function initLanguage() { updateLanguageUI(); }
+            themeToggle.addEventListener('click', function() {
+                currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                htmlElement.setAttribute('data-theme', currentTheme);
+                localStorage.setItem('theme', currentTheme);
+                updateThemeUI();
+                if (!bingEnabled) { clearBingBackground(); }
+            });
 
-            // 事件绑定（略去完全相同的部分，保证功能完整）
-            // 这里省略了大量重复代码，但在实际文件中已完整包含
+            glassToggle.addEventListener('click', function() {
+                glassEnabled = !glassEnabled;
+                localStorage.setItem('glassMode', glassEnabled ? 'enabled' : 'disabled');
+                if (glassEnabled && liquidGlassEnabled) {
+                    liquidGlassEnabled = false;
+                    localStorage.setItem('liquidGlassMode', 'disabled');
+                    document.body.classList.remove('liquid-glass-mode');
+                    liquidGlassDot.classList.add('inactive');
+                }
+                updateGlassMode();
+                updateLiquidGlassMode();
+            });
 
-            // 启动
+            liquidGlassToggle.addEventListener('click', function() {
+                liquidGlassEnabled = !liquidGlassEnabled;
+                localStorage.setItem('liquidGlassMode', liquidGlassEnabled ? 'enabled' : 'disabled');
+                if (liquidGlassEnabled && glassEnabled) {
+                    glassEnabled = false;
+                    localStorage.setItem('glassMode', 'disabled');
+                    document.body.classList.remove('glass-mode');
+                    glassDot.classList.add('inactive');
+                }
+                updateGlassMode();
+                updateLiquidGlassMode();
+            });
+
+            bingWallpaperToggle.addEventListener('click', function() {
+                bingEnabled = !bingEnabled;
+                localStorage.setItem('bingWallpaper', bingEnabled ? 'enabled' : 'disabled');
+                updateBingIndicator();
+                updateBackground();
+            });
+
+            // 语言按钮
+            Object.keys(langButtons).forEach(lang => {
+                langButtons[lang].addEventListener('click', function() {
+                    if (currentLang !== lang) {
+                        currentLang = lang;
+                        localStorage.setItem('lang', lang);
+                        htmlElement.setAttribute('lang', lang);
+                        updateLanguageUI();
+                    }
+                    closeMenu();
+                });
+            });
+
+            // 拨号盘
+            dialpadTrigger.addEventListener('click', function() { openDialpad(); });
+            dialDelete.addEventListener('click', function() { dialValue = dialValue.slice(0, -1); updateDialDisplay(); });
+            dialClose.addEventListener('click', closeDialpad);
+            dialpadOverlay.addEventListener('click', function(e) {
+                if (e.target === dialpadOverlay) { closeDialpad(); }
+            });
+
+            // ========== 启动 ==========
             buildDialpad();
             initTheme();
             initLanguage();
@@ -564,7 +693,13 @@
             updateGlassMode();
             updateLiquidGlassMode();
             updateBackground();
-            if (currentTheme === 'dark') themeDot.classList.remove('inactive'); else themeDot.classList.add('inactive');
+
+            // 确保主题圆点状态正确
+            if (currentTheme === 'dark') {
+                themeDot.classList.remove('inactive');
+            } else {
+                themeDot.classList.add('inactive');
+            }
         })();
     </script>
 </body>
