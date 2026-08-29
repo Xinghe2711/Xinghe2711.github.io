@@ -125,8 +125,6 @@
         .menu-item:active { background-color:var(--menu-item-hover); }
         .menu-item-label { font-weight:400; }
         .menu-item-indicator { display:flex; align-items:center; gap:6px; font-size:0.85rem; color:var(--accent); font-weight:500; }
-        .menu-item-indicator .dot { width:8px; height:8px; border-radius:50%; background-color:var(--accent); transition:all 0.3s ease; }
-        .menu-item-indicator .dot.inactive { background-color:var(--text-secondary); transform:scale(0.7); }
         .menu-divider { height:1px; background-color:var(--divider); margin:6px 0; opacity:0.5; }
 
         /* ========== 主内容 ========== */
@@ -158,7 +156,6 @@
         .settings-option { display:flex; align-items:center; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid var(--divider); }
         .settings-option:last-child { border-bottom:none; }
         .settings-option-label { font-size:0.9rem; color:var(--text); }
-        .settings-option-control { display:flex; align-items:center; gap:0.5rem; }
         .settings-btn { padding:0.4rem 1rem; font-size:0.8rem; border-radius:20px; border:1px solid var(--divider); background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s ease; -webkit-tap-highlight-color:transparent; outline:none; }
         .settings-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-btn:hover { background-color:var(--menu-item-hover); }
@@ -166,45 +163,7 @@
         .settings-close-btn { display:block; width:100%; margin-top:1rem; padding:0.6rem; background-color:var(--accent); color:#fff; border:none; border-radius:12px; font-size:0.9rem; cursor:pointer; transition:background-color 0.2s ease; }
         .settings-close-btn:hover { background-color:var(--accent-hover); }
 
-        /* 设置窗口模式适配 */
-        body.glass-mode .settings-modal {
-            background-color: rgba(255,255,255,0.72);
-            backdrop-filter: blur(22px) saturate(190%);
-            -webkit-backdrop-filter: blur(22px) saturate(190%);
-            border:1px solid rgba(255,255,255,0.6);
-        }
-        [data-theme="dark"] body.glass-mode .settings-modal {
-            background-color: rgba(28,28,30,0.72);
-            backdrop-filter: blur(22px) saturate(190%);
-            -webkit-backdrop-filter: blur(22px) saturate(190%);
-            border:1px solid rgba(255,255,255,0.1);
-        }
-        body.liquid-glass-mode .settings-modal {
-            background: linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3) 100%);
-            backdrop-filter: blur(28px) saturate(200%);
-            -webkit-backdrop-filter: blur(28px) saturate(200%);
-            border:1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.4);
-        }
-        [data-theme="dark"] body.liquid-glass-mode .settings-modal {
-            background: linear-gradient(135deg, rgba(45,45,45,0.45) 0%, rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35) 100%);
-            border:1px solid rgba(255,255,255,0.12);
-        }
-        body.retro-mode .settings-modal {
-            background: #f5f5f5;
-            border:1px solid #8f8f8f;
-            border-radius:12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-        }
-        [data-theme="dark"] body.retro-mode .settings-modal {
-            background: #4a4a4a;
-            border-color:#2a2a2a;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
-        }
-
-        /* ========== 拨号盘 ========== */
+        /* 拨号盘 */
         .dialpad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s ease; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .dialpad-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(20px) scale(0.95); transition:all 0.35s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -220,30 +179,6 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* 怀旧模式等样式 */
-        body.retro-mode { background-color:#a0a8b0; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="%23b8c0c8"/><path d="M0 0 L80 0 L80 80 L0 80 Z" fill="none" stroke="%23a0a8b0" stroke-width="1"/></svg>'); background-size:160px 160px; }
-        [data-theme="dark"] body.retro-mode { background-color:#2a2f35; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="%233a4048"/><path d="M0 0 L80 0 L80 80 L0 80 Z" fill="none" stroke="%232a2f35" stroke-width="1"/></svg>'); background-size:160px 160px; }
-        body.retro-mode .top-bar { background:linear-gradient(to bottom,#f0f0f0 0%,#c8c8c8 100%); border-bottom:1px solid #7f7f7f; box-shadow:0 2px 6px rgba(0,0,0,0.35); height:52px; }
-        [data-theme="dark"] body.retro-mode .top-bar { background:linear-gradient(to bottom,#555555 0%,#3a3a3a 100%); border-bottom:1px solid #1a1a1a; }
-        body.retro-mode .site-title { font-size:1.15rem; font-weight:bold; color:#333; text-shadow:0 1px 0 rgba(255,255,255,0.7); }
-        [data-theme="dark"] body.retro-mode .site-title { color:#eee; text-shadow:0 1px 0 rgba(0,0,0,0.7); }
-        body.retro-mode .container { background:#f8f8f8; border-radius:10px; border:1px solid #9a9a9a; box-shadow:0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.8); padding:1.8rem 1.4rem; }
-        [data-theme="dark"] body.retro-mode .container { background:#4a4f55; border-color:#2a2f35; box-shadow:0 4px 12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1); }
-        body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2 0%,#1e69de 100%); border:1px solid #1c4f9c; border-radius:6px; color:#fff; text-shadow:0 -1px 0 rgba(0,0,0,0.4); box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3); padding:0.6rem 1.8rem; }
-        [data-theme="dark"] body.retro-mode .btn { background:linear-gradient(to bottom,#5c8ccf 0%,#2b5c9e 100%); border-color:#1c3f6c; }
-        body.retro-mode .btn-download { background:#ffffff; border:1px solid #8f8f8f; border-radius:5px; color:#333; text-shadow:0 1px 0 #fff; box-shadow:0 2px 3px rgba(0,0,0,0.25), inset 0 1px 0 #fff; padding:0.65rem 1rem; }
-        [data-theme="dark"] body.retro-mode .btn-download { background:#5a5a5a; border-color:#3a3a3a; color:#eee; text-shadow:0 -1px 0 #000; }
-        body.retro-mode .announcement { background:#fafafa; border:1px solid #a0a0a0; border-radius:6px; box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(0,0,0,0.25); }
-        [data-theme="dark"] body.retro-mode .announcement { background:#505050; border-color:#2a2a2a; box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 2px 4px rgba(0,0,0,0.5); }
-        body.retro-mode .sidebar-menu { background:linear-gradient(to bottom,#f0f0f0 0%,#d0d0d0 100%); border-left:1px solid #7f7f7f; box-shadow:-3px 0 8px rgba(0,0,0,0.25); }
-        [data-theme="dark"] body.retro-mode .sidebar-menu { background:linear-gradient(to bottom,#555555 0%,#3a3a3a 100%); border-left:1px solid #1a1a1a; }
-        body.retro-mode .menu-item { color:#333; border-bottom:1px solid #b0b0b0; }
-        [data-theme="dark"] body.retro-mode .menu-item { color:#ddd; border-bottom:1px solid #555; }
-        body.retro-mode .menu-item:hover { background:#c0c0c0; }
-        [data-theme="dark"] body.retro-mode .menu-item:hover { background:#555; }
-        body.retro-mode .hamburger-line { background-color:#333; }
-        [data-theme="dark"] body.retro-mode .hamburger-line { background-color:#ccc; }
-
         @media (max-width: 480px) {
             :root { --topbar-height:52px; }
             .site-title { font-size:0.95rem; }
@@ -256,22 +191,18 @@
     </style>
 </head>
 <body>
-    <!-- 顶部栏 -->
     <header class="top-bar">
         <div class="site-title" data-i18n="siteTitle">一架国泰航空A330官方网站</div>
     </header>
 
-    <!-- 汉堡按钮 -->
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
     </button>
 
-    <!-- 菜单遮罩 -->
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- 侧边栏菜单 -->
     <aside class="sidebar-menu" id="sidebarMenu" role="menu">
         <div class="menu-section" data-i18n="menu">菜单</div>
         <button class="menu-item" id="settingsTrigger"><span class="menu-item-label" data-i18n="settings">设置</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">⚙️</span></span></button>
@@ -282,7 +213,6 @@
         <button class="menu-item" id="dialpadTrigger"><span class="menu-item-label">拨号盘</span><span class="menu-item-indicator"><span style="font-size:1.1rem;">☎</span></span></button>
     </aside>
 
-    <!-- 设置模态窗口 -->
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-modal">
             <div class="settings-title" data-i18n="settings">设置</div>
@@ -290,63 +220,45 @@
                 <div class="settings-section-title" data-i18n="theme">主题模式</div>
                 <div class="settings-option">
                     <span class="settings-option-label" data-i18n="light">浅色</span>
-                    <div class="settings-option-control">
-                        <button class="settings-btn" id="themeLightBtn" data-theme-btn="light">浅色</button>
-                        <button class="settings-btn" id="themeDarkBtn" data-theme-btn="dark">深色</button>
-                    </div>
+                    <button class="settings-btn" id="themeLightBtn">浅色</button>
+                </div>
+                <div class="settings-option">
+                    <span class="settings-option-label" data-i18n="dark">深色</span>
+                    <button class="settings-btn" id="themeDarkBtn">深色</button>
                 </div>
             </div>
             <div class="settings-section">
                 <div class="settings-section-title" data-i18n="displayMode">显示模式</div>
                 <div class="settings-option">
                     <span class="settings-option-label" data-i18n="glassMode">透明模式</span>
-                    <button class="settings-btn" id="glassModeBtn">开启/关闭</button>
+                    <button class="settings-btn" id="glassModeBtn">开关</button>
                 </div>
                 <div class="settings-option">
                     <span class="settings-option-label" data-i18n="liquidGlassMode">液态玻璃模式</span>
-                    <button class="settings-btn" id="liquidGlassModeBtn">开启/关闭</button>
+                    <button class="settings-btn" id="liquidGlassModeBtn">开关</button>
                 </div>
                 <div class="settings-option">
                     <span class="settings-option-label" data-i18n="retroMode">怀旧模式</span>
-                    <button class="settings-btn" id="retroModeBtn">开启/关闭</button>
+                    <button class="settings-btn" id="retroModeBtn">开关</button>
                 </div>
                 <div class="settings-option">
                     <span class="settings-option-label" data-i18n="bingWallpaper">必应每日一图</span>
-                    <button class="settings-btn" id="bingWallpaperBtn">开启/关闭</button>
+                    <button class="settings-btn" id="bingWallpaperBtn">开关</button>
                 </div>
             </div>
             <div class="settings-section">
                 <div class="settings-section-title" data-i18n="language">语言</div>
-                <div class="settings-option">
-                    <span class="settings-option-label">简体中文</span>
-                    <button class="settings-btn lang-btn" data-lang="zh-CN">选择</button>
-                </div>
-                <div class="settings-option">
-                    <span class="settings-option-label">繁體中文</span>
-                    <button class="settings-btn lang-btn" data-lang="zh-TW">選擇</button>
-                </div>
-                <div class="settings-option">
-                    <span class="settings-option-label">日本語</span>
-                    <button class="settings-btn lang-btn" data-lang="ja">選択</button>
-                </div>
-                <div class="settings-option">
-                    <span class="settings-option-label">English (UK)</span>
-                    <button class="settings-btn lang-btn" data-lang="en-GB">Select</button>
-                </div>
-                <div class="settings-option">
-                    <span class="settings-option-label">English (US)</span>
-                    <button class="settings-btn lang-btn" data-lang="en-US">Select</button>
-                </div>
-                <div class="settings-option">
-                    <span class="settings-option-label">한국어</span>
-                    <button class="settings-btn lang-btn" data-lang="ko">선택</button>
-                </div>
+                <button class="settings-btn lang-btn" data-lang="zh-CN" style="margin:2px;">简体中文</button>
+                <button class="settings-btn lang-btn" data-lang="zh-TW" style="margin:2px;">繁體中文</button>
+                <button class="settings-btn lang-btn" data-lang="ja" style="margin:2px;">日本語</button>
+                <button class="settings-btn lang-btn" data-lang="en-GB" style="margin:2px;">English (UK)</button>
+                <button class="settings-btn lang-btn" data-lang="en-US" style="margin:2px;">English (US)</button>
+                <button class="settings-btn lang-btn" data-lang="ko" style="margin:2px;">한국어</button>
             </div>
             <button class="settings-close-btn" id="settingsCloseBtn" data-i18n="close">关闭</button>
         </div>
     </div>
 
-    <!-- 拨号盘模态框 -->
     <div class="dialpad-overlay" id="dialpadOverlay">
         <div class="dialpad-modal">
             <div class="dialpad-display" id="dialpadDisplay"></div>
@@ -358,7 +270,6 @@
         </div>
     </div>
 
-    <!-- 主内容 -->
     <div class="container">
         <h1 id="mainTitle">欢迎来到<br>一架国泰航空A330官方网站</h1>
         <div class="divider"></div>
@@ -407,7 +318,6 @@
             const announcementSubtitle = document.querySelector('.announcement-subtitle');
             const siteTitle = document.querySelector('.site-title');
 
-            // 状态
             let isMenuOpen = false;
             let currentTheme = localStorage.getItem('theme') || 'light';
             let currentLang = localStorage.getItem('lang') || 'zh-CN';
@@ -417,7 +327,6 @@
             let retroEnabled = localStorage.getItem('retroMode') === 'enabled';
             let dialValue = '';
 
-            // 翻译字典
             const translations = {
                 'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', theme:'主题模式', light:'浅色', dark:'深色', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃模式', bingWallpaper:'必应每日一图', retroMode:'怀旧模式', language:'语言', links:'链接', menu:'菜单', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'欢迎来到<br>一架国泰航空A330官方网站', close:'关闭', delete:'删除' },
                 'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', theme:'主題模式', light:'淺色', dark:'深色', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃模式', bingWallpaper:'必應每日一圖', retroMode:'懷舊模式', language:'語言', links:'連結', menu:'菜單', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'歡迎來到<br>一架國泰航空A330官方網站', close:'關閉', delete:'刪除' },
@@ -427,7 +336,6 @@
                 'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', theme:'테마', light:'라이트', dark:'다크', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', bingWallpaper:'Bing 일일 배경화면', retroMode:'레트로 모드', language:'언어', links:'링크', menu:'메뉴', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', footer:'Cathay Pacific • A330 • Minimal', titleHtml:'캐세이퍼시픽 A330<br>공식 웹사이트에 오신 것을 환영합니다', close:'닫기', delete:'삭제' }
             };
 
-            // 拨号盘按键
             const dialKeys = [
                 { digit:'1', sub:'' }, { digit:'2', sub:'ABC' }, { digit:'3', sub:'DEF' },
                 { digit:'4', sub:'GHI' }, { digit:'5', sub:'JKL' }, { digit:'6', sub:'MNO' },
@@ -439,7 +347,6 @@
                 dialKeys.forEach(key => {
                     const btn = document.createElement('button');
                     btn.className = 'dial-key';
-                    btn.setAttribute('data-digit', key.digit);
                     btn.innerHTML = key.digit + (key.sub ? `<span class="sub">${key.sub}</span>` : '');
                     btn.addEventListener('click', () => { dialValue += key.digit; updateDialDisplay(); });
                     dialpadGrid.appendChild(btn);
@@ -472,17 +379,12 @@
                 document.body.style.backgroundAttachment = '';
             }
             function updateBackground() { if(bingEnabled) fetchBingWallpaper(); else clearBingBackground(); }
-            function updateBingIndicator() { bingWallpaperBtn.classList.toggle('active', bingEnabled); }
 
             function applyModeClasses() {
                 document.body.classList.remove('glass-mode', 'liquid-glass-mode', 'retro-mode');
-                if (retroEnabled) {
-                    document.body.classList.add('retro-mode');
-                } else if (liquidGlassEnabled) {
-                    document.body.classList.add('liquid-glass-mode');
-                } else if (glassEnabled) {
-                    document.body.classList.add('glass-mode');
-                }
+                if (retroEnabled) document.body.classList.add('retro-mode');
+                else if (liquidGlassEnabled) document.body.classList.add('liquid-glass-mode');
+                else if (glassEnabled) document.body.classList.add('glass-mode');
                 glassModeBtn.classList.toggle('active', glassEnabled);
                 liquidGlassModeBtn.classList.toggle('active', liquidGlassEnabled);
                 retroModeBtn.classList.toggle('active', retroEnabled);
@@ -491,13 +393,12 @@
                 themeDarkBtn.classList.toggle('active', currentTheme === 'dark');
             }
 
-            function initTheme() { htmlElement.setAttribute('data-theme', currentTheme); applyModeClasses(); }
             function updateThemeUI() {
                 themeLightBtn.classList.toggle('active', currentTheme === 'light');
                 themeDarkBtn.classList.toggle('active', currentTheme === 'dark');
+                htmlElement.setAttribute('data-theme', currentTheme);
             }
 
-            function initLanguage() { updateLanguageUI(); }
             function updateLanguageUI() {
                 const t = translations[currentLang];
                 siteTitle.textContent = t.siteTitle;
@@ -519,7 +420,6 @@
                 document.querySelectorAll('[data-i18n="links"]').forEach(el=>el.textContent=t.links);
                 document.querySelectorAll('[data-i18n="close"]').forEach(el=>el.textContent=t.close);
                 document.querySelectorAll('[data-i18n="delete"]').forEach(el=>el.textContent=t.delete);
-                updateThemeUI();
             }
 
             function openMenu() {
@@ -527,28 +427,23 @@
                 hamburgerBtn.classList.add('active');
                 sidebarMenu.classList.add('open');
                 menuOverlay.classList.add('visible');
-                hamburgerBtn.setAttribute('aria-expanded','true');
             }
             function closeMenu() {
                 isMenuOpen = false;
                 hamburgerBtn.classList.remove('active');
                 sidebarMenu.classList.remove('open');
                 menuOverlay.classList.remove('visible');
-                hamburgerBtn.setAttribute('aria-expanded','false');
             }
             function toggleMenu() { if(isMenuOpen) closeMenu(); else openMenu(); }
 
             function openSettings() {
-                closeDialpad(); // 关键修复：关闭可能打开的拨号盘
-                settingsOverlay.classList.add('visible');
+                closeDialpad();
                 closeMenu();
+                settingsOverlay.classList.add('visible');
                 applyModeClasses();
             }
-            function closeSettings() {
-                settingsOverlay.classList.remove('visible');
-            }
+            function closeSettings() { settingsOverlay.classList.remove('visible'); }
 
-            // 事件监听
             hamburgerBtn.addEventListener('click', e=>{ e.stopPropagation(); toggleMenu(); });
             menuOverlay.addEventListener('click', closeMenu);
             settingsTrigger.addEventListener('click', openSettings);
@@ -564,14 +459,12 @@
 
             themeLightBtn.addEventListener('click', ()=>{
                 currentTheme = 'light';
-                htmlElement.setAttribute('data-theme', currentTheme);
                 localStorage.setItem('theme', currentTheme);
                 updateThemeUI();
                 if(!bingEnabled) clearBingBackground();
             });
             themeDarkBtn.addEventListener('click', ()=>{
                 currentTheme = 'dark';
-                htmlElement.setAttribute('data-theme', currentTheme);
                 localStorage.setItem('theme', currentTheme);
                 updateThemeUI();
                 if(!bingEnabled) clearBingBackground();
@@ -608,7 +501,7 @@
                 bingEnabled = !bingEnabled;
                 localStorage.setItem('bingWallpaper', bingEnabled?'enabled':'disabled');
                 updateBackground();
-                updateBingIndicator();
+                bingWallpaperBtn.classList.toggle('active', bingEnabled);
             });
 
             langButtons.forEach(btn=>{
@@ -628,10 +521,10 @@
             dialClose.addEventListener('click', closeDialpad);
             dialpadOverlay.addEventListener('click', e=>{ if(e.target===dialpadOverlay) closeDialpad(); });
 
-            // 启动
             buildDialpad();
-            initTheme();
-            initLanguage();
+            updateThemeUI();
+            updateLanguageUI();
+            applyModeClasses();
             updateBackground();
         })();
     </script>
