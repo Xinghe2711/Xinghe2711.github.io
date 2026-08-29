@@ -7,7 +7,7 @@
     <style>
         /* ========== CSS 变量（主题） ========== */
         :root {
-            --bg-gradient: linear-gradient(135deg, #add8e6 0%, #00008b 100%);
+            --bg: #ffffff;
             --text: #1a1a1a;
             --text-secondary: #aaaaaa;
             --divider: #cccccc;
@@ -32,7 +32,7 @@
         }
 
         [data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #1a2a3a 0%, #001f3f 100%);
+            --bg: #121212;
             --text: #f0f0f0;
             --text-secondary: #888888;
             --divider: #3a3a3a;
@@ -63,8 +63,7 @@
         }
 
         body {
-            background: var(--bg-gradient);
-            background-attachment: fixed;
+            background-color: var(--bg);
             font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
             display: flex;
             justify-content: center;
@@ -74,10 +73,8 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            transition: background 0.5s ease, color 0.4s ease;
+            transition: background-color 0.5s ease, color 0.4s ease;
         }
-
-        /* 当启用必应壁纸时，body 会添加内联背景样式，这里不做特殊处理 */
 
         /* ========== 汉堡菜单按钮 ========== */
         .hamburger-btn {
@@ -105,7 +102,7 @@
         }
 
         .hamburger-btn:hover {
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(0, 119, 204, 0.08);
         }
 
         .hamburger-btn:active {
@@ -273,7 +270,6 @@
             margin-bottom: clamp(1.5rem, 4vw, 2rem);
             word-break: keep-all;
             text-wrap: balance;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             transition: color 0.4s ease;
         }
 
@@ -305,16 +301,14 @@
             padding: clamp(0.7rem, 2.5vw, 0.9rem) clamp(2rem, 8vw, 2.8rem);
             font-size: clamp(0.9rem, 2.5vw, 1rem);
             font-weight: 400;
-            color: var(--btn-primary);
-            background-color: transparent;
+            color: var(--btn-primary-text);
+            background-color: var(--btn-primary);
             border: 1px solid var(--btn-primary);
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             letter-spacing: 0.08em;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.15s ease;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             outline: none;
@@ -322,46 +316,16 @@
             white-space: nowrap;
         }
 
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background-color: var(--btn-primary-hover);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease, background-color 0.4s ease;
-            z-index: 0;
-        }
-
-        .btn span {
-            position: relative;
-            z-index: 1;
-            transition: color 0.35s ease;
-        }
-
         @media (hover: hover) and (pointer: fine) {
             .btn:hover {
+                background-color: var(--btn-primary-hover);
                 border-color: var(--btn-primary-hover);
-                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-            }
-
-            .btn:hover::after {
-                width: 400px;
-                height: 400px;
-            }
-
-            .btn:hover span {
-                color: var(--btn-primary-text);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
             }
         }
 
         .btn:active {
             transform: scale(0.96);
-            transition-duration: 0.15s;
-            background-color: rgba(0, 0, 0, 0.06);
         }
 
         .footer-note {
@@ -600,7 +564,6 @@
             </span>
         </button>
 
-        <!-- 必应每日一图开关 -->
         <button class="menu-item" id="bingWallpaperToggle" role="menuitem">
             <span class="menu-item-label" data-i18n="bingWallpaper">必应每日一图</span>
             <span class="menu-item-indicator">
@@ -832,7 +795,7 @@
                     applyBingBackground(url);
                 }
             } catch (error) {
-                console.warn('获取必应壁纸失败，使用默认渐变背景', error);
+                console.warn('获取必应壁纸失败，使用默认背景', error);
                 clearBingBackground();
             }
         }
@@ -897,15 +860,9 @@
                 btnSpan.textContent = translations[currentLang].bilibili;
             }
 
-            const fanBtn = document.querySelector('.button-group a[aria-label="加入粉丝群"] span, .button-group a[aria-label="Join Fan Group"] span');
-            if (fanBtn) {
-                fanBtn.textContent = translations[currentLang].fanGroup;
-            } else {
-                // 备用：直接通过 data-i18n 找到
-                document.querySelectorAll('[data-i18n="fanGroup"]').forEach(el => {
-                    el.textContent = translations[currentLang].fanGroup;
-                });
-            }
+            document.querySelectorAll('[data-i18n="fanGroup"]').forEach(el => {
+                el.textContent = translations[currentLang].fanGroup;
+            });
 
             footerNote.textContent = translations[currentLang].footer;
 
@@ -994,14 +951,11 @@
             htmlElement.setAttribute('data-theme', currentTheme);
             localStorage.setItem('theme', currentTheme);
             updateThemeUI();
-            // 如果未启用必应壁纸，背景渐变会随主题自动变化；若启用了，则壁纸保持，但主题切换只影响其他UI
             if (!bingEnabled) {
-                // 清除可能残留的内联背景样式，确保CSS渐变生效
                 clearBingBackground();
             }
         });
 
-        // 必应每日一图切换
         bingWallpaperToggle.addEventListener('click', function() {
             bingEnabled = !bingEnabled;
             localStorage.setItem('bingWallpaper', bingEnabled ? 'enabled' : 'disabled');
@@ -1053,7 +1007,7 @@
         initLanguage();
         updateLanguageIndicators();
         updateBingIndicator();
-        updateBackground(); // 根据bingEnabled应用背景
+        updateBackground();
 
         if (currentTheme === 'dark') {
             themeDot.classList.remove('inactive');
