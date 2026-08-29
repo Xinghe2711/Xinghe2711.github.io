@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>欢迎来到一架国泰航空A330官方网站</title>
     <style>
+        /* ========== CSS 变量（主题） ========== */
         :root {
             --bg: #ffffff;
             --default-bg-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80');
@@ -107,15 +108,8 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        .top-bar {
-            position: fixed; top:0; left:0; right:0;
-            height: var(--topbar-height);
-            background-color: var(--bg);
-            border-bottom: 1px solid var(--divider);
-            z-index: 1003;
-            display: flex; align-items: center; padding: 0 20px;
-            transition: all 0.3s ease;
-        }
+        /* ========== 顶部栏 ========== */
+        .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; transition: all 0.3s ease; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
         .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1004; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; -webkit-tap-highlight-color:transparent; outline:none; }
@@ -148,11 +142,13 @@
         .btn-download:hover { background-color:var(--download-btn-hover-bg); border-color:var(--download-btn-hover-bg); color:var(--download-btn-hover-text); }
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
+        /* iOS 开关 */
         .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; }
         .ios-switch .knob { position:absolute; top:2px; left:2px; width:27px; height:27px; background-color:#fff; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
 
+        /* 设置弹窗 */
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -167,6 +163,7 @@
         .settings-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; }
 
+        /* 计算器 */
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .calc-modal { background-color:var(--calc-bg); border-radius:20px; padding:1rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -184,6 +181,7 @@
         .calc-key.clear { background-color:#d4d4d2; color:#1a1a1a; }
         [data-theme="dark"] .calc-key.clear { background-color:#5a5a5a; color:#f0f0f0; }
 
+        /* 拨号盘 */
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .dialpad-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:280px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -198,54 +196,60 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* ===== 主界面元素（按钮、公告栏、下载按钮）在三种模式下的样式 ===== */
-        body.glass-mode .btn { background-color:rgba(0,122,255,0.8); border-color:rgba(255,255,255,0.35); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-        body.glass-mode .btn-download { background-color:rgba(255,255,255,0.55); border-color:rgba(0,0,0,0.18); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-        [data-theme="dark"] body.glass-mode .btn-download { background-color:rgba(44,44,46,0.55); border-color:rgba(255,255,255,0.12); color:#f0f0f0; }
-        body.glass-mode .announcement { background-color:rgba(255,255,255,0.55); border-color:rgba(0,0,0,0.18); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
-        [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55); border-color:rgba(255,255,255,0.12); }
+        /* ========== 显示模式样式 ========== */
+        body.glass-mode { background-color:rgba(255,255,255,0.35); }
+        [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35); }
+        body.glass-mode .btn { background-color:rgba(0,122,255,0.8) !important; border-color:rgba(255,255,255,0.35) !important; backdrop-filter:blur(6px) !important; -webkit-backdrop-filter:blur(6px) !important; }
+        body.glass-mode .btn-download { background-color:rgba(255,255,255,0.55) !important; border-color:rgba(0,0,0,0.18) !important; backdrop-filter:blur(6px) !important; -webkit-backdrop-filter:blur(6px) !important; }
+        [data-theme="dark"] body.glass-mode .btn-download { background-color:rgba(44,44,46,0.55) !important; border-color:rgba(255,255,255,0.12) !important; color:#f0f0f0 !important; }
+        body.glass-mode .announcement { background-color:rgba(255,255,255,0.55) !important; border-color:rgba(0,0,0,0.18) !important; backdrop-filter:blur(8px) !important; -webkit-backdrop-filter:blur(8px) !important; }
+        [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55) !important; border-color:rgba(255,255,255,0.12) !important; }
+        body.glass-mode .sidebar-menu { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-left:1px solid rgba(255,255,255,0.5) !important; }
+        [data-theme="dark"] body.glass-mode .sidebar-menu { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
+        body.glass-mode .settings-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
+        [data-theme="dark"] body.glass-mode .settings-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
+        body.glass-mode .calc-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
+        [data-theme="dark"] body.glass-mode .calc-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
+        body.glass-mode .dialpad-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.55) !important; }
+        [data-theme="dark"] body.glass-mode .dialpad-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
 
-        body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(0,119,204,0.65), rgba(0,119,204,0.35) 50%, rgba(0,119,204,0.55)); backdrop-filter:blur(10px) saturate(150%); -webkit-backdrop-filter:blur(10px) saturate(150%); border:1px solid rgba(255,255,255,0.3); color:#fff; }
-        [data-theme="dark"] body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(66,165,245,0.65), rgba(66,165,245,0.35) 50%, rgba(66,165,245,0.55)); color:#121212; }
-        body.liquid-glass-mode .btn-download { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)); backdrop-filter:blur(10px) saturate(140%); -webkit-backdrop-filter:blur(10px) saturate(140%); border:1px solid rgba(0,0,0,0.15); }
-        [data-theme="dark"] body.liquid-glass-mode .btn-download { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)); border-color:rgba(255,255,255,0.1); color:#f0f0f0; }
-        body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(20px) saturate(170%); -webkit-backdrop-filter:blur(20px) saturate(170%); border:1px solid rgba(255,255,255,0.35); }
-        [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border-color:rgba(255,255,255,0.1); }
+        body.liquid-glass-mode { background-color:rgba(255,255,255,0.2); }
+        [data-theme="dark"] body.liquid-glass-mode { background-color:rgba(18,18,18,0.2); }
+        body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(0,119,204,0.65), rgba(0,119,204,0.35) 50%, rgba(0,119,204,0.55)) !important; backdrop-filter:blur(10px) saturate(150%) !important; -webkit-backdrop-filter:blur(10px) saturate(150%) !important; border:1px solid rgba(255,255,255,0.3) !important; color:#fff !important; }
+        [data-theme="dark"] body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(66,165,245,0.65), rgba(66,165,245,0.35) 50%, rgba(66,165,245,0.55)) !important; color:#121212 !important; }
+        body.liquid-glass-mode .btn-download { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)) !important; backdrop-filter:blur(10px) saturate(140%) !important; -webkit-backdrop-filter:blur(10px) saturate(140%) !important; border:1px solid rgba(0,0,0,0.15) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .btn-download { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)) !important; border-color:rgba(255,255,255,0.1) !important; color:#f0f0f0 !important; }
+        body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(20px) saturate(170%) !important; -webkit-backdrop-filter:blur(20px) saturate(170%) !important; border:1px solid rgba(255,255,255,0.35) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-color:rgba(255,255,255,0.1) !important; }
+        body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-left:1px solid rgba(255,255,255,0.35) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
+        body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
+        body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
+        body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.38)) !important; backdrop-filter:blur(28px) saturate(190%) !important; -webkit-backdrop-filter:blur(28px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.45) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(50,50,50,0.5), rgba(22,22,22,0.25) 50%, rgba(40,40,40,0.4)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
 
-        body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2,#1e69de); border:1px solid #1c4f9c; border-radius:6px; text-shadow:0 -1px 0 rgba(0,0,0,0.4); box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3); }
-        [data-theme="dark"] body.retro-mode .btn { background:linear-gradient(to bottom,#5c8ccf,#2b5c9e); border-color:#1c3f6c; }
-        body.retro-mode .btn-download { background:#fff; border:1px solid #8f8f8f; border-radius:5px; color:#333; text-shadow:0 1px 0 #fff; box-shadow:0 2px 3px rgba(0,0,0,0.25), inset 0 1px 0 #fff; }
-        [data-theme="dark"] body.retro-mode .btn-download { background:#5a5a5a; border-color:#3a3a3a; color:#eee; text-shadow:0 -1px 0 #000; }
-        body.retro-mode .announcement { background:#fafafa; border:1px solid #a0a0a0; border-radius:6px; box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(0,0,0,0.25); }
-        [data-theme="dark"] body.retro-mode .announcement { background:#505050; border-color:#2a2a2a; }
-
-        /* 侧边栏和弹窗模式样式 */
-        body.glass-mode .sidebar-menu { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-left:1px solid rgba(255,255,255,0.5); }
-        [data-theme="dark"] body.glass-mode .sidebar-menu { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); border-left:1px solid rgba(255,255,255,0.1); }
-        body.glass-mode .settings-modal { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.6); }
-        [data-theme="dark"] body.glass-mode .settings-modal { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.1); }
-        body.glass-mode .calc-modal { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.6); }
-        [data-theme="dark"] body.glass-mode .calc-modal { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.1); }
-        body.glass-mode .dialpad-modal { background-color:rgba(255,255,255,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.55); }
-        [data-theme="dark"] body.glass-mode .dialpad-modal { background-color:rgba(28,28,30,0.72); backdrop-filter:blur(22px) saturate(190%); -webkit-backdrop-filter:blur(22px) saturate(190%); border:1px solid rgba(255,255,255,0.1); }
-
-        body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(28px) saturate(200%); -webkit-backdrop-filter:blur(28px) saturate(200%); border-left:1px solid rgba(255,255,255,0.35); }
-        [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border-left:1px solid rgba(255,255,255,0.1); }
-        body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(28px) saturate(200%); -webkit-backdrop-filter:blur(28px) saturate(200%); border:1px solid rgba(255,255,255,0.4); }
-        [data-theme="dark"] body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border:1px solid rgba(255,255,255,0.12); }
-        body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)); backdrop-filter:blur(28px) saturate(200%); -webkit-backdrop-filter:blur(28px) saturate(200%); border:1px solid rgba(255,255,255,0.4); }
-        [data-theme="dark"] body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)); border:1px solid rgba(255,255,255,0.12); }
-        body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.38)); backdrop-filter:blur(28px) saturate(190%); -webkit-backdrop-filter:blur(28px) saturate(190%); border:1px solid rgba(255,255,255,0.45); }
-        [data-theme="dark"] body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(50,50,50,0.5), rgba(22,22,22,0.25) 50%, rgba(40,40,40,0.4)); border:1px solid rgba(255,255,255,0.12); }
-
-        body.retro-mode .sidebar-menu { background:linear-gradient(to bottom,#f0f0f0,#d0d0d0); border-left:1px solid #7f7f7f; box-shadow:-3px 0 8px rgba(0,0,0,0.25); }
-        [data-theme="dark"] body.retro-mode .sidebar-menu { background:linear-gradient(to bottom,#555,#3a3a3a); border-left:1px solid #1a1a1a; }
-        body.retro-mode .settings-modal { background:#f5f5f5; border:1px solid #8f8f8f; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff; }
-        [data-theme="dark"] body.retro-mode .settings-modal { background:#4a4a4a; border-color:#2a2a2a; }
-        body.retro-mode .calc-modal { background:#f5f5f5; border:1px solid #8f8f8f; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff; }
-        [data-theme="dark"] body.retro-mode .calc-modal { background:#4a4a4a; border-color:#2a2a2a; }
-        body.retro-mode .dialpad-modal { background:#f5f5f5; border:1px solid #8f8f8f; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.4); }
-        [data-theme="dark"] body.retro-mode .dialpad-modal { background:#4a4a4a; border-color:#2a2a2a; }
+        body.retro-mode { background-color:#a0a8b0 !important; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="%23b8c0c8"/></svg>') !important; background-size:160px 160px !important; }
+        [data-theme="dark"] body.retro-mode { background-color:#2a2f35 !important; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="%233a4048"/></svg>') !important; }
+        body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; text-shadow:0 -1px 0 rgba(0,0,0,0.4) !important; box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; color:#fff !important; }
+        [data-theme="dark"] body.retro-mode .btn { background:linear-gradient(to bottom,#5c8ccf,#2b5c9e) !important; border-color:#1c3f6c !important; }
+        body.retro-mode .btn-download { background:#fff !important; border:1px solid #8f8f8f !important; border-radius:5px !important; color:#333 !important; text-shadow:0 1px 0 #fff !important; box-shadow:0 2px 3px rgba(0,0,0,0.25), inset 0 1px 0 #fff !important; }
+        [data-theme="dark"] body.retro-mode .btn-download { background:#5a5a5a !important; border-color:#3a3a3a !important; color:#eee !important; text-shadow:0 -1px 0 #000 !important; }
+        body.retro-mode .announcement { background:#fafafa !important; border:1px solid #a0a0a0 !important; border-radius:6px !important; box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(0,0,0,0.25) !important; }
+        [data-theme="dark"] body.retro-mode .announcement { background:#505050 !important; border-color:#2a2a2a !important; }
+        body.retro-mode .sidebar-menu { background:linear-gradient(to bottom,#f0f0f0,#d0d0d0) !important; border-left:1px solid #7f7f7f !important; box-shadow:-3px 0 8px rgba(0,0,0,0.25) !important; }
+        [data-theme="dark"] body.retro-mode .sidebar-menu { background:linear-gradient(to bottom,#555,#3a3a3a) !important; border-left:1px solid #1a1a1a !important; }
+        body.retro-mode .settings-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
+        [data-theme="dark"] body.retro-mode .settings-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
+        body.retro-mode .calc-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
+        [data-theme="dark"] body.retro-mode .calc-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
+        body.retro-mode .dialpad-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:10px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4) !important; }
+        [data-theme="dark"] body.retro-mode .dialpad-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
+        body.retro-mode .dial-key { background:#e0e0e0 !important; border:1px solid #a0a0a0 !important; border-radius:7px !important; box-shadow:0 2px 3px rgba(0,0,0,0.2), inset 0 1px 0 #fff !important; }
+        [data-theme="dark"] body.retro-mode .dial-key { background:#5a5a5a !important; border-color:#3a3a3a !important; }
+        body.retro-mode .hamburger-line { background-color:#333 !important; }
+        [data-theme="dark"] body.retro-mode .hamburger-line { background-color:#ccc !important; }
 
         @media (max-width:480px) {
             :root { --topbar-height:52px; }
@@ -260,7 +264,6 @@
     </style>
 </head>
 <body>
-
     <header class="top-bar">
         <div class="site-title">一架国泰航空A330官方网站</div>
     </header>
@@ -408,6 +411,55 @@
                 });
             }
 
+            // ========== 必应每日一图（优化版） ==========
+            function applyBingBackground(url) {
+                document.body.style.backgroundImage = `url("${url}")`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center';
+                document.body.style.backgroundAttachment = 'fixed';
+            }
+
+            function clearBingBackground() {
+                document.body.style.backgroundImage = '';
+                document.body.style.backgroundSize = '';
+                document.body.style.backgroundPosition = '';
+                document.body.style.backgroundAttachment = '';
+            }
+
+            async function fetchBingWallpaper() {
+                const today = new Date().toISOString().slice(0,10);
+                const cached = localStorage.getItem('bingWallpaperData');
+                if (cached) {
+                    try {
+                        const { date, url } = JSON.parse(cached);
+                        if (date === today) {
+                            applyBingBackground(url);
+                            return;
+                        }
+                    } catch(e) {}
+                }
+                try {
+                    const response = await fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN');
+                    const data = await response.json();
+                    if (data && data.images && data.images.length > 0) {
+                        const imageUrl = 'https://www.bing.com' + data.images[0].url;
+                        localStorage.setItem('bingWallpaperData', JSON.stringify({ date: today, url: imageUrl }));
+                        applyBingBackground(imageUrl);
+                    }
+                } catch (error) {
+                    console.warn('获取必应壁纸失败，回退到默认背景', error);
+                    clearBingBackground();
+                }
+            }
+
+            function updateBackground() {
+                if (bingEnabled) {
+                    fetchBingWallpaper();
+                } else {
+                    clearBingBackground();
+                }
+            }
+
             function updateUI() {
                 document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode');
                 if (retroEnabled) document.body.classList.add('retro-mode');
@@ -420,14 +472,7 @@
                 themeLightBtn.classList.toggle('active', currentTheme === 'light');
                 themeDarkBtn.classList.toggle('active', currentTheme === 'dark');
                 htmlElement.setAttribute('data-theme', currentTheme);
-                if (bingEnabled) {
-                    fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1')
-                        .then(r => r.json())
-                        .then(d => { if(d.images?.length) { document.body.style.backgroundImage = `url("https://www.bing.com${d.images[0].url}")`; } })
-                        .catch(() => {});
-                } else {
-                    document.body.style.backgroundImage = '';
-                }
+                updateBackground();
             }
 
             function toggleMenu(force) {
@@ -486,6 +531,7 @@
                 btn.addEventListener('click', () => { currentLang = btn.getAttribute('data-lang'); localStorage.setItem('lang', currentLang); htmlElement.setAttribute('lang', currentLang); updateUI(); });
             });
 
+            // 计算器逻辑（保持不变）
             function calcInput(value) {
                 if (calcShouldResetDisplay) { calcDisplay.textContent = '0'; calcShouldResetDisplay = false; }
                 const current = calcDisplay.textContent;
