@@ -222,6 +222,40 @@
         }
         .sidebar-menu.open { transform: translateX(0); }
 
+        /* 透明模式下的侧边栏 */
+        body.glass-mode .sidebar-menu {
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        [data-theme="dark"] body.glass-mode .sidebar-menu {
+            background-color: rgba(30, 30, 30, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 液态玻璃模式下的侧边栏 —— 强化样式 */
+        body.liquid-glass-mode .sidebar-menu {
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.5) 0%,
+                    rgba(255, 255, 255, 0.22) 50%,
+                    rgba(255, 255, 255, 0.4) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: -2px 0 20px rgba(0, 0, 0, 0.06),
+                inset 1px 0 0 rgba(255, 255, 255, 0.4);
+        }
+        [data-theme="dark"] body.liquid-glass-mode .sidebar-menu {
+            background: linear-gradient(180deg,
+                    rgba(50, 50, 50, 0.5) 0%,
+                    rgba(25, 25, 25, 0.25) 50%,
+                    rgba(40, 40, 40, 0.4) 100%);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: -2px 0 20px rgba(0, 0, 0, 0.25),
+                inset 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+
         .menu-section { padding: 16px 20px 8px 20px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
         .menu-item { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 12px 20px; background: transparent; border: none; cursor: pointer; font-size: 0.95rem; color: var(--text); transition: background-color 0.2s ease; font-family: inherit; letter-spacing: 0.04em; -webkit-tap-highlight-color: transparent; outline: none; user-select: none; -webkit-touch-callout: none; text-decoration: none; text-align: left; }
         .menu-item:hover { background-color: var(--menu-item-hover); }
@@ -250,7 +284,7 @@
         .btn-download:active { background-color: var(--download-btn-hover-bg); border-color: var(--download-btn-hover-bg); color: var(--download-btn-hover-text); transform: scale(0.98); }
         .footer-note { margin-top: clamp(2rem, 6vw, 2.8rem); font-size: clamp(0.6rem, 2vw, 0.7rem); color: var(--text-secondary); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300; transition: color 0.4s ease; }
 
-        /* ========== 拨号盘等模态 ========== */
+        /* ========== 拨号盘模态框 ========== */
         .dialpad-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--modal-overlay); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 1rem; }
         .dialpad-overlay.visible { opacity: 1; pointer-events: auto; }
         .dialpad-modal { background-color: var(--modal-bg); border-radius: 20px; padding: 1.5rem 1.5rem 1.8rem; width: 100%; max-width: 320px; box-shadow: 0 12px 60px rgba(0,0,0,0.2); transform: translateY(20px) scale(0.95); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background-color 0.3s ease, backdrop-filter 0.3s ease; border: 1px solid var(--divider); }
@@ -694,7 +728,6 @@
             updateLiquidGlassMode();
             updateBackground();
 
-            // 确保主题圆点状态正确
             if (currentTheme === 'dark') {
                 themeDot.classList.remove('inactive');
             } else {
