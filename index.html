@@ -109,6 +109,7 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
+        /* ========== 顶部栏 ========== */
         .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; transition: all 0.3s ease; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
@@ -121,6 +122,7 @@
         .menu-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:1000; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         .menu-overlay.visible { opacity:1; pointer-events:auto; }
 
+        /* ========== 侧边栏 ========== */
         .sidebar-menu { position:fixed; top:0; right:0; z-index:1001; background-color:var(--menu-bg); width:var(--sidebar-width); max-width:85vw; height:100%; box-shadow:-4px 0 24px var(--menu-shadow); padding:20px 0; overflow-y:auto; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.22,1,0.36,1); border-left:1px solid var(--divider); }
         .sidebar-menu.open { transform:translateX(0); }
         .menu-section { padding:14px 20px 6px; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); }
@@ -128,6 +130,7 @@
         .menu-item:hover { background-color:var(--menu-item-hover); }
         .menu-divider { height:1px; background-color:var(--divider); margin:6px 0; opacity:0.5; }
 
+        /* ========== 主内容 ========== */
         .container { text-align:center; padding:clamp(1.2rem,4vw,2rem); max-width:540px; width:100%; margin:auto; transition:all 0.35s ease; }
         h1 { font-size:clamp(1.3rem,4vw,2rem); font-weight:300; color:var(--text); letter-spacing:0.04em; line-height:1.5; margin-bottom:1.2rem; }
         .divider { width:48px; height:1px; background-color:var(--divider); margin:0 auto 1.2rem auto; }
@@ -146,11 +149,13 @@
 
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
+        /* iOS 开关 */
         .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; }
         .ios-switch .knob { position:absolute; top:2px; left:2px; width:27px; height:27px; background-color:#fff; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
 
+        /* ========== 设置弹窗 ========== */
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -167,6 +172,18 @@
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; }
 
+        /* ========== 关于弹窗 ========== */
+        .about-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2200; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
+        .about-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
+        .about-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.5rem; width:100%; max-width:320px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); position:relative; }
+        .about-overlay.visible .about-modal { transform:translateY(0) scale(1); }
+        .about-title { font-size:2rem; font-weight:700; color:var(--text); text-align:center; margin-bottom:0.5rem; }
+        .about-info { text-align:center; color:var(--text-secondary); font-size:0.9rem; line-height:1.6; }
+        .about-info p { margin:0.2rem 0; }
+        .about-close-btn { position:absolute; right:1rem; bottom:1rem; padding:0.5rem 1.2rem; background-color:var(--accent); color:#fff; border:none; border-radius:20px; font-size:0.85rem; cursor:pointer; transition:background-color 0.2s; }
+        .about-close-btn:hover { background-color:var(--accent-hover); }
+
+        /* 计算器 */
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .calc-modal { background-color:var(--calc-bg); border-radius:20px; padding:1rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -184,6 +201,7 @@
         .calc-key.clear { background-color:#d4d4d2; color:#1a1a1a; }
         [data-theme="dark"] .calc-key.clear { background-color:#5a5a5a; color:#f0f0f0; }
 
+        /* 拨号盘 */
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .dialpad-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:280px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -198,7 +216,7 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* 显示模式样式 */
+        /* ========== 显示模式样式 ========== */
         body.glass-mode { background-color:rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35) !important; }
         body.glass-mode .top-bar { background-color:rgba(255,255,255,0.75) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-bottom:1px solid rgba(255,255,255,0.5) !important; }
@@ -211,8 +229,8 @@
         body.glass-mode .download-btn-action { background-color:rgba(0,122,255,0.8) !important; }
         body.glass-mode .announcement { background-color:rgba(255,255,255,0.55) !important; border-color:rgba(0,0,0,0.18) !important; backdrop-filter:blur(8px) !important; -webkit-backdrop-filter:blur(8px) !important; }
         [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55) !important; border-color:rgba(255,255,255,0.12) !important; }
-        body.glass-mode .settings-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
-        [data-theme="dark"] body.glass-mode .settings-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
+        body.glass-mode .settings-modal, body.glass-mode .about-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
+        [data-theme="dark"] body.glass-mode .settings-modal, [data-theme="dark"] body.glass-mode .about-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
         body.glass-mode .calc-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
         [data-theme="dark"] body.glass-mode .calc-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
         body.glass-mode .dialpad-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.55) !important; }
@@ -232,8 +250,8 @@
         [data-theme="dark"] body.liquid-glass-mode .download-btn-action { background:linear-gradient(135deg, rgba(66,165,245,0.65), rgba(66,165,245,0.35) 50%, rgba(66,165,245,0.55)) !important; color:#121212 !important; }
         body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(20px) saturate(170%) !important; -webkit-backdrop-filter:blur(20px) saturate(170%) !important; border:1px solid rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-color:rgba(255,255,255,0.1) !important; }
-        body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
-        [data-theme="dark"] body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
+        body.liquid-glass-mode .settings-modal, body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .settings-modal, [data-theme="dark"] body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
         body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
         [data-theme="dark"] body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
         body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.38)) !important; backdrop-filter:blur(28px) saturate(190%) !important; -webkit-backdrop-filter:blur(28px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.45) !important; }
@@ -257,8 +275,8 @@
         [data-theme="dark"] body.retro-mode .download-btn-action { background:linear-gradient(to bottom,#5c8ccf,#2b5c9e) !important; border-color:#1c3f6c !important; }
         body.retro-mode .announcement { background:#fafafa !important; border:1px solid #a0a0a0 !important; border-radius:6px !important; box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(0,0,0,0.25) !important; }
         [data-theme="dark"] body.retro-mode .announcement { background:#505050 !important; border-color:#2a2a2a !important; }
-        body.retro-mode .settings-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
-        [data-theme="dark"] body.retro-mode .settings-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
+        body.retro-mode .settings-modal, body.retro-mode .about-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
+        [data-theme="dark"] body.retro-mode .settings-modal, [data-theme="dark"] body.retro-mode .about-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
         body.retro-mode .calc-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
         [data-theme="dark"] body.retro-mode .calc-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
         body.retro-mode .dialpad-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:10px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4) !important; }
@@ -298,6 +316,7 @@
         <div class="menu-section" data-i18n="menu">菜单</div>
         <button class="menu-item" id="settingsTrigger"><span data-i18n="settings">设置</span><span>⚙️</span></button>
         <button class="menu-item" id="calcTrigger"><span data-i18n="calculator">计算器</span><span>🔢</span></button>
+        <button class="menu-item" id="aboutTrigger"><span data-i18n="about">关于</span><span>ℹ️</span></button>
         <div class="menu-divider"></div>
         <div class="menu-section" data-i18n="links">链接</div>
         <a href="https://mcjs.cc" target="_blank" class="menu-item"><span data-i18n="webMC">网页版MC</span> <span>↗</span></a>
@@ -341,6 +360,18 @@
                 <div class="settings-option"><span class="settings-option-label">한국어</span><button class="ios-switch lang-switch" data-lang="ko"><span class="knob"></span></button></div>
             </div>
             <button class="settings-close-btn" id="settingsCloseBtn" data-i18n="close">关闭</button>
+        </div>
+    </div>
+
+    <!-- 关于弹窗 -->
+    <div class="about-overlay" id="aboutOverlay">
+        <div class="about-modal">
+            <div class="about-title" data-i18n="about">关于</div>
+            <div class="about-info">
+                <p data-i18n="aboutText">这是一架国泰航空A330官方网站</p>
+                <p data-i18n="version">版本号 6.1.0</p>
+            </div>
+            <button class="about-close-btn" id="aboutCloseBtn" data-i18n="close">关闭</button>
         </div>
     </div>
 
@@ -419,6 +450,7 @@
             const $ = id => document.getElementById(id);
             const hamburgerBtn = $('hamburgerBtn'), sidebarMenu = $('sidebarMenu'), menuOverlay = $('menuOverlay');
             const settingsTrigger = $('settingsTrigger'), settingsOverlay = $('settingsOverlay'), settingsCloseBtn = $('settingsCloseBtn');
+            const aboutTrigger = $('aboutTrigger'), aboutOverlay = $('aboutOverlay'), aboutCloseBtn = $('aboutCloseBtn');
             const calcTrigger = $('calcTrigger'), calcOverlay = $('calcOverlay'), calcDisplay = $('calcDisplay');
             const themeDarkSwitch = $('themeDarkSwitch');
             const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), bingWallpaperSwitch = $('bingWallpaperSwitch');
@@ -440,11 +472,11 @@
             let calcFirstOperand = null, calcOperator = null, calcShouldResetDisplay = false;
 
             const translations = {
-                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', bingWallpaper:'必应壁纸', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
-                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', theme:'主題模式', darkMode:'深色模式', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', bingWallpaper:'必應壁紙', wallpaper:'壁紙選擇', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
-                'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', theme:'Theme', darkMode:'Dark Mode', displayMode:'Display Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', bingWallpaper:'Bing Wallpaper', wallpaper:'Wallpaper Selection', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', language:'Language', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
-                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', bingWallpaper:'Bing壁紙', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
-                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', theme:'테마', darkMode:'다크 모드', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', bingWallpaper:'Bing 배경화면', wallpaper:'배경화면 선택', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', language:'언어', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
+                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', aboutText:'这是一架国泰航空A330官方网站', version:'版本号 6.1.0', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', bingWallpaper:'必应壁纸', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
+                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', aboutText:'這是一架國泰航空A330官方網站', version:'版本號 6.1.0', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', theme:'主題模式', darkMode:'深色模式', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', bingWallpaper:'必應壁紙', wallpaper:'壁紙選擇', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
+                'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', about:'About', aboutText:'This is Cathay Pacific A330 Official Website', version:'Version 6.1.0', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', theme:'Theme', darkMode:'Dark Mode', displayMode:'Display Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', bingWallpaper:'Bing Wallpaper', wallpaper:'Wallpaper Selection', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', language:'Language', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
+                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', aboutText:'これはキャセイパシフィックA330公式サイトです', version:'バージョン 6.1.0', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', bingWallpaper:'Bing壁紙', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
+                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', about:'정보', aboutText:'이것은 캐세이퍼시픽 A330 공식 웹사이트입니다', version:'버전 6.1.0', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', theme:'테마', darkMode:'다크 모드', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', bingWallpaper:'Bing 배경화면', wallpaper:'배경화면 선택', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', language:'언어', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
             };
 
             const wallpaperURLs = {
@@ -561,6 +593,7 @@
 
             function closeAllModals() {
                 settingsOverlay.classList.remove('visible');
+                aboutOverlay.classList.remove('visible');
                 dialpadOverlay.classList.remove('visible');
                 calcOverlay.classList.remove('visible');
             }
@@ -568,6 +601,10 @@
             settingsTrigger.addEventListener('click', () => { closeAllModals(); toggleMenu(false); settingsOverlay.classList.add('visible'); updateUI(); });
             settingsCloseBtn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
             settingsOverlay.addEventListener('click', e => { if(e.target === settingsOverlay) settingsOverlay.classList.remove('visible'); });
+
+            aboutTrigger.addEventListener('click', () => { closeAllModals(); toggleMenu(false); aboutOverlay.classList.add('visible'); });
+            aboutCloseBtn.addEventListener('click', () => aboutOverlay.classList.remove('visible'));
+            aboutOverlay.addEventListener('click', e => { if(e.target === aboutOverlay) aboutOverlay.classList.remove('visible'); });
 
             calcTrigger.addEventListener('click', () => { closeAllModals(); toggleMenu(false); calcOverlay.classList.add('visible'); });
             calcOverlay.addEventListener('click', e => { if(e.target === calcOverlay) calcOverlay.classList.remove('visible'); });
