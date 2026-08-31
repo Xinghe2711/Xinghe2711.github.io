@@ -109,7 +109,7 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* ========== 顶部栏 ========== */
+        /* ========== 基础组件 ========== */
         .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; transition: all 0.3s ease; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
@@ -122,7 +122,6 @@
         .menu-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:1000; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         .menu-overlay.visible { opacity:1; pointer-events:auto; }
 
-        /* ========== 侧边栏 ========== */
         .sidebar-menu { position:fixed; top:0; right:0; z-index:1001; background-color:var(--menu-bg); width:var(--sidebar-width); max-width:85vw; height:100%; box-shadow:-4px 0 24px var(--menu-shadow); padding:20px 0; overflow-y:auto; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.22,1,0.36,1); border-left:1px solid var(--divider); }
         .sidebar-menu.open { transform:translateX(0); }
         .menu-section { padding:14px 20px 6px; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); }
@@ -130,7 +129,6 @@
         .menu-item:hover { background-color:var(--menu-item-hover); }
         .menu-divider { height:1px; background-color:var(--divider); margin:6px 0; opacity:0.5; }
 
-        /* ========== 主内容 ========== */
         .container { text-align:center; padding:clamp(1.2rem,4vw,2rem); max-width:540px; width:100%; margin:auto; transition:all 0.35s ease; }
         h1 { font-size:clamp(1.3rem,4vw,2rem); font-weight:300; color:var(--text); letter-spacing:0.04em; line-height:1.5; margin-bottom:1.2rem; }
         .divider { width:48px; height:1px; background-color:var(--divider); margin:0 auto 1.2rem auto; }
@@ -149,7 +147,6 @@
 
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
-        /* iOS 开关 */
         .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; }
         .ios-switch .knob { position:absolute; top:2px; left:2px; width:27px; height:27px; background-color:#fff; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
         .ios-switch.on { background-color:var(--toggle-on); }
@@ -216,7 +213,7 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* ========== 显示模式样式 ========== */
+        /* ========== 显示模式样式 (透明、液态玻璃、怀旧、Minecraft) ========== */
         body.glass-mode { background-color:rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35) !important; }
         body.glass-mode .top-bar { background-color:rgba(255,255,255,0.75) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-bottom:1px solid rgba(255,255,255,0.5) !important; }
@@ -286,6 +283,49 @@
         body.retro-mode .hamburger-line { background-color:#333 !important; }
         [data-theme="dark"] body.retro-mode .hamburger-line { background-color:#ccc !important; }
 
+        /* ========== Minecraft 模式 (Ore UI 风格) ========== */
+        body.minecraft-mode { background-color:#2d2d2d !important; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" fill="%233a3a3a"/><rect x="1" y="1" width="38" height="38" fill="none" stroke="%23555" stroke-width="2"/></svg>') !important; background-size:40px 40px !important; }
+        [data-theme="dark"] body.minecraft-mode { background-color:#1a1a1a !important; }
+        body.minecraft-mode .top-bar { background:linear-gradient(to bottom, #4a4a4a, #2d2d2d) !important; border-bottom:2px solid #1a1a1a !important; box-shadow:0 2px 4px rgba(0,0,0,0.5) !important; }
+        body.minecraft-mode .site-title { color:#ffffff; font-family:'Courier New', monospace; text-shadow:1px 1px 0 #000; }
+        body.minecraft-mode .hamburger-line { background-color:#ffffff; }
+        body.minecraft-mode .sidebar-menu { background:linear-gradient(to bottom, #3a3a3a, #2d2d2d) !important; border-left:2px solid #1a1a1a !important; }
+        body.minecraft-mode .menu-section { color:#aaa; }
+        body.minecraft-mode .menu-item { color:#ffffff; border-bottom:1px solid #555; font-family:'Courier New', monospace; }
+        body.minecraft-mode .menu-item:hover { background-color:#4a4a4a !important; }
+        body.minecraft-mode .container { background-color:#3a3a3a; border:2px solid #1a1a1a; border-radius:4px; padding:1.5rem; }
+        body.minecraft-mode h1 { color:#ffffff; font-family:'Courier New', monospace; text-shadow:1px 1px 0 #000; }
+        body.minecraft-mode .divider { background-color:#555; }
+        body.minecraft-mode .btn { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Courier New', monospace; text-shadow:1px 1px 0 #000; box-shadow:inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5); }
+        body.minecraft-mode .btn:hover { background:linear-gradient(to bottom, #7a7a7a, #5a5a5a) !important; }
+        body.minecraft-mode .download-item { background:#4a4a4a !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Courier New', monospace; }
+        body.minecraft-mode .download-text { color:#ffffff; }
+        body.minecraft-mode .download-btn-action { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Courier New', monospace; text-shadow:1px 1px 0 #000; }
+        body.minecraft-mode .download-btn-action:hover { background:linear-gradient(to bottom, #7a7a7a, #5a5a5a) !important; }
+        body.minecraft-mode .announcement { background:#4a4a4a !important; border:2px solid #1a1a1a !important; border-radius:4px; }
+        body.minecraft-mode .announcement-title, body.minecraft-mode .announcement-subtitle { color:#ffffff; }
+        body.minecraft-mode .settings-modal, body.minecraft-mode .about-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px; }
+        body.minecraft-mode .settings-title, body.minecraft-mode .about-title { color:#ffffff; font-family:'Courier New', monospace; }
+        body.minecraft-mode .settings-section-title, body.minecraft-mode .settings-option-label, body.minecraft-mode .wallpaper-btn, body.minecraft-mode .settings-btn { color:#ffffff; }
+        body.minecraft-mode .wallpaper-btn, body.minecraft-mode .settings-btn { border:1px solid #555; background:transparent; }
+        body.minecraft-mode .wallpaper-btn.active, body.minecraft-mode .settings-btn.active { background:#5a5a5a; }
+        body.minecraft-mode .calc-modal { background:#3a3a3a; border:2px solid #1a1a1a; border-radius:6px; }
+        body.minecraft-mode .calc-display { background:#2d2d2d; border:2px solid #1a1a1a; color:#ffffff; }
+        body.minecraft-mode .calc-key { background:#4a4a4a; border:2px solid #1a1a1a; border-radius:4px; color:#ffffff; font-family:'Courier New', monospace; }
+        body.minecraft-mode .calc-key.operator { background:#6b6b6b; }
+        body.minecraft-mode .calc-key.equals { background:#5a8f3c; }
+        body.minecraft-mode .dialpad-modal { background:#3a3a3a; border:2px solid #1a1a1a; border-radius:6px; }
+        body.minecraft-mode .dialpad-display { background:#2d2d2d; border:2px solid #1a1a1a; color:#ffffff; }
+        body.minecraft-mode .dial-key { background:#4a4a4a; border:2px solid #1a1a1a; border-radius:4px; color:#ffffff; font-family:'Courier New', monospace; }
+        body.minecraft-mode .dial-key:hover { background:#5a5a5a; }
+        body.minecraft-mode .dial-action.delete { background:transparent; border:1px solid #555; color:#ccc; }
+        body.minecraft-mode .dial-action.close { background:#6b6b6b; }
+        /* Ore UI 风格开关：方形滑块，类似红石开关 */
+        body.minecraft-mode .ios-switch { width:56px; height:28px; border-radius:4px; background-color:#2d2d2d; border:2px solid #1a1a1a; box-shadow:inset 0 1px 0 rgba(255,255,255,0.1); }
+        body.minecraft-mode .ios-switch .knob { width:24px; height:24px; border-radius:2px; background-color:#8b8b8b; box-shadow:0 1px 2px rgba(0,0,0,0.5); top:2px; left:2px; }
+        body.minecraft-mode .ios-switch.on { background-color:#4a7a3c; border-color:#2a4a1c; }
+        body.minecraft-mode .ios-switch.on .knob { transform:translateX(28px); background-color:#7aad5c; }
+
         @media (max-width:480px) {
             :root { --topbar-height:52px; }
             .site-title { font-size:0.9rem; }
@@ -339,6 +379,7 @@
                 <div class="settings-option"><span class="settings-option-label" data-i18n="glassMode">透明模式</span><button class="ios-switch" id="glassModeSwitch"><span class="knob"></span></button></div>
                 <div class="settings-option"><span class="settings-option-label" data-i18n="liquidGlassMode">液态玻璃</span><button class="ios-switch" id="liquidGlassModeSwitch"><span class="knob"></span></button></div>
                 <div class="settings-option"><span class="settings-option-label" data-i18n="retroMode">怀旧模式</span><button class="ios-switch" id="retroModeSwitch"><span class="knob"></span></button></div>
+                <div class="settings-option"><span class="settings-option-label" data-i18n="minecraftMode">Minecraft模式</span><button class="ios-switch" id="minecraftModeSwitch"><span class="knob"></span></button></div>
                 <div class="settings-option"><span class="settings-option-label" data-i18n="bingWallpaper">必应壁纸</span><button class="ios-switch" id="bingWallpaperSwitch"><span class="knob"></span></button></div>
             </div>
             <div class="settings-section">
@@ -363,7 +404,6 @@
         </div>
     </div>
 
-    <!-- 关于弹窗 -->
     <div class="about-overlay" id="aboutOverlay">
         <div class="about-modal">
             <div class="about-title" data-i18n="about">关于</div>
@@ -453,7 +493,7 @@
             const aboutTrigger = $('aboutTrigger'), aboutOverlay = $('aboutOverlay'), aboutCloseBtn = $('aboutCloseBtn');
             const calcTrigger = $('calcTrigger'), calcOverlay = $('calcOverlay'), calcDisplay = $('calcDisplay');
             const themeDarkSwitch = $('themeDarkSwitch');
-            const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), bingWallpaperSwitch = $('bingWallpaperSwitch');
+            const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), minecraftModeSwitch = $('minecraftModeSwitch'), bingWallpaperSwitch = $('bingWallpaperSwitch');
             const langSwitches = document.querySelectorAll('.lang-switch');
             const wallpaperBtns = document.querySelectorAll('.wallpaper-btn');
             const dialpadOverlay = $('dialpadOverlay'), dialpadDisplay = $('dialpadDisplay'), dialpadGrid = $('dialpadGrid');
@@ -467,16 +507,17 @@
             let glassEnabled = localStorage.getItem('glassMode') === 'enabled';
             let liquidGlassEnabled = localStorage.getItem('liquidGlassMode') === 'enabled';
             let retroEnabled = localStorage.getItem('retroMode') === 'enabled';
+            let minecraftEnabled = localStorage.getItem('minecraftMode') === 'enabled';
             let wallpaperChoice = localStorage.getItem('wallpaperChoice') || 'default';
             let dialValue = '';
             let calcFirstOperand = null, calcOperator = null, calcShouldResetDisplay = false;
 
             const translations = {
-                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', aboutText:'这是一架国泰航空A330官方网站', version:'版本号 6.1.0', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', bingWallpaper:'必应壁纸', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
-                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', aboutText:'這是一架國泰航空A330官方網站', version:'版本號 6.1.0', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', theme:'主題模式', darkMode:'深色模式', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', bingWallpaper:'必應壁紙', wallpaper:'壁紙選擇', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
-                'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', about:'About', aboutText:'This is Cathay Pacific A330 Official Website', version:'Version 6.1.0', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', theme:'Theme', darkMode:'Dark Mode', displayMode:'Display Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', bingWallpaper:'Bing Wallpaper', wallpaper:'Wallpaper Selection', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', language:'Language', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
-                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', aboutText:'これはキャセイパシフィックA330公式サイトです', version:'バージョン 6.1.0', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', bingWallpaper:'Bing壁紙', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
-                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', about:'정보', aboutText:'이것은 캐세이퍼시픽 A330 공식 웹사이트입니다', version:'버전 6.1.0', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', theme:'테마', darkMode:'다크 모드', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', bingWallpaper:'Bing 배경화면', wallpaper:'배경화면 선택', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', language:'언어', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
+                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', aboutText:'这是一架国泰航空A330官方网站', version:'版本号 6.1.0', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', minecraftMode:'Minecraft模式', bingWallpaper:'必应壁纸', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
+                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', aboutText:'這是一架國泰航空A330官方網站', version:'版本號 6.1.0', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', theme:'主題模式', darkMode:'深色模式', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', minecraftMode:'Minecraft模式', bingWallpaper:'必應壁紙', wallpaper:'壁紙選擇', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
+                'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', about:'About', aboutText:'This is Cathay Pacific A330 Official Website', version:'Version 6.1.0', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', theme:'Theme', darkMode:'Dark Mode', displayMode:'Display Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', minecraftMode:'Minecraft Mode', bingWallpaper:'Bing Wallpaper', wallpaper:'Wallpaper Selection', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', language:'Language', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
+                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', aboutText:'これはキャセイパシフィックA330公式サイトです', version:'バージョン 6.1.0', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', minecraftMode:'Minecraftモード', bingWallpaper:'Bing壁紙', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
+                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', about:'정보', aboutText:'이것은 캐세이퍼시픽 A330 공식 웹사이트입니다', version:'버전 6.1.0', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', theme:'테마', darkMode:'다크 모드', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', minecraftMode:'Minecraft 모드', bingWallpaper:'Bing 배경화면', wallpaper:'배경화면 선택', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', language:'언어', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
             };
 
             const wallpaperURLs = {
@@ -555,14 +596,21 @@
             }
 
             function updateUI() {
-                document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode');
-                if (retroEnabled) document.body.classList.add('retro-mode');
-                else if (liquidGlassEnabled) document.body.classList.add('liquid-glass-mode');
-                else if (glassEnabled) document.body.classList.add('glass-mode');
+                document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode','minecraft-mode');
+                if (minecraftEnabled) {
+                    document.body.classList.add('minecraft-mode');
+                } else if (retroEnabled) {
+                    document.body.classList.add('retro-mode');
+                } else if (liquidGlassEnabled) {
+                    document.body.classList.add('liquid-glass-mode');
+                } else if (glassEnabled) {
+                    document.body.classList.add('glass-mode');
+                }
 
-                glassModeSwitch.classList.toggle('on', glassEnabled);
-                liquidGlassModeSwitch.classList.toggle('on', liquidGlassEnabled);
-                retroModeSwitch.classList.toggle('on', retroEnabled);
+                glassModeSwitch.classList.toggle('on', glassEnabled && !minecraftEnabled);
+                liquidGlassModeSwitch.classList.toggle('on', liquidGlassEnabled && !minecraftEnabled);
+                retroModeSwitch.classList.toggle('on', retroEnabled && !minecraftEnabled);
+                minecraftModeSwitch.classList.toggle('on', minecraftEnabled);
                 bingWallpaperSwitch.classList.toggle('on', bingEnabled);
 
                 themeDarkSwitch.classList.toggle('on', currentTheme === 'dark');
@@ -626,19 +674,22 @@
                 if(key === 'glassMode') glassEnabled = value;
                 if(key === 'liquidGlassMode') liquidGlassEnabled = value;
                 if(key === 'retroMode') retroEnabled = value;
+                if(key === 'minecraftMode') minecraftEnabled = value;
                 if(key === 'bingWallpaper') bingEnabled = value;
                 localStorage.setItem(key, value ? 'enabled' : 'disabled');
                 if(value && key !== 'bingWallpaper') {
                     if(key !== 'glassMode') { glassEnabled = false; localStorage.setItem('glassMode','disabled'); }
                     if(key !== 'liquidGlassMode') { liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled'); }
                     if(key !== 'retroMode') { retroEnabled = false; localStorage.setItem('retroMode','disabled'); }
+                    if(key !== 'minecraftMode') { minecraftEnabled = false; localStorage.setItem('minecraftMode','disabled'); }
                 }
                 updateUI();
             }
 
-            glassModeSwitch.addEventListener('click', () => { const v = !glassEnabled; setMode('glassMode', v); if(v) { liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); } updateUI(); });
-            liquidGlassModeSwitch.addEventListener('click', () => { const v = !liquidGlassEnabled; setMode('liquidGlassMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); } updateUI(); });
-            retroModeSwitch.addEventListener('click', () => { const v = !retroEnabled; setMode('retroMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); } updateUI(); });
+            glassModeSwitch.addEventListener('click', () => { const v = !glassEnabled; setMode('glassMode', v); if(v) { liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); minecraftEnabled=false; localStorage.setItem('minecraftMode','disabled'); } updateUI(); });
+            liquidGlassModeSwitch.addEventListener('click', () => { const v = !liquidGlassEnabled; setMode('liquidGlassMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); minecraftEnabled=false; localStorage.setItem('minecraftMode','disabled'); } updateUI(); });
+            retroModeSwitch.addEventListener('click', () => { const v = !retroEnabled; setMode('retroMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); minecraftEnabled=false; localStorage.setItem('minecraftMode','disabled'); } updateUI(); });
+            minecraftModeSwitch.addEventListener('click', () => { const v = !minecraftEnabled; setMode('minecraftMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); } updateUI(); });
             bingWallpaperSwitch.addEventListener('click', () => { bingEnabled = !bingEnabled; localStorage.setItem('bingWallpaper', bingEnabled?'enabled':'disabled'); updateUI(); });
 
             wallpaperBtns.forEach(btn => {
