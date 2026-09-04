@@ -300,7 +300,15 @@
         body.minecraft-mode .menu-section { color:#aaa; font-family:'Press Start 2P', 'Courier New', monospace; }
         body.minecraft-mode .menu-item { color:#ffffff; border-bottom:1px solid #555; font-family:'Press Start 2P', 'Courier New', monospace; font-size: 0.75rem; }
         body.minecraft-mode .menu-item:hover { background-color:#4a4a4a !important; }
-        body.minecraft-mode .container { background-color:#3a3a3a; border:2px solid #1a1a1a; border-radius:4px; padding:1.5rem; }
+        body.minecraft-mode .container {
+            /* 去掉卡片样式 */
+            background: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            max-width: 540px; /* 保持原有最大宽度，但无背景 */
+        }
         body.minecraft-mode h1 { color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; font-size: 1.2rem; }
         body.minecraft-mode .divider { background-color:#555; }
         body.minecraft-mode .btn { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; box-shadow:inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5); font-size: 0.7rem; }
@@ -345,6 +353,7 @@
             body.minecraft-mode .site-title { font-size: 0.7rem; }
             body.minecraft-mode .menu-item { font-size: 0.65rem; }
             body.minecraft-mode .btn, body.minecraft-mode .download-btn-action { font-size: 0.6rem; }
+            body.minecraft-mode .container { max-width: 100%; } /* 移动端无卡片约束 */
         }
     </style>
 </head>
