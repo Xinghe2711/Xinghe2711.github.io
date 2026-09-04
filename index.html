@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>欢迎来到一架国泰航空A330官方网站</title>
-    <!-- 引入 Minecraft 像素字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -90,7 +89,6 @@
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
-
         html, body { touch-action: manipulation; -ms-touch-action: manipulation; }
 
         body {
@@ -111,19 +109,15 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* ========== 顶部栏 ========== */
         .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; transition: all 0.3s ease; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-
         .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1004; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; -webkit-tap-highlight-color:transparent; outline:none; }
         .hamburger-line { display:block; width:22px; height:2.5px; background-color:var(--accent); border-radius:4px; transition:all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); }
         .hamburger-btn.active .hamburger-line:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
         .hamburger-btn.active .hamburger-line:nth-child(2) { opacity:0; }
         .hamburger-btn.active .hamburger-line:nth-child(3) { transform:translateY(-7.5px) rotate(-45deg); }
-
         .menu-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:1000; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         .menu-overlay.visible { opacity:1; pointer-events:auto; }
-
         .sidebar-menu { position:fixed; top:0; right:0; z-index:1001; background-color:var(--menu-bg); width:var(--sidebar-width); max-width:85vw; height:100%; box-shadow:-4px 0 24px var(--menu-shadow); padding:20px 0; overflow-y:auto; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.22,1,0.36,1); border-left:1px solid var(--divider); }
         .sidebar-menu.open { transform:translateX(0); }
         .menu-section { padding:14px 20px 6px; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); }
@@ -140,13 +134,11 @@
         .announcement { margin:1.2rem auto; max-width:360px; padding:0.7rem 1rem; border:1.5px solid var(--announcement-border); border-radius:10px; background-color:var(--announcement-bg); }
         .announcement-title { font-size:1.1rem; font-weight:500; color:var(--announcement-title); }
         .announcement-subtitle { font-size:0.7rem; color:var(--announcement-subtitle); }
-
         .download-group { display:flex; flex-direction:column; align-items:center; gap:0.6rem; margin-top:1.2rem; }
         .download-item { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:340px; padding:0.7rem 1rem; border:1.5px solid var(--download-btn-border); border-radius:8px; background-color:var(--download-btn-bg); cursor:default; transition: border-color 0.3s, background-color 0.3s; }
         .download-text { font-size:0.85rem; color:var(--download-btn-text); flex:1; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:0.8rem; }
         .download-btn-action { display:inline-block; padding:0.4rem 1rem; font-size:0.8rem; font-weight:500; color:#ffffff; background-color:var(--btn-primary); border:none; border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.04em; transition: background-color 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; }
         .download-btn-action:hover { background-color:var(--btn-primary-hover); }
-
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
         .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; }
@@ -154,7 +146,6 @@
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
 
-        /* ========== 设置弹窗 ========== */
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -171,7 +162,6 @@
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; }
 
-        /* ========== 关于弹窗 ========== */
         .about-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2200; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .about-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .about-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.5rem; width:100%; max-width:320px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); position:relative; }
@@ -213,7 +203,7 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* ========== 显示模式样式 - 透明模式 ========== */
+        /* 透明模式 */
         body.glass-mode { background-color:rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35) !important; }
         body.glass-mode .top-bar { background-color:rgba(255,255,255,0.75) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-bottom:1px solid rgba(255,255,255,0.5) !important; }
@@ -233,7 +223,7 @@
         body.glass-mode .dialpad-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.55) !important; }
         [data-theme="dark"] body.glass-mode .dialpad-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
 
-        /* ========== 液态玻璃模式 ========== */
+        /* 液态玻璃模式 */
         body.liquid-glass-mode { background-color:rgba(255,255,255,0.2) !important; }
         [data-theme="dark"] body.liquid-glass-mode { background-color:rgba(18,18,18,0.2) !important; }
         body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-bottom:1px solid rgba(255,255,255,0.4) !important; }
@@ -255,7 +245,7 @@
         body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.38)) !important; backdrop-filter:blur(28px) saturate(190%) !important; -webkit-backdrop-filter:blur(28px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.45) !important; }
         [data-theme="dark"] body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(50,50,50,0.5), rgba(22,22,22,0.25) 50%, rgba(40,40,40,0.4)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
 
-        /* ========== 怀旧模式 ========== */
+        /* 怀旧模式 */
         body.retro-mode { background-color:#a0a8b0 !important; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="%23b8c0c8"/></svg>') !important; background-size:160px 160px !important; }
         [data-theme="dark"] body.retro-mode { background-color:#2a2f35 !important; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="%233a4048"/></svg>') !important; }
         body.retro-mode .top-bar { background:linear-gradient(to bottom,#f0f0f0,#c8c8c8) !important; border-bottom:1px solid #7f7f7f !important; box-shadow:0 2px 6px rgba(0,0,0,0.35) !important; }
@@ -285,7 +275,7 @@
         body.retro-mode .hamburger-line { background-color:#333 !important; }
         [data-theme="dark"] body.retro-mode .hamburger-line { background-color:#ccc !important; }
 
-        /* ========== Minecraft 模式 (Ore UI 风格 + 像素字体) ========== */
+        /* Minecraft 模式 (Ore UI 风格 + 像素字体) */
         body.minecraft-mode {
             background-color: #2d2d2d !important;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" fill="%233a3a3a"/><rect x="1" y="1" width="38" height="38" fill="none" stroke="%23555" stroke-width="2"/></svg>') !important;
@@ -300,15 +290,7 @@
         body.minecraft-mode .menu-section { color:#aaa; font-family:'Press Start 2P', 'Courier New', monospace; }
         body.minecraft-mode .menu-item { color:#ffffff; border-bottom:1px solid #555; font-family:'Press Start 2P', 'Courier New', monospace; font-size: 0.75rem; }
         body.minecraft-mode .menu-item:hover { background-color:#4a4a4a !important; }
-        body.minecraft-mode .container {
-            /* 去掉卡片样式 */
-            background: none !important;
-            border: none !important;
-            border-radius: 0 !important;
-            padding: 0 !important;
-            box-shadow: none !important;
-            max-width: 540px; /* 保持原有最大宽度，但无背景 */
-        }
+        body.minecraft-mode .container { background: none !important; border: none !important; border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; max-width: 540px; }
         body.minecraft-mode h1 { color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; font-size: 1.2rem; }
         body.minecraft-mode .divider { background-color:#555; }
         body.minecraft-mode .btn { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; box-shadow:inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5); font-size: 0.7rem; }
@@ -353,12 +335,11 @@
             body.minecraft-mode .site-title { font-size: 0.7rem; }
             body.minecraft-mode .menu-item { font-size: 0.65rem; }
             body.minecraft-mode .btn, body.minecraft-mode .download-btn-action { font-size: 0.6rem; }
-            body.minecraft-mode .container { max-width: 100%; } /* 移动端无卡片约束 */
+            body.minecraft-mode .container { max-width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- C418 音乐音频元素 -->
     <audio id="mcMusic" loop preload="auto"></audio>
 
     <header class="top-bar">
@@ -534,7 +515,13 @@
             let dialValue = '';
             let calcFirstOperand = null, calcOperator = null, calcShouldResetDisplay = false;
 
-            const C418_MUSIC_URL = 'https://ia800905.us.archive.org/19/items/MinecraftVolumeAlpha/Minecraft%20-%20Volume%20Alpha%20-%2002%20Sweden.mp3';
+            // 使用更可靠的音频源（多个备用）
+            const C418_MUSIC_URLS = [
+                'https://www.c418.org/albums/minecraft-volume-alpha/sweden.mp3',
+                'https://files.catbox.moe/1k3r7w.mp3',
+                'https://cdn.jsdelivr.net/gh/Cl0ckW0rk/Minecraft-Music@master/Minecraft%20-%20Volume%20Alpha/02%20-%20Sweden.mp3'
+            ];
+            let currentMusicIndex = 0;
 
             const translations = {
                 'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', aboutText:'这是一架国泰航空A330官方网站', version:'版本号 6.2.1', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', minecraftMode:'Minecraft模式', bingWallpaper:'必应壁纸', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
@@ -619,6 +606,28 @@
                 });
             }
 
+            function playMinecraftMusic() {
+                // 设置音频源
+                mcMusic.src = C418_MUSIC_URLS[currentMusicIndex];
+                mcMusic.load();
+                mcMusic.play().then(() => {
+                    console.log('Minecraft 音乐开始播放');
+                }).catch(err => {
+                    console.warn('播放失败，尝试下一个音频源', err);
+                    currentMusicIndex++;
+                    if (currentMusicIndex < C418_MUSIC_URLS.length) {
+                        playMinecraftMusic();
+                    } else {
+                        console.error('所有音频源均不可用');
+                    }
+                });
+            }
+
+            function stopMinecraftMusic() {
+                mcMusic.pause();
+                mcMusic.currentTime = 0;
+            }
+
             function updateUI() {
                 document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode','minecraft-mode');
                 if (minecraftEnabled) {
@@ -654,17 +663,11 @@
 
                 // 音乐控制
                 if (document.body.classList.contains('minecraft-mode')) {
-                    if (!mcMusic.src || mcMusic.src.indexOf('Sweden') === -1) {
-                        mcMusic.src = C418_MUSIC_URL;
-                    }
                     if (mcMusic.paused) {
-                        mcMusic.play().catch(() => {});
+                        playMinecraftMusic();
                     }
                 } else {
-                    if (!mcMusic.paused) {
-                        mcMusic.pause();
-                    }
-                    mcMusic.currentTime = 0;
+                    stopMinecraftMusic();
                 }
             }
 
