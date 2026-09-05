@@ -253,10 +253,41 @@
         [data-theme="dark"] body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(50,50,50,0.4), rgba(20,20,20,0.2)) !important; border-bottom:1px solid rgba(255,255,255,0.1) !important; }
         body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-left:1px solid rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
-        body.liquid-glass-mode .btn { background: rgba(0,119,204,0.55) !important; backdrop-filter: blur(10px) saturate(150%) !important; -webkit-backdrop-filter: blur(10px) saturate(150%) !important; border:1px solid rgba(255,255,255,0.3) !important; color:#fff !important; box-shadow: 0 2px 10px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25); background-image: none !important; }
-        [data-theme="dark"] body.liquid-glass-mode .btn { background: rgba(66,165,245,0.55) !important; color:#121212 !important; border:1px solid rgba(255,255,255,0.2) !important; }
-        body.liquid-glass-mode .download-btn-action { background: rgba(0,119,204,0.55) !important; backdrop-filter: blur(10px) saturate(150%) !important; -webkit-backdrop-filter: blur(10px) saturate(150%) !important; border:1px solid rgba(255,255,255,0.3) !important; color:#fff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25); background-image: none !important; }
-        [data-theme="dark"] body.liquid-glass-mode .download-btn-action { background: rgba(66,165,245,0.55) !important; color:#121212 !important; border:1px solid rgba(255,255,255,0.2) !important; }
+
+        /* 液态玻璃模式按钮：扁平化、左上右下高光、背景模糊透视 */
+        body.liquid-glass-mode .btn {
+            background: rgba(0,119,204,0.55) !important;
+            backdrop-filter: blur(10px) saturate(150%) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            color: #fff !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.35), inset -1px -1px 0 rgba(255,255,255,0.15) !important;
+            background-image: none !important;
+            transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        [data-theme="dark"] body.liquid-glass-mode .btn {
+            background: rgba(66,165,245,0.55) !important;
+            color: #121212 !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.2), inset -1px -1px 0 rgba(255,255,255,0.1) !important;
+        }
+        body.liquid-glass-mode .download-btn-action {
+            background: rgba(0,119,204,0.55) !important;
+            backdrop-filter: blur(10px) saturate(150%) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            color: #fff !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.35), inset -1px -1px 0 rgba(255,255,255,0.15) !important;
+            background-image: none !important;
+            transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        [data-theme="dark"] body.liquid-glass-mode .download-btn-action {
+            background: rgba(66,165,245,0.55) !important;
+            color: #121212 !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.2), inset -1px -1px 0 rgba(255,255,255,0.1) !important;
+        }
+
         body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)) !important; backdrop-filter:blur(10px) saturate(140%) !important; -webkit-backdrop-filter:blur(10px) saturate(140%) !important; border:1px solid rgba(0,0,0,0.15) !important; }
         [data-theme="dark"] body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)) !important; border-color:rgba(255,255,255,0.1) !important; color:#f0f0f0 !important; }
         body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(20px) saturate(170%) !important; -webkit-backdrop-filter:blur(20px) saturate(170%) !important; border:1px solid rgba(255,255,255,0.35) !important; }
@@ -636,7 +667,6 @@
                 mcMusic.currentTime = 0;
             }
 
-            // ========== 水滴涟漪效果 ==========
             function createRipple(e) {
                 if (!document.body.classList.contains('liquid-glass-mode')) return;
                 const target = e.currentTarget;
