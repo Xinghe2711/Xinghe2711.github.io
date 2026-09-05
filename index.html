@@ -133,7 +133,7 @@
         h1 { font-size:clamp(1.3rem,4vw,2rem); font-weight:300; color:var(--text); letter-spacing:0.04em; line-height:1.5; margin-bottom:1.2rem; }
         .divider { width:48px; height:1px; background-color:var(--divider); margin:0 auto 1.2rem auto; }
         .button-group { display:flex; flex-wrap:wrap; justify-content:center; gap:0.7rem; }
-        .btn { display:inline-block; padding:0.65rem 1.8rem; font-size:0.9rem; color:var(--btn-primary-text); background-color:var(--btn-primary); border:1px solid var(--btn-primary); border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.05em; transition:all 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; position:relative; overflow:hidden; }
+        .btn { display:inline-block; padding:0.65rem 1.8rem; font-size:0.9rem; color:var(--btn-primary-text); background-color:var(--btn-primary); border:1px solid var(--btn-primary); border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.05em; transition:all 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; position:relative; overflow:hidden; background-image: none; }
         .btn:hover { background-color:var(--btn-primary-hover); border-color:var(--btn-primary-hover); }
         .announcement { margin:1.2rem auto; max-width:360px; padding:0.7rem 1rem; border:1.5px solid var(--announcement-border); border-radius:10px; background-color:var(--announcement-bg); }
         .announcement-title { font-size:1.1rem; font-weight:500; color:var(--announcement-title); }
@@ -141,7 +141,7 @@
         .download-group { display:flex; flex-direction:column; align-items:center; gap:0.6rem; margin-top:1.2rem; }
         .download-item { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:340px; padding:0.7rem 1rem; border:1.5px solid var(--download-btn-border); border-radius:8px; background-color:var(--download-btn-bg); cursor:default; transition: border-color 0.3s, background-color 0.3s; }
         .download-text { font-size:0.85rem; color:var(--download-btn-text); flex:1; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:0.8rem; }
-        .download-btn-action { display:inline-block; padding:0.4rem 1rem; font-size:0.8rem; font-weight:500; color:#ffffff; background-color:var(--btn-primary); border:none; border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.04em; transition: background-color 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; position:relative; overflow:hidden; }
+        .download-btn-action { display:inline-block; padding:0.4rem 1rem; font-size:0.8rem; font-weight:500; color:#ffffff; background-color:var(--btn-primary); border:none; border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.04em; transition: background-color 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; position:relative; overflow:hidden; background-image: none; }
         .download-btn-action:hover { background-color:var(--btn-primary-hover); }
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
@@ -173,7 +173,6 @@
         .about-title { font-size:2rem; font-weight:700; color:var(--text); text-align:center; margin-bottom:0.5rem; }
         .about-info { text-align:center; color:var(--text-secondary); font-size:0.9rem; line-height:1.6; }
         .about-info p { margin:0.2rem 0; }
-        /* 关闭按钮移至底部全宽 */
         .about-close-btn { display:block; width:100%; margin-top:1.2rem; padding:0.6rem 0; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.9rem; cursor:pointer; transition:background-color 0.2s; position:relative; overflow:hidden; }
         .about-close-btn:hover { background-color:var(--accent-hover); }
 
@@ -234,10 +233,10 @@
         [data-theme="dark"] body.glass-mode .top-bar { background-color:rgba(28,28,30,0.75) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-bottom:1px solid rgba(255,255,255,0.1) !important; }
         body.glass-mode .sidebar-menu { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-left:1px solid rgba(255,255,255,0.5) !important; }
         [data-theme="dark"] body.glass-mode .sidebar-menu { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
-        body.glass-mode .btn { background-color:rgba(0,122,255,0.8) !important; border-color:rgba(255,255,255,0.35) !important; backdrop-filter:blur(6px) !important; -webkit-backdrop-filter:blur(6px) !important; }
+        body.glass-mode .btn { background-color:rgba(0,122,255,0.8) !important; border-color:rgba(255,255,255,0.35) !important; backdrop-filter:blur(6px) !important; -webkit-backdrop-filter:blur(6px) !important; background-image: none !important; }
+        body.glass-mode .download-btn-action { background-color:rgba(0,122,255,0.8) !important; backdrop-filter:blur(6px) !important; -webkit-backdrop-filter:blur(6px) !important; background-image: none !important; }
         body.glass-mode .download-item { background-color:rgba(255,255,255,0.55) !important; border-color:rgba(0,0,0,0.18) !important; backdrop-filter:blur(6px) !important; -webkit-backdrop-filter:blur(6px) !important; }
         [data-theme="dark"] body.glass-mode .download-item { background-color:rgba(44,44,46,0.55) !important; border-color:rgba(255,255,255,0.12) !important; color:#f0f0f0 !important; }
-        body.glass-mode .download-btn-action { background-color:rgba(0,122,255,0.8) !important; }
         body.glass-mode .announcement { background-color:rgba(255,255,255,0.55) !important; border-color:rgba(0,0,0,0.18) !important; backdrop-filter:blur(8px) !important; -webkit-backdrop-filter:blur(8px) !important; }
         [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55) !important; border-color:rgba(255,255,255,0.12) !important; }
         body.glass-mode .settings-modal, body.glass-mode .about-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
@@ -254,9 +253,9 @@
         [data-theme="dark"] body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(50,50,50,0.4), rgba(20,20,20,0.2)) !important; border-bottom:1px solid rgba(255,255,255,0.1) !important; }
         body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-left:1px solid rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
-        body.liquid-glass-mode .btn { background: rgba(0,119,204,0.55) !important; backdrop-filter: blur(10px) saturate(150%) !important; -webkit-backdrop-filter: blur(10px) saturate(150%) !important; border:1px solid rgba(255,255,255,0.3) !important; color:#fff !important; box-shadow: 0 2px 10px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25); }
+        body.liquid-glass-mode .btn { background: rgba(0,119,204,0.55) !important; backdrop-filter: blur(10px) saturate(150%) !important; -webkit-backdrop-filter: blur(10px) saturate(150%) !important; border:1px solid rgba(255,255,255,0.3) !important; color:#fff !important; box-shadow: 0 2px 10px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25); background-image: none !important; }
         [data-theme="dark"] body.liquid-glass-mode .btn { background: rgba(66,165,245,0.55) !important; color:#121212 !important; border:1px solid rgba(255,255,255,0.2) !important; }
-        body.liquid-glass-mode .download-btn-action { background: rgba(0,119,204,0.55) !important; backdrop-filter: blur(10px) saturate(150%) !important; -webkit-backdrop-filter: blur(10px) saturate(150%) !important; border:1px solid rgba(255,255,255,0.3) !important; color:#fff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25); }
+        body.liquid-glass-mode .download-btn-action { background: rgba(0,119,204,0.55) !important; backdrop-filter: blur(10px) saturate(150%) !important; -webkit-backdrop-filter: blur(10px) saturate(150%) !important; border:1px solid rgba(255,255,255,0.3) !important; color:#fff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25); background-image: none !important; }
         [data-theme="dark"] body.liquid-glass-mode .download-btn-action { background: rgba(66,165,245,0.55) !important; color:#121212 !important; border:1px solid rgba(255,255,255,0.2) !important; }
         body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)) !important; backdrop-filter:blur(10px) saturate(140%) !important; -webkit-backdrop-filter:blur(10px) saturate(140%) !important; border:1px solid rgba(0,0,0,0.15) !important; }
         [data-theme="dark"] body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)) !important; border-color:rgba(255,255,255,0.1) !important; color:#f0f0f0 !important; }
@@ -280,12 +279,12 @@
         [data-theme="dark"] body.retro-mode .sidebar-menu { background:linear-gradient(to bottom,#555,#3a3a3a) !important; border-left:1px solid #1a1a1a !important; }
         body.retro-mode .menu-item { color:#333 !important; border-bottom:1px solid #b0b0b0 !important; }
         [data-theme="dark"] body.retro-mode .menu-item { color:#ddd !important; border-bottom:1px solid #555 !important; }
-        body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; text-shadow:0 -1px 0 rgba(0,0,0,0.4) !important; box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; color:#fff !important; }
+        body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; text-shadow:0 -1px 0 rgba(0,0,0,0.4) !important; box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; color:#fff !important; background-image: none !important; }
         [data-theme="dark"] body.retro-mode .btn { background:linear-gradient(to bottom,#5c8ccf,#2b5c9e) !important; border-color:#1c3f6c !important; }
+        body.retro-mode .download-btn-action { background:linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; text-shadow:0 -1px 0 rgba(0,0,0,0.4) !important; box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; color:#fff !important; background-image: none !important; }
+        [data-theme="dark"] body.retro-mode .download-btn-action { background:linear-gradient(to bottom,#5c8ccf,#2b5c9e) !important; border-color:#1c3f6c !important; }
         body.retro-mode .download-item { background:#fff !important; border:1px solid #8f8f8f !important; border-radius:5px !important; color:#333 !important; text-shadow:0 1px 0 #fff !important; box-shadow:0 2px 3px rgba(0,0,0,0.25), inset 0 1px 0 #fff !important; }
         [data-theme="dark"] body.retro-mode .download-item { background:#5a5a5a !important; border-color:#3a3a3a !important; color:#eee !important; text-shadow:0 -1px 0 #000 !important; }
-        body.retro-mode .download-btn-action { background:linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; text-shadow:0 -1px 0 rgba(0,0,0,0.4) !important; box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; color:#fff !important; }
-        [data-theme="dark"] body.retro-mode .download-btn-action { background:linear-gradient(to bottom,#5c8ccf,#2b5c9e) !important; border-color:#1c3f6c !important; }
         body.retro-mode .announcement { background:#fafafa !important; border:1px solid #a0a0a0 !important; border-radius:6px !important; box-shadow:inset 0 1px 0 #fff, 0 2px 4px rgba(0,0,0,0.25) !important; }
         [data-theme="dark"] body.retro-mode .announcement { background:#505050 !important; border-color:#2a2a2a !important; }
         body.retro-mode .settings-modal, body.retro-mode .about-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
@@ -312,12 +311,12 @@
         body.minecraft-mode .container { background: none !important; border: none !important; border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; max-width: 540px; }
         body.minecraft-mode h1 { color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; font-size: 1.2rem; }
         body.minecraft-mode .divider { background-color:#555; }
-        body.minecraft-mode .btn { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; box-shadow:inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5); font-size: 0.7rem; }
+        body.minecraft-mode .btn { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; box-shadow:inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5); font-size: 0.7rem; background-image: none !important; }
         body.minecraft-mode .btn:hover { background:linear-gradient(to bottom, #7a7a7a, #5a5a5a) !important; }
+        body.minecraft-mode .download-btn-action { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; font-size: 0.7rem; background-image: none !important; }
+        body.minecraft-mode .download-btn-action:hover { background:linear-gradient(to bottom, #7a7a7a, #5a5a5a) !important; }
         body.minecraft-mode .download-item { background:#4a4a4a !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
         body.minecraft-mode .download-text { color:#ffffff; font-size: 0.7rem; }
-        body.minecraft-mode .download-btn-action { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; text-shadow:1px 1px 0 #000; font-size: 0.7rem; }
-        body.minecraft-mode .download-btn-action:hover { background:linear-gradient(to bottom, #7a7a7a, #5a5a5a) !important; }
         body.minecraft-mode .announcement { background:#4a4a4a !important; border:2px solid #1a1a1a !important; border-radius:4px; }
         body.minecraft-mode .announcement-title, body.minecraft-mode .announcement-subtitle { color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
         body.minecraft-mode .settings-modal, body.minecraft-mode .about-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px; }
