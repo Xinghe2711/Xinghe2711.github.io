@@ -123,16 +123,8 @@
 
         .sidebar-menu { position:fixed; top:0; right:0; z-index:1001; background-color:var(--menu-bg); width:var(--sidebar-width); max-width:85vw; height:100%; box-shadow:-4px 0 24px var(--menu-shadow); padding:20px 0; overflow-y:auto; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.22,1,0.36,1); border-left:1px solid var(--divider); }
         .sidebar-menu.open { transform:translateX(0); }
+        .sidebar-header { font-size: 1.1rem; font-weight: 700; color: var(--text); padding: 12px 20px; letter-spacing: 0.08em; text-transform: uppercase; }
         .menu-section { padding:14px 20px 6px; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); }
-        /* 新增侧边栏标题样式 */
-        .sidebar-header {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text);
-            padding: 12px 20px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
         .menu-item { display:flex; align-items:center; justify-content:space-between; width:100%; padding:11px 20px; background:transparent; border:none; cursor:pointer; font-size:0.95rem; color:var(--text); transition:background-color 0.2s; font-family:inherit; letter-spacing:0.04em; -webkit-tap-highlight-color:transparent; outline:none; text-decoration:none; text-align:left; }
         .menu-item:hover { background-color:var(--menu-item-hover); }
         .menu-divider { height:1px; background-color:var(--divider); margin:6px 0; opacity:0.5; }
@@ -242,12 +234,34 @@
         [data-theme="dark"] body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(50,50,50,0.4), rgba(20,20,20,0.2)) !important; border-bottom:1px solid rgba(255,255,255,0.1) !important; }
         body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-left:1px solid rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
-        body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(0,119,204,0.65), rgba(0,119,204,0.35) 50%, rgba(0,119,204,0.55)) !important; backdrop-filter:blur(10px) saturate(150%) !important; -webkit-backdrop-filter:blur(10px) saturate(150%) !important; border:1px solid rgba(255,255,255,0.3) !important; color:#fff !important; }
-        [data-theme="dark"] body.liquid-glass-mode .btn { background:linear-gradient(135deg, rgba(66,165,245,0.65), rgba(66,165,245,0.35) 50%, rgba(66,165,245,0.55)) !important; color:#121212 !important; }
+        body.liquid-glass-mode .btn {
+            background: rgba(0,119,204,0.55) !important; /* 整体微透明蓝色，不再中间偏白 */
+            backdrop-filter: blur(10px) saturate(150%) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            color: #fff !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25);
+        }
+        [data-theme="dark"] body.liquid-glass-mode .btn {
+            background: rgba(66,165,245,0.55) !important;
+            color: #121212 !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+        }
+        body.liquid-glass-mode .download-btn-action {
+            background: rgba(0,119,204,0.55) !important; /* 同样微透明蓝色 */
+            backdrop-filter: blur(10px) saturate(150%) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            color: #fff !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25);
+        }
+        [data-theme="dark"] body.liquid-glass-mode .download-btn-action {
+            background: rgba(66,165,245,0.55) !important;
+            color: #121212 !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+        }
         body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)) !important; backdrop-filter:blur(10px) saturate(140%) !important; -webkit-backdrop-filter:blur(10px) saturate(140%) !important; border:1px solid rgba(0,0,0,0.15) !important; }
         [data-theme="dark"] body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)) !important; border-color:rgba(255,255,255,0.1) !important; color:#f0f0f0 !important; }
-        body.liquid-glass-mode .download-btn-action { background:linear-gradient(135deg, rgba(0,119,204,0.65), rgba(0,119,204,0.35) 50%, rgba(0,119,204,0.55)) !important; }
-        [data-theme="dark"] body.liquid-glass-mode .download-btn-action { background:linear-gradient(135deg, rgba(66,165,245,0.65), rgba(66,165,245,0.35) 50%, rgba(66,165,245,0.55)) !important; color:#121212 !important; }
         body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(20px) saturate(170%) !important; -webkit-backdrop-filter:blur(20px) saturate(170%) !important; border:1px solid rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-color:rgba(255,255,255,0.1) !important; }
         body.liquid-glass-mode .settings-modal, body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
@@ -376,10 +390,8 @@
     <div class="menu-overlay" id="menuOverlay"></div>
 
     <aside class="sidebar-menu" id="sidebarMenu">
-        <!-- 侧边栏左上角标题 -->
         <div class="sidebar-header" data-i18n="menu">菜单</div>
         <div class="menu-divider"></div>
-
         <button class="menu-item" id="settingsTrigger"><span data-i18n="settings">设置</span><span>⚙️</span></button>
         <button class="menu-item" id="calcTrigger"><span data-i18n="calculator">计算器</span><span>🔢</span></button>
         <button class="menu-item" id="aboutTrigger"><span data-i18n="about">关于</span><span>ℹ️</span></button>
