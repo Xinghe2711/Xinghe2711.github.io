@@ -254,54 +254,65 @@
         body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-left:1px solid rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
 
-        /* 液态玻璃模式按钮：扁平化修改（去除模糊和阴影，改为纯色） */
+        /* ===== 液态玻璃模式按钮：半透明 + 左上/右下高光 ===== */
         body.liquid-glass-mode .btn {
-            background: #0077cc !important;
-            border: 1px solid #0077cc !important;
-            color: #fff !important;
-            box-shadow: none !important;
+            background-color: rgba(0, 119, 204, 0.65) !important;
+            border: 1px solid rgba(255, 255, 255, 0.35) !important;
+            color: #ffffff !important;
+            box-shadow: 
+                inset 1px 1px 0 rgba(255, 255, 255, 0.4),
+                inset -1px -1px 0 rgba(255, 255, 255, 0.2)
+            !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
             background-image: none !important;
             transition: background-color 0.3s, border-color 0.3s;
         }
         body.liquid-glass-mode .btn:hover {
-            background: #005fa3 !important;
-            border-color: #005fa3 !important;
+            background-color: rgba(0, 119, 204, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.5) !important;
         }
         [data-theme="dark"] body.liquid-glass-mode .btn {
-            background: #42a5f5 !important;
-            border: 1px solid #42a5f5 !important;
+            background-color: rgba(66, 165, 245, 0.65) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
             color: #121212 !important;
-            box-shadow: none !important;
+            box-shadow: 
+                inset 1px 1px 0 rgba(255, 255, 255, 0.25),
+                inset -1px -1px 0 rgba(255, 255, 255, 0.1)
+            !important;
         }
         [data-theme="dark"] body.liquid-glass-mode .btn:hover {
-            background: #64b5f6 !important;
-            border-color: #64b5f6 !important;
+            background-color: rgba(66, 165, 245, 0.8) !important;
         }
+
         body.liquid-glass-mode .download-btn-action {
-            background: #0077cc !important;
-            border: 1px solid #0077cc !important;
-            color: #fff !important;
-            box-shadow: none !important;
+            background-color: rgba(0, 119, 204, 0.65) !important;
+            border: 1px solid rgba(255, 255, 255, 0.35) !important;
+            color: #ffffff !important;
+            box-shadow: 
+                inset 1px 1px 0 rgba(255, 255, 255, 0.4),
+                inset -1px -1px 0 rgba(255, 255, 255, 0.2)
+            !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
             background-image: none !important;
             transition: background-color 0.3s, border-color 0.3s;
         }
         body.liquid-glass-mode .download-btn-action:hover {
-            background: #005fa3 !important;
-            border-color: #005fa3 !important;
+            background-color: rgba(0, 119, 204, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.5) !important;
         }
         [data-theme="dark"] body.liquid-glass-mode .download-btn-action {
-            background: #42a5f5 !important;
-            border: 1px solid #42a5f5 !important;
+            background-color: rgba(66, 165, 245, 0.65) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
             color: #121212 !important;
-            box-shadow: none !important;
+            box-shadow: 
+                inset 1px 1px 0 rgba(255, 255, 255, 0.25),
+                inset -1px -1px 0 rgba(255, 255, 255, 0.1)
+            !important;
         }
         [data-theme="dark"] body.liquid-glass-mode .download-btn-action:hover {
-            background: #64b5f6 !important;
-            border-color: #64b5f6 !important;
+            background-color: rgba(66, 165, 245, 0.8) !important;
         }
 
         body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)) !important; backdrop-filter:blur(10px) saturate(140%) !important; -webkit-backdrop-filter:blur(10px) saturate(140%) !important; border:1px solid rgba(0,0,0,0.15) !important; }
