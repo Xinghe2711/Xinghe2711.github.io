@@ -36,13 +36,16 @@
             --dial-key-hover: #e0e0e0;
             --dial-display-bg: #f8f8f8;
             --dial-display-text: #1a1a1a;
-            --calc-bg: #f0f0f0;
-            --calc-display-bg: #ffffff;
-            --calc-key-bg: #e0e0e0;
-            --calc-key-hover: #d0d0d0;
-            --calc-operator-bg: #ff9500;
-            --calc-operator-text: #fff;
-            --calc-equals-bg: #0077cc;
+            --calc-bg: #1c1c1e;
+            --calc-display-bg: #000000;
+            --calc-key-bg: #333333;
+            --calc-key-hover: #444444;
+            --calc-operator-bg: #ff9f0a;
+            --calc-operator-text: #ffffff;
+            --calc-equals-bg: #ff9f0a;
+            --calc-key-text: #ffffff;
+            --calc-clear-bg: #a5a5a5;
+            --calc-clear-text: #000000;
             --sidebar-width: 300px;
             --topbar-height: 60px;
             --toggle-on: #34c759;
@@ -78,13 +81,16 @@
             --dial-key-hover: #3a3a3a;
             --dial-display-bg: #171717;
             --dial-display-text: #f0f0f0;
-            --calc-bg: #1a1a1a;
-            --calc-display-bg: #2a2a2a;
-            --calc-key-bg: #3a3a3a;
-            --calc-key-hover: #4a4a4a;
-            --calc-operator-bg: #ff9500;
-            --calc-operator-text: #fff;
-            --calc-equals-bg: #42a5f5;
+            --calc-bg: #1c1c1e;
+            --calc-display-bg: #000000;
+            --calc-key-bg: #333333;
+            --calc-key-hover: #444444;
+            --calc-operator-bg: #ff9f0a;
+            --calc-operator-text: #ffffff;
+            --calc-equals-bg: #ff9f0a;
+            --calc-key-text: #ffffff;
+            --calc-clear-bg: #a5a5a5;
+            --calc-clear-text: #000000;
             --toggle-on: #30d158;
             --toggle-off: #39393d;
         }
@@ -176,22 +182,70 @@
         .about-close-btn { display:block; width:100%; margin-top:1.2rem; padding:0.6rem 0; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.9rem; cursor:pointer; transition:background-color 0.2s; position:relative; overflow:hidden; }
         .about-close-btn:hover { background-color:var(--accent-hover); }
 
+        /* 计算器（iOS 风格） */
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
-        .calc-modal { background-color:var(--calc-bg); border-radius:20px; padding:1rem; width:100%; max-width:300px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
-        .calc-overlay.visible .calc-modal { transform:translateY(0) scale(1); }
-        .calc-display { background-color:var(--calc-display-bg); border-radius:10px; padding:0.8rem 1rem; font-size:2rem; font-weight:300; text-align:right; color:var(--text); margin-bottom:0.8rem; min-height:64px; display:flex; align-items:center; justify-content:flex-end; overflow-x:auto; white-space:nowrap; letter-spacing:0.05em; border:1px solid var(--divider); }
-        .calc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; }
-        .calc-key { background-color:var(--calc-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.3rem; color:var(--text); transition:all 0.15s ease; -webkit-tap-highlight-color:transparent; outline:none; font-family:inherit; font-weight:400; position:relative; overflow:hidden; }
-        .calc-key:hover { background-color:var(--calc-key-hover); }
-        .calc-key:active { transform:scale(0.9); }
-        .calc-key.operator { background-color:var(--calc-operator-bg); color:var(--calc-operator-text); }
-        .calc-key.operator:hover { opacity:0.85; }
-        .calc-key.equals { background-color:var(--calc-equals-bg); color:#fff; }
-        .calc-key.equals:hover { opacity:0.85; }
-        .calc-key.zero { grid-column:span 2; border-radius:50px; }
-        .calc-key.clear { background-color:#d4d4d2; color:#1a1a1a; }
-        [data-theme="dark"] .calc-key.clear { background-color:#5a5a5a; color:#f0f0f0; }
+        .calc-modal {
+            background-color: var(--calc-bg);
+            border-radius: 20px;
+            padding: 1rem;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.2);
+            transform: translateY(16px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .calc-overlay.visible .calc-modal { transform: translateY(0) scale(1); }
+        .calc-display {
+            background-color: var(--calc-display-bg);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-align: right;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            overflow-x: auto;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+            border: none;
+        }
+        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+        .calc-key {
+            background-color: var(--calc-key-bg);
+            border: none;
+            border-radius: 12px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--calc-key-text);
+            transition: all 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            font-family: inherit;
+            font-weight: 400;
+            position: relative;
+            overflow: hidden;
+        }
+        .calc-key:hover { background-color: var(--calc-key-hover); }
+        .calc-key:active { transform: scale(0.95); }
+        .calc-key.operator { background-color: var(--calc-operator-bg); color: var(--calc-operator-text); font-size: 1.8rem; }
+        .calc-key.operator:hover { opacity: 0.85; }
+        .calc-key.equals { background-color: var(--calc-equals-bg); color: #ffffff; font-size: 1.8rem; }
+        .calc-key.equals:hover { opacity: 0.85; }
+        .calc-key.zero { grid-column: span 1; } /* 缩小0按钮，不再跨两列 */
+        .calc-key.clear { background-color: var(--calc-clear-bg); color: var(--calc-clear-text); }
+
+        /* 适配暗色主题下的清除键 */
+        [data-theme="dark"] .calc-key.clear { background-color: #a5a5a5; color: #000000; }
 
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -321,8 +375,8 @@
         [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-color:rgba(255,255,255,0.1) !important; }
         body.liquid-glass-mode .settings-modal, body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
         [data-theme="dark"] body.liquid-glass-mode .settings-modal, [data-theme="dark"] body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
-        body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
-        [data-theme="dark"] body.liquid-glass-mode .calc-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
+        body.liquid-glass-mode .calc-modal { background-color: var(--calc-bg) !important; backdrop-filter: blur(0) !important; -webkit-backdrop-filter: blur(0) !important; border:1px solid rgba(255,255,255,0.1) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .calc-modal { background-color: var(--calc-bg) !important; }
         body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.38)) !important; backdrop-filter:blur(28px) saturate(190%) !important; -webkit-backdrop-filter:blur(28px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.45) !important; }
         [data-theme="dark"] body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(50,50,50,0.5), rgba(22,22,22,0.25) 50%, rgba(40,40,40,0.4)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
 
@@ -347,8 +401,7 @@
         [data-theme="dark"] body.retro-mode .announcement { background:#505050 !important; border-color:#2a2a2a !important; }
         body.retro-mode .settings-modal, body.retro-mode .about-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
         [data-theme="dark"] body.retro-mode .settings-modal, [data-theme="dark"] body.retro-mode .about-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
-        body.retro-mode .calc-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
-        [data-theme="dark"] body.retro-mode .calc-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
+        body.retro-mode .calc-modal { background-color: var(--calc-bg) !important; border-radius:12px !important; border:1px solid #8f8f8f !important; box-shadow:0 8px 20px rgba(0,0,0,0.4) !important; }
         body.retro-mode .dialpad-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:10px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4) !important; }
         [data-theme="dark"] body.retro-mode .dialpad-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
         body.retro-mode .dial-key { background:#e0e0e0 !important; border:1px solid #a0a0a0 !important; border-radius:7px !important; box-shadow:0 2px 3px rgba(0,0,0,0.2), inset 0 1px 0 #fff !important; }
@@ -382,11 +435,11 @@
         body.minecraft-mode .settings-section-title, body.minecraft-mode .settings-option-label, body.minecraft-mode .wallpaper-btn, body.minecraft-mode .settings-btn { color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; font-size: 0.7rem; }
         body.minecraft-mode .wallpaper-btn, body.minecraft-mode .settings-btn { border:1px solid #555; background:transparent; }
         body.minecraft-mode .wallpaper-btn.active, body.minecraft-mode .settings-btn.active { background:#5a5a5a; }
-        body.minecraft-mode .calc-modal { background:#3a3a3a; border:2px solid #1a1a1a; border-radius:6px; }
-        body.minecraft-mode .calc-display { background:#2d2d2d; border:2px solid #1a1a1a; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
-        body.minecraft-mode .calc-key { background:#4a4a4a; border:2px solid #1a1a1a; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; font-size: 0.9rem; }
-        body.minecraft-mode .calc-key.operator { background:#6b6b6b; }
-        body.minecraft-mode .calc-key.equals { background:#5a8f3c; }
+        body.minecraft-mode .calc-modal { background-color: var(--calc-bg) !important; border:2px solid #1a1a1a !important; border-radius:6px; }
+        body.minecraft-mode .calc-display { background-color: var(--calc-display-bg) !important; border:2px solid #1a1a1a !important; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
+        body.minecraft-mode .calc-key { background-color: var(--calc-key-bg) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; font-size: 0.9rem; }
+        body.minecraft-mode .calc-key.operator { background-color: var(--calc-operator-bg) !important; }
+        body.minecraft-mode .calc-key.equals { background-color: var(--calc-equals-bg) !important; }
         body.minecraft-mode .dialpad-modal { background:#3a3a3a; border:2px solid #1a1a1a; border-radius:6px; }
         body.minecraft-mode .dialpad-display { background:#2d2d2d; border:2px solid #1a1a1a; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
         body.minecraft-mode .dial-key { background:#4a4a4a; border:2px solid #1a1a1a; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
@@ -408,6 +461,7 @@
             .download-text { font-size:0.78rem; }
             .download-btn-action { padding:0.35rem 0.8rem; font-size:0.75rem; }
             .calc-modal { max-width:280px; }
+            .calc-key { height: 50px; font-size: 1.2rem; }
             body.minecraft-mode .site-title { font-size: 0.7rem; }
             body.minecraft-mode .menu-item { font-size: 0.65rem; }
             body.minecraft-mode .btn, body.minecraft-mode .download-btn-action { font-size: 0.6rem; }
