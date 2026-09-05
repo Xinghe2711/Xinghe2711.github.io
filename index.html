@@ -125,7 +125,7 @@
         .sidebar-menu.open { transform:translateX(0); }
         .sidebar-header { font-size: 1.1rem; font-weight: 700; color: var(--text); padding: 12px 20px; letter-spacing: 0.08em; text-transform: uppercase; }
         .menu-section { padding:14px 20px 6px; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); }
-        .menu-item { display:flex; align-items:center; justify-content:space-between; width:100%; padding:11px 20px; background:transparent; border:none; cursor:pointer; font-size:0.95rem; color:var(--text); transition:background-color 0.2s; font-family:inherit; letter-spacing:0.04em; -webkit-tap-highlight-color:transparent; outline:none; text-decoration:none; text-align:left; }
+        .menu-item { display:flex; align-items:center; justify-content:space-between; width:100%; padding:11px 20px; background:transparent; border:none; cursor:pointer; font-size:0.95rem; color:var(--text); transition:background-color 0.2s; font-family:inherit; letter-spacing:0.04em; -webkit-tap-highlight-color:transparent; outline:none; text-decoration:none; text-align:left; position:relative; overflow:hidden; }
         .menu-item:hover { background-color:var(--menu-item-hover); }
         .menu-divider { height:1px; background-color:var(--divider); margin:6px 0; opacity:0.5; }
 
@@ -133,7 +133,7 @@
         h1 { font-size:clamp(1.3rem,4vw,2rem); font-weight:300; color:var(--text); letter-spacing:0.04em; line-height:1.5; margin-bottom:1.2rem; }
         .divider { width:48px; height:1px; background-color:var(--divider); margin:0 auto 1.2rem auto; }
         .button-group { display:flex; flex-wrap:wrap; justify-content:center; gap:0.7rem; }
-        .btn { display:inline-block; padding:0.65rem 1.8rem; font-size:0.9rem; color:var(--btn-primary-text); background-color:var(--btn-primary); border:1px solid var(--btn-primary); border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.05em; transition:all 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; }
+        .btn { display:inline-block; padding:0.65rem 1.8rem; font-size:0.9rem; color:var(--btn-primary-text); background-color:var(--btn-primary); border:1px solid var(--btn-primary); border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.05em; transition:all 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; position:relative; overflow:hidden; }
         .btn:hover { background-color:var(--btn-primary-hover); border-color:var(--btn-primary-hover); }
         .announcement { margin:1.2rem auto; max-width:360px; padding:0.7rem 1rem; border:1.5px solid var(--announcement-border); border-radius:10px; background-color:var(--announcement-bg); }
         .announcement-title { font-size:1.1rem; font-weight:500; color:var(--announcement-title); }
@@ -141,11 +141,11 @@
         .download-group { display:flex; flex-direction:column; align-items:center; gap:0.6rem; margin-top:1.2rem; }
         .download-item { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:340px; padding:0.7rem 1rem; border:1.5px solid var(--download-btn-border); border-radius:8px; background-color:var(--download-btn-bg); cursor:default; transition: border-color 0.3s, background-color 0.3s; }
         .download-text { font-size:0.85rem; color:var(--download-btn-text); flex:1; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:0.8rem; }
-        .download-btn-action { display:inline-block; padding:0.4rem 1rem; font-size:0.8rem; font-weight:500; color:#ffffff; background-color:var(--btn-primary); border:none; border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.04em; transition: background-color 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; }
+        .download-btn-action { display:inline-block; padding:0.4rem 1rem; font-size:0.8rem; font-weight:500; color:#ffffff; background-color:var(--btn-primary); border:none; border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.04em; transition: background-color 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; position:relative; overflow:hidden; }
         .download-btn-action:hover { background-color:var(--btn-primary-hover); }
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
-        .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; }
+        .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; overflow:hidden; }
         .ios-switch .knob { position:absolute; top:2px; left:2px; width:27px; height:27px; background-color:#fff; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
@@ -160,11 +160,11 @@
         .settings-option { display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0; border-bottom:1px solid var(--divider); }
         .settings-option:last-child { border-bottom:none; }
         .settings-option-label { font-size:0.85rem; color:var(--text); }
-        .settings-btn { padding:0.35rem 0.9rem; font-size:0.75rem; border-radius:16px; border:1px solid var(--divider); background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; }
+        .settings-btn { padding:0.35rem 0.9rem; font-size:0.75rem; border-radius:16px; border:1px solid var(--divider); background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; position:relative; overflow:hidden; }
         .settings-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
-        .wallpaper-btn { display:block; width:100%; text-align:left; margin:2px 0; padding:0.5rem 1rem; font-size:0.85rem; border:1px solid var(--divider); border-radius:8px; background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; }
+        .wallpaper-btn { display:block; width:100%; text-align:left; margin:2px 0; padding:0.5rem 1rem; font-size:0.85rem; border:1px solid var(--divider); border-radius:8px; background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; position:relative; overflow:hidden; }
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
-        .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; }
+        .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; position:relative; overflow:hidden; }
 
         .about-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2200; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .about-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -173,8 +173,7 @@
         .about-title { font-size:2rem; font-weight:700; color:var(--text); text-align:center; margin-bottom:0.5rem; }
         .about-info { text-align:center; color:var(--text-secondary); font-size:0.9rem; line-height:1.6; }
         .about-info p { margin:0.2rem 0; }
-        .about-close-btn { position:absolute; right:1rem; bottom:1rem; padding:0.5rem 1.2rem; background-color:var(--accent); color:#fff; border:none; border-radius:20px; font-size:0.85rem; cursor:pointer; transition:background-color 0.2s; }
-        .about-close-btn:hover { background-color:var(--accent-hover); }
+        .about-close-btn { position:absolute; right:1rem; bottom:1rem; padding:0.5rem 1.2rem; background-color:var(--accent); color:#fff; border:none; border-radius:20px; font-size:0.85rem; cursor:pointer; transition:background-color 0.2s; position:relative; overflow:hidden; }
 
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -182,7 +181,7 @@
         .calc-overlay.visible .calc-modal { transform:translateY(0) scale(1); }
         .calc-display { background-color:var(--calc-display-bg); border-radius:10px; padding:0.8rem 1rem; font-size:2rem; font-weight:300; text-align:right; color:var(--text); margin-bottom:0.8rem; min-height:64px; display:flex; align-items:center; justify-content:flex-end; overflow-x:auto; white-space:nowrap; letter-spacing:0.05em; border:1px solid var(--divider); }
         .calc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; }
-        .calc-key { background-color:var(--calc-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.3rem; color:var(--text); transition:all 0.15s ease; -webkit-tap-highlight-color:transparent; outline:none; font-family:inherit; font-weight:400; }
+        .calc-key { background-color:var(--calc-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.3rem; color:var(--text); transition:all 0.15s ease; -webkit-tap-highlight-color:transparent; outline:none; font-family:inherit; font-weight:400; position:relative; overflow:hidden; }
         .calc-key:hover { background-color:var(--calc-key-hover); }
         .calc-key:active { transform:scale(0.9); }
         .calc-key.operator { background-color:var(--calc-operator-bg); color:var(--calc-operator-text); }
@@ -199,13 +198,40 @@
         .dialpad-overlay.visible .dialpad-modal { transform:translateY(0) scale(1); }
         .dialpad-display { background-color:var(--dial-display-bg); border-radius:8px; padding:0.5rem 0.7rem; font-size:1.2rem; text-align:right; color:var(--dial-display-text); margin-bottom:0.7rem; min-height:40px; display:flex; align-items:center; justify-content:flex-end; overflow-x:auto; }
         .dialpad-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.4rem; }
-        .dial-key { background-color:var(--dial-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; font-size:1rem; color:var(--text); transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; font-family:inherit; }
+        .dial-key { background-color:var(--dial-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; font-size:1rem; color:var(--text); transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; font-family:inherit; position:relative; overflow:hidden; }
         .dial-key:hover { background-color:var(--dial-key-hover); }
         .dial-key .sub { font-size:0.45rem; color:var(--text-secondary); margin-top:1px; }
         .dial-actions { display:flex; gap:0.4rem; margin-top:0.5rem; }
-        .dial-action { flex:1; padding:0.5rem 0; border:none; border-radius:30px; cursor:pointer; font-size:0.75rem; -webkit-tap-highlight-color:transparent; font-family:inherit; }
+        .dial-action { flex:1; padding:0.5rem 0; border:none; border-radius:30px; cursor:pointer; font-size:0.75rem; -webkit-tap-highlight-color:transparent; font-family:inherit; position:relative; overflow:hidden; }
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
+
+        /* ========== 水滴涟漪动画（液态玻璃模式下启用） ========== */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.55);
+            transform: scale(0);
+            animation: liquidRipple 0.7s ease-out forwards;
+            pointer-events: none;
+            z-index: 10;
+        }
+        [data-theme="dark"] .ripple {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        @keyframes liquidRipple {
+            0% {
+                transform: scale(0);
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
 
         /* 显示模式样式 - 透明模式 */
         body.glass-mode { background-color:rgba(255,255,255,0.35) !important; }
@@ -357,7 +383,6 @@
     <aside class="sidebar-menu" id="sidebarMenu">
         <div class="sidebar-header" data-i18n="menu">菜单</div>
         <div class="menu-divider"></div>
-
         <button class="menu-item" id="settingsTrigger"><span data-i18n="settings">设置</span><span>⚙️</span></button>
         <button class="menu-item" id="calcTrigger"><span data-i18n="calculator">计算器</span><span>🔢</span></button>
         <button class="menu-item" id="aboutTrigger"><span data-i18n="about">关于</span><span>ℹ️</span></button>
@@ -618,6 +643,29 @@
                 mcMusic.currentTime = 0;
             }
 
+            // ========== 水滴涟漪效果 ==========
+            function createRipple(e) {
+                if (!document.body.classList.contains('liquid-glass-mode')) return;
+                const target = e.currentTarget;
+                const rect = target.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX || e.touches?.[0]?.clientX || rect.left + rect.width/2) - rect.left - size/2 + 'px';
+                ripple.style.top = (e.clientY || e.touches?.[0]?.clientY || rect.top + rect.height/2) - rect.top - size/2 + 'px';
+                target.appendChild(ripple);
+                ripple.addEventListener('animationend', () => ripple.remove());
+            }
+
+            // 为所有可点击元素添加涟漪监听（仅在液态玻璃模式下生效）
+            function attachRippleToElements() {
+                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .settings-btn, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action';
+                document.querySelectorAll(clickableSelector).forEach(el => {
+                    el.addEventListener('click', createRipple);
+                });
+            }
+
             function updateUI() {
                 document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode','minecraft-mode');
                 if (minecraftEnabled) {
@@ -799,6 +847,7 @@
             });
 
             buildDialpad();
+            attachRippleToElements(); // 绑定涟漪效果
             updateUI();
         })();
     </script>
