@@ -119,7 +119,6 @@
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
 
-        /* 设置弹窗 */
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -133,7 +132,6 @@
         .wallpaper-btn { display:block; width:100%; text-align:left; margin:2px 0; padding:0.5rem 1rem; font-size:0.85rem; border:1px solid var(--divider); border-radius:8px; background-color:transparent; color:var(--text); cursor:pointer; position:relative; overflow:hidden; }
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; position:relative; overflow:hidden; }
-
         .settings-simple-view { display: block; }
         .settings-macos-view { display: none; }
 
@@ -305,7 +303,7 @@
         body.minecraft-mode .easter-egg-close { background: linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; color:#ffffff !important; font-family:'Press Start 2P', monospace !important; border-radius:4px !important; font-size:0.7rem; padding:8px 20px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) !important; }
         body.minecraft-mode .settings-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px !important; }
 
-        /* ============ 概念版模式 ============ */
+        /* 概念版模式 */
         body.concept-mode { padding-top: 1rem !important; }
         body.concept-mode .top-bar,
         body.concept-mode .hamburger-btn,
@@ -330,6 +328,18 @@
         }
         body.concept-mode .macos-dock { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
         [data-theme="dark"] .macos-dock { background: rgba(30, 30, 36, 0.45); border-color: rgba(255, 255, 255, 0.15); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), inset 1px 1px 0 rgba(255, 255, 255, 0.1); }
+
+        /* ★ 全屏时 Dock 自动隐藏，滑出才能显示 ★ */
+        body.concept-mode.fullscreen-active .macos-dock {
+            transform: translateX(-50%) translateY(160%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        body.concept-mode.fullscreen-active .macos-dock.dock-visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
 
         .dock-item {
             position: relative; width: 54px; height: 54px; border-radius: 14px;
@@ -394,7 +404,6 @@
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 8px 24px rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.14), inset -1px -1px 0 rgba(255, 255, 255, 0.05) !important;
         }
 
-        /* 设置窗口：自适应高度，保证内容完整 */
         body.concept-mode .settings-modal {
             width: 720px !important;
             max-width: min(720px, calc(100vw - 20px)) !important;
@@ -416,7 +425,7 @@
             border-radius: 0 !important;
         }
 
-        /* ★ 修复：全屏计算器按钮过大 ★ */
+        /* 修复：全屏计算器按钮过大 */
         body.concept-mode .calc-modal.fullscreen .macos-window-content {
             padding: 24px;
             align-items: center;
@@ -552,7 +561,6 @@
         <button class="menu-item" id="dialpadTrigger"><span data-i18n="dialpad">拨号盘</span> <span>☎</span></button>
     </aside>
 
-    <!-- 设置窗口 -->
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-modal" id="settingsModal">
             <div class="macos-window-bar">
@@ -563,8 +571,6 @@
                 <div class="macos-window-title" data-i18n="settings">设置</div>
             </div>
             <div class="macos-window-content">
-
-                <!-- 简单视图 -->
                 <div class="settings-simple-view">
                     <div class="settings-title" data-i18n="settings">设置</div>
                     <div class="settings-section">
@@ -611,7 +617,6 @@
                     <button class="settings-close-btn" data-role="settings-close" data-i18n="close">关闭</button>
                 </div>
 
-                <!-- macOS 视图 -->
                 <div class="settings-macos-view settings-window-layout">
                     <div class="settings-sidebar">
                         <div class="settings-search">
@@ -739,7 +744,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -1134,6 +1138,18 @@
                 }
             }
 
+            // 检查并同步全屏状态
+            function checkFullscreenState() {
+                const anyFullscreen = document.querySelector('.settings-modal.fullscreen, .calc-modal.fullscreen, .dialpad-modal.fullscreen, .more-modal.fullscreen');
+                const isActive = !!anyFullscreen;
+                const wasActive = document.body.classList.contains('fullscreen-active');
+                document.body.classList.toggle('fullscreen-active', isActive);
+                // 进入或退出全屏时，重置 Dock 显示状态
+                if (isActive !== wasActive || !isActive) {
+                    macosDock.classList.remove('dock-visible');
+                }
+            }
+
             function updateUI() {
                 document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode','minecraft-mode');
                 if (minecraftEnabled) document.body.classList.add('minecraft-mode');
@@ -1176,6 +1192,7 @@
                 }
 
                 updateSettingsView();
+                checkFullscreenState();
                 attachRippleToElements();
             }
 
@@ -1255,6 +1272,10 @@
 
             function openWindow(overlay, modal) {
                 closeAllModals();
+                // 重置所有窗口的全屏状态
+                [settingsModal, calcModal, dialpadModal, moreModal].forEach(w => w.classList.remove('fullscreen'));
+                document.body.classList.remove('fullscreen-active');
+                macosDock.classList.remove('dock-visible');
                 overlay.classList.add('visible');
                 if (conceptEnabled) {
                     if (!modal.classList.contains('fullscreen')) {
@@ -1275,9 +1296,12 @@
                 if (closeBtn) closeBtn.addEventListener('click', () => {
                     const ov = win.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay');
                     if (ov) ov.classList.remove('visible');
+                    win.classList.remove('fullscreen');
+                    checkFullscreenState();
                 });
                 if (maxBtn) maxBtn.addEventListener('click', () => {
                     win.classList.toggle('fullscreen');
+                    checkFullscreenState();
                 });
             });
 
@@ -1438,6 +1462,80 @@
             versionAreaSettings.addEventListener('click', triggerEasterEgg);
             easterEggClose.addEventListener('click', () => easterEggOverlay.classList.remove('visible'));
             easterEggOverlay.addEventListener('click', e => { if (e.target === easterEggOverlay) easterEggOverlay.classList.remove('visible'); });
+
+            /* ================== 底部滑动手势：上滑显示 Dock，下滑隐藏 Dock ================== */
+            let swipeStartY = 0;
+            let swipeStartX = 0;
+            let swipeStartTime = 0;
+            let swipeHandled = false;
+
+            document.addEventListener('touchstart', (e) => {
+                if (!conceptEnabled || !document.body.classList.contains('fullscreen-active')) return;
+                const t = e.touches[0];
+                swipeStartY = t.clientY;
+                swipeStartX = t.clientX;
+                swipeStartTime = Date.now();
+                swipeHandled = false;
+            }, { passive: true });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!conceptEnabled || !document.body.classList.contains('fullscreen-active') || swipeHandled) return;
+                const t = e.touches[0];
+                const deltaY = swipeStartY - t.clientY;
+                const fromBottom = swipeStartY > window.innerHeight - 80;
+                // 从屏幕底部向上滑 → 显示 Dock
+                if (fromBottom && deltaY > 25) {
+                    macosDock.classList.add('dock-visible');
+                    swipeHandled = true;
+                }
+            }, { passive: true });
+
+            document.addEventListener('touchend', (e) => {
+                if (!conceptEnabled || !document.body.classList.contains('fullscreen-active')) return;
+                const t = e.changedTouches[0];
+                const deltaY = swipeStartY - t.clientY;
+                const deltaTime = Date.now() - swipeStartTime;
+                // 向上快速滑且从底部开始
+                if (deltaY > 30 && swipeStartY > window.innerHeight - 80 && deltaTime < 600) {
+                    macosDock.classList.add('dock-visible');
+                }
+                // 向下滑且 Dock 可见，同时从底部区域开始 → 隐藏 Dock
+                if (deltaY < -30 && macosDock.classList.contains('dock-visible') && swipeStartY > window.innerHeight - 140 && deltaTime < 600) {
+                    macosDock.classList.remove('dock-visible');
+                }
+                // 若滑动距离不够，但用户明确向上滑过屏底边缘，也显示
+                if (!swipeHandled && macosDock.classList.contains('dock-visible') && deltaY < -30 && swipeStartY > window.innerHeight - 60) {
+                    macosDock.classList.remove('dock-visible');
+                }
+            }, { passive: true });
+
+            /* 桌面鼠标：全屏时鼠标移到屏幕底部 20px 内显示 Dock */
+            document.addEventListener('mousemove', (e) => {
+                if (!conceptEnabled || !document.body.classList.contains('fullscreen-active')) return;
+                if (e.clientY > window.innerHeight - 20) {
+                    macosDock.classList.add('dock-visible');
+                }
+            });
+            /* 鼠标离开 Dock 区域 3 秒后自动隐藏 */
+            let dockAutoHideTimer = null;
+            macosDock.addEventListener('mouseenter', () => {
+                if (dockAutoHideTimer) { clearTimeout(dockAutoHideTimer); dockAutoHideTimer = null; }
+            });
+            macosDock.addEventListener('mouseleave', () => {
+                if (!document.body.classList.contains('fullscreen-active')) return;
+                if (dockAutoHideTimer) clearTimeout(dockAutoHideTimer);
+                dockAutoHideTimer = setTimeout(() => {
+                    macosDock.classList.remove('dock-visible');
+                }, 1200);
+            });
+
+            /* 点击 Dock 中的图标后，若在全屏状态，自动隐藏 Dock */
+            macosDock.addEventListener('click', () => {
+                if (document.body.classList.contains('fullscreen-active')) {
+                    setTimeout(() => macosDock.classList.remove('dock-visible'), 200);
+                }
+            }, true);
+            // ========================================================
 
             function calcInput(value) {
                 if (calcShouldResetDisplay) { calcDisplay.textContent = '0'; calcShouldResetDisplay = false; }
