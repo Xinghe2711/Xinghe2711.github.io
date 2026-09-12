@@ -207,6 +207,20 @@
         .more-download-action { padding: 4px 12px; font-size: 0.78rem; font-weight: 600; color: #fff; background: var(--accent); border: none; border-radius: 50px; text-decoration: none; flex-shrink: 0; }
         .more-link-arrow { color: var(--text-secondary); font-size: 0.85rem; }
 
+        /* 网页版MC 窗口（非概念版下强制隐藏） */
+        .webmc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2500; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
+        .webmc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
+        .webmc-modal { background-color:var(--modal-bg); border-radius:16px; padding:0; width:100%; max-width:900px; height:620px; box-shadow:0 12px 48px rgba(0,0,0,0.3); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); display:flex; flex-direction:column; overflow:hidden; }
+        .webmc-overlay.visible .webmc-modal { transform:translateY(0) scale(1); }
+        /* ★ 关键修复：非概念版下强制隐藏 webmc 窗口（防止 iframe 泄漏） */
+        body:not(.concept-mode) .webmc-overlay {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        .webmc-iframe { width: 100%; height: 100%; border: none; background: #000; display: block; flex: 1; }
+
         .ripple { position: absolute; border-radius: 50%; background: radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0) 72%); transform: translate(-50%, -50%) scale(0); animation: iosRipple 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; pointer-events: none; z-index: 10; filter: blur(0.5px); }
         [data-theme="dark"] .ripple { background: radial-gradient(circle at center, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.45) 30%, rgba(255,255,255,0.18) 55%, rgba(255,255,255,0) 72%); }
         @keyframes iosRipple { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 60% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.55; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
@@ -303,7 +317,7 @@
         body.minecraft-mode .easter-egg-close { background: linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; color:#ffffff !important; font-family:'Press Start 2P', monospace !important; border-radius:4px !important; font-size:0.7rem; padding:8px 20px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) !important; }
         body.minecraft-mode .settings-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px !important; }
 
-        /* ============ 概念版模式 ============ */
+        /* 概念版模式 */
         body.concept-mode { padding-top: 1rem !important; }
         body.concept-mode .top-bar,
         body.concept-mode .hamburger-btn,
@@ -367,12 +381,14 @@
         body.concept-mode .webmc-overlay {
             background: transparent !important; pointer-events: none !important;
             padding: 0 !important; align-items: flex-start !important; justify-content: flex-start !important;
+            display: flex !important;
+            visibility: hidden;
         }
         body.concept-mode .settings-overlay.visible,
         body.concept-mode .calc-overlay.visible,
         body.concept-mode .dialpad-overlay.visible,
         body.concept-mode .more-overlay.visible,
-        body.concept-mode .webmc-overlay.visible { pointer-events: none !important; }
+        body.concept-mode .webmc-overlay.visible { visibility: visible; }
 
         body.concept-mode .settings-modal,
         body.concept-mode .calc-modal,
@@ -433,7 +449,8 @@
         [data-theme="dark"] .macos-window-bar { border-bottom-color: rgba(255, 255, 255, 0.06); }
         body.concept-mode .macos-window-bar { display: flex; }
         .macos-traffic-lights { display: flex; gap: 8px; align-items: center; }
-        .traffic-light { width: 13px; height: 13px; border-radius: 50%; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 10px; line-height: 1; color: rgba(0,0,0,0.55); position: relative; }
+        /* ★ 关键：确保关闭按钮可以被点击 */
+        .traffic-light { width: 13px; height: 13px; border-radius: 50%; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 10px; line-height: 1; color: rgba(0,0,0,0.55); position: relative; pointer-events: auto !important; z-index: 100; }
         .traffic-light.close { background: #ff5f57; box-shadow: inset 0 0 0 0.5px #e0443e; }
         .traffic-light.max { background: #28c840; box-shadow: inset 0 0 0 0.5px #18a32b; }
         .traffic-light::before { opacity: 0; transition: opacity 0.15s; font-weight: 700; }
@@ -491,15 +508,6 @@
         body.concept-mode .webmc-modal .macos-window-content { padding: 0; }
         body.concept-mode .calc-modal .calc-display { border-radius: 12px; margin-bottom: 12px; }
         body.concept-mode .dialpad-modal .dial-actions { margin-top: 12px; }
-
-        /* 网页版MC iframe */
-        .webmc-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #000;
-            display: block;
-        }
 
         @keyframes macosWindowOpen { 0% { opacity: 0; transform: scale(0.85) translateY(30px); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) translateY(0); } }
         .macos-window-opening { animation: macosWindowOpen 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
@@ -875,7 +883,6 @@
         </div>
     </div>
 
-    <!-- 网页版MC 窗口（概念版） -->
     <div class="webmc-overlay" id="webmcOverlay">
         <div class="webmc-modal" id="webmcModal">
             <div class="macos-window-bar">
@@ -1186,6 +1193,42 @@
                 checkFullscreenState();
             }
 
+            // ★ 关闭指定窗口并清理
+            function closeWindow(overlay, modal) {
+                overlay.classList.remove('visible');
+                if (modal) modal.classList.remove('fullscreen');
+                // 若为 webmc 窗口，关闭时重置 iframe 释放资源
+                if (overlay === webmcOverlay) {
+                    try { webmcIframe.src = 'about:blank'; } catch(e) {}
+                    webmcLoaded = false;
+                }
+                checkFullscreenState();
+            }
+
+            // ★ 全局事件委托：处理所有关闭按钮的点击
+            document.addEventListener('click', (e) => {
+                const closeBtn = e.target.closest('.traffic-light.close');
+                if (!closeBtn) return;
+                e.stopPropagation();
+                e.preventDefault();
+                const overlay = closeBtn.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay, .webmc-overlay');
+                if (!overlay) return;
+                const modal = overlay.querySelector('.settings-modal, .calc-modal, .dialpad-modal, .more-modal, .webmc-modal');
+                closeWindow(overlay, modal);
+            }, true);
+
+            // ★ 全屏按钮事件委托
+            document.addEventListener('click', (e) => {
+                const maxBtn = e.target.closest('.traffic-light.max');
+                if (!maxBtn) return;
+                e.stopPropagation();
+                e.preventDefault();
+                const modal = maxBtn.closest('.settings-modal, .calc-modal, .dialpad-modal, .more-modal, .webmc-modal');
+                if (!modal) return;
+                modal.classList.toggle('fullscreen');
+                checkFullscreenState();
+            }, true);
+
             function updateUI() {
                 document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode','minecraft-mode');
                 if (minecraftEnabled) document.body.classList.add('minecraft-mode');
@@ -1219,7 +1262,13 @@
                     applyWallpaper(wallpaperURLs[wallpaperChoice] || '');
                 }
 
+                // ★ 关键：非概念版下彻底清理 webmc 窗口
                 if (!conceptEnabled) {
+                    if (webmcOverlay.classList.contains('visible')) {
+                        webmcOverlay.classList.remove('visible');
+                        try { webmcIframe.src = 'about:blank'; } catch(e) {}
+                        webmcLoaded = false;
+                    }
                     const active = document.querySelector('.settings-panel.active');
                     if (active && active.getAttribute('data-panel') === 'about') {
                         navItems.forEach(n => n.classList.toggle('active', n.getAttribute('data-panel') === 'appearance'));
@@ -1251,6 +1300,8 @@
                 easterEggOverlay.classList.remove('visible');
                 moreOverlay.classList.remove('visible');
                 webmcOverlay.classList.remove('visible');
+                try { webmcIframe.src = 'about:blank'; } catch(e) {}
+                webmcLoaded = false;
             }
 
             function makeDraggable(win) {
@@ -1259,7 +1310,10 @@
                 let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
                 function onStart(e) {
                     if (win.classList.contains('fullscreen')) return;
+                    // ★ 点击红绿灯时不做拖拽
                     if (e.target.closest('.traffic-light')) return;
+                    // ★ 点击 input/textarea 也不拖拽
+                    if (e.target.closest('input, textarea, iframe')) return;
                     dragging = true;
                     const p = e.touches ? e.touches[0] : e;
                     startX = p.clientX; startY = p.clientY;
@@ -1324,7 +1378,6 @@
                 }
             }
 
-            // 打开网页版MC窗口（概念版）
             function openWebmcWindow() {
                 if (!webmcLoaded) {
                     webmcIframe.src = 'https://mcjs.link';
@@ -1333,25 +1386,19 @@
                 openWindow(webmcOverlay, webmcModal);
             }
 
+            // 为所有窗口启用拖动
             [settingsModal, calcModal, dialpadModal, moreModal, webmcModal].forEach(win => {
                 makeDraggable(win);
-                const closeBtn = win.querySelector('.traffic-light.close');
-                const maxBtn = win.querySelector('.traffic-light.max');
-                if (closeBtn) closeBtn.addEventListener('click', () => {
-                    const ov = win.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay, .webmc-overlay');
-                    if (ov) ov.classList.remove('visible');
-                    win.classList.remove('fullscreen');
-                    checkFullscreenState();
+                // 点击窗口内容时提升层级（但不要影响关闭按钮）
+                win.addEventListener('mousedown', (e) => {
+                    if (!conceptEnabled) return;
+                    if (e.target.closest('.traffic-light')) return;
+                    bringToFront(win);
                 });
-                if (maxBtn) maxBtn.addEventListener('click', () => {
-                    win.classList.toggle('fullscreen');
-                    checkFullscreenState();
-                });
-                win.addEventListener('mousedown', () => {
-                    if (conceptEnabled) bringToFront(win);
-                });
-                win.addEventListener('touchstart', () => {
-                    if (conceptEnabled) bringToFront(win);
+                win.addEventListener('touchstart', (e) => {
+                    if (!conceptEnabled) return;
+                    if (e.target.closest('.traffic-light')) return;
+                    bringToFront(win);
                 }, { passive: true });
             });
 
@@ -1493,12 +1540,11 @@
                     conceptEnabled = !conceptEnabled;
                     localStorage.setItem('conceptMode', conceptEnabled ? 'enabled' : 'disabled');
                     if (!conceptEnabled) {
-                        settingsOverlay.classList.remove('visible');
-                        calcOverlay.classList.remove('visible');
-                        dialpadOverlay.classList.remove('visible');
-                        moreOverlay.classList.remove('visible');
-                        webmcOverlay.classList.remove('visible');
+                        // 关闭所有概念版窗口
+                        [settingsOverlay, calcOverlay, dialpadOverlay, moreOverlay, webmcOverlay].forEach(ov => ov.classList.remove('visible'));
                         [settingsModal, calcModal, dialpadModal, moreModal, webmcModal].forEach(w => w.classList.remove('fullscreen'));
+                        try { webmcIframe.src = 'about:blank'; } catch(e) {}
+                        webmcLoaded = false;
                         macosDock.classList.remove('dock-visible');
                     }
                     updateUI();
@@ -1539,7 +1585,7 @@
             easterEggClose.addEventListener('click', () => easterEggOverlay.classList.remove('visible'));
             easterEggOverlay.addEventListener('click', e => { if (e.target === easterEggOverlay) easterEggOverlay.classList.remove('visible'); });
 
-            /* ========== 底部滑动手势 ========== */
+            /* 底部滑动手势 */
             let swipeStartY = 0, swipeStartX = 0, swipeStartTime = 0, swipeHandled = false;
             document.addEventListener('touchstart', (e) => {
                 if (!conceptEnabled || !document.body.classList.contains('fullscreen-active')) return;
