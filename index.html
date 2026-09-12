@@ -13,18 +13,19 @@
             --text-secondary: #888888;
             --divider: #dddddd;
             --menu-bg: #ffffff;
-            --menu-shadow: rgba(0,0,0,0.12);
-            --menu-item-hover: #f0f0f0;
-            --accent: #0077cc;
+            --menu-shadow: rgbaospace(0,0,0,0.12);
+ !            --menu-item-hover: #f0fimportant0f0;
+            --accent: #0077cc;;
             --accent-hover: #005fa3;
+ }
             --btn-primary: #0077cc;
-            --btn-primary-hover: #005fa3;
+                   --btn-primary-hover: #005fa3;
             --btn-primary-text: #ffffff;
             --download-btn-bg: #ffffff;
-            --download-btn-border: #1a1a1a;
+            --download-btn-border: rgba(0,0,0,0.12);
             --download-btn-text: #1a1a1a;
             --announcement-bg: #ffffff;
-            --announcement-border: #1a1a1a;
+            --announcement-border: rgba(0,0,0,0.12);
             --announcement-title: #1a1a1a;
             --announcement-subtitle: #888888;
             --modal-bg: #ffffff;
@@ -55,10 +56,10 @@
             --btn-primary-hover: #64b5f6;
             --btn-primary-text: #121212;
             --download-btn-bg: #1e1e1e;
-            --download-btn-border: #f0f0f0;
+            --download-btn-border: rgba(255,255,255,0.2);
             --download-btn-text: #f0f0f0;
             --announcement-bg: #1e1e1e;
-            --announcement-border: #f0f0f0;
+            --announcement-border: rgba(255,255,255,0.2);
             --announcement-title: #f0f0f0;
             --announcement-subtitle: #888888;
             --modal-bg: #1e1e1e;
@@ -93,9 +94,9 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; transition: all 0.3s ease; }
+        .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1005; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; -webkit-tap-highlight-color:transparent; outline:none; overflow:hidden; }
+        .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1005; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; overflow:hidden; }
         .hamburger-line { display:block; width:22px; height:2.5px; background-color:var(--accent); border-radius:4px; transition:all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); }
         .hamburger-btn.active .hamburger-line:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
         .hamburger-btn.active .hamburger-line:nth-child(2) { opacity:0; }
@@ -107,27 +108,25 @@
         .sidebar-menu.open { transform:translateX(0); }
         .sidebar-header { font-size: 1.1rem; font-weight: 700; color: var(--text); padding: 12px 20px; letter-spacing: 0.08em; text-transform: uppercase; }
         .menu-section { padding:14px 20px 6px; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-secondary); }
-        .menu-item { display:flex; align-items:center; justify-content:space-between; width:100%; padding:11px 20px; background:transparent; border:none; cursor:pointer; font-size:0.95rem; color:var(--text); transition:background-color 0.2s; font-family:inherit; letter-spacing:0.04em; -webkit-tap-highlight-color:transparent; outline:none; text-decoration:none; text-align:left; position:relative; overflow:hidden; }
+        .menu-item { display:flex; align-items:center; justify-content:space-between; width:100%; padding:11px 20px; background:transparent; border:none; cursor:pointer; font-size:0.95rem; color:var(--text); font-family:inherit; text-decoration:none; text-align:left; position:relative; overflow:hidden; }
         .menu-item:hover { background-color:var(--menu-item-hover); }
         .menu-divider { height:1px; background-color:var(--divider); margin:6px 0; opacity:0.5; }
 
-        .container { text-align:center; padding:clamp(1.2rem,4vw,2rem); max-width:540px; width:100%; margin:auto; transition:all 0.35s ease; }
+        .container { text-align:center; padding:clamp(1.2rem,4vw,2rem); max-width:540px; width:100%; margin:auto; }
         h1 { font-size:clamp(1.3rem,4vw,2rem); font-weight:300; color:var(--text); letter-spacing:0.04em; line-height:1.5; margin-bottom:1.2rem; }
         .divider { width:48px; height:1px; background-color:var(--divider); margin:0 auto 1.2rem auto; }
         .button-group { display:flex; flex-wrap:wrap; justify-content:center; gap:0.7rem; }
-        .btn { display:inline-block; padding:0.65rem 1.8rem; font-size:0.9rem; color:var(--btn-primary-text); background-color:var(--btn-primary); border:1px solid var(--btn-primary); border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.05em; transition:all 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; position:relative; overflow:hidden; }
-        .btn:hover { background-color:var(--btn-primary-hover); border-color:var(--btn-primary-hover); }
+        .btn { display:inline-block; padding:0.65rem 1.8rem; font-size:0.9rem; color:var(--btn-primary-text); background-color:var(--btn-primary); border:1px solid var(--btn-primary); border-radius:50px; cursor:pointer; text-decoration:none; white-space:nowrap; position:relative; overflow:hidden; }
         .announcement { margin:1.2rem auto; max-width:360px; padding:0.7rem 1rem; border:1.5px solid var(--announcement-border); border-radius:10px; background-color:var(--announcement-bg); }
         .announcement-title { font-size:1.1rem; font-weight:500; color:var(--announcement-title); }
         .announcement-subtitle { font-size:0.7rem; color:var(--announcement-subtitle); }
         .download-group { display:flex; flex-direction:column; align-items:center; gap:0.6rem; margin-top:1.2rem; }
-        .download-item { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:340px; padding:0.7rem 1rem; border:1.5px solid var(--download-btn-border); border-radius:8px; background-color:var(--download-btn-bg); cursor:default; transition: border-color 0.3s, background-color 0.3s; }
+        .download-item { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:340px; padding:0.7rem 1rem; border:1.5px solid var(--download-btn-border); border-radius:8px; background-color:var(--download-btn-bg); }
         .download-text { font-size:0.85rem; color:var(--download-btn-text); flex:1; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:0.8rem; }
-        .download-btn-action { display:inline-block; padding:0.4rem 1rem; font-size:0.8rem; font-weight:500; color:#ffffff; background-color:var(--btn-primary); border:none; border-radius:50px; cursor:pointer; text-decoration:none; letter-spacing:0.04em; transition: background-color 0.3s; -webkit-tap-highlight-color:transparent; white-space:nowrap; position:relative; overflow:hidden; }
-        .download-btn-action:hover { background-color:var(--btn-primary-hover); }
+        .download-btn-action { display:inline-block; padding:0.4rem 1rem; font-size:0.8rem; font-weight:500; color:#ffffff; background-color:var(--btn-primary); border:none; border-radius:50px; cursor:pointer; text-decoration:none; white-space:nowrap; position:relative; overflow:hidden; }
         .footer-note { margin-top:1.5rem; font-size:0.6rem; color:var(--text-secondary); letter-spacing:0.12em; text-transform:uppercase; }
 
-        .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; transition:background-color 0.3s ease; flex-shrink:0; border:none; outline:none; -webkit-tap-highlight-color:transparent; padding:0; overflow:hidden; }
+        .ios-switch { position:relative; width:51px; height:31px; background-color:var(--toggle-off); border-radius:16px; cursor:pointer; flex-shrink:0; border:none; padding:0; overflow:hidden; }
         .ios-switch .knob { position:absolute; top:2px; left:2px; width:27px; height:27px; background-color:#fff; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:transform 0.3s ease; }
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
@@ -142,12 +141,10 @@
         .settings-option { display:flex; align-items:center; justify-content:space-between; padding:0.4rem 0; border-bottom:1px solid var(--divider); }
         .settings-option:last-child { border-bottom:none; }
         .settings-option-label { font-size:0.85rem; color:var(--text); }
-        .settings-btn { padding:0.35rem 0.9rem; font-size:0.75rem; border-radius:16px; border:1px solid var(--divider); background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; position:relative; overflow:hidden; }
-        .wallpaper-btn { display:block; width:100%; text-align:left; margin:2px 0; padding:0.5rem 1rem; font-size:0.85rem; border:1px solid var(--divider); border-radius:8px; background-color:transparent; color:var(--text); cursor:pointer; transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; position:relative; overflow:hidden; }
+        .wallpaper-btn { display:block; width:100%; text-align:left; margin:2px 0; padding:0.5rem 1rem; font-size:0.85rem; border:1px solid var(--divider); border-radius:8px; background-color:transparent; color:var(--text); cursor:pointer; position:relative; overflow:hidden; }
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; position:relative; overflow:hidden; }
         .settings-about { text-align:center; padding:0.4rem 0; font-size:0.8rem; color:var(--text-secondary); }
-        .settings-about p { margin: 0.2rem 0; }
 
         .about-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2200; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .about-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -155,10 +152,9 @@
         .about-overlay.visible .about-modal { transform:translateY(0) scale(1); }
         .about-title { font-size:2rem; font-weight:700; color:var(--text); text-align:center; margin-bottom:0.5rem; }
         .about-info { text-align:center; color:var(--text-secondary); font-size:0.9rem; line-height:1.6; }
-        .about-info p { margin:0.2rem 0; }
-        .about-close-btn { display:block; width:100%; margin-top:1.2rem; padding:0.6rem 0; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.9rem; cursor:pointer; transition:background-color 0.2s; position:relative; overflow:hidden; }
+        .about-close-btn { display:block; width:100%; margin-top:1.2rem; padding:0.6rem 0; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.9rem; cursor:pointer; }
 
-        .version-text { cursor: pointer; user-select: none; display: inline-block; padding: 5px 10px; border-radius: 6px; transition: background-color 0.2s; }
+        .version-text { cursor: pointer; user-select: none; display: inline-block; padding: 5px 10px; border-radius: 6px; }
         .version-text:hover { background-color: rgba(0,0,0,0.05); }
         [data-theme="dark"] .version-text:hover { background-color: rgba(255,255,255,0.1); }
         .version-label { color: var(--version-label-color); font-weight: 500; }
@@ -167,29 +163,23 @@
 
         .easter-egg-overlay { position: fixed; inset: 0; background-color: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; visibility: hidden; padding: 1rem; }
         .easter-egg-overlay.visible { opacity: 1; pointer-events: auto; visibility: visible; }
-        .easter-egg-modal { background-color: var(--modal-bg); border-radius: 16px; padding: 20px; width: 90%; max-width: 400px; box-shadow: 0 12px 48px rgba(0,0,0,0.3); position: relative; border: 1px solid var(--divider); }
-        .easter-egg-title { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 10px; text-align: left; border-bottom: 1px solid var(--divider); padding-bottom: 8px; }
+        .easter-egg-modal { background-color: var(--modal-bg); border-radius: 16px; padding: 20px; width: 90%; max-width: 400px; box-shadow: 0 12px 48px rgba(0,0,0,0.3); border: 1px solid var(--divider); }
+        .easter-egg-title { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 10px; border-bottom: 1px solid var(--divider); padding-bottom: 8px; }
         .easter-egg-content { display: flex; justify-content: center; align-items: center; margin: 15px 0; }
         .easter-egg-content img { max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain; }
-        .easter-egg-close { display: block; margin-left: auto; margin-top: 15px; padding: 8px 24px; background-color: var(--btn-primary); color: #ffffff; border: none; border-radius: 8px; font-size: 0.9rem; cursor: pointer; transition: background-color 0.2s; position: relative; overflow: hidden; }
+        .easter-egg-close { display: block; margin-left: auto; margin-top: 15px; padding: 8px 24px; background-color: var(--btn-primary); color: #ffffff; border: none; border-radius: 8px; font-size: 0.9rem; cursor: pointer; }
 
-        /* 计算器基础 */
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .calc-modal { border-radius: 24px; padding: 1rem; width: 100%; max-width: 340px; transform: translateY(16px) scale(0.96); transition: all 0.3s cubic-bezier(0.22,1,0.36,1); background-color: #f2f2f7; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 12px 48px rgba(0,0,0,0.15); }
         .calc-overlay.visible .calc-modal { transform: translateY(0) scale(1); }
-        .calc-display { border-radius: 16px; padding: 1rem 1.2rem; font-size: 2.5rem; font-weight: 300; text-align: right; margin-bottom: 1rem; min-height: 80px; display: flex; align-items: center; justify-content: flex-end; overflow-x: auto; white-space: nowrap; letter-spacing: 0.02em; background-color: #ffffff; color: #1a1a1a; border: 1px solid rgba(0,0,0,0.06); }
+        .calc-display { border-radius: 16px; padding: 1rem 1.2rem; font-size: 2.5rem; font-weight: 300; text-align: right; margin-bottom: 1rem; min-height: 80px; display: flex; align-items: center; justify-content: flex-end; overflow-x: auto; white-space: nowrap; background-color: #ffffff; color: #1a1a1a; border: 1px solid rgba(0,0,0,0.06); }
         .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
-        .calc-key { border: none; border-radius: 50%; aspect-ratio: 1; min-height: 60px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; transition: all 0.15s ease; -webkit-tap-highlight-color: transparent; outline: none; font-family: inherit; font-weight: 400; position: relative; overflow: hidden; background-color: #ffffff; color: #1a1a1a; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+        .calc-key { border: none; border-radius: 50%; aspect-ratio: 1; min-height: 60px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; font-family: inherit; position: relative; overflow: hidden; background-color: #ffffff; color: #1a1a1a; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
         .calc-key:hover { background-color: #e5e5ea; }
-        .calc-key:active { transform: scale(0.94); }
         .calc-key.operator { background-color: #ff9500; color: #ffffff; }
-        .calc-key.operator:hover { background-color: #ffb143; }
         .calc-key.equals { background-color: #ff9500; color: #ffffff; }
-        .calc-key.equals:hover { background-color: #ffb143; }
         .calc-key.clear { background-color: #a5a5a5; color: #ffffff; }
-        .calc-key.clear:hover { background-color: #b8b8b8; }
-        .calc-key.zero { grid-column: span 1; }
 
         [data-theme="dark"] .calc-modal { background-color: #1c1c1e; border: 1px solid rgba(255,255,255,0.06); }
         [data-theme="dark"] .calc-display { background-color: #000000; color: #ffffff; border: 1px solid rgba(255,255,255,0.06); }
@@ -203,35 +193,72 @@
         .dialpad-overlay.visible .dialpad-modal { transform:translateY(0) scale(1); }
         .dialpad-display { background-color:var(--dial-display-bg); border-radius:8px; padding:0.5rem 0.7rem; font-size:1.2rem; text-align:right; color:var(--dial-display-text); margin-bottom:0.7rem; min-height:40px; display:flex; align-items:center; justify-content:flex-end; overflow-x:auto; }
         .dialpad-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.4rem; }
-        .dial-key { background-color:var(--dial-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; font-size:1rem; color:var(--text); transition:all 0.2s; -webkit-tap-highlight-color:transparent; outline:none; font-family:inherit; position:relative; overflow:hidden; }
-        .dial-key:hover { background-color:var(--dial-key-hover); }
+        .dial-key { background-color:var(--dial-key-bg); border:none; border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; font-size:1rem; color:var(--text); font-family:inherit; position:relative; overflow:hidden; }
         .dial-key .sub { font-size:0.45rem; color:var(--text-secondary); margin-top:1px; }
         .dial-actions { display:flex; gap:0.4rem; margin-top:0.5rem; }
-        .dial-action { flex:1; padding:0.5rem 0; border:none; border-radius:30px; cursor:pointer; font-size:0.75rem; -webkit-tap-highlight-color:transparent; font-family:inherit; position:relative; overflow:hidden; }
+        .dial-action { flex:1; padding:0.5rem 0; border:none; border-radius:30px; cursor:pointer; font-size:0.75rem; font-family:inherit; position:relative; overflow:hidden; }
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* ========== iOS 26 水滴涟漪 ========== */
+        /* 更多窗口基础样式 */
+        .more-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2400; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
+        .more-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
+        .more-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:400px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
+        .more-overlay.visible .more-modal { transform:translateY(0) scale(1); }
+        .more-body { display: flex; flex-direction: column; gap: 10px; }
+        .more-section { display: flex; flex-direction: column; gap: 8px; }
+        .more-section-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); padding: 4px 0 2px; }
+        .more-link, .more-download {
+            display: flex; align-items: center; gap: 10px;
+            padding: 11px 14px;
+            background: rgba(120,120,128,0.08);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.18s, border-color 0.18s;
+        }
+        [data-theme="dark"] .more-link, [data-theme="dark"] .more-download {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.06);
+        }
+        .more-link:hover, .more-download:hover { background: rgba(120,120,128,0.16); border-color: rgba(0,0,0,0.1); }
+        [data-theme="dark"] .more-link:hover, [data-theme="dark"] .more-download:hover { background: rgba(255,255,255,0.1); }
+        .more-link-icon, .more-download-icon {
+            width: 34px; height: 34px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; flex-shrink: 0;
+            color: #fff;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        .more-link-icon.bili { background: linear-gradient(135deg, #FB7299, #e2557e); }
+        .more-link-icon.qq { background: linear-gradient(135deg, #4fa8f8, #0a84ff); }
+        .more-download-icon.bili { background: linear-gradient(135deg, #FB7299, #e2557e); }
+        .more-download-icon.netease { background: linear-gradient(135deg, #ff5f57, #d12b2b); }
+        .more-download-icon.kugou { background: linear-gradient(135deg, #4fa8f8, #0a84ff); }
+        .more-download-icon.jianying { background: linear-gradient(135deg, #1a1a1a, #3a3a3a); }
+        .more-link-text, .more-download-text { flex: 1; text-align: left; font-weight: 500; }
+        .more-download-action {
+            padding: 4px 12px; font-size: 0.78rem; font-weight: 600;
+            color: #fff; background: var(--accent);
+            border: none; border-radius: 50px; text-decoration: none;
+            flex-shrink: 0;
+        }
+        .more-link-arrow { color: var(--text-secondary); font-size: 0.85rem; }
+
+        /* 涟漪 */
         .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at center,
-                rgba(255, 255, 255, 0.85) 0%,
-                rgba(255, 255, 255, 0.55) 30%,
-                rgba(255, 255, 255, 0.25) 55%,
-                rgba(255, 255, 255, 0) 72%);
+            position: absolute; border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0) 72%);
             transform: translate(-50%, -50%) scale(0);
             animation: iosRipple 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-            pointer-events: none;
-            z-index: 10;
-            filter: blur(0.5px);
+            pointer-events: none; z-index: 10; filter: blur(0.5px);
         }
         [data-theme="dark"] .ripple {
-            background: radial-gradient(circle at center,
-                rgba(255, 255, 255, 0.75) 0%,
-                rgba(255, 255, 255, 0.45) 30%,
-                rgba(255, 255, 255, 0.18) 55%,
-                rgba(255, 255, 255, 0) 72%);
+            background: radial-gradient(circle at center, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.45) 30%, rgba(255,255,255,0.18) 55%, rgba(255,255,255,0) 72%);
         }
         @keyframes iosRipple {
             0%   { transform: translate(-50%, -50%) scale(0);   opacity: 1; }
@@ -242,85 +269,55 @@
         /* 透明模式 */
         body.glass-mode { background-color:rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35) !important; }
-        body.glass-mode .top-bar { background-color:rgba(255,255,255,0.75) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-bottom:1px solid rgba(255,255,255,0.5) !important; }
-        [data-theme="dark"] body.glass-mode .top-bar { background-color:rgba(28,28,30,0.75) !important; border-bottom:1px solid rgba(255,255,255,0.1) !important; }
-        body.glass-mode .sidebar-menu { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; }
+        body.glass-mode .top-bar { background-color:rgba(255,255,255,0.75) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; }
+        [data-theme="dark"] body.glass-mode .top-bar { background-color:rgba(28,28,30,0.75) !important; }
+        body.glass-mode .sidebar-menu { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) !important; -webkit-backdrop-filter:blur(22px) !important; }
         [data-theme="dark"] body.glass-mode .sidebar-menu { background-color:rgba(28,28,30,0.72) !important; }
-        body.glass-mode .btn { background-color:rgba(0,122,255,0.8) !important; border-color:rgba(255,255,255,0.35) !important; }
-        body.glass-mode .download-btn-action { background-color:rgba(0,122,255,0.8) !important; }
-        body.glass-mode .download-item { background-color:rgba(255,255,255,0.55) !important; border-color:rgba(0,0,0,0.18) !important; }
-        [data-theme="dark"] body.glass-mode .download-item { background-color:rgba(44,44,46,0.55) !important; color:#f0f0f0 !important; }
-        body.glass-mode .announcement { background-color:rgba(255,255,255,0.55) !important; border-color:rgba(0,0,0,0.18) !important; }
-        [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55) !important; }
-        body.glass-mode .settings-modal, body.glass-mode .about-modal { background-color:rgba(255,255,255,0.85) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; }
-        [data-theme="dark"] body.glass-mode .settings-modal, [data-theme="dark"] body.glass-mode .about-modal { background-color:rgba(28,28,30,0.85) !important; }
-        body.glass-mode .easter-egg-modal { background-color: rgba(255,255,255,0.85) !important; backdrop-filter: blur(22px) !important; -webkit-backdrop-filter: blur(22px) !important; }
+        body.glass-mode .settings-modal, body.glass-mode .about-modal { background-color:rgba(255,255,255,0.85) !important; backdrop-filter:blur(22px) !important; -webkit-backdrop-filter:blur(22px) !important; }
 
         /* 液态玻璃 */
         body.liquid-glass-mode { background-color:rgba(255,255,255,0.2) !important; }
         [data-theme="dark"] body.liquid-glass-mode { background-color:rgba(18,18,18,0.2) !important; }
-        body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-bottom:1px solid rgba(255,255,255,0.4) !important; }
-        [data-theme="dark"] body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(50,50,50,0.4), rgba(20,20,20,0.2)) !important; }
-        body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; }
-        [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; }
-        body.liquid-glass-mode .btn { background-color: rgba(0, 119, 204, 0.65) !important; border: 1px solid rgba(255, 255, 255, 0.35) !important; color: #ffffff !important; box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4), inset -1px -1px 0 rgba(255, 255, 255, 0.2) !important; }
-        body.liquid-glass-mode .btn:hover { background-color: rgba(0, 119, 204, 0.8) !important; }
-        [data-theme="dark"] body.liquid-glass-mode .btn { background-color: rgba(66, 165, 245, 0.65) !important; color: #121212 !important; }
-        body.liquid-glass-mode .download-btn-action { background-color: rgba(0, 119, 204, 0.65) !important; border: 1px solid rgba(255, 255, 255, 0.35) !important; box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4), inset -1px -1px 0 rgba(255, 255, 255, 0.2) !important; }
-        body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)) !important; backdrop-filter:blur(10px) !important; -webkit-backdrop-filter:blur(10px) !important; }
-        body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(20px) !important; -webkit-backdrop-filter:blur(20px) !important; }
-        body.liquid-glass-mode .settings-modal, body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) !important; -webkit-backdrop-filter:blur(28px) !important; }
-        body.liquid-glass-mode .easter-egg-modal { background: linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter: blur(28px) !important; -webkit-backdrop-filter: blur(28px) !important; }
+        body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; }
+        body.liquid-glass-mode .sidebar-menu { background:linear-gradient( body180deg, rgba(.minecraft255,255,255,-mode0.4), rgba .(top255-bar,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) !important; -webkit-backdrop-filter:blur(28px) !important; }
+        body.liquid-glass-mode .btn { background-color: rgba(0,119,204,0.65) !important; box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), inset -1px -1px 0 rgba(255,255,255,0.2) !important; }
+        body.liquid-glass-mode .download-btn-action { background-color: rgba(0,119,204,0.65) !important; box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), inset -1px -1px 0 rgba(255,255,255,0.2) !important; }
+        body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) !important; -webkit-backdrop-filter:blur(28px) !important; }
 
         /* 怀旧模式 */
         body.retro-mode { background-color: #a0a8b0 !important; background-image: url('https://static.applewalls.com/iOS/iOS%204/compress/iOS%204%20-%20100.webp?qq_aio_chat_type=3') !important; background-size: cover !important; }
-        body.retro-mode .top-bar { background:linear-gradient(to bottom,#f0f0f0,#c8c8c8) !important; border-bottom:1px solid #7f7f7f !important; box-shadow:0 2px 6px rgba(0,0,0,0.35) !important; }
+        body.retro-mode .top-bar { background:linear-gradient(to bottom,#f0f0f0,#c8c8c8) !important; }
         body.retro-mode .site-title { font-weight:bold; color:#333; text-shadow:0 1px 0 rgba(255,255,255,0.7); }
         body.retro-mode .sidebar-menu { background:linear-gradient(to bottom,#f0f0f0,#d0d0d0) !important; }
         body.retro-mode .menu-item { color:#333 !important; border-bottom:1px solid #b0b0b0 !important; }
-        body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; color:#fff !important; }
-        body.retro-mode .download-btn-action { background:linear-gradient(to bottom,#4a90e2,#1c4f9c) !important; border:1px solid #0a2a5c !important; border-radius:6px !important; color:#fff !important; font-weight:700 !important; text-shadow:0 1px 2px rgba(0,0,0,0.75) !important; box-shadow:0 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.35) !important; }
-        body.retro-mode .download-item { background:#fff !important; border:1px solid #8f8f8f !important; color:#333 !important; }
-        body.retro-mode .announcement { background:#fafafa !important; border:1px solid #a0a0a0 !important; }
-        body.retro-mode .settings-modal, body.retro-mode .about-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; }
+        body.retro-mode .btn { background:linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; color:#fff !important; }
+        body.retro-mode .download-btn-action { background:linear-gradient(to bottom,#4a90e2,#1c4f9c) !important; border:1px solid #0a2a5c !important; border-radius:6px !important; color:#fff !important; font-weight:700 !important; }
         body.retro-mode .hamburger-line { background-color:#333 !important; }
-        body.retro-mode .dialpad-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; }
-        body.retro-mode .dial-key { background:#e0e0e0 !important; border:1px solid #a0a0a0 !important; border-radius:7px !important; box-shadow:0 2px 3px rgba(0,0,0,0.2), inset 0 1px 0 #fff !important; }
-        body.retro-mode .easter-egg-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; }
-        body.retro-mode .easter-egg-close { background: linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; }
 
         /* Minecraft */
-        body.minecraft-mode { background-color: #2d2d2d !important; background-image: url('https://raw.githubusercontent.com/Xinghe2711/Xinghe2711.github.io/refs/heads/main/IMG_6134.jpeg') !important; background-size: cover !important; font-family: 'Press Start 2P', 'Courier New', monospace !important; }
-        body.minecraft-mode .top-bar { background:linear-gradient(to bottom, #4a4a4a, #2d2d2d) !important; border-bottom:2px solid #1a1a1a !important; }
+        body.minecraft-mode { background-color: #2d2d2d !important; background-image: url('https://raw.githubusercontent.com/Xinghe2711/Xinghe2711.github.io/refs/heads/main/IMG_6134.jpeg') !important; background-size: cover !important; font-family: 'Press Start 2P', 'Courier New', mon { background:linear-gradient(to bottom, #4a4a4a, #2d2d2d) !important; border-bottom:2px solid #1a1a1a !important; }
         body.minecraft-mode .site-title { color:#ffffff; font-family:'Press Start 2P', monospace; text-shadow:1px 1px 0 #000; font-size: 0.85rem; }
         body.minecraft-mode .hamburger-line { background-color:#ffffff; }
-        body.minecraft-mode .sidebar-menu { background:linear-gradient(to bottom, #3a3a3a, #2d2d2d) !important; border-left:2px solid #1a1a1a !important; }
+        body.minecraft-mode .sidebar-menu { background:linear-gradient(to bottom, #3a3a3a, #2d2d2d) !important; }
         body.minecraft-mode .menu-item { color:#ffffff; border-bottom:1px solid #555; font-family:'Press Start 2P', monospace; font-size: 0.75rem; }
-        body.minecraft-mode .container { background: none !important; padding: 0 !important; }
         body.minecraft-mode h1 { color:#ffffff; font-family:'Press Start 2P', monospace; text-shadow:1px 1px 0 #000; font-size: 1.2rem; }
         body.minecraft-mode .btn { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', monospace; font-size: 0.7rem; }
         body.minecraft-mode .download-btn-action { background:linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', monospace; font-size: 0.7rem; }
-        body.minecraft-mode .download-item { background:#4a4a4a !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; }
+        body.minecraft-mode .download-item { background:#4a4a4a !important; border:2px solid #1a1a1a !important; color:#ffffff; }
         body.minecraft-mode .announcement { background:#4a4a4a !important; border:2px solid #1a1a1a !important; }
-        body.minecraft-mode .settings-modal, body.minecraft-mode .about-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px; }
-        body.minecraft-mode .settings-title, body.minecraft-mode .about-title { color:#ffffff; font-family:'Press Start 2P', monospace; }
-        body.minecraft-mode .settings-option-label, body.minecraft-mode .wallpaper-btn, body.minecraft-mode .settings-section-title { color:#ffffff; font-family:'Press Start 2P', monospace; font-size: 0.7rem; }
-        body.minecraft-mode .settings-close-btn { background:#5a5a5a; color:#ffffff; font-family:'Press Start 2P', monospace; }
-        body.minecraft-mode .dialpad-modal { background:#3a3a3a; border:2px solid #1a1a1a; }
-        body.minecraft-mode .dial-key { background:#4a4a4a; border:2px solid #1a1a1a; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', monospace; }
-        body.minecraft-mode .easter-egg-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; }
-        body.minecraft-mode .ios-switch { border-radius:4px; background-color:#2d2d2d; border:2px solid #1a1a1a; }
-        body.minecraft-mode .ios-switch .knob { border-radius:2px; background-color:#8b8b8b; }
-        body.minecraft-mode .ios-switch.on { background-color:#4a7a3c; }
 
-        /* ================== 概念版模式 ================== */
+        /* ============ 概念版模式 ============ */
         body.concept-mode { padding-top: 1rem !important; }
         body.concept-mode .top-bar,
         body.concept-mode .hamburger-btn,
         body.concept-mode .sidebar-menu,
         body.concept-mode .menu-overlay { display: none !important; }
 
-        /* macOS Dock */
+        /* 概念版下隐藏主界面按钮组和下载组 */
+        body.concept-mode .button-group,
+        body.concept-mode .download-group { display: none !important; }
+
+        /* ============ macOS Dock ============ */
         .macos-dock {
             position: fixed;
             bottom: 10px;
@@ -330,12 +327,12 @@
             align-items: flex-end;
             gap: 10px;
             padding: 10px 14px 12px;
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
             border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 22px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28), 0 4px 16px rgba(0, 0, 0, 0.15), inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 rgba(255, 255, 255, 0.3);
             z-index: 6000;
             opacity: 0;
             pointer-events: none;
@@ -346,12 +343,16 @@
             opacity: 1;
             pointer-events: auto;
         }
-        [data-theme="dark"] .macos-dock { background: rgba(30,30,32,0.5); border-color: rgba(255,255,255,0.15); }
+        [data-theme="dark"] .macos-dock {
+            background: rgba(30, 30, 36, 0.45);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+        }
 
         .dock-item {
             position: relative;
-            width: 52px;
-            height: 52px;
+            width: 54px;
+            height: 54px;
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -361,13 +362,15 @@
             line-height: 1;
             transform-origin: bottom center;
             transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-            background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(240,240,245,0.7));
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8);
-            border: 1px solid rgba(255,255,255,0.6);
-            -webkit-tap-highlight-color: transparent;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,240,245,0.75));
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.7);
             overflow: visible;
         }
-        [data-theme="dark"] .dock-item { background: linear-gradient(135deg, rgba(80,80,85,0.9), rgba(55,55,60,0.85)); border-color: rgba(255,255,255,0.15); box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15); }
+        [data-theme="dark"] .dock-item {
+            background: linear-gradient(135deg, rgba(80,80,88,0.9), rgba(55,55,62,0.85));
+            border-color: rgba(255,255,255,0.15);
+        }
         .dock-item:hover, .dock-item.touch-active { transform: scale(1.55) translateY(-14px); z-index: 10; }
 
         .dock-item .dock-label {
@@ -376,7 +379,7 @@
             left: 50%;
             transform: translateX(-50%) translateY(6px) scale(0.7);
             transform-origin: bottom center;
-            background: rgba(30,30,32,0.85);
+            background: rgba(30,30,32,0.88);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             color: #ffffff;
@@ -389,17 +392,17 @@
             pointer-events: none;
             transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
             margin-bottom: 14px;
-            letter-spacing: 0.02em;
         }
         .dock-item:hover .dock-label, .dock-item.touch-active .dock-label {
             opacity: 1;
             transform: translateX(-50%) translateY(0) scale(0.68);
         }
 
-        /* 概念版下窗口 */
+        /* ============ 概念版下窗口（液态玻璃） ============ */
         body.concept-mode .settings-overlay,
         body.concept-mode .calc-overlay,
-        body.concept-mode .dialpad-overlay {
+        body.concept-mode .dialpad-overlay,
+        body.concept-mode .more-overlay {
             background: transparent !important;
             pointer-events: none !important;
             padding: 0 !important;
@@ -408,72 +411,93 @@
         }
         body.concept-mode .settings-overlay.visible,
         body.concept-mode .calc-overlay.visible,
-        body.concept-mode .dialpad-overlay.visible {
-            pointer-events: none !important;
-        }
+        body.concept-mode .dialpad-overlay.visible,
+        body.concept-mode .more-overlay.visible { pointer-events: none !important; }
+
+        /* 通用液态玻璃窗口外观 */
         body.concept-mode .settings-modal,
         body.concept-mode .calc-modal,
-        body.concept-mode .dialpad-modal {
+        body.concept-mode .dialpad-modal,
+        body.concept-mode .more-modal {
             pointer-events: auto !important;
             position: fixed !important;
             margin: 0 !important;
             transform: none !important;
             transition: none !important;
             overflow: hidden;
-            border-radius: 12px !important;
-            border: 1px solid rgba(0,0,0,0.12) !important;
-            box-shadow: 0 24px 70px rgba(0,0,0,0.35), 0 6px 18px rgba(0,0,0,0.18) !important;
+            border-radius: 14px !important;
             display: flex;
             flex-direction: column;
             max-height: none;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.62) 0%,
+                rgba(255, 255, 255, 0.38) 40%,
+                rgba(255, 255, 255, 0.52) 100%) !important;
+            backdrop-filter: blur(50px) saturate(200%) !important;
+            -webkit-backdrop-filter: blur(50px) saturate(200%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.6) !important;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.35),
+                0 8px 24px rgba(0, 0, 0, 0.15),
+                inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+                inset -1px -1px 0 rgba(255, 255, 255, 0.4) !important;
         }
-        body.concept-mode .settings-modal { width: 380px !important; max-width: 380px !important; padding: 0 !important; background-color: #f2f2f7 !important; }
+        [data-theme="dark"] body.concept-mode .settings-modal,
+        [data-theme="dark"] body.concept-mode .calc-modal,
+        [data-theme="dark"] body.concept-mode .dialpad-modal,
+        [data-theme="dark"] body.concept-mode .more-modal {
+            background: linear-gradient(135deg,
+                rgba(60, 60, 68, 0.68) 0%,
+                rgba(35, 35, 42, 0.55) 40%,
+                rgba(50, 50, 58, 0.62) 100%) !important;
+            border-color: rgba(255, 255, 255, 0.14) !important;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.55),
+                0 8px 24px rgba(0, 0, 0, 0.3),
+                inset 1px 1px 0 rgba(255, 255, 255, 0.14),
+                inset -1px -1px 0 rgba(255, 255, 255, 0.05) !important;
+        }
+
+        body.concept-mode .settings-modal { width: 720px !important; max-width: 720px !important; height: 520px !important; max-height: 520px !important; padding: 0 !important; }
         body.concept-mode .calc-modal { width: 340px !important; max-width: 340px !important; padding: 0 !important; }
         body.concept-mode .dialpad-modal { width: 320px !important; max-width: 320px !important; padding: 0 !important; }
-        [data-theme="dark"] body.concept-mode .settings-modal { background-color: #1c1c1e !important; border-color: rgba(255,255,255,0.1) !important; }
-        [data-theme="dark"] body.concept-mode .calc-modal { background-color: #1c1c1e !important; }
-        [data-theme="dark"] body.concept-mode .dialpad-modal { background-color: #1c1c1e !important; }
+        body.concept-mode .more-modal { width: 400px !important; max-width: 400px !important; padding: 0 !important; }
 
         body.concept-mode .settings-modal.fullscreen,
         body.concept-mode .calc-modal.fullscreen,
-        body.concept-mode .dialpad-modal.fullscreen {
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            max-width: 100vw !important;
+        body.concept-mode .dialpad-modal.fullscreen,
+        body.concept-mode .more-modal.fullscreen {
+            top: 0 !important; left: 0 !important;
+            width: 100vw !important; height: 100vh !important;
+            max-width: 100vw !important; max-height: 100vh !important;
             border-radius: 0 !important;
         }
-        body.concept-mode .settings-modal.fullscreen .calc-grid,
-        body.concept-mode .calc-modal.fullscreen .calc-grid { max-width: 420px; margin: 0 auto; }
 
-        /* macOS 窗口标题栏 */
         .macos-window-bar {
             display: none;
             flex-shrink: 0;
-            height: 36px;
+            height: 38px;
             align-items: center;
-            padding: 0 12px;
-            background: rgba(242,242,247,0.95);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 0 14px;
+            background: transparent;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             cursor: grab;
             user-select: none;
         }
         .macos-window-bar:active { cursor: grabbing; }
-        [data-theme="dark"] .macos-window-bar { background: rgba(42,42,45,0.95); border-bottom-color: rgba(255,255,255,0.08); }
+        [data-theme="dark"] .macos-window-bar { border-bottom-color: rgba(255, 255, 255, 0.06); }
         body.concept-mode .macos-window-bar { display: flex; }
 
         .macos-traffic-lights { display: flex; gap: 8px; align-items: center; }
         .traffic-light {
-            width: 12px; height: 12px; border-radius: 50%;
+            width: 13px; height: 13px; border-radius: 50%;
             border: none; padding: 0; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            font-size: 10px; line-height: 1;
-            color: rgba(0,0,0,0.55);
+            font-size: 10px; line-height: 1; color: rgba(0,0,0,0.55);
             position: relative;
         }
-        .traffic-light.close { background: #ff5f57; border: 0.5px solid #e0443e; }
-        .traffic-light.max { background: #28c840; border: 0.5px solid #18a32b; }
+        .traffic-light.close { background: #ff5f57; box-shadow: inset 0 0 0 0.5px #e0443e; }
+        .traffic-light.max { background: #28c840; box-shadow: inset 0 0 0 0.5px #18a32b; }
         .traffic-light::before { opacity: 0; transition: opacity 0.15s; font-weight: 700; }
         .macos-traffic-lights:hover .traffic-light::before { opacity: 1; }
         .traffic-light.close::before { content: "×"; }
@@ -484,58 +508,220 @@
             text-align: center;
             font-size: 13px;
             font-weight: 600;
-            color: #1a1a1a;
-            margin-right: 48px;
+            color: var(--text);
+            margin-right: 56px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        [data-theme="dark"] .macos-window-title { color: #f0f0f0; }
 
         .macos-window-content {
             flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 设置窗口 */
+        .settings-window-layout {
+            display: flex !important;
+            flex-direction: row !important;
+        }
+        .settings-sidebar {
+            width: 210px;
+            flex-shrink: 0;
+            background: rgba(240, 240, 245, 0.35);
+            border-right: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 12px 10px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
-            padding: 14px;
         }
-        body.concept-mode .settings-modal .macos-window-content { max-height: 72vh; }
+        [data-theme="dark"] .settings-sidebar {
+            background: rgba(40, 40, 45, 0.3);
+            border-right-color: rgba(255, 255, 255, 0.06);
+        }
+        .settings-search {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(120, 120, 128, 0.16);
+            border-radius: 8px;
+            padding: 5px 9px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #8e8e93;
+        }
+        .settings-search span { font-size: 12px; }
+        .settings-search input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            color: var(--text);
+            outline: none;
+            font-family: inherit;
+        }
+
+        .settings-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 8px 10px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13.5px;
+            color: var(--text);
+            font-family: inherit;
+            text-align: left;
+            margin-bottom: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.15s;
+        }
+        .settings-nav-item:hover { background: rgba(120, 120, 128, 0.1); }
+        .settings-nav-item.active {
+            background: var(--accent);
+            color: #ffffff;
+        }
+        .settings-nav-item.active .settings-nav-icon { background: rgba(255,255,255,0.25); }
+        [data-theme="dark"] .settings-nav-item.active { background: #0a84ff; }
+
+        .settings-nav-icon {
+            width: 24px; height: 24px;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(180deg, #a5a5aa, #7a7a80);
+            font-size: 13px;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+        .settings-nav-icon.blue { background: linear-gradient(180deg, #4fa8f8, #0a84ff); }
+        .settings-nav-icon.purple { background: linear-gradient(180deg, #b07af8, #8b5cf6); }
+        .settings-nav-icon.green { background: linear-gradient(180deg, #5ec463, #34c759); }
+        .settings-nav-icon.orange { background: linear-gradient(180deg, #ffb143, #ff9500); }
+        .settings-nav-icon.gray { background: linear-gradient(180deg, #a8a8ad, #8e8e93); }
+
+        .settings-main {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 16px 22px 22px;
+        }
+        .settings-panel { display: none; }
+        .settings-panel.active { display: block; animation: panelFade 0.22s ease; }
+        @keyframes panelFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        .panel-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .panel-group {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            padding: 0 14px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        [data-theme="dark"] .panel-group {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+        .panel-group-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            padding: 12px 0 0;
+        }
+        .panel-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 13.5px;
+            color: var(--text);
+        }
+        .panel-row:last-child { border-bottom:  none; }
+
+        .theme-thumbnails {620 display: flex; gap: 12pxpx; padding: 8px 0 14px; }
+ !        .theme-thumb {
+            flex: important1;
+            border-radius: 8px;
+            padding: 3px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.15s;
+        }
+        .theme-thumb.active { border-color: var(--accent); }
+        .theme-thumb-inner {
+            height: 60px;
+            border-radius: 6px;
+            display: flex; align-items: flex-end;
+            padding: 4px 5px;
+            gap: 3px;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+        }
+        .theme-thumb-inner.light { background: linear-gradient(160deg, #e8e8ed, #f5f5f7); }
+        .theme-thumb-inner.dark { background: linear-gradient(160deg, #2a2a2e, #1a1a1e); }
+        .theme-thumb-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff5f57; }
+        .theme-thumb-label {
+            text-align: center; font-size: 11.5px; color: var(--text-secondary);
+            margin-top: 5px;
+        }
+        .theme-thumb.active .theme-thumb-label { color: var(--accent); font-weight: 600; }
+
+        .about-panel { text-align: center; padding: 20px 0; }
+        .about-panel .settings-app-icon {
+            width: 80px; height: 80px;
+            margin: 0 auto 12px;
+        }
+        .about-panel .settings-app-icon svg { width: 100%; height: 100%; }
+        .about-panel p { font-size: 13.5px; color: var(--text-secondary); margin: 4px 0; }
+        .about-panel .version-text { margin-top: 8px; }
+
+        body.concept-mode .settings-modal > .macos-window-content > .settings-title,
+        body.concept-mode .settings-modal > .macos-window-content > .settings-section,
+        body.concept-mode .settings-modal > .macos-window-content > .settings-close-btn {
+            display: none;
+        }
+
         body.concept-mode .calc-modal .macos-window-content { padding: 14px; }
         body.concept-mode .dialpad-modal .macos-window-content { padding: 14px; }
+        body.concept-mode .more-modal .macos-window-content { padding: 14px; overflow-y: auto; }
+        body.concept-mode .calc-modal .calc-display { border-radius: 12px; margin-bottom: 12px; }
+        body.concept-mode .dialpad-modal .dial-actions { margin-top: 12px; }
 
-        /* 打开动画 */
         @keyframes macosWindowOpen {
             0%   { opacity: 0; transform: scale(0.85) translateY(30px); }
             60%  { opacity: 1; }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .macos-window-opening {
-            animation: macosWindowOpen 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        .macos-window-opening { animation: macosWindowOpen 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+        body.concept-mode .settings-modal > .macos-window-content { padding: 0; overflow: hidden; flex-direction: row; }
+
+        @media (max-width: 780px) {
+            body.concept-mode .settings-modal { width: calc(100vw - 20px) !important; max-width: 720px !important; height: 78vh !important; max-height:; }
+            .settings-sidebar { width: 160px; }
         }
-
-        /* 窗口内去掉多余的圆角/内边距（由 macos-window-content 承担） */
-        body.concept-mode .calc-modal .calc-display,
-        body.concept-mode .calc-modal .calc-grid { margin: 0; }
-        body.concept-mode .calc-modal .calc-grid { margin-top: 0; }
-        body.concept-mode .calc-modal .calc-display { margin-bottom: 12px; border-radius: 12px; }
-        body.concept-mode .settings-modal .settings-title { display: none; }
-        body.concept-mode .settings-modal .settings-close-btn { margin-top: 14px; }
-        body.concept-mode .dialpad-modal .dial-actions { margin-top: 12px; }
-
-        /* 概念版下设置弹窗更像 macOS 面板 */
-        body.concept-mode .settings-modal .settings-section-title { font-size: 0.68rem; letter-spacing: 0.08em; }
-        body.concept-mode .settings-modal .settings-option { padding: 0.5rem 0; }
-
         @media (max-width: 520px) {
+            body.concept-mode .settings-modal { flex-direction: column; }
+            .settings-window-layout { flex-direction: column !important; }
+            .settings-sidebar { width: 100%; height: auto; max-height: 130px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+            .settings-nav-item { font-size: 12.5px; padding: 6px 8px; }
             .dock-item { width: 46px; height: 46px; font-size: 22px; border-radius: 12px; }
             .macos-dock { gap: 8px; padding: 8px 10px 10px; }
-            body.concept-mode .settings-modal { width: calc(100vw - 24px) !important; max-width: 360px !important; }
-            body.concept-mode .calc-modal { width: calc(100vw - 24px) !important; max-width: 340px !important; }
-            body.concept-mode .dialpad-modal { width: calc(100vw - 24px) !important; max-width: 320px !important; }
+            body.concept-mode .more-modal { width: calc(100vw - 20px) !important; max-width: 400px !important; }
         }
-
         @media (max-width:480px) {
             .site-title { font-size:0.9rem; }
-            .hamburger-btn { top:calc((var(--topbar-height) - 40px)/2); right:12px; width:40px; height:40px; }
             body { padding-top:calc(var(--topbar-height) + 0.5rem); }
             .calc-key { min-height: 54px; font-size: 1.3rem; }
         }
@@ -569,75 +755,151 @@
         <button class="menu-item" id="dialpadTrigger"><span data-i18n="dialpad">拨号盘</span> <span>☎</span></button>
     </aside>
 
-    <!-- 设置 -->
+    <!-- 设置窗口 -->
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-modal" id="settingsModal">
             <div class="macos-window-bar">
                 <div class="macos-traffic-lights">
-                    <button class="traffic-light close" data-role="close" aria-label="关闭"></button>
-                    <button class="traffic-light max" data-role="max" aria-label="全屏"></button>
+                    <button class="traffic-light close" data-role="close"></button>
+                    <button class="traffic-light max" data-role="max"></button>
                 </div>
                 <div class="macos-window-title" data-i18n="settings">设置</div>
             </div>
-            <div class="macos-window-content">
-                <div class="settings-title" data-i18n="settings">设置</div>
-                <div class="settings-section">
-                    <div class="settings-section-title" data-i18n="theme">主题模式</div>
-                    <div class="settings-option">
-                        <span class="settings-option-label" data-i18n="darkMode">深色模式</span>
-                        <button class="ios-switch" id="themeDarkSwitch"><span class="knob"></span></button>
+            <div class="macos-window-content settings-window-layout">
+                <div class="settings-sidebar">
+                    <div class="settings-search">
+                        <span>🔍</span>
+                        <input type="text" placeholder="搜索" readonly>
                     </div>
+                    <button class="settings-nav-item active" data-panel="appearance">
+                        <span class="settings-nav-icon blue">🎨</span>
+                        <span>外观</span>
+                    </button>
+                    <button class="settings-nav-item" data-panel="wallpaper">
+                        <span class="settings-nav-icon purple">🖼️</span>
+                        <span>墙纸</span>
+                    </button>
+                    <button class="settings-nav-item" data-panel="language">
+                        <span class="settings-nav-icon green">🌐</span>
+                        <span>语言</span>
+                    </button>
+                    <button class="settings-nav-item" data-panel="concept">
+                        <span class="settings-nav-icon orange">✨</span>
+                        <span>概念版</span>
+                    </button>
+                    <button class="settings-nav-item" data-panel="about">
+                        <span class="settings-nav-icon gray">ℹ️</span>
+                        <span>关于</span>
+                    </button>
                 </div>
-                <div class="settings-section">
-                    <div class="settings-section-title" data-i18n="displayMode">显示模式</div>
-                    <div class="settings-option"><span class="settings-option-label" data-i18n="glassMode">透明模式</span><button class="ios-switch" id="glassModeSwitch"><span class="knob"></span></button></div>
-                    <div class="settings-option"><span class="settings-option-label" data-i18n="liquidGlassMode">液态玻璃</span><button class="ios-switch" id="liquidGlassModeSwitch"><span class="knob"></span></button></div>
-                    <div class="settings-option"><span class="settings-option-label" data-i18n="retroMode">怀旧模式</span><button class="ios-switch" id="retroModeSwitch"><span class="knob"></span></button></div>
-                    <div class="settings-option"><span class="settings-option-label" data-i18n="minecraftMode">Minecraft模式</span><button class="ios-switch" id="minecraftModeSwitch"><span class="knob"></span></button></div>
-                </div>
-                <div class="settings-section">
-                    <div class="settings-section-title">概念版 (Beta)</div>
-                    <div class="settings-option">
-                        <span class="settings-option-label" data-i18n="conceptMode">概念版模式</span>
-                        <button class="ios-switch" id="conceptModeSwitch"><span class="knob"></span></button>
+                <div class="settings-main">
+                    <div class="settings-panel active" data-panel="appearance">
+                        <div class="panel-title">外观</div>
+                        <div class="panel-group">
+                            <div class="panel-group-title" style="padding-bottom:6px;">外观</div>
+                            <div class="theme-thumbnails">
+                                <div class="theme-thumb" data-theme-choice="light">
+                                    <div class="theme-thumb-inner light"><span class="theme-thumb-dot"></span></div>
+                                    <div class="theme-thumb-label">浅色</div>
+                                </div>
+                                <div class="theme-thumb" data-theme-choice="dark">
+                                    <div class="theme-thumb-inner dark"><span class="theme-thumb-dot"></span></div>
+                                    <div class="theme-thumb-label">深色</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-group">
+                            <div class="panel-group-title" style="padding-bottom:6px;">显示模式</div>
+                            <div class="panel-row"><span>透明模式</span><button class="ios-switch" id="glassModeSwitch"><span class="knob"></span></button></div>
+                            <div class="panel-row"><span>液态玻璃</span><button class="ios-switch" id="liquidGlassModeSwitch"><span class="knob"></span></button></div>
+                            <div class="panel-row"><span>怀旧模式</span><button class="ios-switch" id="retroModeSwitch"><span class="knob"></span></button></div>
+                            <div class="panel-row"><span>Minecraft模式</span><button class="ios-switch" id="minecraftModeSwitch"><span class="knob"></span></button></div>
+                        </div>
                     </div>
-                </div>
-                <div class="settings-section">
-                    <div class="settings-section-title" data-i18n="wallpaper">壁纸选择</div>
-                    <button class="wallpaper-btn" data-wallpaper="default" data-i18n="defaultWallpaper">默认</button>
-                    <button class="wallpaper-btn" data-wallpaper="creeper_sleep" data-i18n="creeperSleep">苦力怕娘睡觉</button>
-                    <button class="wallpaper-btn" data-wallpaper="minecart" data-i18n="minecart">矿车</button>
-                    <button class="wallpaper-btn" data-wallpaper="tnt" data-i18n="tnt">TNT！</button>
-                    <button class="wallpaper-btn" data-wallpaper="blue_archive_1" data-i18n="blueArchive1">蔚蓝档案1</button>
-                    <button class="wallpaper-btn" data-wallpaper="rowing" data-i18n="rowing">划船</button>
-                    <button class="wallpaper-btn" data-wallpaper="blue_archive_2" data-i18n="blueArchive2">蔚蓝档案2</button>
-                    <button class="wallpaper-btn" data-wallpaper="water_drop" data-i18n="waterDrop">水滴壁纸</button>
-                    <button class="wallpaper-btn" data-wallpaper="white" data-i18n="whiteWallpaper">白色壁纸</button>
-                </div>
-                <div class="settings-section">
-                    <div class="settings-section-title" data-i18n="language">语言</div>
-                    <div class="settings-option"><span class="settings-option-label">简体中文</span><button class="ios-switch lang-switch" data-lang="zh-CN"><span class="knob"></span></button></div>
-                    <div class="settings-option"><span class="settings-option-label">繁體中文</span><button class="ios-switch lang-switch" data-lang="zh-TW"><span class="knob"></span></button></div>
-                    <div class="settings-option"><span class="settings-option-label">English</span><button class="ios-switch lang-switch" data-lang="en"><span class="knob"></span></button></div>
-                    <div class="settings-option"><span class="settings-option-label">日本語</span><button class="ios-switch lang-switch" data-lang="ja"><span class="knob"></span></button></div>
-                    <div class="settings-option"><span class="settings-option-label">한국어</span><button class="ios-switch lang-switch" data-lang="ko"><span class="knob"></span></button></div>
-                </div>
-                <div class="settings-section">
-                    <div class="settings-section-title" data-i18n="about">关于</div>
-                    <div class="settings-about">
-                        <p data-i18n="aboutText">这是一架国泰航空A330官方网站</p>
-                        <p class="version-text" id="versionAreaSettings">
-                            <span class="version-label" data-i18n="versionLabel">版本号</span>
-                            <span class="version-number" data-i18n="versionNumber">6.5.0</span>
+
+                    <div class="settings-panel" data-panel="wallpaper">
+                        <div class="panel-title">墙纸</div>
+                        <div class="panel-group" style="padding: 12px 14px;">
+                            <button class="wallpaper-btn" data-wallpaper="default">默认</button>
+                            <button class="wallpaper-btn" data-wallpaper="creeper_sleep">苦力怕娘睡觉</button>
+                            <button class="wallpaper-btn" data-wallpaper="minecart">矿车</button>
+                            <button class="wallpaper-btn" data-wallpaper="tnt">TNT！</button>
+                            <button class="wallpaper-btn" data-wallpaper="blue_archive_1">蔚蓝档案1</button>
+                            <button class="wallpaper-btn" data-wallpaper="rowing">划船</button>
+                            <button class="wallpaper-btn" data-wallpaper="blue_archive_2">蔚蓝档案2</button>
+                            <button class="wallpaper-btn" data-wallpaper="water_drop">水滴壁纸</button>
+                            <button class="wallpaper-btn" data-wallpaper="white">白色壁纸</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-panel" data-panel="language">
+                        <div class="panel-title">语言</div>
+                        <div class="panel-group">
+                            <div class="panel-row"><span>简体中文</span><button class="ios-switch lang-switch" data-lang="zh-CN"><span class="knob"></span></button></div>
+                            <div class="panel-row"><span>繁體中文</span><button class="ios-switch lang-switch" data-lang="zh-TW"><span class="knob"></span></button></div>
+                            <div class="panel-row"><span>English</span><button class="ios-switch lang-switch" data-lang="en"><span class="knob"></span></button></div>
+                            <div class="panel-row"><span>日本語</span><button class="ios-switch lang-switch" data-lang="ja"><span class="knob"></span></button></div>
+                            <div class="panel-row"><span>한국어</span><button class="ios-switch lang-switch" data-lang="ko"><span class="knob"></span></button></div>
+                        </div>
+                    </div>
+
+                    <div class="settings-panel" data-panel="concept">
+                        <div class="panel-title">概念版 (Beta)</div>
+                        <div class="panel-group">
+                            <div class="panel-row"><span>开启概念版模式</span><button class="ios-switch" id="conceptModeSwitch"><span class="knob"></span></button></div>
+                        </div>
+                        <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.7; padding: 0 4px;">
+                            开启后，顶部栏与菜单按钮将被隐藏，底部出现 macOS 风格的程序坞。点击程序坞图标可打开窗口化的设置、计算器、拨号盘、更多。
                         </p>
                     </div>
+
+                    <div class="settings-panel" data-panel="about">
+                        <div class="panel-title">关于</div>
+                        <div class="about-panel">
+                            <div class="settings-app-icon">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="gearRing" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0" stop-color="#e2e2e8"/>
+                                            <stop offset="0.5" stop-color="#c0c0c8"/>
+                                            <stop offset="1" stop-color="#9a9aa2"/>
+                                        </linearGradient>
+                                        <linearGradient id="gearBg" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0" stop-color="#8e8e96"/>
+                                            <stop offset="1" stop-color="#6a6a72"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="4" y="4" width="92" height="92" rx="22" fill="url(#gearBg)"/>
+                                    <g fill="url(#gearRing)">
+                                        <path d="M50 8 L55 8 L57 16 L62 17 L68 10 L72 14 L66 21 L68 25 L77 25 L77 31 L69 33 L69 37 L77 40 L77 46 L69 46 L68 50 L76 54 L76 60 L68 60 L68 65 L76 69 L72 74 L65 68 L60 70 L60 78 L54 78 L53 70 L48 70 L46 78 L40 78 L40 70 L35 69 L29 76 L24 72 L30 65 L28 60 L20 60 L20 54 L28 52 L28 48 L20 45 L20 40 L28 40 L29 35 L21 31 L21 25 L29 25 L30 21 L24 14 L28 10 L35 16 L40 15 L41 8 Z"/>
+                                    </g>
+                                    <circle cx="50" cy="50" r="30" fill="url(#gearBg)"/>
+                                    <circle cx="50" cy="50" r="27" fill="url(#gearRing)" opacity="0.92"/>
+                                    <circle cx="50" cy="50" r="22" fill="url(#gearBg)"/>
+                                    <g fill="url(#gearRing)">
+                                        <path d="M50 32 L53 32 L54 36 L56 36 L58 33 L60 35 L58 38 L59 40 L63 40 L63 43 L60 43 L59 45 L62 47 L62 50 L59 50 L58 52 L60 55 L58 57 L56 54 L53 55 L53 58 L50 58 L50 55 L47 55 L45 58 L43 58 L43 55 L40 54 L38 57 L36 55 L39 52 L38 50 L35 50 L35 47 L38 47 L39 45 L36 43 L36 40 L39 40 L40 38 L38 35 L40 33 L43 36 L45 36 L45 32 Z"/>
+                                    </g>
+                                    <g stroke="url(#gearRing)" stroke-width="6" stroke-linecap="round" fill="none">
+                                        <line x1="50" y1="50" x2="50" y2="30"/>
+                                        <line x1="50" y1="50" x2="67" y2="60"/>
+                                        <line x1="50" y1="50" x2="33" y2="60"/>
+                                    </g>
+                                    <circle cx="50" cy="50" r="4" fill="#5a5a62"/>
+                                </svg>
+                            </div>
+                            <p data-i18n="aboutText">这是一架国泰航空A330官方网站</p>
+                            <p class="version-text" id="versionAreaSettings">
+                                <span class="version-label" data-i18n="versionLabel">版本号</span>
+                                <span class="version-number" data-i18n="versionNumber">6.5.0</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <button class="settings-close-btn" id="settingsCloseBtn" data-i18n="close">关闭</button>
             </div>
         </div>
     </div>
 
-    <!-- 关于（保留非概念版使用） -->
+    <!-- 关于 -->
     <div class="about-overlay" id="aboutOverlay">
         <div class="about-modal">
             <div class="about-title" data-i18n="about">关于</div>
@@ -668,8 +930,8 @@
         <div class="calc-modal" id="calcModal">
             <div class="macos-window-bar">
                 <div class="macos-traffic-lights">
-                    <button class="traffic-light close" data-role="close" aria-label="关闭"></button>
-                    <button class="traffic-light max" data-role="max" aria-label="全屏"></button>
+                    <button class="traffic-light close" data-role="close"></button>
+                    <button class="traffic-light max" data-role="max"></button>
                 </div>
                 <div class="macos-window-title" data-i18n="calculator">计算器</div>
             </div>
@@ -705,8 +967,8 @@
         <div class="dialpad-modal" id="dialpadModal">
             <div class="macos-window-bar">
                 <div class="macos-traffic-lights">
-                    <button class="traffic-light close" data-role="close" aria-label="关闭"></button>
-                    <button class="traffic-light max" data-role="max" aria-label="全屏"></button>
+                    <button class="traffic-light close" data-role="close"></button>
+                    <button class="traffic-light max" data-role="max"></button>
                 </div>
                 <div class="macos-window-title" data-i18n="dialpad">拨号盘</div>
             </div>
@@ -721,13 +983,97 @@
         </div>
     </div>
 
+    <!-- 更多窗口 -->
+    <div class="more-overlay" id="moreOverlay">
+        <div class="more-modal" id="moreModal">
+            <div class="macos-window-bar">
+                <div class="macos-traffic-lights">
+                    <button class="traffic-light close" data-role="close"></button>
+                    <button class="traffic-light max" data-role="max"></button>
+                </div>
+                <div class="macos-window-title" data-i18n="more">更多</div>
+            </div>
+            <div class="macos-window-content">
+                <div class="more-body">
+                    <div class="more-section">
+                        <div class="more-section-title">社交</div>
+                        <a href="https://space.bilibili.com/3546948707551378?spm_id_from=333.1007.0.0" target="_blank" class="more-link" data-i18n="bilibili">
+                            <span class="more-link-icon bili">📺</span>
+                            <span class="more-link-text" data-i18n="bilibili">我的 bilibili</span>
+                            <span class="more-link-arrow">↗</span>
+                        </a>
+                        <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=tR1lPtOfDCeQ7X7EhR0%2BtmavDrNaxJ831B8mpYbP4K0w5SXrYdRbSvWcoAnsoZ4%2F&busi_data=eyJncm91cENvZGUiOiIxMDgxMTA0MzM0IiwidG9rZW4iOiJPOVVsVUxlSDFCL0ZwMHJTSm5QdGZCall5Q3paNld6LzNrVjZ5UFpCOUNQL3R3Q1FiV3V4SmdtTWJUajRVVmZxIiwidWluIjoiMzk5NTQ5MzQ1MyJ9&data=2Di3RQOCRkJZft-Fq-4Mgb7-jYVOWyYNzbmHOgH74lXne5vtTYX4s-80Gs0ZUwhl6ZOFqssj1Ebn3lcV7YDnfg&svctype=4&tempid=h5_group_info" target="_blank" class="more-link" data-i18n="fanGroup">
+                            <span class="more-link-icon qq">💬</span>
+                            <span class="more-link-text" data-i18n="fanGroup">加入粉丝群</span>
+                            <span class="more-link-arrow">↗</span>
+                        </a>
+                    </div>
+                    <div class="more-section">
+                        <div class="more-section-title" data-i18n="download">下载</div>
+                        <a href="https://share.feijipan.com/s/Az5pwlUT" target="_blank" rel="noopener noreferrer" class="more-download">
+                            <span class="more-download-icon bili">📱</span>
+                            <span class="more-download-text" data-i18n="bilibiliDownload">bilibili国际版3.19.2</span>
+                            <span class="more-download-action" data-i18n="download">下载</span>
+                        </a>
+                        <a href="https://share.feijipan.com/s/2G5pg0br" target="_blank" rel="noopener noreferrer" class="more-download">
+                            <span class="more-download-icon netease">🎵</span>
+                            <span class="more-download-text" data-i18n="netEaseDownload">网易云音乐极速版1.0.0</span>
+                            <span class="more-download-action" data-i18n="download">下载</span>
+                        </a>
+                        <a href="https://share.feijipan.com/s/Wy8brXh9" target="_blank" rel="noopener noreferrer" class="more-download">
+                            <span class="more-download-icon kugou">🎧</span>
+                            <span class="more-download-text" data-i18n="kuGouDownload">酷狗概念版2.4.2</span>
+                            <span class="more-download-action" data-i18n="download">下载</span>
+                        </a>
+                        <a href="https://share.feijipan.com/s/Wy8brXh9" target="_blank" rel="noopener noreferrer" class="more-download">
+                            <span class="more-download-icon jianying">🎬</span>
+                            <span class="more-download-text" data-i18n="jianYingDownload">剪映5.7.0</span>
+                            <span class="more-download-action" data-i18n="download">下载</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- macOS Dock -->
     <div class="macos-dock" id="macosDock">
         <div class="dock-item" data-app="webmc" title="网页版MC">🌐<span class="dock-label" data-i18n="webMC">网页版MC</span></div>
         <div class="dock-item" data-app="ojang" title="ojang pe下载">⬇️<span class="dock-label" data-i18n="ojangDownload">ojang pe下载</span></div>
         <div class="dock-item" data-app="dialpad" title="拨号盘">☎️<span class="dock-label" data-i18n="dialpad">拨号盘</span></div>
-        <div class="dock-item" data-app="settings" title="设置">⚙️<span class="dock-label" data-i18n="settings">设置</span></div>
+        <div class="dock-item" data-app="settings" title="设置">
+            <svg viewBox="0 0 100 100" width="42" height="42" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="gearRingDock" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#e2e2e8"/>
+                        <stop offset="1" stop-color="#9a9aa2"/>
+                    </linearGradient>
+                    <linearGradient id="gearBgDock" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#8e8e96"/>
+                        <stop offset="1" stop-color="#6a6a72"/>
+                    </linearGradient>
+                </defs>
+                <rect x="4" y="4" width="92" height="92" rx="22" fill="url(#gearBgDock)"/>
+                <g fill="url(#gearRingDock)">
+                    <path d="M50 8 L55 8 L57 16 L62 17 L68 10 L72 14 L66 21 L68 25 L77 25 L77 31 L69 33 L69 37 L77 40 L77 46 L69 46 L68 50 L76 54 L76 60 L68 60 L68 65 L76 69 L72 74 L65 68 L60 70 L60 78 L54 78 L53 70 L48 70 L46 78 L40 78 L40 70 L35 69 L29 76 L24 72 L30 65 L28 60 L20 60 L20 54 L28 52 L28 48 L20 45 L20 40 L28 40 L29 35 L21 31 L21 25 L29 25 L30 21 L24 14 L28 10 L35 16 L40 15 L41 8 Z"/>
+                </g>
+                <circle cx="50" cy="50" r="30" fill="url(#gearBgDock)"/>
+                <circle cx="50" cy="50" r="27" fill="url(#gearRingDock)" opacity="0.92"/>
+                <circle cx="50" cy="50" r="22" fill="url(#gearBgDock)"/>
+                <g fill="url(#gearRingDock)">
+                    <path d="M50 32 L53 32 L54 36 L56 36 L58 33 L60 35 L58 38 L59 40 L63 40 L63 43 L60 43 L59 45 L62 47 L62 50 L59 50 L58 52 L60 55 L58 57 L56 54 L53 55 L53 58 L50 58 L50 55 L47 55 L45 58 L43 58 L43 55 L40 54 L38 57 L36 55 L39 52 L38 50 L35 50 L35 47 L38 47 L39 45 L36 43 L36 40 L39 40 L40 38 L38 35 L40 33 L43 36 L45 36 L45 32 Z"/>
+                </g>
+                <g stroke="url(#gearRingDock)" stroke-width="6" stroke-linecap="round" fill="none">
+                    <line x1="50" y1="50" x2="50" y2="30"/>
+                    <line x1="50" y1="50" x2="67" y2="60"/>
+                    <line x1="50" y1="50" x2="33" y2="60"/>
+                </g>
+                <circle cx="50" cy="50" r="4" fill="#5a5a62"/>
+            </svg>
+            <span class="dock-label" data-i18n="settings">设置</span>
+        </div>
         <div class="dock-item" data-app="calc" title="计算器">🔢<span class="dock-label" data-i18n="calculator">计算器</span></div>
+        <div class="dock-item" data-app="more" title="更多" data-i18n="more">⋯<span class="dock-label" data-i18n="more">更多</span></div>
     </div>
 
     <div class="container">
@@ -769,7 +1115,6 @@
             const settingsTrigger = $('settingsTrigger'), settingsOverlay = $('settingsOverlay'), settingsCloseBtn = $('settingsCloseBtn');
             const aboutTrigger = $('aboutTrigger'), aboutOverlay = $('aboutOverlay'), aboutCloseBtn = $('aboutCloseBtn');
             const calcTrigger = $('calcTrigger'), calcOverlay = $('calcOverlay'), calcDisplay = $('calcDisplay');
-            const themeDarkSwitch = $('themeDarkSwitch');
             const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), minecraftModeSwitch = $('minecraftModeSwitch');
             const conceptModeSwitch = $('conceptModeSwitch');
             const langSwitches = document.querySelectorAll('.lang-switch');
@@ -786,6 +1131,11 @@
             const settingsModal = $('settingsModal');
             const calcModal = $('calcModal');
             const dialpadModal = $('dialpadModal');
+            const moreOverlay = $('moreOverlay');
+            const moreModal = $('moreModal');
+            const navItems = document.querySelectorAll('.settings-nav-item');
+            const panels = document.querySelectorAll('.settings-panel');
+            const themeThumbs = document.querySelectorAll('.theme-thumb');
 
             let isMenuOpen = false;
             let currentTheme = localStorage.getItem('theme') || 'light';
@@ -807,11 +1157,11 @@
             let musicStarted = false;
 
             const translations = {
-                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', aboutText:'这是一架国泰航空A330官方网站', versionLabel:'版本号', versionNumber:'6.5.0', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', waterDrop:'水滴壁纸', whiteWallpaper:'白色壁纸', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
-                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', aboutText:'這是一架國泰航空A330官方網站', versionLabel:'版本號', versionNumber:'6.5.0', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', theme:'主題模式', darkMode:'深色模式', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', wallpaper:'壁紙選擇', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', waterDrop:'水滴桌布', whiteWallpaper:'白色桌布', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
-                'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', about:'About', aboutText:'This is Cathay Pacific A330 Official Website', versionLabel:'Version', versionNumber:'6.5.0', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', theme:'Theme', darkMode:'Dark Mode', displayMode:'Display Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', minecraftMode:'Minecraft Mode', conceptMode:'Concept Mode', wallpaper:'Wallpaper Selection', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', waterDrop:'Water Drop', whiteWallpaper:'White Wallpaper', language:'Language', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
-                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', aboutText:'これはキャセイパシフィックA330公式サイトです', versionLabel:'バージョン', versionNumber:'6.5.0', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', minecraftMode:'Minecraftモード', conceptMode:'コンセプトモード', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', waterDrop:'水滴の壁紙', whiteWallpaper:'白い壁紙', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
-                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', about:'정보', aboutText:'이것은 캐세이퍼시픽 A330 공식 웹사이트입니다', versionLabel:'버전', versionNumber:'6.5.0', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', theme:'테마', darkMode:'다크 모드', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', minecraftMode:'Minecraft 모드', conceptMode:'컨셉트 모드', wallpaper:'배경화면 선택', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', waterDrop:'물방울 배경화면', whiteWallpaper:'흰색 배경화면', language:'언어', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
+                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', more:'更多', aboutText:'这是一架国泰航空A330官方网站', versionLabel:'版本号', versionNumber:'6.5.0', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', waterDrop:'水滴壁纸', whiteWallpaper:'白色壁纸', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
+                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', more:'更多', aboutText:'這是一架國泰航空A330官方網站', versionLabel:'版本號', versionNumber:'6.5.0', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', theme:'主題模式', darkMode:'深色模式', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', wallpaper:'壁紙選擇', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', waterDrop:'水滴桌布', whiteWallpaper:'白色桌布', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
+                'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', about:'About', more:'More', aboutText:'This is Cathay Pacific A330 Official Website', versionLabel:'Version', versionNumber:'6.5.0', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', theme:'Theme', darkMode:'Dark Mode', displayMode:'Display Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', minecraftMode:'Minecraft Mode', conceptMode:'Concept Mode', wallpaper:'Wallpaper Selection', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', waterDrop:'Water Drop', whiteWallpaper:'White Wallpaper', language:'Language', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
+                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', more:'その他', aboutText:'これはキャセイパシフィックA330公式サイトです', versionLabel:'バージョン', versionNumber:'6.5.0', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', minecraftMode:'Minecraftモード', conceptMode:'コンセプトモード', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', waterDrop:'水滴の壁紙', whiteWallpaper:'白い壁紙', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
+                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', about:'정보', more:'더 보기', aboutText:'이것은 캐세이퍼시픽 A330 공식 웹사이트입니다', versionLabel:'버전', versionNumber:'6.5.0', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', theme:'테마', darkMode:'다크 모드', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', minecraftMode:'Minecraft 모드', conceptMode:'컨셉트 모드', wallpaper:'배경화면 선택', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', waterDrop:'물방울 배경화면', whiteWallpaper:'흰색 배경화면', language:'언어', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
             };
 
             const wallpaperURLs = {
@@ -883,7 +1233,7 @@
                 mcMusic.src = MUSIC_URLS[randomIndex];
                 mcMusic.loop = true;
                 mcMusic.load();
-                mcMusic.play().catch(err => { musicStarted = false; });
+                mcMusic.play().catch(() => { musicStarted = false; });
             }
 
             function initMusicOnFirstInteraction() {
@@ -898,35 +1248,26 @@
                 document.addEventListener('keydown', startOnce, { once: true });
             }
 
-            // iOS 26 圆形涟漪
             function createRipple(e) {
                 const target = e.currentTarget;
                 const rect = target.getBoundingClientRect();
                 let clientX, clientY;
                 if (e.touches && e.touches[0]) { clientX = e.touches[0].clientX; clientY = e.touches[0].clientY; }
                 else { clientX = e.clientX; clientY = e.clientY; }
-                if (clientX === undefined || clientY === undefined || clientX === null || clientY === null) {
-                    clientX = rect.left + rect.width / 2;
-                    clientY = rect.top + rect.height / 2;
-                }
-                const relX = clientX - rect.left;
-                const relY = clientY - rect.top;
-                const dx = Math.max(relX, rect.width - relX);
-                const dy = Math.max(relY, rect.height - relY);
-                const radius = Math.sqrt(dx * dx + dy * dy);
-                const size = radius * 2;
+                if (clientX == null || clientY == null) { clientX = rect.left + rect.width/2; clientY = rect.top + rect.height/2; }
+                const relX = clientX - rect.left, relY = clientY - rect.top;
+                const dx = Math.max(relX, rect.width - relX), dy = Math.max(relY, rect.height - relY);
+                const radius = Math.sqrt(dx*dx + dy*dy), size = radius * 2;
                 const ripple = document.createElement('span');
                 ripple.className = 'ripple';
-                ripple.style.width = size + 'px';
-                ripple.style.height = size + 'px';
-                ripple.style.left = relX + 'px';
-                ripple.style.top = relY + 'px';
+                ripple.style.width = size + 'px'; ripple.style.height = size + 'px';
+                ripple.style.left = relX + 'px'; ripple.style.top = relY + 'px';
                 target.appendChild(ripple);
                 ripple.addEventListener('animationend', () => ripple.remove());
             }
 
             function attachRippleToElements() {
-                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action, .hamburger-btn, .easter-egg-close, .dock-item';
+                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action, .hamburger-btn, .easter-egg-close, .dock-item, .settings-nav-item, .theme-thumb, .more-link, .more-download, .more-download-action';
                 document.querySelectorAll(clickableSelector).forEach(el => {
                     if (el.dataset.rippleBound === 'true') return;
                     el.dataset.rippleBound = 'true';
@@ -950,8 +1291,11 @@
                 minecraftModeSwitch.classList.toggle('on', minecraftEnabled);
                 conceptModeSwitch.classList.toggle('on', conceptEnabled);
 
-                themeDarkSwitch.classList.toggle('on', currentTheme === 'dark');
                 htmlElement.setAttribute('data-theme', currentTheme);
+
+                themeThumbs.forEach(t => {
+                    t.classList.toggle('active', t.getAttribute('data-theme-choice') === currentTheme);
+                });
 
                 wallpaperBtns.forEach(btn => {
                     btn.classList.toggle('active', btn.getAttribute('data-wallpaper') === wallpaperChoice);
@@ -982,14 +1326,13 @@
                 dialpadOverlay.classList.remove('visible');
                 calcOverlay.classList.remove('visible');
                 easterEggOverlay.classList.remove('visible');
+                moreOverlay.classList.remove('visible');
             }
 
-            // ============ 概念版：窗口拖动 & 全屏 ============
             function makeDraggable(win) {
                 const handle = win.querySelector('.macos-window-bar');
                 if (!handle) return;
                 let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
-
                 function onStart(e) {
                     if (win.classList.contains('fullscreen')) return;
                     if (e.target.closest('.traffic-light')) return;
@@ -1009,7 +1352,7 @@
                     const p = e.touches ? e.touches[0] : e;
                     let newLeft = startLeft + (p.clientX - startX);
                     let newTop = startTop + (p.clientY - startY);
-                    newLeft = Math.max(-win.offsetWidth + 80, Math.min(window.innerWidth - 80, newLeft));
+                    newLeft = Math.max(-win.offsetWidth + 100, Math.min(window.innerWidth - 100, newLeft));
                     newTop = Math.max(0, Math.min(window.innerHeight - 60, newTop));
                     win.style.left = newLeft + 'px';
                     win.style.top = newTop + 'px';
@@ -1027,24 +1370,28 @@
             }
 
             function positionWindow(win) {
-                if (win.dataset.positioned === 'true') return;
-                const w = win.offsetWidth || 340;
-                const h = win.offsetHeight || 400;
-                const left = Math.max(12, (window.innerWidth - w) / 2);
-                const top = Math.max(24, (window.innerHeight - h) / 2 - 60);
-                win.style.left = left + 'px';
-                win.style.top = top + 'px';
+                if (win.dataset.positioned === 'true' && !win.classList.contains('fullscreen')) {
+                    const rect = win.getBoundingClientRect();
+                    if (rect.left > window.innerWidth - 80 || rect.top > window.innerHeight - 60 || rect.left < -win.offsetWidth + 100) {
+                        win.style.left = Math.max(12, (window.innerWidth - win.offsetWidth) / 2) + 'px';
+                        win.style.top = Math.max(24, (window.innerHeight - win.offsetHeight) / 2 - 40) + 'px';
+                    }
+                    return;
+                }
+                const w = win.offsetWidth || 340, h = win.offsetHeight || 400;
+                win.style.left = Math.max(12, (window.innerWidth - w) / 2) + 'px';
+                win.style.top = Math.max(24, (window.innerHeight - h) / 2 - 40) + 'px';
                 win.dataset.positioned = 'true';
             }
 
             function openWindow(overlay, modal) {
-                // 若已打开，先聚焦
                 closeAllModals();
                 overlay.classList.add('visible');
                 if (conceptEnabled) {
-                    // 移除全屏，重置位置（如果首次打开）
-                    modal.classList.remove('fullscreen');
-                    positionWindow(modal);
+                    if (!modal.classList.contains('fullscreen')) {
+                        modal.classList.remove('fullscreen');
+                        positionWindow(modal);
+                    }
                     modal.classList.remove('macos-window-opening');
                     void modal.offsetWidth;
                     modal.classList.add('macos-window-opening');
@@ -1052,27 +1399,40 @@
                 }
             }
 
-            // 红绿灯
-            [settingsModal, calcModal, dialpadModal].forEach(win => {
+            [settingsModal, calcModal, dialpadModal, moreModal].forEach(win => {
                 makeDraggable(win);
                 const closeBtn = win.querySelector('.traffic-light.close');
                 const maxBtn = win.querySelector('.traffic-light.max');
-                if (closeBtn) {
-                    closeBtn.addEventListener('click', () => {
-                        const overlay = win.closest('.settings-overlay, .calc-overlay, .dialpad-overlay');
-                        if (overlay) overlay.classList.remove('visible');
-                    });
-                }
-                if (maxBtn) {
-                    maxBtn.addEventListener('click', () => {
-                        win.classList.toggle('fullscreen');
-                    });
-                }
+                if (closeBtn) closeBtn.addEventListener('click', () => {
+                    const ov = win.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay');
+                    if (ov) ov.classList.remove('visible');
+                });
+                if (maxBtn) maxBtn.addEventListener('click', () => {
+                    win.classList.toggle('fullscreen');
+                });
             });
 
-            // 拖出窗口时点击遮罩不关闭（概念版无遮罩）
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const panelKey = item.getAttribute('data-panel');
+                    navItems.forEach(n => n.classList.toggle('active', n === item));
+                    panels.forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === panelKey));
+                });
+            });
+
+            themeThumbs.forEach(t => {
+                t.addEventListener('click', () => {
+                    const choice = t.getAttribute('data-theme-choice');
+                    if (choice !== currentTheme) {
+                        currentTheme = choice;
+                        localStorage.setItem('theme', currentTheme);
+                        updateUI();
+                    }
+                });
+            });
+
             settingsTrigger.addEventListener('click', () => { if (!conceptEnabled) toggleMenu(false); openWindow(settingsOverlay, settingsModal); updateUI(); });
-            settingsCloseBtn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
+            settingsCloseBtn && settingsCloseBtn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
             settingsOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === settingsOverlay) settingsOverlay.classList.remove('visible'); });
 
             aboutTrigger.addEventListener('click', () => { closeAllModals(); toggleMenu(false); aboutOverlay.classList.add('visible'); });
@@ -1087,33 +1447,28 @@
             dialDelete.addEventListener('click', () => { dialValue = dialValue.slice(0,-1); dialpadDisplay.textContent = dialValue; });
             dialpadOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === dialpadOverlay) dialpadOverlay.classList.remove('visible'); });
 
-            // Dock 图标点击
+            moreOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === moreOverlay) moreOverlay.classList.remove('visible'); });
+
             macosDock.addEventListener('click', e => {
                 const item = e.target.closest('.dock-item');
                 if (!item) return;
                 const app = item.getAttribute('data-app');
-                if (app === 'webmc') { window.open('https://mcjs.cc', '_blank'); return; }
-                if (app === 'ojang') { window.open('https://share.feijipan.com/s/Pw8OwB3N', '_blank'); return; }
+                if (app === 'webmc') return void window.open('https://mcjs.cc', '_blank');
+                if (app === 'ojang') return void window.open('https://share.feijipan.com/s/Pw8OwB3N', '_blank');
                 if (app === 'settings') { openWindow(settingsOverlay, settingsModal); updateUI(); return; }
                 if (app === 'calc') { openWindow(calcOverlay, calcModal); return; }
                 if (app === 'dialpad') { openWindow(dialpadOverlay, dialpadModal); return; }
+                if (app === 'more') { openWindow(moreOverlay, moreModal); return; }
             });
-            // 触摸悬停效果
             macosDock.addEventListener('touchstart', e => {
                 const item = e.target.closest('.dock-item');
-                if (item) { item.classList.add('touch-active'); }
+                if (item) item.classList.add('touch-active');
             }, { passive: true });
-            macosDock.addEventListener('touchend', e => {
+            macosDock.addEventListener('touchend', () => {
                 document.querySelectorAll('.dock-item.touch-active').forEach(el => el.classList.remove('touch-active'));
             });
 
             document.addEventListener('keydown', e => { if(e.key === 'Escape') { toggleMenu(false); closeAllModals(); } });
-
-            themeDarkSwitch.addEventListener('click', () => {
-                currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                localStorage.setItem('theme', currentTheme);
-                updateUI();
-            });
 
             function setMode(key, value) {
                 if(key === 'glassMode') glassEnabled = value;
@@ -1143,11 +1498,9 @@
 
             wallpaperBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const choice = btn.getAttribute('data-wallpaper');
-                    wallpaperChoice = choice;
-                    localStorage.setItem('wallpaperChoice', choice);
-                    minecraftEnabled = false;
-                    retroEnabled = false;
+                    wallpaperChoice = btn.getAttribute('data-wallpaper');
+                    localStorage.setItem('wallpaperChoice', wallpaperChoice);
+                    minecraftEnabled = false; retroEnabled = false;
                     localStorage.setItem('minecraftMode', 'disabled');
                     localStorage.setItem('retroMode', 'disabled');
                     updateUI();
@@ -1175,7 +1528,6 @@
             }
             versionArea.addEventListener('click', triggerEasterEgg);
             versionAreaSettings.addEventListener('click', triggerEasterEgg);
-
             easterEggClose.addEventListener('click', () => easterEggOverlay.classList.remove('visible'));
             easterEggOverlay.addEventListener('click', e => { if (e.target === easterEggOverlay) easterEggOverlay.classList.remove('visible'); });
 
@@ -1209,8 +1561,8 @@
             }
             function calcClear() { calcDisplay.textContent = '0'; calcFirstOperand = null; calcOperator = null; calcShouldResetDisplay = false; }
             function calcBackspace() {
-                const current = calcDisplay.textContent;
-                if (current.length > 1 && !calcShouldResetDisplay) calcDisplay.textContent = current.slice(0, -1);
+                const c = calcDisplay.textContent;
+                if (c.length > 1 && !calcShouldResetDisplay) calcDisplay.textContent = c.slice(0, -1);
                 else { calcDisplay.textContent = '0'; calcShouldResetDisplay = false; }
             }
             function calcPercent() { calcDisplay.textContent = String(parseFloat(calcDisplay.textContent) / 100); }
