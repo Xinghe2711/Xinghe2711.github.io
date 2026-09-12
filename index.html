@@ -143,7 +143,6 @@
         .wallpaper-btn { display:block; width:100%; text-align:left; margin:2px 0; padding:0.5rem 1rem; font-size:0.85rem; border:1px solid var(--divider); border-radius:8px; background-color:transparent; color:var(--text); cursor:pointer; position:relative; overflow:hidden; }
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; position:relative; overflow:hidden; }
-        .settings-about { text-align:center; padding:0.4rem 0; font-size:0.8rem; color:var(--text-secondary); }
 
         .about-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2200; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .about-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -206,18 +205,7 @@
         .more-body { display: flex; flex-direction: column; gap: 10px; }
         .more-section { display: flex; flex-direction: column; gap: 8px; }
         .more-section-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); padding: 4px 0 2px; }
-        .more-link, .more-download {
-            display: flex; align-items: center; gap: 10px;
-            padding: 11px 14px;
-            background: rgba(120,120,128,0.08);
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 10px;
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.9rem;
-            position: relative;
-            overflow: hidden;
-        }
+        .more-link, .more-download { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: rgba(120,120,128,0.08); border: 1px solid rgba(0,0,0,0.06); border-radius: 10px; text-decoration: none; color: var(--text); font-size: 0.9rem; position: relative; overflow: hidden; }
         [data-theme="dark"] .more-link, [data-theme="dark"] .more-download { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.06); }
         .more-link-icon, .more-download-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); }
         .more-link-icon.bili { background: linear-gradient(135deg, #FB7299, #e2557e); }
@@ -230,21 +218,9 @@
         .more-download-action { padding: 4px 12px; font-size: 0.78rem; font-weight: 600; color: #fff; background: var(--accent); border: none; border-radius: 50px; text-decoration: none; flex-shrink: 0; }
         .more-link-arrow { color: var(--text-secondary); font-size: 0.85rem; }
 
-        .ripple {
-            position: absolute; border-radius: 50%;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0) 72%);
-            transform: translate(-50%, -50%) scale(0);
-            animation: iosRipple 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-            pointer-events: none; z-index: 10; filter: blur(0.5px);
-        }
-        [data-theme="dark"] .ripple {
-            background: radial-gradient(circle at center, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.45) 30%, rgba(255,255,255,0.18) 55%, rgba(255,255,255,0) 72%);
-        }
-        @keyframes iosRipple {
-            0%   { transform: translate(-50%, -50%) scale(0);   opacity: 1; }
-            60%  { transform: translate(-50%, -50%) scale(0.85); opacity: 0.55; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-        }
+        .ripple { position: absolute; border-radius: 50%; background: radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0) 72%); transform: translate(-50%, -50%) scale(0); animation: iosRipple 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; pointer-events: none; z-index: 10; filter: blur(0.5px); }
+        [data-theme="dark"] .ripple { background: radial-gradient(circle at center, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.45) 30%, rgba(255,255,255,0.18) 55%, rgba(255,255,255,0) 72%); }
+        @keyframes iosRipple { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 60% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.55; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
 
         body.glass-mode { background-color:rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35) !important; }
@@ -283,7 +259,6 @@
         body.minecraft-mode .download-item { background:#4a4a4a !important; border:2px solid #1a1a1a !important; color:#ffffff; }
         body.minecraft-mode .announcement { background:#4a4a4a !important; border:2px solid #1a1a1a !important; }
 
-        /* ============ 概念版模式 ============ */
         body.concept-mode { padding-top: 1rem !important; }
         body.concept-mode .top-bar,
         body.concept-mode .hamburger-btn,
@@ -293,7 +268,6 @@
         body.concept-mode .button-group,
         body.concept-mode .download-group { display: none !important; }
 
-        /* ============ macOS Dock ============ */
         .macos-dock {
             position: fixed;
             bottom: 10px;
@@ -403,33 +377,19 @@
             display: flex;
             flex-direction: column;
             max-height: none;
-            background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.62) 0%,
-                rgba(255, 255, 255, 0.38) 40%,
-                rgba(255, 255, 255, 0.52) 100%) !important;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.38) 40%, rgba(255, 255, 255, 0.52) 100%) !important;
             backdrop-filter: blur(50px) saturate(200%) !important;
             -webkit-backdrop-filter: blur(50px) saturate(200%) !important;
             border: 1px solid rgba(255, 255, 255, 0.6) !important;
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.35),
-                0 8px 24px rgba(0, 0, 0, 0.15),
-                inset 1px 1px 0 rgba(255, 255, 255, 0.9),
-                inset -1px -1px 0 rgba(255, 255, 255, 0.4) !important;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.15), inset 1px 1px 0 rgba(255, 255, 255, 0.9), inset -1px -1px 0 rgba(255, 255, 255, 0.4) !important;
         }
         [data-theme="dark"] body.concept-mode .settings-modal,
         [data-theme="dark"] body.concept-mode .calc-modal,
         [data-theme="dark"] body.concept-mode .dialpad-modal,
         [data-theme="dark"] body.concept-mode .more-modal {
-            background: linear-gradient(135deg,
-                rgba(60, 60, 68, 0.68) 0%,
-                rgba(35, 35, 42, 0.55) 40%,
-                rgba(50, 50, 58, 0.62) 100%) !important;
+            background: linear-gradient(135deg, rgba(60, 60, 68, 0.68) 0%, rgba(35, 35, 42, 0.55) 40%, rgba(50, 50, 58, 0.62) 100%) !important;
             border-color: rgba(255, 255, 255, 0.14) !important;
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.55),
-                0 8px 24px rgba(0, 0, 0, 0.3),
-                inset 1px 1px 0 rgba(255, 255, 255, 0.14),
-                inset -1px -1px 0 rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 8px 24px rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.14), inset -1px -1px 0 rgba(255, 255, 255, 0.05) !important;
         }
 
         body.concept-mode .settings-modal { width: 720px !important; max-width: 720px !important; height: 520px !important; max-height: 520px !important; padding: 0 !important; }
@@ -447,29 +407,13 @@
             border-radius: 0 !important;
         }
 
-        .macos-window-bar {
-            display: none;
-            flex-shrink: 0;
-            height: 38px;
-            align-items: center;
-            padding: 0 14px;
-            background: transparent;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            cursor: grab;
-            user-select: none;
-        }
+        .macos-window-bar { display: none; flex-shrink: 0; height: 38px; align-items: center; padding: 0 14px; background: transparent; border-bottom: 1px solid rgba(0, 0, 0, 0.06); cursor: grab; user-select: none; }
         .macos-window-bar:active { cursor: grabbing; }
         [data-theme="dark"] .macos-window-bar { border-bottom-color: rgba(255, 255, 255, 0.06); }
         body.concept-mode .macos-window-bar { display: flex; }
 
         .macos-traffic-lights { display: flex; gap: 8px; align-items: center; }
-        .traffic-light {
-            width: 13px; height: 13px; border-radius: 50%;
-            border: none; padding: 0; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px; line-height: 1; color: rgba(0,0,0,0.55);
-            position: relative;
-        }
+        .traffic-light { width: 13px; height: 13px; border-radius: 50%; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 10px; line-height: 1; color: rgba(0,0,0,0.55); position: relative; }
         .traffic-light.close { background: #ff5f57; box-shadow: inset 0 0 0 0.5px #e0443e; }
         .traffic-light.max { background: #28c840; box-shadow: inset 0 0 0 0.5px #18a32b; }
         .traffic-light::before { opacity: 0; transition: opacity 0.15s; font-weight: 700; }
@@ -477,197 +421,59 @@
         .traffic-light.close::before { content: "×"; }
         .traffic-light.max::before { content: "⤢"; font-size: 9px; }
 
-        .macos-window-title {
-            flex: 1;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-            margin-right: 56px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+        .macos-window-title { flex: 1; text-align: center; font-size: 13px; font-weight: 600; color: var(--text); margin-right: 56px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        .macos-window-content {
-            flex: 1;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+        .macos-window-content { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
 
-        .settings-window-layout {
-            display: flex !important;
-            flex-direction: row !important;
-        }
-        .settings-sidebar {
-            width: 210px;
-            flex-shrink: 0;
-            background: rgba(240, 240, 245, 0.35);
-            border-right: 1px solid rgba(0, 0, 0, 0.06);
-            padding: 12px 10px;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        [data-theme="dark"] .settings-sidebar {
-            background: rgba(40, 40, 45, 0.3);
-            border-right-color: rgba(255, 255, 255, 0.06);
-        }
-        .settings-search {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(120, 120, 128, 0.16);
-            border-radius: 8px;
-            padding: 5px 9px;
-            margin-bottom: 12px;
-            font-size: 13px;
-            color: #8e8e93;
-        }
+        .settings-window-layout { display: flex !important; flex-direction: row !important; }
+        .settings-sidebar { width: 210px; flex-shrink: 0; background: rgba(240, 240, 245, 0.35); border-right: 1px solid rgba(0, 0, 0, 0.06); padding: 12px 10px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        [data-theme="dark"] .settings-sidebar { background: rgba(40, 40, 45, 0.3); border-right-color: rgba(255, 255, 255, 0.06); }
+        .settings-search { display: flex; align-items: center; gap: 6px; background: rgba(120, 120, 128, 0.16); border-radius: 8px; padding: 5px 9px; margin-bottom: 12px; font-size: 13px; color: #8e8e93; }
         .settings-search span { font-size: 12px; }
-        .settings-search input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            font-size: 13px;
-            color: var(--text);
-            outline: none;
-            font-family: inherit;
-        }
+        .settings-search input { flex: 1; border: none; background: transparent; font-size: 13px; color: var(--text); outline: none; font-family: inherit; }
 
-        .settings-nav-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            padding: 8px 10px;
-            border: none;
-            background: transparent;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13.5px;
-            color: var(--text);
-            font-family: inherit;
-            text-align: left;
-            margin-bottom: 1px;
-            position: relative;
-            overflow: hidden;
-            transition: background-color 0.15s;
-        }
+        .settings-nav-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 10px; border: none; background: transparent; border-radius: 8px; cursor: pointer; font-size: 13.5px; color: var(--text); font-family: inherit; text-align: left; margin-bottom: 1px; position: relative; overflow: hidden; transition: background-color 0.15s; }
         .settings-nav-item:hover { background: rgba(120, 120, 128, 0.1); }
-        .settings-nav-item.active {
-            background: var(--accent);
-            color: #ffffff;
-        }
+        .settings-nav-item.active { background: var(--accent); color: #ffffff; }
         .settings-nav-item.active .settings-nav-icon { background: rgba(255,255,255,0.25); }
         [data-theme="dark"] .settings-nav-item.active { background: #0a84ff; }
 
-        .settings-nav-icon {
-            width: 24px; height: 24px;
-            border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(180deg, #a5a5aa, #7a7a80);
-            font-size: 13px;
-            flex-shrink: 0;
-            color: #ffffff;
-        }
+        .settings-nav-icon { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #a5a5aa, #7a7a80); font-size: 13px; flex-shrink: 0; color: #ffffff; }
         .settings-nav-icon.blue { background: linear-gradient(180deg, #4fa8f8, #0a84ff); }
         .settings-nav-icon.purple { background: linear-gradient(180deg, #b07af8, #8b5cf6); }
         .settings-nav-icon.green { background: linear-gradient(180deg, #5ec463, #34c759); }
         .settings-nav-icon.orange { background: linear-gradient(180deg, #ffb143, #ff9500); }
         .settings-nav-icon.gray { background: linear-gradient(180deg, #a8a8ad, #8e8e93); }
 
-        .settings-main {
-            flex: 1;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 16px 22px 22px;
-        }
+        .settings-main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 22px 22px; }
         .settings-panel { display: none; }
         .settings-panel.active { display: block; animation: panelFade 0.22s ease; }
         @keyframes panelFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 非概念版模式下：设置中隐藏关于导航项和面板 */
         .settings-nav-item[data-panel="about"],
-        .settings-panel[data-panel="about"] {
-            display: none !important;
-        }
-        /* 概念版模式下：显示关于 */
-        body.concept-mode .settings-nav-item[data-panel="about"] {
-            display: flex !important;
-        }
-        body.concept-mode .settings-panel[data-panel="about"].active {
-            display: block !important;
-        }
+        .settings-panel[data-panel="about"] { display: none !important; }
+        body.concept-mode .settings-nav-item[data-panel="about"] { display: flex !important; }
+        body.concept-mode .settings-panel[data-panel="about"].active { display: block !important; }
 
-        .panel-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-        }
-
-        .panel-group {
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 10px;
-            padding: 0 14px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.04);
-        }
-        [data-theme="dark"] .panel-group {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.05);
-        }
-        .panel-group-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-            padding: 12px 0 0;
-        }
-        .panel-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            font-size: 13.5px;
-            color: var(--text);
-        }
+        .panel-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 16px; letter-spacing: -0.01em; }
+        .panel-group { background: rgba(255, 255, 255, 0.4); border-radius: 10px; padding: 0 14px; margin-bottom: 16px; border: 1px solid rgba(0, 0, 0, 0.04); }
+        [data-theme="dark"] .panel-group { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.05); }
+        .panel-group-title { font-size: 13px; font-weight: 600; color: var(--text); padding: 12px 0 0; }
+        .panel-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.06); font-size: 13.5px; color: var(--text); }
         .panel-row:last-child { border-bottom: none; }
 
         .theme-thumbnails { display: flex; gap: 12px; padding: 8px 0 14px; }
-        .theme-thumb {
-            flex: 1;
-            border-radius: 8px;
-            padding: 3px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.15s;
-        }
+        .theme-thumb { flex: 1; border-radius: 8px; padding: 3px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; }
         .theme-thumb.active { border-color: var(--accent); }
-        .theme-thumb-inner {
-            height: 60px;
-            border-radius: 6px;
-            display: flex; align-items: flex-end;
-            padding: 4px 5px;
-            gap: 3px;
-            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
-        }
+        .theme-thumb-inner { height: 60px; border-radius: 6px; display: flex; align-items: flex-end; padding: 4px 5px; gap: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
         .theme-thumb-inner.light { background: linear-gradient(160deg, #e8e8ed, #f5f5f7); }
         .theme-thumb-inner.dark { background: linear-gradient(160deg, #2a2a2e, #1a1a1e); }
         .theme-thumb-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff5f57; }
-        .theme-thumb-label {
-            text-align: center; font-size: 11.5px; color: var(--text-secondary);
-            margin-top: 5px;
-        }
+        .theme-thumb-label { text-align: center; font-size: 11.5px; color: var(--text-secondary); margin-top: 5px; }
         .theme-thumb.active .theme-thumb-label { color: var(--accent); font-weight: 600; }
 
         .about-panel { text-align: center; padding: 20px 0; }
-        .about-panel .settings-app-icon {
-            width: 80px; height: 80px;
-            margin: 0 auto 12px;
-        }
+        .about-panel .settings-app-icon { width: 80px; height: 80px; margin: 0 auto 12px; }
         .about-panel .settings-app-icon svg { width: 100%; height: 100%; }
         .about-panel p { font-size: 13.5px; color: var(--text-secondary); margin: 4px 0; }
         .about-panel .version-text { margin-top: 8px; }
@@ -678,11 +484,7 @@
         body.concept-mode .calc-modal .calc-display { border-radius: 12px; margin-bottom: 12px; }
         body.concept-mode .dialpad-modal .dial-actions { margin-top: 12px; }
 
-        @keyframes macosWindowOpen {
-            0%   { opacity: 0; transform: scale(0.85) translateY(30px); }
-            60%  { opacity: 1; }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
+        @keyframes macosWindowOpen { 0% { opacity: 0; transform: scale(0.85) translateY(30px); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) translateY(0); } }
         .macos-window-opening { animation: macosWindowOpen 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
         body.concept-mode .settings-modal > .macos-window-content { padding: 0; overflow: hidden; flex-direction: row; }
@@ -735,7 +537,6 @@
         <button class="menu-item" id="dialpadTrigger"><span data-i18n="dialpad">拨号盘</span> <span>☎</span></button>
     </aside>
 
-    <!-- 设置窗口 -->
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-modal" id="settingsModal">
             <div class="macos-window-bar">
@@ -796,7 +597,6 @@
                             <div class="panel-row"><span>Minecraft模式</span><button class="ios-switch" id="minecraftModeSwitch"><span class="knob"></span></button></div>
                         </div>
                     </div>
-
                     <div class="settings-panel" data-panel="wallpaper">
                         <div class="panel-title">墙纸</div>
                         <div class="panel-group" style="padding: 12px 14px;">
@@ -811,7 +611,6 @@
                             <button class="wallpaper-btn" data-wallpaper="white">白色壁纸</button>
                         </div>
                     </div>
-
                     <div class="settings-panel" data-panel="language">
                         <div class="panel-title">语言</div>
                         <div class="panel-group">
@@ -822,7 +621,6 @@
                             <div class="panel-row"><span>한국어</span><button class="ios-switch lang-switch" data-lang="ko"><span class="knob"></span></button></div>
                         </div>
                     </div>
-
                     <div class="settings-panel" data-panel="concept">
                         <div class="panel-title">概念版 (Beta)</div>
                         <div class="panel-group">
@@ -832,8 +630,6 @@
                             开启后，顶部栏与菜单按钮将被隐藏，底部出现 macOS 风格的程序坞。点击程序坞图标可打开窗口化的设置、计算器、拨号盘、更多。
                         </p>
                     </div>
-
-                    <!-- 关于面板（仅在概念版模式下显示） -->
                     <div class="settings-panel" data-panel="about">
                         <div class="panel-title">关于</div>
                         <div class="about-panel">
@@ -880,7 +676,6 @@
         </div>
     </div>
 
-    <!-- 关于 -->
     <div class="about-overlay" id="aboutOverlay">
         <div class="about-modal">
             <div class="about-title" data-i18n="about">关于</div>
@@ -895,7 +690,6 @@
         </div>
     </div>
 
-    <!-- 彩蛋 -->
     <div class="easter-egg-overlay" id="easterEggOverlay">
         <div class="easter-egg-modal">
             <div class="easter-egg-title">彩蛋</div>
@@ -906,7 +700,6 @@
         </div>
     </div>
 
-    <!-- 计算器 -->
     <div class="calc-overlay" id="calcOverlay">
         <div class="calc-modal" id="calcModal">
             <div class="macos-window-bar">
@@ -943,7 +736,6 @@
         </div>
     </div>
 
-    <!-- 拨号盘 -->
     <div class="dialpad-overlay" id="dialpadOverlay">
         <div class="dialpad-modal" id="dialpadModal">
             <div class="macos-window-bar">
@@ -964,7 +756,6 @@
         </div>
     </div>
 
-    <!-- 更多窗口 -->
     <div class="more-overlay" id="moreOverlay">
         <div class="more-modal" id="moreModal">
             <div class="macos-window-bar">
@@ -1017,7 +808,6 @@
         </div>
     </div>
 
-    <!-- macOS Dock -->
     <div class="macos-dock" id="macosDock">
         <div class="dock-item" data-app="webmc" title="网页版MC">🌐<span class="dock-label" data-i18n="webMC">网页版MC</span></div>
         <div class="dock-item" data-app="ojang" title="ojang pe下载">⬇️<span class="dock-label" data-i18n="ojangDownload">ojang pe下载</span></div>
@@ -1288,7 +1078,6 @@
                     applyWallpaper(wallpaperURLs[wallpaperChoice] || '');
                 }
 
-                // 非概念版模式下，如果当前面板为 about，切回 appearance
                 if (!conceptEnabled) {
                     const active = document.querySelector('.settings-panel.active');
                     if (active && active.getAttribute('data-panel') === 'about') {
