@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>欢迎来到一架国泰航空A330官方网站</title>
-    <!-- 引入 Minecraft 像素字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -36,16 +35,6 @@
             --dial-key-hover: #e0e0e0;
             --dial-display-bg: #f8f8f8;
             --dial-display-text: #1a1a1a;
-            --calc-bg: #1c1c1e;
-            --calc-display-bg: #000000;
-            --calc-key-bg: #333333;
-            --calc-key-hover: #444444;
-            --calc-operator-bg: #ff9f0a;
-            --calc-operator-text: #ffffff;
-            --calc-equals-bg: #ff9f0a;
-            --calc-key-text: #ffffff;
-            --calc-clear-bg: #a5a5a5;
-            --calc-clear-text: #000000;
             --sidebar-width: 300px;
             --topbar-height: 60px;
             --toggle-on: #34c759;
@@ -82,16 +71,6 @@
             --dial-key-hover: #3a3a3a;
             --dial-display-bg: #171717;
             --dial-display-text: #f0f0f0;
-            --calc-bg: #1c1c1e;
-            --calc-display-bg: #000000;
-            --calc-key-bg: #333333;
-            --calc-key-hover: #444444;
-            --calc-operator-bg: #ff9f0a;
-            --calc-operator-text: #ffffff;
-            --calc-equals-bg: #ff9f0a;
-            --calc-key-text: #ffffff;
-            --calc-clear-bg: #a5a5a5;
-            --calc-clear-text: #000000;
             --toggle-on: #30d158;
             --toggle-off: #39393d;
             --version-label-color: #f0f0f0;
@@ -118,10 +97,9 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* ========== 顶部栏 ========== */
         .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; transition: all 0.3s ease; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1005; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; -webkit-tap-highlight-color:transparent; outline:none; }
+        .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1005; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; -webkit-tap-highlight-color:transparent; outline:none; overflow:hidden; }
         .hamburger-line { display:block; width:22px; height:2.5px; background-color:var(--accent); border-radius:4px; transition:all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); }
         .hamburger-btn.active .hamburger-line:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
         .hamburger-btn.active .hamburger-line:nth-child(2) { opacity:0; }
@@ -184,263 +162,246 @@
         .about-close-btn { display:block; width:100%; margin-top:1.2rem; padding:0.6rem 0; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.9rem; cursor:pointer; transition:background-color 0.2s; position:relative; overflow:hidden; }
         .about-close-btn:hover { background-color:var(--accent-hover); }
 
-        /* 版本号样式 */
-        .version-text {
-            cursor: pointer;
-            user-select: none;
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-        }
-        .version-text:hover {
-            background-color: rgba(0,0,0,0.05);
-        }
-        [data-theme="dark"] .version-text:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-        .version-label {
-            color: var(--version-label-color);
-            font-weight: 500;
-        }
-        .version-number {
-            color: #0077cc;
-            font-weight: 600;
-            margin-left: 5px;
-        }
-        [data-theme="dark"] .version-number {
-            color: #42a5f5;
-        }
+        .version-text { cursor: pointer; user-select: none; display: inline-block; padding: 5px 10px; border-radius: 6px; transition: background-color 0.2s; }
+        .version-text:hover { background-color: rgba(0,0,0,0.05); }
+        [data-theme="dark"] .version-text:hover { background-color: rgba(255,255,255,0.1); }
+        .version-label { color: var(--version-label-color); font-weight: 500; }
+        .version-number { color: #0077cc; font-weight: 600; margin-left: 5px; }
+        [data-theme="dark"] .version-number { color: #42a5f5; }
 
-        /* 彩蛋弹窗 */
-        .easter-egg-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            visibility: hidden;
-            padding: 1rem;
-        }
-        .easter-egg-overlay.visible {
-            opacity: 1;
-            pointer-events: auto;
-            visibility: visible;
-        }
-        .easter-egg-modal {
-            background-color: var(--modal-bg);
-            border-radius: 16px;
-            padding: 20px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 12px 48px rgba(0,0,0,0.3);
-            position: relative;
-            border: 1px solid var(--divider);
-        }
-        .easter-egg-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 10px;
-            text-align: left;
-            border-bottom: 1px solid var(--divider);
-            padding-bottom: 8px;
-        }
-        .easter-egg-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 15px 0;
-        }
-        .easter-egg-content img {
-            max-width: 100%;
-            max-height: 300px;
-            border-radius: 8px;
-            object-fit: contain;
-        }
-        .easter-egg-close {
-            display: block;
-            margin-left: auto;
-            margin-top: 15px;
-            padding: 8px 24px;
-            background-color: var(--btn-primary);
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .easter-egg-close:hover {
-            background-color: var(--btn-primary-hover);
-        }
+        .easter-egg-overlay { position: fixed; inset: 0; background-color: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; visibility: hidden; padding: 1rem; }
+        .easter-egg-overlay.visible { opacity: 1; pointer-events: auto; visibility: visible; }
+        .easter-egg-modal { background-color: var(--modal-bg); border-radius: 16px; padding: 20px; width: 90%; max-width: 400px; box-shadow: 0 12px 48px rgba(0,0,0,0.3); position: relative; border: 1px solid var(--divider); }
+        .easter-egg-title { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 10px; text-align: left; border-bottom: 1px solid var(--divider); padding-bottom: 8px; }
+        .easter-egg-content { display: flex; justify-content: center; align-items: center; margin: 15px 0; }
+        .easter-egg-content img { max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain; }
+        .easter-egg-close { display: block; margin-left: auto; margin-top: 15px; padding: 8px 24px; background-color: var(--btn-primary); color: #ffffff; border: none; border-radius: 8px; font-size: 0.9rem; cursor: pointer; transition: background-color 0.2s; position: relative; overflow: hidden; }
+        .easter-egg-close:hover { background-color: var(--btn-primary-hover); }
 
-        /* 彩蛋弹窗适配各模式 */
-        /* 透明模式 */
-        body.glass-mode .easter-egg-modal {
-            background-color: rgba(255,255,255,0.72) !important;
-            backdrop-filter: blur(22px) saturate(190%) !important;
-            -webkit-backdrop-filter: blur(22px) saturate(190%) !important;
-            border:1px solid rgba(255,255,255,0.6) !important;
-        }
-        body.glass-mode .easter-egg-title {
-            color: var(--text) !important;
-        }
-        body.glass-mode .easter-egg-close {
-            background-color: rgba(0,122,255,0.8) !important;
-            color: #fff !important;
-        }
-        body.glass-mode .easter-egg-close:hover {
-            background-color: rgba(0,122,255,1) !important;
-        }
+        body.glass-mode .easter-egg-modal { background-color: rgba(255,255,255,0.72) !important; backdrop-filter: blur(22px) saturate(190%) !important; -webkit-backdrop-filter: blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
+        body.glass-mode .easter-egg-close { background-color: rgba(0,122,255,0.8) !important; }
+        body.liquid-glass-mode .easter-egg-modal { background: linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter: blur(28px) saturate(200%) !important; -webkit-backdrop-filter: blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
+        body.liquid-glass-mode .easter-egg-close { background-color: rgba(0,119,204,0.65) !important; box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), inset -1px -1px 0 rgba(255,255,255,0.2) !important; }
+        body.retro-mode .easter-egg-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
+        body.retro-mode .easter-egg-title { color:#333 !important; border-bottom:1px solid #b0b0b0 !important; }
+        body.retro-mode .easter-egg-close { background: linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; text-shadow:0 -1px 0 rgba(0,0,0,0.4) !important; box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; }
+        body.minecraft-mode .easter-egg-overlay { background-color: rgba(0,0,0,0.6) !important; }
+        body.minecraft-mode .easter-egg-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px !important; box-shadow:none !important; }
+        body.minecraft-mode .easter-egg-title { color:#ffffff !important; font-family:'Press Start 2P', monospace !important; border-bottom:2px solid #555 !important; padding-bottom:10px; font-size:1rem; }
+        body.minecraft-mode .easter-egg-content img { border-radius:0 !important; border:2px solid #1a1a1a !important; }
+        body.minecraft-mode .easter-egg-close { background: #0077cc !important; border:2px solid #1a1a1a !important; color:#ffffff !important; font-family:'Press Start 2P', monospace !important; border-radius:4px !important; font-size:0.8rem; padding:8px 20px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) !important; }
 
-        /* 液态玻璃模式 */
-        body.liquid-glass-mode .easter-egg-modal {
-            background: linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important;
-            backdrop-filter: blur(28px) saturate(200%) !important;
-            -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
-            border:1px solid rgba(255,255,255,0.4) !important;
-        }
-        body.liquid-glass-mode .easter-egg-title {
-            color: var(--text) !important;
-        }
-        body.liquid-glass-mode .easter-egg-close {
-            background-color: rgba(0,119,204,0.65) !important;
-            color: #fff !important;
-            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), inset -1px -1px 0 rgba(255,255,255,0.2) !important;
-        }
-        body.liquid-glass-mode .easter-egg-close:hover {
-            background-color: rgba(0,119,204,0.8) !important;
-        }
-
-        /* 怀旧模式 */
-        body.retro-mode .easter-egg-modal {
-            background:#f5f5f5 !important;
-            border:1px solid #8f8f8f !important;
-            border-radius:12px !important;
-            box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important;
-        }
-        body.retro-mode .easter-egg-title {
-            color:#333 !important;
-            border-bottom:1px solid #b0b0b0 !important;
-        }
-        body.retro-mode .easter-egg-close {
-            background: linear-gradient(to bottom,#6db3f2,#1e69de) !important;
-            border:1px solid #1c4f9c !important;
-            border-radius:6px !important;
-            text-shadow:0 -1px 0 rgba(0,0,0,0.4) !important;
-            box-shadow:0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important;
-            color:#fff !important;
-        }
-        body.retro-mode .easter-egg-close:hover {
-            background: linear-gradient(to bottom,#5c8ccf,#2b5c9e) !important;
-            border-color:#1c3f6c !important;
-        }
-
-        /* Minecraft模式 */
-        body.minecraft-mode .easter-egg-overlay {
-            background-color: rgba(0,0,0,0.6) !important;
-        }
-        body.minecraft-mode .easter-egg-modal {
-            background:#3a3a3a !important;
-            border:2px solid #1a1a1a !important;
-            border-radius:6px !important;
-            box-shadow:none !important;
-        }
-        body.minecraft-mode .easter-egg-title {
-            color:#ffffff !important;
-            font-family:'Press Start 2P', monospace !important;
-            border-bottom:2px solid #555 !important;
-            padding-bottom:10px;
-            font-size:1rem;
-        }
-        body.minecraft-mode .easter-egg-content img {
-            border-radius:0 !important;
-            border:2px solid #1a1a1a !important;
-        }
-        body.minecraft-mode .easter-egg-close {
-            background: #0077cc !important;
-            border:2px solid #1a1a1a !important;
-            color:#ffffff !important;
-            font-family:'Press Start 2P', monospace !important;
-            border-radius:4px !important;
-            font-size:0.8rem;
-            padding:8px 20px;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) !important;
-        }
-        body.minecraft-mode .easter-egg-close:hover {
-            background: #005fa3 !important;
-        }
-
-        /* 计算器（iOS 风格） */
+        /* ========== 计算器基础结构 ========== */
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
-        .calc-modal {
-            background-color: var(--calc-bg);
-            border-radius: 20px;
-            padding: 1rem;
-            width: 100%;
-            max-width: 320px;
-            box-shadow: 0 12px 48px rgba(0,0,0,0.2);
-            transform: translateY(16px) scale(0.96);
-            transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+        .calc-modal { border-radius: 24px; padding: 1rem; width: 100%; max-width: 340px; transform: translateY(16px) scale(0.96); transition: all 0.3s cubic-bezier(0.22,1,0.36,1); }
         .calc-overlay.visible .calc-modal { transform: translateY(0) scale(1); }
-        .calc-display {
-            background-color: var(--calc-display-bg);
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
-            font-size: 2.5rem;
-            font-weight: 300;
-            text-align: right;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            overflow-x: auto;
-            white-space: nowrap;
-            letter-spacing: 0.02em;
-            border: none;
-        }
+        .calc-display { border-radius: 16px; padding: 1rem 1.2rem; font-size: 2.5rem; font-weight: 300; text-align: right; margin-bottom: 1rem; min-height: 80px; display: flex; align-items: center; justify-content: flex-end; overflow-x: auto; white-space: nowrap; letter-spacing: 0.02em; }
         .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
-        .calc-key {
-            background-color: var(--calc-key-bg);
-            border: none;
-            border-radius: 12px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--calc-key-text);
-            transition: all 0.15s ease;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            font-family: inherit;
-            font-weight: 400;
-            position: relative;
-            overflow: hidden;
-        }
-        .calc-key:hover { background-color: var(--calc-key-hover); }
-        .calc-key:active { transform: scale(0.95); }
-        .calc-key.operator { background-color: var(--calc-operator-bg); color: var(--calc-operator-text); font-size: 1.8rem; }
-        .calc-key.operator:hover { opacity: 0.85; }
-        .calc-key.equals { background-color: var(--calc-equals-bg); color: #ffffff; font-size: 1.8rem; }
-        .calc-key.equals:hover { opacity: 0.85; }
+        .calc-key { border: none; border-radius: 50%; aspect-ratio: 1; min-height: 60px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; transition: all 0.15s ease; -webkit-tap-highlight-color: transparent; outline: none; font-family: inherit; font-weight: 400; position: relative; overflow: hidden; }
+        .calc-key:active { transform: scale(0.94); }
         .calc-key.zero { grid-column: span 1; }
-        .calc-key.clear { background-color: var(--calc-clear-bg); color: var(--calc-clear-text); }
 
+        /* ===== 默认模式：iOS 16 扁平化（浅色） ===== */
+        .calc-modal { background-color: #f2f2f7; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 12px 48px rgba(0,0,0,0.15); }
+        .calc-display { background-color: #ffffff; color: #1a1a1a; border: 1px solid rgba(0,0,0,0.06); }
+        .calc-key { background-color: #ffffff; color: #1a1a1a; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+        .calc-key:hover { background-color: #e5e5ea; }
+        .calc-key.operator { background-color: #ff9500; color: #ffffff; box-shadow: 0 1px 2px rgba(255,149,0,0.25); }
+        .calc-key.operator:hover { background-color: #ffb143; }
+        .calc-key.equals { background-color: #ff9500; color: #ffffff; box-shadow: 0 1px 2px rgba(255,149,0,0.25); }
+        .calc-key.equals:hover { background-color: #ffb143; }
+        .calc-key.clear { background-color: #a5a5a5; color: #ffffff; }
+        .calc-key.clear:hover { background-color: #b8b8b8; }
+
+        /* ===== 深色主题：iOS 16 扁平化（深色） ===== */
+        [data-theme="dark"] .calc-modal { background-color: #1c1c1e; border: 1px solid rgba(255,255,255,0.06); }
+        [data-theme="dark"] .calc-display { background-color: #000000; color: #ffffff; border: 1px solid rgba(255,255,255,0.06); }
+        [data-theme="dark"] .calc-key { background-color: #333333; color: #ffffff; box-shadow: none; }
+        [data-theme="dark"] .calc-key:hover { background-color: #444444; }
+        [data-theme="dark"] .calc-key.operator { background-color: #ff9500; color: #ffffff; }
+        [data-theme="dark"] .calc-key.operator:hover { background-color: #ffb143; }
+        [data-theme="dark"] .calc-key.equals { background-color: #ff9500; color: #ffffff; }
+        [data-theme="dark"] .calc-key.equals:hover { background-color: #ffb143; }
         [data-theme="dark"] .calc-key.clear { background-color: #a5a5a5; color: #000000; }
+        [data-theme="dark"] .calc-key.clear:hover { background-color: #b8b8b8; }
 
+        /* ===== 透明模式：iOS 16 扁平化 + 半透明 ===== */
+        body.glass-mode .calc-modal { background-color: rgba(242,242,247,0.85) !important; backdrop-filter: blur(20px) saturate(180%) !important; -webkit-backdrop-filter: blur(20px) saturate(180%) !important; border: 1px solid rgba(255,255,255,0.5) !important; box-shadow: 0 12px 48px rgba(0,0,0,0.15) !important; }
+        body.glass-mode .calc-display { background-color: rgba(255,255,255,0.7) !important; color: #1a1a1a !important; border: 1px solid rgba(0,0,0,0.06) !important; }
+        body.glass-mode .calc-key { background-color: rgba(255,255,255,0.75) !important; color: #1a1a1a !important; box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important; }
+        body.glass-mode .calc-key:hover { background-color: rgba(229,229,234,0.9) !important; }
+        body.glass-mode .calc-key.operator { background-color: rgba(255,149,0,0.9) !important; color: #fff !important; }
+        body.glass-mode .calc-key.operator:hover { background-color: rgba(255,177,67,0.95) !important; }
+        body.glass-mode .calc-key.equals { background-color: rgba(255,149,0,0.9) !important; color: #fff !important; }
+        body.glass-mode .calc-key.equals:hover { background-color: rgba(255,177,67,0.95) !important; }
+        body.glass-mode .calc-key.clear { background-color: rgba(165,165,165,0.9) !important; color: #ffffff !important; }
+        body.glass-mode .calc-key.clear:hover { background-color: rgba(184,184,184,0.95) !important; }
+        [data-theme="dark"] body.glass-mode .calc-modal { background-color: rgba(28,28,30,0.85) !important; border: 1px solid rgba(255,255,255,0.1) !important; }
+        [data-theme="dark"] body.glass-mode .calc-display { background-color: rgba(0,0,0,0.6) !important; color: #fff !important; }
+        [data-theme="dark"] body.glass-mode .calc-key { background-color: rgba(51,51,51,0.85) !important; color: #fff !important; }
+        [data-theme="dark"] body.glass-mode .calc-key:hover { background-color: rgba(68,68,68,0.95) !important; }
+        [data-theme="dark"] body.glass-mode .calc-key.clear { background-color: rgba(165,165,165,0.9) !important; color: #000 !important; }
+
+        /* ===== 液态玻璃模式：iOS 26 玻璃质感 ===== */
+        body.liquid-glass-mode .calc-modal {
+            background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.25)) !important;
+            backdrop-filter: blur(40px) saturate(220%) !important;
+            -webkit-backdrop-filter: blur(40px) saturate(220%) !important;
+            border: 1px solid rgba(255,255,255,0.4) !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15), inset 1px 1px 0 rgba(255,255,255,0.6), inset -1px -1px 0 rgba(255,255,255,0.2) !important;
+        }
+        body.liquid-glass-mode .calc-display {
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1)) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            color: #1a1a1a !important;
+            border: 1px solid rgba(255,255,255,0.35) !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5), inset -1px -1px 0 rgba(255,255,255,0.15) !important;
+        }
+        body.liquid-glass-mode .calc-key {
+            background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.4)) !important;
+            backdrop-filter: blur(16px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+            color: #1a1a1a !important;
+            border: 1px solid rgba(255,255,255,0.5) !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.7), inset -1px -1px 0 rgba(255,255,255,0.2), 0 2px 8px rgba(0,0,0,0.05) !important;
+        }
+        body.liquid-glass-mode .calc-key:hover { background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.6)) !important; }
+        body.liquid-glass-mode .calc-key.operator {
+            background: linear-gradient(135deg, rgba(255,159,10,0.85), rgba(255,140,0,0.65) 50%, rgba(255,159,10,0.75)) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,200,120,0.6) !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.6), inset -1px -1px 0 rgba(255,255,255,0.2), 0 2px 10px rgba(255,149,0,0.25) !important;
+        }
+        body.liquid-glass-mode .calc-key.operator:hover { background: linear-gradient(135deg, rgba(255,180,60,0.95), rgba(255,159,10,0.8)) !important; }
+        body.liquid-glass-mode .calc-key.equals {
+            background: linear-gradient(135deg, rgba(255,159,10,0.9), rgba(255,140,0,0.7)) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,200,120,0.6) !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.6), 0 2px 10px rgba(255,149,0,0.3) !important;
+        }
+        body.liquid-glass-mode .calc-key.equals:hover { background: linear-gradient(135deg, rgba(255,180,60,0.95), rgba(255,159,10,0.85)) !important; }
+        body.liquid-glass-mode .calc-key.clear {
+            background: linear-gradient(135deg, rgba(200,200,200,0.75), rgba(180,180,180,0.5)) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,255,255,0.4) !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5) !important;
+        }
+        [data-theme="dark"] body.liquid-glass-mode .calc-modal {
+            background: linear-gradient(135deg, rgba(60,60,60,0.4), rgba(30,30,30,0.2) 50%, rgba(45,45,45,0.35)) !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+        }
+        [data-theme="dark"] body.liquid-glass-mode .calc-display {
+            background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3)) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+        }
+        [data-theme="dark"] body.liquid-glass-mode .calc-key {
+            background: linear-gradient(135deg, rgba(80,80,80,0.5), rgba(50,50,50,0.3) 50%, rgba(70,70,70,0.45)) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.25), inset -1px -1px 0 rgba(255,255,255,0.08) !important;
+        }
+        [data-theme="dark"] body.liquid-glass-mode .calc-key.clear {
+            background: linear-gradient(135deg, rgba(140,140,140,0.6), rgba(110,110,110,0.4)) !important;
+            color: #000 !important;
+        }
+
+        /* ===== 怀旧模式：iOS 6 拟物化 ===== */
+        body.retro-mode .calc-modal {
+            background: linear-gradient(to bottom, #f5f5f5, #d8d8d8) !important;
+            border-radius: 16px !important;
+            border: 1px solid #7f7f7f !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.1) !important;
+            padding: 12px !important;
+        }
+        body.retro-mode .calc-display {
+            background: linear-gradient(to bottom, #1a1a1a, #2a2a2a) !important;
+            color: #d0f0c0 !important;
+            border-radius: 6px !important;
+            border: 2px solid #000 !important;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), inset 0 -1px 0 rgba(255,255,255,0.1), 0 1px 0 rgba(255,255,255,0.8) !important;
+            font-family: 'Courier New', monospace !important;
+            text-shadow: 0 0 6px #7fdc7f, 0 0 3px #7fdc7f !important;
+        }
+        body.retro-mode .calc-key {
+            background: linear-gradient(to bottom, #6a6a6a, #3a3a3a) !important;
+            color: #ffffff !important;
+            border-radius: 50% !important;
+            border: 1px solid #1a1a1a !important;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.5) !important;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.4), 0 4px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.2) !important;
+            font-weight: 600 !important;
+        }
+        body.retro-mode .calc-key:active {
+            transform: translateY(2px) scale(0.97) !important;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 2px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+        }
+        body.retro-mode .calc-key:hover { background: linear-gradient(to bottom, #7a7a7a, #4a4a4a) !important; }
+        body.retro-mode .calc-key.operator {
+            background: linear-gradient(to bottom, #ffb84d, #e68a00) !important;
+            color: #fff !important;
+            border-color: #8a5200 !important;
+            box-shadow: 0 3px 0 #8a5200, 0 4px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.15) !important;
+        }
+        body.retro-mode .calc-key.operator:hover { background: linear-gradient(to bottom, #ffc966, #ffa500) !important; }
+        body.retro-mode .calc-key.equals {
+            background: linear-gradient(to bottom, #ffb84d, #e68a00) !important;
+            color: #fff !important;
+            border-color: #8a5200 !important;
+            box-shadow: 0 3px 0 #8a5200, 0 4px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.5) !important;
+        }
+        body.retro-mode .calc-key.equals:hover { background: linear-gradient(to bottom, #ffc966, #ffa500) !important; }
+        body.retro-mode .calc-key.clear {
+            background: linear-gradient(to bottom, #d4d4d4, #a0a0a0) !important;
+            color: #1a1a1a !important;
+            border-color: #7f7f7f !important;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.7) !important;
+            box-shadow: 0 3px 0 #7f7f7f, 0 4px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.8) !important;
+        }
+        body.retro-mode .calc-key.clear:hover { background: linear-gradient(to bottom, #e0e0e0, #b0b0b0) !important; }
+
+        /* ===== Minecraft 模式：游戏内风格 ===== */
+        body.minecraft-mode .calc-modal {
+            background: #3a3a3a !important;
+            border: 3px solid #1a1a1a !important;
+            border-radius: 0 !important;
+            box-shadow: inset 2px 2px 0 rgba(255,255,255,0.1), inset -2px -2px 0 rgba(0,0,0,0.3) !important;
+            padding: 12px !important;
+        }
+        body.minecraft-mode .calc-display {
+            background: #1a1a1a !important;
+            color: #a0ffa0 !important;
+            font-family: 'Press Start 2P', monospace !important;
+            font-size: 1.2rem !important;
+            border: 3px solid #0a0a0a !important;
+            border-radius: 0 !important;
+            box-shadow: inset 2px 2px 0 rgba(0,0,0,0.6) !important;
+            text-shadow: 2px 2px 0 #000 !important;
+            padding: 1rem !important;
+            min-height: 70px !important;
+        }
+        body.minecraft-mode .calc-key {
+            background: linear-gradient(to bottom, #7a7a7a 0%, #6a6a6a 50%, #5a5a5a 100%) !important;
+            color: #ffffff !important;
+            font-family: 'Press Start 2P', monospace !important;
+            font-size: 0.9rem !important;
+            border: 3px solid #1a1a1a !important;
+            border-radius: 0 !important;
+            text-shadow: 2px 2px 0 #000 !important;
+            box-shadow: inset 2px 2px 0 rgba(255,255,255,0.25), inset -2px -2px 0 rgba(0,0,0,0.35) !important;
+        }
+        body.minecraft-mode .calc-key:hover { background: linear-gradient(to bottom, #8a8a8a 0%, #7a7a7a 50%, #6a6a6a 100%) !important; }
+        body.minecraft-mode .calc-key:active { transform: translateY(2px) !important; box-shadow: inset 2px 2px 0 rgba(0,0,0,0.35), inset -2px -2px 0 rgba(255,255,255,0.15) !important; }
+        body.minecraft-mode .calc-key.operator { background: linear-gradient(to bottom, #6a8a3a 0%, #5a7a2a 50%, #4a6a1a 100%) !important; border-color: #2a3a0a !important; }
+        body.minecraft-mode .calc-key.operator:hover { background: linear-gradient(to bottom, #7a9a4a 0%, #6a8a3a 50%, #5a7a2a 100%) !important; }
+        body.minecraft-mode .calc-key.equals { background: linear-gradient(to bottom, #7a9a4a 0%, #5a8f3c 50%, #4a7a2a 100%) !important; border-color: #2a4a1c !important; }
+        body.minecraft-mode .calc-key.equals:hover { background: linear-gradient(to bottom, #8aaa5a 0%, #6a9f4c 50%, #5a8a3a 100%) !important; }
+        body.minecraft-mode .calc-key.clear { background: linear-gradient(to bottom, #a08060 0%, #8a6a4a 50%, #7a5a3a 100%) !important; color: #ffffff !important; border-color: #4a2a0a !important; }
+        body.minecraft-mode .calc-key.clear:hover { background: linear-gradient(to bottom, #b09070 0%, #9a7a5a 50%, #8a6a4a 100%) !important; }
+
+        /* 拨号盘 */
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .dialpad-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:280px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -455,26 +416,36 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* ========== 水滴涟漪动画（液态玻璃模式下启用） ========== */
+        /* ========== iOS 26 风格水滴涟漪（所有模式生效） ========== */
         .ripple {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.55);
+            background: radial-gradient(circle,
+                rgba(255, 255, 255, 0.75) 0%,
+                rgba(255, 255, 255, 0.45) 35%,
+                rgba(255, 255, 255, 0.15) 60%,
+                rgba(255, 255, 255, 0) 75%);
             transform: scale(0);
-            animation: liquidRipple 0.7s ease-out forwards;
+            animation: iosRipple 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
             pointer-events: none;
             z-index: 10;
+            filter: blur(0.5px);
+            mix-blend-mode: overlay;
         }
         [data-theme="dark"] .ripple {
-            background: rgba(255, 255, 255, 0.3);
+            background: radial-gradient(circle,
+                rgba(255, 255, 255, 0.65) 0%,
+                rgba(255, 255, 255, 0.35) 35%,
+                rgba(255, 255, 255, 0.12) 60%,
+                rgba(255, 255, 255, 0) 75%);
         }
-        @keyframes liquidRipple {
-            0% { transform: scale(0); opacity: 0.7; }
-            50% { opacity: 0.4; }
-            100% { transform: scale(4); opacity: 0; }
+        @keyframes iosRipple {
+            0%   { transform: scale(0);   opacity: 0.9; }
+            35%  { transform: scale(1.6); opacity: 0.65; }
+            70%  { transform: scale(2.7); opacity: 0.3; }
+            100% { transform: scale(3.8); opacity: 0; }
         }
 
-        /* 显示模式样式 - 透明模式 */
         body.glass-mode { background-color:rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35) !important; }
         body.glass-mode .top-bar { background-color:rgba(255,255,255,0.75) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-bottom:1px solid rgba(255,255,255,0.5) !important; }
@@ -489,12 +460,9 @@
         [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55) !important; border-color:rgba(255,255,255,0.12) !important; }
         body.glass-mode .settings-modal, body.glass-mode .about-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
         [data-theme="dark"] body.glass-mode .settings-modal, [data-theme="dark"] body.glass-mode .about-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
-        body.glass-mode .calc-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.6) !important; }
-        [data-theme="dark"] body.glass-mode .calc-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
         body.glass-mode .dialpad-modal { background-color:rgba(255,255,255,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.55) !important; }
         [data-theme="dark"] body.glass-mode .dialpad-modal { background-color:rgba(28,28,30,0.72) !important; backdrop-filter:blur(22px) saturate(190%) !important; -webkit-backdrop-filter:blur(22px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.1) !important; }
 
-        /* 液态玻璃模式 */
         body.liquid-glass-mode { background-color:rgba(255,255,255,0.2) !important; }
         [data-theme="dark"] body.liquid-glass-mode { background-color:rgba(18,18,18,0.2) !important; }
         body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-bottom:1px solid rgba(255,255,255,0.4) !important; }
@@ -502,66 +470,27 @@
         body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-left:1px solid rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.liquid-glass-mode .sidebar-menu { background:linear-gradient(180deg, rgba(45,45,45,0.4), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-left:1px solid rgba(255,255,255,0.1) !important; }
 
-        /* ===== 液态玻璃模式按钮：半透明 + 左上/右下高光 ===== */
         body.liquid-glass-mode .btn {
             background-color: rgba(0, 119, 204, 0.65) !important;
             border: 1px solid rgba(255, 255, 255, 0.35) !important;
             color: #ffffff !important;
-            box-shadow: 
-                inset 1px 1px 0 rgba(255, 255, 255, 0.4),
-                inset -1px -1px 0 rgba(255, 255, 255, 0.2)
-            !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            background-image: none !important;
-            transition: background-color 0.3s, border-color 0.3s;
+            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4), inset -1px -1px 0 rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background-image: none !important;
         }
-        body.liquid-glass-mode .btn:hover {
-            background-color: rgba(0, 119, 204, 0.8) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-        [data-theme="dark"] body.liquid-glass-mode .btn {
-            background-color: rgba(66, 165, 245, 0.65) !important;
-            border-color: rgba(255, 255, 255, 0.2) !important;
-            color: #121212 !important;
-            box-shadow: 
-                inset 1px 1px 0 rgba(255, 255, 255, 0.25),
-                inset -1px -1px 0 rgba(255, 255, 255, 0.1)
-            !important;
-        }
-        [data-theme="dark"] body.liquid-glass-mode .btn:hover {
-            background-color: rgba(66, 165, 245, 0.8) !important;
-        }
+        body.liquid-glass-mode .btn:hover { background-color: rgba(0, 119, 204, 0.8) !important; border-color: rgba(255, 255, 255, 0.5) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .btn { background-color: rgba(66, 165, 245, 0.65) !important; border-color: rgba(255, 255, 255, 0.2) !important; color: #121212 !important; box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.25), inset -1px -1px 0 rgba(255, 255, 255, 0.1) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .btn:hover { background-color: rgba(66, 165, 245, 0.8) !important; }
 
         body.liquid-glass-mode .download-btn-action {
             background-color: rgba(0, 119, 204, 0.65) !important;
             border: 1px solid rgba(255, 255, 255, 0.35) !important;
             color: #ffffff !important;
-            box-shadow: 
-                inset 1px 1px 0 rgba(255, 255, 255, 0.4),
-                inset -1px -1px 0 rgba(255, 255, 255, 0.2)
-            !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            background-image: none !important;
-            transition: background-color 0.3s, border-color 0.3s;
+            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4), inset -1px -1px 0 rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background-image: none !important;
         }
-        body.liquid-glass-mode .download-btn-action:hover {
-            background-color: rgba(0, 119, 204, 0.8) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-        [data-theme="dark"] body.liquid-glass-mode .download-btn-action {
-            background-color: rgba(66, 165, 245, 0.65) !important;
-            border-color: rgba(255, 255, 255, 0.2) !important;
-            color: #121212 !important;
-            box-shadow: 
-                inset 1px 1px 0 rgba(255, 255, 255, 0.25),
-                inset -1px -1px 0 rgba(255, 255, 255, 0.1)
-            !important;
-        }
-        [data-theme="dark"] body.liquid-glass-mode .download-btn-action:hover {
-            background-color: rgba(66, 165, 245, 0.8) !important;
-        }
+        body.liquid-glass-mode .download-btn-action:hover { background-color: rgba(0, 119, 204, 0.8) !important; border-color: rgba(255, 255, 255, 0.5) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .download-btn-action { background-color: rgba(66, 165, 245, 0.65) !important; border-color: rgba(255, 255, 255, 0.2) !important; color: #121212 !important; box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.25), inset -1px -1px 0 rgba(255, 255, 255, 0.1) !important; }
+        [data-theme="dark"] body.liquid-glass-mode .download-btn-action:hover { background-color: rgba(66, 165, 245, 0.8) !important; }
 
         body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.35)) !important; backdrop-filter:blur(10px) saturate(140%) !important; -webkit-backdrop-filter:blur(10px) saturate(140%) !important; border:1px solid rgba(0,0,0,0.15) !important; }
         [data-theme="dark"] body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)) !important; border-color:rgba(255,255,255,0.1) !important; color:#f0f0f0 !important; }
@@ -569,12 +498,9 @@
         [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-color:rgba(255,255,255,0.1) !important; }
         body.liquid-glass-mode .settings-modal, body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; }
         [data-theme="dark"] body.liquid-glass-mode .settings-modal, [data-theme="dark"] body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
-        body.liquid-glass-mode .calc-modal { background-color: var(--calc-bg) !important; backdrop-filter: blur(0) !important; -webkit-backdrop-filter: blur(0) !important; border:1px solid rgba(255,255,255,0.1) !important; }
-        [data-theme="dark"] body.liquid-glass-mode .calc-modal { background-color: var(--calc-bg) !important; }
         body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.38)) !important; backdrop-filter:blur(28px) saturate(190%) !important; -webkit-backdrop-filter:blur(28px) saturate(190%) !important; border:1px solid rgba(255,255,255,0.45) !important; }
         [data-theme="dark"] body.liquid-glass-mode .dialpad-modal { background:linear-gradient(135deg, rgba(50,50,50,0.5), rgba(22,22,22,0.25) 50%, rgba(40,40,40,0.4)) !important; border:1px solid rgba(255,255,255,0.12) !important; }
 
-        /* 怀旧模式 */
         body.retro-mode { background-color: #a0a8b0 !important; background-image: url('https://static.applewalls.com/iOS/iOS%204/compress/iOS%204%20-%20100.webp?qq_aio_chat_type=3') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important; }
         [data-theme="dark"] body.retro-mode { background-color:#2a2f35 !important; }
         body.retro-mode .top-bar { background:linear-gradient(to bottom,#f0f0f0,#c8c8c8) !important; border-bottom:1px solid #7f7f7f !important; box-shadow:0 2px 6px rgba(0,0,0,0.35) !important; }
@@ -595,7 +521,6 @@
         [data-theme="dark"] body.retro-mode .announcement { background:#505050 !important; border-color:#2a2a2a !important; }
         body.retro-mode .settings-modal, body.retro-mode .about-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
         [data-theme="dark"] body.retro-mode .settings-modal, [data-theme="dark"] body.retro-mode .about-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
-        body.retro-mode .calc-modal { background-color: var(--calc-bg) !important; border-radius:12px !important; border:1px solid #8f8f8f !important; box-shadow:0 8px 20px rgba(0,0,0,0.4) !important; }
         body.retro-mode .dialpad-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:10px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4) !important; }
         [data-theme="dark"] body.retro-mode .dialpad-modal { background:#4a4a4a !important; border-color:#2a2a2a !important; }
         body.retro-mode .dial-key { background:#e0e0e0 !important; border:1px solid #a0a0a0 !important; border-radius:7px !important; box-shadow:0 2px 3px rgba(0,0,0,0.2), inset 0 1px 0 #fff !important; }
@@ -603,7 +528,6 @@
         body.retro-mode .hamburger-line { background-color:#333 !important; }
         [data-theme="dark"] body.retro-mode .hamburger-line { background-color:#ccc !important; }
 
-        /* Minecraft 模式 */
         body.minecraft-mode { background-color: #2d2d2d !important; background-image: url('https://raw.githubusercontent.com/Xinghe2711/Xinghe2711.github.io/refs/heads/main/IMG_6134.jpeg') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important; font-family: 'Press Start 2P', 'Courier New', monospace !important; }
         [data-theme="dark"] body.minecraft-mode { background-color:#1a1a1a !important; }
         body.minecraft-mode .top-bar { background:linear-gradient(to bottom, #4a4a4a, #2d2d2d) !important; border-bottom:2px solid #1a1a1a !important; box-shadow:0 2px 4px rgba(0,0,0,0.5) !important; }
@@ -629,11 +553,6 @@
         body.minecraft-mode .settings-section-title, body.minecraft-mode .settings-option-label, body.minecraft-mode .wallpaper-btn, body.minecraft-mode .settings-btn { color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; font-size: 0.7rem; }
         body.minecraft-mode .wallpaper-btn, body.minecraft-mode .settings-btn { border:1px solid #555; background:transparent; }
         body.minecraft-mode .wallpaper-btn.active, body.minecraft-mode .settings-btn.active { background:#5a5a5a; }
-        body.minecraft-mode .calc-modal { background-color: var(--calc-bg) !important; border:2px solid #1a1a1a !important; border-radius:6px; }
-        body.minecraft-mode .calc-display { background-color: var(--calc-display-bg) !important; border:2px solid #1a1a1a !important; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
-        body.minecraft-mode .calc-key { background-color: var(--calc-key-bg) !important; border:2px solid #1a1a1a !important; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; font-size: 0.9rem; }
-        body.minecraft-mode .calc-key.operator { background-color: var(--calc-operator-bg) !important; }
-        body.minecraft-mode .calc-key.equals { background-color: var(--calc-equals-bg) !important; }
         body.minecraft-mode .dialpad-modal { background:#3a3a3a; border:2px solid #1a1a1a; border-radius:6px; }
         body.minecraft-mode .dialpad-display { background:#2d2d2d; border:2px solid #1a1a1a; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
         body.minecraft-mode .dial-key { background:#4a4a4a; border:2px solid #1a1a1a; border-radius:4px; color:#ffffff; font-family:'Press Start 2P', 'Courier New', monospace; }
@@ -654,8 +573,8 @@
             .btn { padding:0.55rem 1.2rem; font-size:0.8rem; }
             .download-text { font-size:0.78rem; }
             .download-btn-action { padding:0.35rem 0.8rem; font-size:0.75rem; }
-            .calc-modal { max-width:280px; }
-            .calc-key { height: 50px; font-size: 1.2rem; }
+            .calc-modal { max-width:300px; }
+            .calc-key { min-height: 54px; font-size: 1.3rem; }
             body.minecraft-mode .site-title { font-size: 0.7rem; }
             body.minecraft-mode .menu-item { font-size: 0.65rem; }
             body.minecraft-mode .btn, body.minecraft-mode .download-btn-action { font-size: 0.6rem; }
@@ -664,7 +583,6 @@
     </style>
 </head>
 <body>
-    <!-- 背景音乐音频元素 -->
     <audio id="mcMusic" loop preload="auto"></audio>
 
     <header class="top-bar">
@@ -747,7 +665,6 @@
         </div>
     </div>
 
-    <!-- 彩蛋弹窗 -->
     <div class="easter-egg-overlay" id="easterEggOverlay">
         <div class="easter-egg-modal">
             <div class="easter-egg-title">彩蛋</div>
@@ -859,7 +776,6 @@
             let calcFirstOperand = null, calcOperator = null, calcShouldResetDisplay = false;
             let versionClickCount = 0;
 
-            // 音乐列表（两个链接，随机播放）
             const MUSIC_URLS = [
                 'https://github.com/Xinghe2711/Xinghe2711.github.io/raw/refs/heads/main/Sweden%20(Caution%20&%20Crisis%20Remix).mp3',
                 'https://github.com/Xinghe2711/Xinghe2711.github.io/raw/refs/heads/main/tsuki%20no%20koibumi.mp3'
@@ -939,7 +855,6 @@
                 });
             }
 
-            // ========== 音乐播放逻辑 ==========
             function playRandomMusic() {
                 if (musicStarted) return;
                 musicStarted = true;
@@ -966,28 +881,34 @@
                 document.addEventListener('touchstart', startOnce, { once: true });
                 document.addEventListener('keydown', startOnce, { once: true });
             }
-            // ==================================
 
+            // ========== iOS 26 风格涟漪（任何模式都生效） ==========
             function createRipple(e) {
-                if (!document.body.classList.contains('liquid-glass-mode')) return;
                 const target = e.currentTarget;
                 const rect = target.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
                 const ripple = document.createElement('span');
                 ripple.className = 'ripple';
                 ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX || e.touches?.[0]?.clientX || rect.left + rect.width/2) - rect.left - size/2 + 'px';
-                ripple.style.top = (e.clientY || e.touches?.[0]?.clientY || rect.top + rect.height/2) - rect.top - size/2 + 'px';
+                const clientX = e.clientX || (e.touches && e.touches[0] && e.touches[0].clientX) || (rect.left + rect.width/2);
+                const clientY = e.clientY || (e.touches && e.touches[0] && e.touches[0].clientY) || (rect.top + rect.height/2);
+                ripple.style.left = (clientX - rect.left - size/2) + 'px';
+                ripple.style.top  = (clientY - rect.top  - size/2) + 'px';
+                if (target.querySelector('.ripple')) return;
                 target.appendChild(ripple);
                 ripple.addEventListener('animationend', () => ripple.remove());
             }
 
             function attachRippleToElements() {
-                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .settings-btn, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action';
+                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .settings-btn, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action, .hamburger-btn, .easter-egg-close';
                 document.querySelectorAll(clickableSelector).forEach(el => {
+                    if (el.dataset.rippleBound === 'true') return;
+                    el.dataset.rippleBound = 'true';
                     el.addEventListener('click', createRipple);
+                    el.addEventListener('touchstart', createRipple, { passive: true });
                 });
             }
+            // ========================================================
 
             function updateUI() {
                 document.body.classList.remove('glass-mode','liquid-glass-mode','retro-mode','minecraft-mode');
@@ -1019,7 +940,7 @@
                     applyWallpaper(wallpaperURLs[wallpaperChoice] || '');
                 }
 
-                // 音乐不再与模式绑定，由首次交互统一触发
+                attachRippleToElements();
             }
 
             function toggleMenu(force) {
@@ -1109,7 +1030,6 @@
                 });
             });
 
-            // 版本号点击彩蛋
             versionArea.addEventListener('click', () => {
                 versionClickCount++;
                 if (versionClickCount >= 7) {
@@ -1182,8 +1102,8 @@
             });
 
             buildDialpad();
-            attachRippleToElements();
             updateUI();
+            attachRippleToElements();
             initMusicOnFirstInteraction();
         })();
     </script>
