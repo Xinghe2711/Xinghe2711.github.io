@@ -664,7 +664,7 @@
     </style>
 </head>
 <body>
-    <!-- C418 音乐音频元素 -->
+    <!-- 背景音乐音频元素 -->
     <audio id="mcMusic" loop preload="auto"></audio>
 
     <header class="top-bar">
@@ -859,12 +859,12 @@
             let calcFirstOperand = null, calcOperator = null, calcShouldResetDisplay = false;
             let versionClickCount = 0;
 
-            const C418_MUSIC_URLS = [
-                'https://www.c418.org/albums/minecraft-volume-alpha/sweden.mp3',
-                'https://files.catbox.moe/1k3r7w.mp3',
-                'https://cdn.jsdelivr.net/gh/Cl0ckW0rk/Minecraft-Music@master/Minecraft%20-%20Volume%20Alpha/02%20-%20Sweden.mp3'
+            // 音乐列表（两个链接，随机播放）
+            const MUSIC_URLS = [
+                'https://github.com/Xinghe2711/Xinghe2711.github.io/raw/refs/heads/main/Sweden%20(Caution%20&%20Crisis%20Remix).mp3',
+                'https://github.com/Xinghe2711/Xinghe2711.github.io/raw/refs/heads/main/tsuki%20no%20koibumi.mp3'
             ];
-            let currentMusicIndex = 0;
+            let musicStarted = false;
 
             const translations = {
                 'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', aboutText:'这是一架国泰航空A330官方网站', versionLabel:'版本号', versionNumber:'6.5.0', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', minecraftMode:'Minecraft模式', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', waterDrop:'水滴壁纸', whiteWallpaper:'白色壁纸', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
@@ -939,26 +939,34 @@
                 });
             }
 
-            function playMinecraftMusic() {
-                mcMusic.src = C418_MUSIC_URLS[currentMusicIndex];
+            // ========== 音乐播放逻辑 ==========
+            function playRandomMusic() {
+                if (musicStarted) return;
+                musicStarted = true;
+                const randomIndex = Math.floor(Math.random() * MUSIC_URLS.length);
+                mcMusic.src = MUSIC_URLS[randomIndex];
+                mcMusic.loop = true;
                 mcMusic.load();
                 mcMusic.play().then(() => {
-                    console.log('Minecraft 音乐开始播放');
+                    console.log('音乐开始播放：', MUSIC_URLS[randomIndex]);
                 }).catch(err => {
-                    console.warn('播放失败，尝试下一个音频源', err);
-                    currentMusicIndex++;
-                    if (currentMusicIndex < C418_MUSIC_URLS.length) {
-                        playMinecraftMusic();
-                    } else {
-                        console.error('所有音频源均不可用');
-                    }
+                    console.warn('播放被阻止，等待用户交互', err);
+                    musicStarted = false;
                 });
             }
 
-            function stopMinecraftMusic() {
-                mcMusic.pause();
-                mcMusic.currentTime = 0;
+            function initMusicOnFirstInteraction() {
+                const startOnce = () => {
+                    playRandomMusic();
+                    document.removeEventListener('click', startOnce);
+                    document.removeEventListener('touchstart', startOnce);
+                    document.removeEventListener('keydown', startOnce);
+                };
+                document.addEventListener('click', startOnce, { once: true });
+                document.addEventListener('touchstart', startOnce, { once: true });
+                document.addEventListener('keydown', startOnce, { once: true });
             }
+            // ==================================
 
             function createRipple(e) {
                 if (!document.body.classList.contains('liquid-glass-mode')) return;
@@ -1011,13 +1019,7 @@
                     applyWallpaper(wallpaperURLs[wallpaperChoice] || '');
                 }
 
-                if (document.body.classList.contains('minecraft-mode')) {
-                    if (mcMusic.paused) {
-                        playMinecraftMusic();
-                    }
-                } else {
-                    stopMinecraftMusic();
-                }
+                // 音乐不再与模式绑定，由首次交互统一触发
             }
 
             function toggleMenu(force) {
@@ -1182,6 +1184,7 @@
             buildDialpad();
             attachRippleToElements();
             updateUI();
+            initMusicOnFirstInteraction();
         })();
     </script>
 </body>
