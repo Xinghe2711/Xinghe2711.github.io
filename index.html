@@ -130,6 +130,7 @@
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
 
+        /* ========== 设置弹窗（简单样式，非概念版） ========== */
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -143,6 +144,12 @@
         .wallpaper-btn { display:block; width:100%; text-align:left; margin:2px 0; padding:0.5rem 1rem; font-size:0.85rem; border:1px solid var(--divider); border-radius:8px; background-color:transparent; color:var(--text); cursor:pointer; position:relative; overflow:hidden; }
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; position:relative; overflow:hidden; }
+
+        /* 两套视图切换 */
+        .settings-simple-view { display: block; }
+        .settings-macos-view { display: none; }
+        body.concept-mode .settings-simple-view { display: none; }
+        body.concept-mode .settings-macos-view { display: flex; }
 
         .about-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2200; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .about-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -348,6 +355,7 @@
             transform: translateX(-50%) translateY(0) scale(0.68);
         }
 
+        /* 概念版下的窗口样式 */
         body.concept-mode .settings-overlay,
         body.concept-mode .calc-overlay,
         body.concept-mode .dialpad-overlay,
@@ -450,11 +458,6 @@
         .settings-panel.active { display: block; animation: panelFade 0.22s ease; }
         @keyframes panelFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-        .settings-nav-item[data-panel="about"],
-        .settings-panel[data-panel="about"] { display: none !important; }
-        body.concept-mode .settings-nav-item[data-panel="about"] { display: flex !important; }
-        body.concept-mode .settings-panel[data-panel="about"].active { display: block !important; }
-
         .panel-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 16px; letter-spacing: -0.01em; }
         .panel-group { background: rgba(255, 255, 255, 0.4); border-radius: 10px; padding: 0 14px; margin-bottom: 16px; border: 1px solid rgba(0, 0, 0, 0.04); }
         [data-theme="dark"] .panel-group { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.05); }
@@ -537,6 +540,7 @@
         <button class="menu-item" id="dialpadTrigger"><span data-i18n="dialpad">拨号盘</span> <span>☎</span></button>
     </aside>
 
+    <!-- 设置窗口（含简单视图 + macOS 视图） -->
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-modal" id="settingsModal">
             <div class="macos-window-bar">
@@ -546,132 +550,184 @@
                 </div>
                 <div class="macos-window-title" data-i18n="settings">设置</div>
             </div>
-            <div class="macos-window-content settings-window-layout">
-                <div class="settings-sidebar">
-                    <div class="settings-search">
-                        <span>🔍</span>
-                        <input type="text" placeholder="搜索" readonly>
+            <div class="macos-window-content">
+
+                <!-- ============ 简单设置视图（非概念版） ============ -->
+                <div class="settings-simple-view">
+                    <div class="settings-title" data-i18n="settings">设置</div>
+                    <div class="settings-section">
+                        <div class="settings-section-title" data-i18n="theme">主题模式</div>
+                        <div class="settings-option">
+                            <span class="settings-option-label" data-i18n="darkMode">深色模式</span>
+                            <button class="ios-switch" data-switch="themeDark"><span class="knob"></span></button>
+                        </div>
                     </div>
-                    <button class="settings-nav-item active" data-panel="appearance">
-                        <span class="settings-nav-icon blue">🎨</span>
-                        <span>外观</span>
-                    </button>
-                    <button class="settings-nav-item" data-panel="wallpaper">
-                        <span class="settings-nav-icon purple">🖼️</span>
-                        <span>墙纸</span>
-                    </button>
-                    <button class="settings-nav-item" data-panel="language">
-                        <span class="settings-nav-icon green">🌐</span>
-                        <span>语言</span>
-                    </button>
-                    <button class="settings-nav-item" data-panel="concept">
-                        <span class="settings-nav-icon orange">✨</span>
-                        <span>概念版</span>
-                    </button>
-                    <button class="settings-nav-item" data-panel="about">
-                        <span class="settings-nav-icon gray">ℹ️</span>
-                        <span>关于</span>
-                    </button>
+                    <div class="settings-section">
+                        <div class="settings-section-title" data-i18n="displayMode">显示模式</div>
+                        <div class="settings-option"><span class="settings-option-label" data-i18n="glassMode">透明模式</span><button class="ios-switch" data-switch="glassMode"><span class="knob"></span></button></div>
+                        <div class="settings-option"><span class="settings-option-label" data-i18n="liquidGlassMode">液态玻璃</span><button class="ios-switch" data-switch="liquidGlassMode"><span class="knob"></span></button></div>
+                        <div class="settings-option"><span class="settings-option-label" data-i18n="retroMode">怀旧模式</span><button class="ios-switch" data-switch="retroMode"><span class="knob"></span></button></div>
+                        <div class="settings-option"><span class="settings-option-label" data-i18n="minecraftMode">Minecraft模式</span><button class="ios-switch" data-switch="minecraftMode"><span class="knob"></span></button></div>
+                    </div>
+                    <div class="settings-section">
+                        <div class="settings-section-title">概念版 (Beta)</div>
+                        <div class="settings-option">
+                            <span class="settings-option-label" data-i18n="conceptMode">概念版模式</span>
+                            <button class="ios-switch" data-switch="conceptMode"><span class="knob"></span></button>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <div class="settings-section-title" data-i18n="wallpaper">壁纸选择</div>
+                        <button class="wallpaper-btn" data-wallpaper="default" data-i18n="defaultWallpaper">默认</button>
+                        <button class="wallpaper-btn" data-wallpaper="creeper_sleep" data-i18n="creeperSleep">苦力怕娘睡觉</button>
+                        <button class="wallpaper-btn" data-wallpaper="minecart" data-i18n="minecart">矿车</button>
+                        <button class="wallpaper-btn" data-wallpaper="tnt" data-i18n="tnt">TNT！</button>
+                        <button class="wallpaper-btn" data-wallpaper="blue_archive_1" data-i18n="blueArchive1">蔚蓝档案1</button>
+                        <button class="wallpaper-btn" data-wallpaper="rowing" data-i18n="rowing">划船</button>
+                        <button class="wallpaper-btn" data-wallpaper="blue_archive_2" data-i18n="blueArchive2">蔚蓝档案2</button>
+                        <button class="wallpaper-btn" data-wallpaper="water_drop" data-i18n="waterDrop">水滴壁纸</button>
+                        <button class="wallpaper-btn" data-wallpaper="white" data-i18n="whiteWallpaper">白色壁纸</button>
+                    </div>
+                    <div class="settings-section">
+                        <div class="settings-section-title" data-i18n="language">语言</div>
+                        <div class="settings-option"><span class="settings-option-label">简体中文</span><button class="ios-switch" data-switch="lang" data-lang="zh-CN"><span class="knob"></span></button></div>
+                        <div class="settings-option"><span class="settings-option-label">繁體中文</span><button class="ios-switch" data-switch="lang" data-lang="zh-TW"><span class="knob"></span></button></div>
+                        <div class="settings-option"><span class="settings-option-label">English</span><button class="ios-switch" data-switch="lang" data-lang="en"><span class="knob"></span></button></div>
+                        <div class="settings-option"><span class="settings-option-label">日本語</span><button class="ios-switch" data-switch="lang" data-lang="ja"><span class="knob"></span></button></div>
+                        <div class="settings-option"><span class="settings-option-label">한국어</span><button class="ios-switch" data-switch="lang" data-lang="ko"><span class="knob"></span></button></div>
+                    </div>
+                    <button class="settings-close-btn" data-role="settings-close" data-i18n="close">关闭</button>
                 </div>
-                <div class="settings-main">
-                    <div class="settings-panel active" data-panel="appearance">
-                        <div class="panel-title">外观</div>
-                        <div class="panel-group">
-                            <div class="panel-group-title" style="padding-bottom:6px;">外观</div>
-                            <div class="theme-thumbnails">
-                                <div class="theme-thumb" data-theme-choice="light">
-                                    <div class="theme-thumb-inner light"><span class="theme-thumb-dot"></span></div>
-                                    <div class="theme-thumb-label">浅色</div>
-                                </div>
-                                <div class="theme-thumb" data-theme-choice="dark">
-                                    <div class="theme-thumb-inner dark"><span class="theme-thumb-dot"></span></div>
-                                    <div class="theme-thumb-label">深色</div>
+
+                <!-- ============ macOS 设置视图（概念版） ============ -->
+                <div class="settings-macos-view settings-window-layout">
+                    <div class="settings-sidebar">
+                        <div class="settings-search">
+                            <span>🔍</span>
+                            <input type="text" placeholder="搜索" readonly>
+                        </div>
+                        <button class="settings-nav-item active" data-panel="appearance">
+                            <span class="settings-nav-icon blue">🎨</span>
+                            <span>外观</span>
+                        </button>
+                        <button class="settings-nav-item" data-panel="wallpaper">
+                            <span class="settings-nav-icon purple">🖼️</span>
+                            <span>墙纸</span>
+                        </button>
+                        <button class="settings-nav-item" data-panel="language">
+                            <span class="settings-nav-icon green">🌐</span>
+                            <span>语言</span>
+                        </button>
+                        <button class="settings-nav-item" data-panel="concept">
+                            <span class="settings-nav-icon orange">✨</span>
+                            <span>概念版</span>
+                        </button>
+                        <button class="settings-nav-item" data-panel="about">
+                            <span class="settings-nav-icon gray">ℹ️</span>
+                            <span>关于</span>
+                        </button>
+                    </div>
+                    <div class="settings-main">
+                        <div class="settings-panel active" data-panel="appearance">
+                            <div class="panel-title">外观</div>
+                            <div class="panel-group">
+                                <div class="panel-group-title" style="padding-bottom:6px;">外观</div>
+                                <div class="theme-thumbnails">
+                                    <div class="theme-thumb" data-theme-choice="light">
+                                        <div class="theme-thumb-inner light"><span class="theme-thumb-dot"></span></div>
+                                        <div class="theme-thumb-label">浅色</div>
+                                    </div>
+                                    <div class="theme-thumb" data-theme-choice="dark">
+                                        <div class="theme-thumb-inner dark"><span class="theme-thumb-dot"></span></div>
+                                        <div class="theme-thumb-label">深色</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel-group">
-                            <div class="panel-group-title" style="padding-bottom:6px;">显示模式</div>
-                            <div class="panel-row"><span>透明模式</span><button class="ios-switch" id="glassModeSwitch"><span class="knob"></span></button></div>
-                            <div class="panel-row"><span>液态玻璃</span><button class="ios-switch" id="liquidGlassModeSwitch"><span class="knob"></span></button></div>
-                            <div class="panel-row"><span>怀旧模式</span><button class="ios-switch" id="retroModeSwitch"><span class="knob"></span></button></div>
-                            <div class="panel-row"><span>Minecraft模式</span><button class="ios-switch" id="minecraftModeSwitch"><span class="knob"></span></button></div>
-                        </div>
-                    </div>
-                    <div class="settings-panel" data-panel="wallpaper">
-                        <div class="panel-title">墙纸</div>
-                        <div class="panel-group" style="padding: 12px 14px;">
-                            <button class="wallpaper-btn" data-wallpaper="default">默认</button>
-                            <button class="wallpaper-btn" data-wallpaper="creeper_sleep">苦力怕娘睡觉</button>
-                            <button class="wallpaper-btn" data-wallpaper="minecart">矿车</button>
-                            <button class="wallpaper-btn" data-wallpaper="tnt">TNT！</button>
-                            <button class="wallpaper-btn" data-wallpaper="blue_archive_1">蔚蓝档案1</button>
-                            <button class="wallpaper-btn" data-wallpaper="rowing">划船</button>
-                            <button class="wallpaper-btn" data-wallpaper="blue_archive_2">蔚蓝档案2</button>
-                            <button class="wallpaper-btn" data-wallpaper="water_drop">水滴壁纸</button>
-                            <button class="wallpaper-btn" data-wallpaper="white">白色壁纸</button>
-                        </div>
-                    </div>
-                    <div class="settings-panel" data-panel="language">
-                        <div class="panel-title">语言</div>
-                        <div class="panel-group">
-                            <div class="panel-row"><span>简体中文</span><button class="ios-switch lang-switch" data-lang="zh-CN"><span class="knob"></span></button></div>
-                            <div class="panel-row"><span>繁體中文</span><button class="ios-switch lang-switch" data-lang="zh-TW"><span class="knob"></span></button></div>
-                            <div class="panel-row"><span>English</span><button class="ios-switch lang-switch" data-lang="en"><span class="knob"></span></button></div>
-                            <div class="panel-row"><span>日本語</span><button class="ios-switch lang-switch" data-lang="ja"><span class="knob"></span></button></div>
-                            <div class="panel-row"><span>한국어</span><button class="ios-switch lang-switch" data-lang="ko"><span class="knob"></span></button></div>
-                        </div>
-                    </div>
-                    <div class="settings-panel" data-panel="concept">
-                        <div class="panel-title">概念版 (Beta)</div>
-                        <div class="panel-group">
-                            <div class="panel-row"><span>开启概念版模式</span><button class="ios-switch" id="conceptModeSwitch"><span class="knob"></span></button></div>
-                        </div>
-                        <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.7; padding: 0 4px;">
-                            开启后，顶部栏与菜单按钮将被隐藏，底部出现 macOS 风格的程序坞。点击程序坞图标可打开窗口化的设置、计算器、拨号盘、更多。
-                        </p>
-                    </div>
-                    <div class="settings-panel" data-panel="about">
-                        <div class="panel-title">关于</div>
-                        <div class="about-panel">
-                            <div class="settings-app-icon">
-                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="gearRing" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0" stop-color="#e2e2e8"/>
-                                            <stop offset="0.5" stop-color="#c0c0c8"/>
-                                            <stop offset="1" stop-color="#9a9aa2"/>
-                                        </linearGradient>
-                                        <linearGradient id="gearBg" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0" stop-color="#8e8e96"/>
-                                            <stop offset="1" stop-color="#6a6a72"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <rect x="4" y="4" width="92" height="92" rx="22" fill="url(#gearBg)"/>
-                                    <g fill="url(#gearRing)">
-                                        <path d="M50 8 L55 8 L57 16 L62 17 L68 10 L72 14 L66 21 L68 25 L77 25 L77 31 L69 33 L69 37 L77 40 L77 46 L69 46 L68 50 L76 54 L76 60 L68 60 L68 65 L76 69 L72 74 L65 68 L60 70 L60 78 L54 78 L53 70 L48 70 L46 78 L40 78 L40 70 L35 69 L29 76 L24 72 L30 65 L28 60 L20 60 L20 54 L28 52 L28 48 L20 45 L20 40 L28 40 L29 35 L21 31 L21 25 L29 25 L30 21 L24 14 L28 10 L35 16 L40 15 L41 8 Z"/>
-                                    </g>
-                                    <circle cx="50" cy="50" r="30" fill="url(#gearBg)"/>
-                                    <circle cx="50" cy="50" r="27" fill="url(#gearRing)" opacity="0.92"/>
-                                    <circle cx="50" cy="50" r="22" fill="url(#gearBg)"/>
-                                    <g fill="url(#gearRing)">
-                                        <path d="M50 32 L53 32 L54 36 L56 36 L58 33 L60 35 L58 38 L59 40 L63 40 L63 43 L60 43 L59 45 L62 47 L62 50 L59 50 L58 52 L60 55 L58 57 L56 54 L53 55 L53 58 L50 58 L50 55 L47 55 L45 58 L43 58 L43 55 L40 54 L38 57 L36 55 L39 52 L38 50 L35 50 L35 47 L38 47 L39 45 L36 43 L36 40 L39 40 L40 38 L38 35 L40 33 L43 36 L45 36 L45 32 Z"/>
-                                    </g>
-                                    <g stroke="url(#gearRing)" stroke-width="6" stroke-linecap="round" fill="none">
-                                        <line x1="50" y1="50" x2="50" y2="30"/>
-                                        <line x1="50" y1="50" x2="67" y2="60"/>
-                                        <line x1="50" y1="50" x2="33" y2="60"/>
-                                    </g>
-                                    <circle cx="50" cy="50" r="4" fill="#5a5a62"/>
-                                </svg>
+                            <div class="panel-group">
+                                <div class="panel-group-title" style="padding-bottom:6px;">显示模式</div>
+                                <div class="panel-row"><span>透明模式</span><button class="ios-switch" data-switch="glassMode"><span class="knob"></span></button></div>
+                                <div class="panel-row"><span>液态玻璃</span><button class="ios-switch" data-switch="liquidGlassMode"><span class="knob"></span></button></div>
+                                <div class="panel-row"><span>怀旧模式</span><button class="ios-switch" data-switch="retroMode"><span class="knob"></span></button></div>
+                                <div class="panel-row"><span>Minecraft模式</span><button class="ios-switch" data-switch="minecraftMode"><span class="knob"></span></button></div>
                             </div>
-                            <p data-i18n="aboutText">这是一架国泰航空A330官方网站</p>
-                            <p class="version-text" id="versionAreaSettings">
-                                <span class="version-label" data-i18n="versionLabel">版本号</span>
-                                <span class="version-number" data-i18n="versionNumber">6.5.0</span>
+                        </div>
+                        <div class="settings-panel" data-panel="wallpaper">
+                            <div class="panel-title">墙纸</div>
+                            <div class="panel-group" style="padding: 12px 14px;">
+                                <button class="wallpaper-btn" data-wallpaper="default">默认</button>
+                                <button class="wallpaper-btn" data-wallpaper="creeper_sleep">苦力怕娘睡觉</button>
+                                <button class="wallpaper-btn" data-wallpaper="minecart">矿车</button>
+                                <button class="wallpaper-btn" data-wallpaper="tnt">TNT！</button>
+                                <button class="wallpaper-btn" data-wallpaper="blue_archive_1">蔚蓝档案1</button>
+                                <button class="wallpaper-btn" data-wallpaper="rowing">划船</button>
+                                <button class="wallpaper-btn" data-wallpaper="blue_archive_2">蔚蓝档案2</button>
+                                <button class="wallpaper-btn" data-wallpaper="water_drop">水滴壁纸</button>
+                                <button class="wallpaper-btn" data-wallpaper="white">白色壁纸</button>
+                            </div>
+                        </div>
+                        <div class="settings-panel" data-panel="language">
+                            <div class="panel-title">语言</div>
+                            <div class="panel-group">
+                                <div class="panel-row"><span>简体中文</span><button class="ios-switch" data-switch="lang" data-lang="zh-CN"><span class="knob"></span></button></div>
+                                <div class="panel-row"><span>繁體中文</span><button class="ios-switch" data-switch="lang" data-lang="zh-TW"><span class="knob"></span></button></div>
+                                <div class="panel-row"><span>English</span><button class="ios-switch" data-switch="lang" data-lang="en"><span class="knob"></span></button></div>
+                                <div class="panel-row"><span>日本語</span><button class="ios-switch" data-switch="lang" data-lang="ja"><span class="knob"></span></button></div>
+                                <div class="panel-row"><span>한국어</span><button class="ios-switch" data-switch="lang" data-lang="ko"><span class="knob"></span></button></div>
+                            </div>
+                        </div>
+                        <div class="settings-panel" data-panel="concept">
+                            <div class="panel-title">概念版 (Beta)</div>
+                            <div class="panel-group">
+                                <div class="panel-row"><span>开启概念版模式</span><button class="ios-switch" data-switch="conceptMode"><span class="knob"></span></button></div>
+                            </div>
+                            <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.7; padding: 0 4px;">
+                                开启后，顶部栏与菜单按钮将被隐藏，底部出现 macOS 风格的程序坞。
                             </p>
                         </div>
+                        <div class="settings-panel" data-panel="about">
+                            <div class="panel-title">关于</div>
+                            <div class="about-panel">
+                                <div class="settings-app-icon">
+                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="gearRing" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0" stop-color="#e2e2e8"/>
+                                                <stop offset="0.5" stop-color="#c0c0c8"/>
+                                                <stop offset="1" stop-color="#9a9aa2"/>
+                                            </linearGradient>
+                                            <linearGradient id="gearBg" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0" stop-color="#8e8e96"/>
+                                                <stop offset="1" stop-color="#6a6a72"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <rect x="4" y="4" width="92" height="92" rx="22" fill="url(#gearBg)"/>
+                                        <g fill="url(#gearRing)">
+                                            <path d="M50 8 L55 8 L57 16 L62 17 L68 10 L72 14 L66 21 L68 25 L77 25 L77 31 L69 33 L69 37 L77 40 L77 46 L69 46 L68 50 L76 54 L76 60 L68 60 L68 65 L76 69 L72 74 L65 68 L60 70 L60 78 L54 78 L53 70 L48 70 L46 78 L40 78 L40 70 L35 69 L29 76 L24 72 L30 65 L28 60 L20 60 L20 54 L28 52 L28 48 L20 45 L20 40 L28 40 L29 35 L21 31 L21 25 L29 25 L30 21 L24 14 L28 10 L35 16 L40 15 L41 8 Z"/>
+                                        </g>
+                                        <circle cx="50" cy="50" r="30" fill="url(#gearBg)"/>
+                                        <circle cx="50" cy="50" r="27" fill="url(#gearRing)" opacity="0.92"/>
+                                        <circle cx="50" cy="50" r="22" fill="url(#gearBg)"/>
+                                        <g fill="url(#gearRing)">
+                                            <path d="M50 32 L53 32 L54 36 L56 36 L58 33 L60 35 L58 38 L59 40 L63 40 L63 43 L60 43 L59 45 L62 47 L62 50 L59 50 L58 52 L60 55 L58 57 L56 54 L53 55 L53 58 L50 58 L50 55 L47 55 L45 58 L43 58 L43 55 L40 54 L38 57 L36 55 L39 52 L38 50 L35 50 L35 47 L38 47 L39 45 L36 43 L36 40 L39 40 L40 38 L38 35 L40 33 L43 36 L45 36 L45 32 Z"/>
+                                        </g>
+                                        <g stroke="url(#gearRing)" stroke-width="6" stroke-linecap="round" fill="none">
+                                            <line x1="50" y1="50" x2="50" y2="30"/>
+                                            <line x1="50" y1="50" x2="67" y2="60"/>
+                                            <line x1="50" y1="50" x2="33" y2="60"/>
+                                        </g>
+                                        <circle cx="50" cy="50" r="4" fill="#5a5a62"/>
+                                    </svg>
+                                </div>
+                                <p data-i18n="aboutText">这是一架国泰航空A330官方网站</p>
+                                <p class="version-text" id="versionAreaSettings">
+                                    <span class="version-label" data-i18n="versionLabel">版本号</span>
+                                    <span class="version-number" data-i18n="versionNumber">6.5.0</span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -883,12 +939,10 @@
         (function() {
             const $ = id => document.getElementById(id);
             const hamburgerBtn = $('hamburgerBtn'), sidebarMenu = $('sidebarMenu'), menuOverlay = $('menuOverlay');
-            const settingsTrigger = $('settingsTrigger'), settingsOverlay = $('settingsOverlay'), settingsCloseBtn = $('settingsCloseBtn');
+            const settingsTrigger = $('settingsTrigger'), settingsOverlay = $('settingsOverlay');
             const aboutTrigger = $('aboutTrigger'), aboutOverlay = $('aboutOverlay'), aboutCloseBtn = $('aboutCloseBtn');
             const calcTrigger = $('calcTrigger'), calcOverlay = $('calcOverlay'), calcDisplay = $('calcDisplay');
-            const glassModeSwitch = $('glassModeSwitch'), liquidGlassModeSwitch = $('liquidGlassModeSwitch'), retroModeSwitch = $('retroModeSwitch'), minecraftModeSwitch = $('minecraftModeSwitch');
-            const conceptModeSwitch = $('conceptModeSwitch');
-            const langSwitches = document.querySelectorAll('.lang-switch');
+            const langSwitches = document.querySelectorAll('[data-switch="lang"]');
             const wallpaperBtns = document.querySelectorAll('.wallpaper-btn');
             const dialpadOverlay = $('dialpadOverlay'), dialpadDisplay = $('dialpadDisplay'), dialpadGrid = $('dialpadGrid');
             const dialDelete = $('dialDelete'), dialClose = $('dialClose'), dialpadTrigger = $('dialpadTrigger');
@@ -928,11 +982,11 @@
             let musicStarted = false;
 
             const translations = {
-                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', more:'更多', aboutText:'这是一架国泰航空A330官方网站', versionLabel:'版本号', versionNumber:'6.5.0', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', darkMode:'深色模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', waterDrop:'水滴壁纸', whiteWallpaper:'白色壁纸', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
-                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', more:'更多', aboutText:'這是一架國泰航空A330官方網站', versionLabel:'版本號', versionNumber:'6.5.0', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', darkMode:'深色模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', waterDrop:'水滴桌布', whiteWallpaper:'白色桌布', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
-                'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', about:'About', more:'More', aboutText:'This is Cathay Pacific A330 Official Website', versionLabel:'Version', versionNumber:'6.5.0', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', darkMode:'Dark Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', minecraftMode:'Minecraft Mode', conceptMode:'Concept Mode', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', waterDrop:'Water Drop', whiteWallpaper:'White Wallpaper', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
-                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', more:'その他', aboutText:'これはキャセイパシフィックA330公式サイトです', versionLabel:'バージョン', versionNumber:'6.5.0', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', darkMode:'ダークモード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', minecraftMode:'Minecraftモード', conceptMode:'コンセプトモード', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', waterDrop:'水滴の壁紙', whiteWallpaper:'白い壁紙', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
-                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', about:'정보', more:'더 보기', aboutText:'이것은 캐세이퍼시픽 A330 공식 웹사이트입니다', versionLabel:'버전', versionNumber:'6.5.0', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', darkMode:'다크 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', minecraftMode:'Minecraft 모드', conceptMode:'컨셉트 모드', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', waterDrop:'물방울 배경화면', whiteWallpaper:'흰색 배경화면', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
+                'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', more:'更多', aboutText:'这是一架国泰航空A330官方网站', versionLabel:'版本号', versionNumber:'6.5.0', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', waterDrop:'水滴壁纸', whiteWallpaper:'白色壁纸', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
+                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', more:'更多', aboutText:'這是一架國泰航空A330官方網站', versionLabel:'版本號', versionNumber:'6.5.0', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', theme:'主題模式', darkMode:'深色模式', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', wallpaper:'壁紙選擇', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', waterDrop:'水滴桌布', whiteWallpaper:'白色桌布', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
+                'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', about:'About', more:'More', aboutText:'This is Cathay Pacific A330 Official Website', versionLabel:'Version', versionNumber:'6.5.0', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', theme:'Theme', darkMode:'Dark Mode', displayMode:'Display Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', minecraftMode:'Minecraft Mode', conceptMode:'Concept Mode', wallpaper:'Wallpaper Selection', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', waterDrop:'Water Drop', whiteWallpaper:'White Wallpaper', language:'Language', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
+                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', more:'その他', aboutText:'これはキャセイパシフィックA330公式サイトです', versionLabel:'バージョン', versionNumber:'6.5.0', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', minecraftMode:'Minecraftモード', conceptMode:'コンセプトモード', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', waterDrop:'水滴の壁紙', whiteWallpaper:'白い壁紙', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
+                'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', about:'정보', more:'더 보기', aboutText:'이것은 캐세이퍼시픽 A330 공식 웹사이트입니다', versionLabel:'버전', versionNumber:'6.5.0', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', theme:'테마', darkMode:'다크 모드', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', minecraftMode:'Minecraft 모드', conceptMode:'컨셉트 모드', wallpaper:'배경화면 선택', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', waterDrop:'물방울 배경화면', whiteWallpaper:'흰색 배경화면', language:'언어', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
             };
 
             const wallpaperURLs = {
@@ -992,9 +1046,7 @@
                         else el.textContent = t[key];
                     }
                 });
-                langSwitches.forEach(sw => {
-                    sw.classList.toggle('on', sw.getAttribute('data-lang') === lang);
-                });
+                syncSwitches('lang', null, lang);
             }
 
             function playRandomMusic() {
@@ -1038,12 +1090,23 @@
             }
 
             function attachRippleToElements() {
-                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action, .hamburger-btn, .easter-egg-close, .dock-item, .settings-nav-item, .theme-thumb, .more-link, .more-download, .more-download-action';
+                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action, .hamburger-btn, .easter-egg-close, .dock-item, .settings-nav-item, .theme-thumb, .more-link, .more-download, .more-download-action, [data-role="settings-close"]';
                 document.querySelectorAll(clickableSelector).forEach(el => {
                     if (el.dataset.rippleBound === 'true') return;
                     el.dataset.rippleBound = 'true';
                     el.addEventListener('click', createRipple);
                     el.addEventListener('touchstart', createRipple, { passive: true });
+                });
+            }
+
+            // 同步所有同名开关
+            function syncSwitches(name, isOn, extra) {
+                document.querySelectorAll(`[data-switch="${name}"]`).forEach(sw => {
+                    if (name === 'lang') {
+                        sw.classList.toggle('on', sw.getAttribute('data-lang') === extra);
+                    } else {
+                        sw.classList.toggle('on', !!isOn);
+                    }
                 });
             }
 
@@ -1056,13 +1119,16 @@
 
                 document.body.classList.toggle('concept-mode', conceptEnabled);
 
-                glassModeSwitch.classList.toggle('on', glassEnabled && !minecraftEnabled);
-                liquidGlassModeSwitch.classList.toggle('on', liquidGlassEnabled && !minecraftEnabled);
-                retroModeSwitch.classList.toggle('on', retroEnabled && !minecraftEnabled);
-                minecraftModeSwitch.classList.toggle('on', minecraftEnabled);
-                conceptModeSwitch.classList.toggle('on', conceptEnabled);
-
                 htmlElement.setAttribute('data-theme', currentTheme);
+
+                // 同步所有开关状态
+                syncSwitches('themeDark', currentTheme === 'dark');
+                syncSwitches('glassMode', glassEnabled && !minecraftEnabled);
+                syncSwitches('liquidGlassMode', liquidGlassEnabled && !minecraftEnabled);
+                syncSwitches('retroMode', retroEnabled && !minecraftEnabled);
+                syncSwitches('minecraftMode', minecraftEnabled);
+                syncSwitches('conceptMode', conceptEnabled);
+                syncSwitches('lang', null, currentLang);
 
                 themeThumbs.forEach(t => {
                     t.classList.toggle('active', t.getAttribute('data-theme-choice') === currentTheme);
@@ -1210,8 +1276,12 @@
                 });
             });
 
+            // 设置关闭按钮（可能有多个）
+            document.querySelectorAll('[data-role="settings-close"]').forEach(btn => {
+                btn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
+            });
+
             settingsTrigger.addEventListener('click', () => { if (!conceptEnabled) toggleMenu(false); openWindow(settingsOverlay, settingsModal); updateUI(); });
-            settingsCloseBtn && settingsCloseBtn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
             settingsOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === settingsOverlay) settingsOverlay.classList.remove('visible'); });
 
             aboutTrigger.addEventListener('click', () => { closeAllModals(); toggleMenu(false); aboutOverlay.classList.add('visible'); });
@@ -1249,30 +1319,79 @@
 
             document.addEventListener('keydown', e => { if(e.key === 'Escape') { toggleMenu(false); closeAllModals(); } });
 
-            function setMode(key, value) {
-                if(key === 'glassMode') glassEnabled = value;
-                if(key === 'liquidGlassMode') liquidGlassEnabled = value;
-                if(key === 'retroMode') retroEnabled = value;
-                if(key === 'minecraftMode') minecraftEnabled = value;
-                localStorage.setItem(key, value ? 'enabled' : 'disabled');
-                if(value && key !== 'minecraftMode') {
-                    if(key !== 'glassMode') { glassEnabled = false; localStorage.setItem('glassMode','disabled'); }
-                    if(key !== 'liquidGlassMode') { liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled'); }
-                    if(key !== 'retroMode') { retroEnabled = false; localStorage.setItem('retroMode','disabled'); }
-                    if(key !== 'minecraftMode') { minecraftEnabled = false; localStorage.setItem('minecraftMode','disabled'); }
-                }
-                updateUI();
-            }
-
-            glassModeSwitch.addEventListener('click', () => { const v = !glassEnabled; setMode('glassMode', v); if(v) { liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); minecraftEnabled=false; localStorage.setItem('minecraftMode','disabled'); } updateUI(); });
-            liquidGlassModeSwitch.addEventListener('click', () => { const v = !liquidGlassEnabled; setMode('liquidGlassMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); minecraftEnabled=false; localStorage.setItem('minecraftMode','disabled'); } updateUI(); });
-            retroModeSwitch.addEventListener('click', () => { const v = !retroEnabled; setMode('retroMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); minecraftEnabled=false; localStorage.setItem('minecraftMode','disabled'); } updateUI(); });
-            minecraftModeSwitch.addEventListener('click', () => { const v = !minecraftEnabled; setMode('minecraftMode', v); if(v) { glassEnabled=false; localStorage.setItem('glassMode','disabled'); liquidGlassEnabled=false; localStorage.setItem('liquidGlassMode','disabled'); retroEnabled=false; localStorage.setItem('retroMode','disabled'); } updateUI(); });
-
-            conceptModeSwitch.addEventListener('click', () => {
-                conceptEnabled = !conceptEnabled;
-                localStorage.setItem('conceptMode', conceptEnabled ? 'enabled' : 'disabled');
-                updateUI();
+            // 绑定所有开关
+            document.querySelectorAll('[data-switch="themeDark"]').forEach(sw => {
+                sw.addEventListener('click', () => {
+                    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    localStorage.setItem('theme', currentTheme);
+                    updateUI();
+                });
+            });
+            document.querySelectorAll('[data-switch="glassMode"]').forEach(sw => {
+                sw.addEventListener('click', () => {
+                    glassEnabled = !glassEnabled;
+                    localStorage.setItem('glassMode', glassEnabled ? 'enabled' : 'disabled');
+                    if (glassEnabled) {
+                        liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled');
+                        retroEnabled = false; localStorage.setItem('retroMode','disabled');
+                        minecraftEnabled = false; localStorage.setItem('minecraftMode','disabled');
+                    }
+                    updateUI();
+                });
+            });
+            document.querySelectorAll('[data-switch="liquidGlassMode"]').forEach(sw => {
+                sw.addEventListener('click', () => {
+                    liquidGlassEnabled = !liquidGlassEnabled;
+                    localStorage.setItem('liquidGlassMode', liquidGlassEnabled ? 'enabled' : 'disabled');
+                    if (liquidGlassEnabled) {
+                        glassEnabled = false; localStorage.setItem('glassMode','disabled');
+                        retroEnabled = false; localStorage.setItem('retroMode','disabled');
+                        minecraftEnabled = false; localStorage.setItem('minecraftMode','disabled');
+                    }
+                    updateUI();
+                });
+            });
+            document.querySelectorAll('[data-switch="retroMode"]').forEach(sw => {
+                sw.addEventListener('click', () => {
+                    retroEnabled = !retroEnabled;
+                    localStorage.setItem('retroMode', retroEnabled ? 'enabled' : 'disabled');
+                    if (retroEnabled) {
+                        glassEnabled = false; localStorage.setItem('glassMode','disabled');
+                        liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled');
+                        minecraftEnabled = false; localStorage.setItem('minecraftMode','disabled');
+                    }
+                    updateUI();
+                });
+            });
+            document.querySelectorAll('[data-switch="minecraftMode"]').forEach(sw => {
+                sw.addEventListener('click', () => {
+                    minecraftEnabled = !minecraftEnabled;
+                    localStorage.setItem('minecraftMode', minecraftEnabled ? 'enabled' : 'disabled');
+                    if (minecraftEnabled) {
+                        glassEnabled = false; localStorage.setItem('glassMode','disabled');
+                        liquidGlassEnabled = false; localStorage.setItem('liquidGlassMode','disabled');
+                        retroEnabled = false; localStorage.setItem('retroMode','disabled');
+                    }
+                    updateUI();
+                });
+            });
+            document.querySelectorAll('[data-switch="conceptMode"]').forEach(sw => {
+                sw.addEventListener('click', () => {
+                    conceptEnabled = !conceptEnabled;
+                    localStorage.setItem('conceptMode', conceptEnabled ? 'enabled' : 'disabled');
+                    updateUI();
+                });
+            });
+            langSwitches.forEach(sw => {
+                sw.addEventListener('click', () => {
+                    const lang = sw.getAttribute('data-lang');
+                    if (currentLang !== lang) {
+                        currentLang = lang;
+                        localStorage.setItem('lang', lang);
+                        htmlElement.setAttribute('lang', lang);
+                        updateUI();
+                    }
+                });
             });
 
             wallpaperBtns.forEach(btn => {
@@ -1283,18 +1402,6 @@
                     localStorage.setItem('minecraftMode', 'disabled');
                     localStorage.setItem('retroMode', 'disabled');
                     updateUI();
-                });
-            });
-
-            langSwitches.forEach(sw => {
-                sw.addEventListener('click', () => {
-                    const lang = sw.getAttribute('data-lang');
-                    if (currentLang !== lang) {
-                        currentLang = lang;
-                        localStorage.setItem('lang', lang);
-                        htmlElement.setAttribute('lang', lang);
-                        updateUI();
-                    }
                 });
             });
 
