@@ -71,7 +71,7 @@
             --version-label-color: #f0f0f0;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
-        html, body { touch-action: manipulation; -ms-touch-action: manipulation; }
+        html, body { touch-action: manipulation; }
         body {
             background-color: var(--bg);
             background-image: var(--default-bg-image);
@@ -134,11 +134,9 @@
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; position:relative; overflow:hidden; }
 
-        /* 两套视图切换 - 纯 JS 控制，这里只做基础 */
         .settings-simple-view { display: block; }
         .settings-macos-view { display: none; }
 
-        /* 关于 */
         .about-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2200; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .about-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .about-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.5rem; width:100%; max-width:320px; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -153,7 +151,6 @@
         .version-number { color: #0077cc; font-weight: 600; margin-left: 5px; }
         [data-theme="dark"] .version-number { color: #42a5f5; }
 
-        /* 彩蛋 */
         .easter-egg-overlay { position: fixed; inset: 0; background-color: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; visibility: hidden; padding: 1rem; }
         .easter-egg-overlay.visible { opacity: 1; pointer-events: auto; visibility: visible; }
         .easter-egg-modal { background-color: var(--modal-bg); border-radius: 16px; padding: 20px; width: 90%; max-width: 400px; box-shadow: 0 12px 48px rgba(0,0,0,0.3); border: 1px solid var(--divider); }
@@ -162,7 +159,6 @@
         .easter-egg-content img { max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain; }
         .easter-egg-close { display: block; margin-left: auto; margin-top: 15px; padding: 8px 24px; background-color: var(--btn-primary); color: #ffffff; border: none; border-radius: 8px; font-size: 0.9rem; cursor: pointer; }
 
-        /* 计算器 */
         .calc-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2300; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .calc-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .calc-modal { border-radius: 24px; padding: 1rem; width: 100%; max-width: 340px; transform: translateY(16px) scale(0.96); transition: all 0.3s cubic-bezier(0.22,1,0.36,1); background-color: #f2f2f7; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 12px 48px rgba(0,0,0,0.15); }
@@ -180,7 +176,6 @@
         [data-theme="dark"] .calc-key:hover { background-color: #444444; }
         [data-theme="dark"] .calc-key.clear { background-color: #a5a5a5; color: #000000; }
 
-        /* 拨号盘 */
         .dialpad-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2000; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .dialpad-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .dialpad-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:280px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -194,7 +189,6 @@
         .dial-action.delete { background-color:transparent; color:var(--text-secondary); border:1px solid var(--divider); }
         .dial-action.close { background-color:var(--accent); color:#fff; }
 
-        /* 更多 */
         .more-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2400; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .more-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .more-modal { background-color:var(--modal-bg); border-radius:16px; padding:1rem; width:100%; max-width:400px; box-shadow:0 10px 40px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -215,12 +209,11 @@
         .more-download-action { padding: 4px 12px; font-size: 0.78rem; font-weight: 600; color: #fff; background: var(--accent); border: none; border-radius: 50px; text-decoration: none; flex-shrink: 0; }
         .more-link-arrow { color: var(--text-secondary); font-size: 0.85rem; }
 
-        /* 涟漪 */
         .ripple { position: absolute; border-radius: 50%; background: radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0) 72%); transform: translate(-50%, -50%) scale(0); animation: iosRipple 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; pointer-events: none; z-index: 10; filter: blur(0.5px); }
         [data-theme="dark"] .ripple { background: radial-gradient(circle at center, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.45) 30%, rgba(255,255,255,0.18) 55%, rgba(255,255,255,0) 72%); }
         @keyframes iosRipple { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 60% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.55; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
 
-        /* ============ 透明模式 ============ */
+        /* 透明模式 */
         body.glass-mode { background-color:rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.glass-mode { background-color:rgba(18,18,18,0.35) !important; }
         body.glass-mode .top-bar { background-color:rgba(255,255,255,0.75) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border-bottom:1px solid rgba(255,255,255,0.5) !important; }
@@ -233,17 +226,14 @@
         [data-theme="dark"] body.glass-mode .download-item { background-color:rgba(44,44,46,0.55) !important; border-color:rgba(255,255,255,0.12) !important; color:#f0f0f0 !important; }
         body.glass-mode .announcement { background-color:rgba(255,255,255,0.55) !important; border-color:rgba(0,0,0,0.18) !important; backdrop-filter:blur(8px) !important; -webkit-backdrop-filter:blur(8px) !important; }
         [data-theme="dark"] body.glass-mode .announcement { background-color:rgba(44,44,46,0.55) !important; border-color:rgba(255,255,255,0.12) !important; }
-        /* 关于窗口 - 透明模式 */
         body.glass-mode .about-modal { background-color:rgba(255,255,255,0.85) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; border: 1px solid rgba(255,255,255,0.6) !important; }
         [data-theme="dark"] body.glass-mode .about-modal { background-color:rgba(28,28,30,0.85) !important; border-color: rgba(255,255,255,0.1) !important; }
-        /* 彩蛋窗口 - 透明模式 */
         body.glass-mode .easter-egg-modal { background-color: rgba(255,255,255,0.85) !important; backdrop-filter: blur(22px) saturate(180%) !important; -webkit-backdrop-filter: blur(22px) saturate(180%) !important; border: 1px solid rgba(255,255,255,0.6) !important; }
         [data-theme="dark"] body.glass-mode .easter-egg-modal { background-color: rgba(28,28,30,0.85) !important; border-color: rgba(255,255,255,0.1) !important; }
-        /* 设置窗口 */
         body.glass-mode .settings-modal { background-color:rgba(255,255,255,0.85) !important; backdrop-filter:blur(22px) saturate(180%) !important; -webkit-backdrop-filter:blur(22px) saturate(180%) !important; }
         [data-theme="dark"] body.glass-mode .settings-modal { background-color:rgba(28,28,30,0.85) !important; }
 
-        /* ============ 液态玻璃模式 ============ */
+        /* 液态玻璃 */
         body.liquid-glass-mode { background-color:rgba(255,255,255,0.2) !important; }
         [data-theme="dark"] body.liquid-glass-mode { background-color:rgba(18,18,18,0.2) !important; }
         body.liquid-glass-mode .top-bar { background:linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border-bottom:1px solid rgba(255,255,255,0.4) !important; }
@@ -256,18 +246,15 @@
         [data-theme="dark"] body.liquid-glass-mode .download-item { background:linear-gradient(135deg, rgba(45,45,45,0.5), rgba(20,20,20,0.25) 50%, rgba(35,35,35,0.4)) !important; border-color:rgba(255,255,255,0.1) !important; color:#f0f0f0 !important; }
         body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(20px) saturate(170%) !important; -webkit-backdrop-filter:blur(20px) saturate(170%) !important; border:1px solid rgba(255,255,255,0.35) !important; }
         [data-theme="dark"] body.liquid-glass-mode .announcement { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-color:rgba(255,255,255,0.1) !important; }
-        /* 关于窗口 - 液态玻璃 */
         body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; box-shadow: 0 12px 48px rgba(0,0,0,0.15), inset 1px 1px 0 rgba(255,255,255,0.9), inset -1px -1px 0 rgba(255,255,255,0.4) !important; }
         [data-theme="dark"] body.liquid-glass-mode .about-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-color:rgba(255,255,255,0.12) !important; }
-        /* 彩蛋窗口 - 液态玻璃 */
         body.liquid-glass-mode .easter-egg-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; border:1px solid rgba(255,255,255,0.4) !important; box-shadow: 0 12px 48px rgba(0,0,0,0.15), inset 1px 1px 0 rgba(255,255,255,0.9), inset -1px -1px 0 rgba(255,255,255,0.4) !important; }
         [data-theme="dark"] body.liquid-glass-mode .easter-egg-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; border-color:rgba(255,255,255,0.12) !important; }
         body.liquid-glass-mode .easter-egg-close { background-color: rgba(0,119,204,0.65) !important; box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), inset -1px -1px 0 rgba(255,255,255,0.2) !important; }
-        /* 设置窗口 */
         body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.3)) !important; backdrop-filter:blur(28px) saturate(200%) !important; -webkit-backdrop-filter:blur(28px) saturate(200%) !important; }
         [data-theme="dark"] body.liquid-glass-mode .settings-modal { background:linear-gradient(135deg, rgba(45,45,45,0.45), rgba(20,20,20,0.2) 50%, rgba(35,35,35,0.35)) !important; }
 
-        /* ============ 怀旧模式 ============ */
+        /* 怀旧模式 */
         body.retro-mode { background-color: #a0a8b0 !important; background-image: url('https://static.applewalls.com/iOS/iOS%204/compress/iOS%204%20-%20100.webp?qq_aio_chat_type=3') !important; background-size: cover !important; }
         body.retro-mode .top-bar { background:linear-gradient(to bottom,#f0f0f0,#c8c8c8) !important; border-bottom:1px solid #7f7f7f !important; }
         body.retro-mode .site-title { font-weight:bold; color:#333; text-shadow:0 1px 0 rgba(255,255,255,0.7); }
@@ -281,19 +268,16 @@
         body.retro-mode .announcement-title { color: #333 !important; }
         body.retro-mode .announcement-subtitle { color: #666 !important; }
         body.retro-mode .hamburger-line { background-color:#333 !important; }
-        /* 关于窗口 - 怀旧模式 */
         body.retro-mode .about-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
         body.retro-mode .about-title { color: #333 !important; }
         body.retro-mode .about-info { color: #666 !important; }
         body.retro-mode .about-close-btn { background: linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius: 6px !important; box-shadow: 0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; }
-        /* 彩蛋窗口 - 怀旧模式 */
         body.retro-mode .easter-egg-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; box-shadow:0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff !important; }
         body.retro-mode .easter-egg-title { color:#333 !important; border-bottom:1px solid #b0b0b0 !important; }
         body.retro-mode .easter-egg-close { background: linear-gradient(to bottom,#6db3f2,#1e69de) !important; border:1px solid #1c4f9c !important; border-radius:6px !important; color:#fff !important; box-shadow: 0 2px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3) !important; }
-        /* 设置窗口 */
         body.retro-mode .settings-modal { background:#f5f5f5 !important; border:1px solid #8f8f8f !important; border-radius:12px !important; }
 
-        /* ============ Minecraft 模式 ============ */
+        /* Minecraft */
         body.minecraft-mode { background-color: #2d2d2d !important; background-image: url('https://raw.githubusercontent.com/Xinghe2711/Xinghe2711.github.io/refs/heads/main/IMG_6134.jpeg') !important; background-size: cover !important; font-family: 'Press Start 2P', 'Courier New', monospace !important; }
         body.minecraft-mode .top-bar { background:linear-gradient(to bottom, #4a4a4a, #2d2d2d) !important; border-bottom:2px solid #1a1a1a !important; }
         body.minecraft-mode .site-title { color:#ffffff; font-family:'Press Start 2P', monospace; text-shadow:1px 1px 0 #000; font-size: 0.85rem; }
@@ -310,18 +294,15 @@
         body.minecraft-mode .announcement-subtitle { color:#cccccc; font-family:'Press Start 2P', monospace; font-size: 0.6rem; }
         body.minecraft-mode .divider { background-color: #555; }
         body.minecraft-mode .footer-note { color: #aaa !important; }
-        /* 关于窗口 - Minecraft */
         body.minecraft-mode .about-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px !important; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.1), inset -2px -2px 0 rgba(0,0,0,0.3) !important; }
         body.minecraft-mode .about-title { color:#ffffff !important; font-family:'Press Start 2P', monospace !important; font-size: 1.4rem !important; text-shadow: 1px 1px 0 #000 !important; }
         body.minecraft-mode .about-info { color:#cccccc !important; font-family:'Press Start 2P', monospace !important; font-size: 0.7rem !important; }
         body.minecraft-mode .about-close-btn { background: linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; border-radius: 4px !important; color:#fff !important; font-family:'Press Start 2P', monospace !important; font-size: 0.7rem !important; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) !important; }
-        /* 彩蛋窗口 - Minecraft */
         body.minecraft-mode .easter-egg-overlay { background-color: rgba(0,0,0,0.6) !important; }
         body.minecraft-mode .easter-egg-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px !important; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.1), inset -2px -2px 0 rgba(0,0,0,0.3) !important; }
         body.minecraft-mode .easter-egg-title { color:#ffffff !important; font-family:'Press Start 2P', monospace !important; border-bottom:2px solid #555 !important; padding-bottom:10px; font-size:1rem; text-shadow: 1px 1px 0 #000 !important; }
         body.minecraft-mode .easter-egg-content img { border-radius:0 !important; border:2px solid #1a1a1a !important; }
         body.minecraft-mode .easter-egg-close { background: linear-gradient(to bottom, #6b6b6b, #4a4a4a) !important; border:2px solid #1a1a1a !important; color:#ffffff !important; font-family:'Press Start 2P', monospace !important; border-radius:4px !important; font-size:0.7rem; padding:8px 20px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) !important; }
-        /* 设置窗口 */
         body.minecraft-mode .settings-modal { background:#3a3a3a !important; border:2px solid #1a1a1a !important; border-radius:6px !important; }
 
         /* ============ 概念版模式 ============ */
@@ -413,7 +394,14 @@
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 8px 24px rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.14), inset -1px -1px 0 rgba(255, 255, 255, 0.05) !important;
         }
 
-        body.concept-mode .settings-modal { width: 720px !important; max-width: 720px !important; height: 520px !important; max-height: 520px !important; padding: 0 !important; }
+        /* 设置窗口：自适应高度，保证内容完整 */
+        body.concept-mode .settings-modal {
+            width: 720px !important;
+            max-width: min(720px, calc(100vw - 20px)) !important;
+            height: 520px !important;
+            max-height: calc(100vh - 40px) !important;
+            padding: 0 !important;
+        }
         body.concept-mode .calc-modal { width: 340px !important; max-width: 340px !important; padding: 0 !important; }
         body.concept-mode .dialpad-modal { width: 320px !important; max-width: 320px !important; padding: 0 !important; }
         body.concept-mode .more-modal { width: 400px !important; max-width: 400px !important; padding: 0 !important; }
@@ -426,6 +414,26 @@
             width: 100vw !important; height: 100vh !important;
             max-width: 100vw !important; max-height: 100vh !important;
             border-radius: 0 !important;
+        }
+
+        /* ★ 修复：全屏计算器按钮过大 ★ */
+        body.concept-mode .calc-modal.fullscreen .macos-window-content {
+            padding: 24px;
+            align-items: center;
+        }
+        body.concept-mode .calc-modal.fullscreen .calc-display,
+        body.concept-mode .calc-modal.fullscreen .calc-grid {
+            width: 100%;
+            max-width: 420px;
+        }
+        body.concept-mode .calc-modal.fullscreen .calc-display {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 16px;
+        }
+        body.concept-mode .calc-modal.fullscreen .calc-grid {
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .macos-window-bar { display: none; flex-shrink: 0; height: 38px; align-items: center; padding: 0 14px; background: transparent; border-bottom: 1px solid rgba(0, 0, 0, 0.06); cursor: grab; user-select: none; }
@@ -441,7 +449,7 @@
         .traffic-light.close::before { content: "×"; }
         .traffic-light.max::before { content: "⤢"; font-size: 9px; }
         .macos-window-title { flex: 1; text-align: center; font-size: 13px; font-weight: 600; color: var(--text); margin-right: 56px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .macos-window-content { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+        .macos-window-content { flex: 1; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
 
         .settings-window-layout { flex-direction: row; }
         .settings-sidebar { width: 210px; flex-shrink: 0; background: rgba(240, 240, 245, 0.35); border-right: 1px solid rgba(0, 0, 0, 0.06); padding: 12px 10px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
@@ -460,7 +468,7 @@
         .settings-nav-icon.green { background: linear-gradient(180deg, #5ec463, #34c759); }
         .settings-nav-icon.orange { background: linear-gradient(180deg, #ffb143, #ff9500); }
         .settings-nav-icon.gray { background: linear-gradient(180deg, #a8a8ad, #8e8e93); }
-        .settings-main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 22px 22px; }
+        .settings-main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 22px 22px; min-height: 0; }
         .settings-panel { display: none; }
         .settings-panel.active { display: block; animation: panelFade 0.22s ease; }
         @keyframes panelFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
@@ -497,7 +505,7 @@
         body.concept-mode .settings-modal > .macos-window-content { padding: 0 !important; overflow: hidden; }
 
         @media (max-width: 780px) {
-            body.concept-mode .settings-modal { width: calc(100vw - 20px) !important; max-width: 720px !important; height: 78vh !important; max-height: 620px !important; }
+            body.concept-mode .settings-modal { width: calc(100vw - 20px) !important; max-width: 720px !important; height: 78vh !important; max-height: calc(100vh - 40px) !important; }
             .settings-sidebar { width: 160px; }
         }
         @media (max-width: 520px) {
@@ -1115,7 +1123,6 @@
                 });
             }
 
-            // 关键：用 JS 内联样式切换设置视图，避免 CSS 冲突
             function updateSettingsView() {
                 if (!simpleView || !macosView) return;
                 if (conceptEnabled) {
@@ -1168,9 +1175,7 @@
                     }
                 }
 
-                // 更新设置视图显示
                 updateSettingsView();
-
                 attachRippleToElements();
             }
 
