@@ -130,7 +130,7 @@
         .ios-switch.on { background-color:var(--toggle-on); }
         .ios-switch.on .knob { transform:translateX(20px); }
 
-        /* ========== 设置弹窗（简单样式，非概念版） ========== */
+        /* ========== 设置弹窗 ========== */
         .settings-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2100; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .settings-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
         .settings-modal { background-color:var(--modal-bg); border-radius:18px; padding:1.2rem; width:100%; max-width:340px; max-height:78vh; overflow-y:auto; box-shadow:0 12px 48px rgba(0,0,0,0.2); transform:translateY(16px) scale(0.96); transition:all 0.3s cubic-bezier(0.22,1,0.36,1); border:1px solid var(--divider); }
@@ -145,11 +145,11 @@
         .wallpaper-btn.active { background-color:var(--accent); border-color:var(--accent); color:#fff; }
         .settings-close-btn { display:block; width:100%; margin-top:0.8rem; padding:0.55rem; background-color:var(--accent); color:#fff; border:none; border-radius:10px; font-size:0.85rem; cursor:pointer; position:relative; overflow:hidden; }
 
-        /* 两套视图切换 */
+        /* ========== 两套视图切换（核心修复） ========== */
         .settings-simple-view { display: block; }
-        .settings-macos-view { display: none; }
-        body.concept-mode .settings-simple-view { display: none; }
-        body.concept-mode .settings-macos-view { display: flex; }
+        .settings-macos-view { display: none !important; }
+        body.concept-mode .settings-simple-view { display: none !important; }
+        body.concept-mode .settings-macos-view { display: flex !important; }
 
         .about-overlay { position:fixed; inset:0; background-color:var(--modal-overlay); z-index:2200; display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s; padding:1rem; visibility:hidden; }
         .about-overlay.visible { opacity:1; pointer-events:auto; visibility:visible; }
@@ -266,6 +266,7 @@
         body.minecraft-mode .download-item { background:#4a4a4a !important; border:2px solid #1a1a1a !important; color:#ffffff; }
         body.minecraft-mode .announcement { background:#4a4a4a !important; border:2px solid #1a1a1a !important; }
 
+        /* ============ 概念版模式 ============ */
         body.concept-mode { padding-top: 1rem !important; }
         body.concept-mode .top-bar,
         body.concept-mode .hamburger-btn,
@@ -355,7 +356,6 @@
             transform: translateX(-50%) translateY(0) scale(0.68);
         }
 
-        /* 概念版下的窗口样式 */
         body.concept-mode .settings-overlay,
         body.concept-mode .calc-overlay,
         body.concept-mode .dialpad-overlay,
@@ -490,7 +490,7 @@
         @keyframes macosWindowOpen { 0% { opacity: 0; transform: scale(0.85) translateY(30px); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) translateY(0); } }
         .macos-window-opening { animation: macosWindowOpen 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
-        body.concept-mode .settings-modal > .macos-window-content { padding: 0; overflow: hidden; flex-direction: row; }
+        body.concept-mode .settings-modal > .macos-window-content { padding: 0 !important; overflow: hidden; flex-direction: row !important; }
 
         @media (max-width: 780px) {
             body.concept-mode .settings-modal { width: calc(100vw - 20px) !important; max-width: 720px !important; height: 78vh !important; max-height: 620px !important; }
@@ -540,7 +540,7 @@
         <button class="menu-item" id="dialpadTrigger"><span data-i18n="dialpad">拨号盘</span> <span>☎</span></button>
     </aside>
 
-    <!-- 设置窗口（含简单视图 + macOS 视图） -->
+    <!-- 设置窗口 -->
     <div class="settings-overlay" id="settingsOverlay">
         <div class="settings-modal" id="settingsModal">
             <div class="macos-window-bar">
@@ -552,7 +552,7 @@
             </div>
             <div class="macos-window-content">
 
-                <!-- ============ 简单设置视图（非概念版） ============ -->
+                <!-- 简单视图（非概念版） -->
                 <div class="settings-simple-view">
                     <div class="settings-title" data-i18n="settings">设置</div>
                     <div class="settings-section">
@@ -599,7 +599,7 @@
                     <button class="settings-close-btn" data-role="settings-close" data-i18n="close">关闭</button>
                 </div>
 
-                <!-- ============ macOS 设置视图（概念版） ============ -->
+                <!-- macOS 视图（概念版） -->
                 <div class="settings-macos-view settings-window-layout">
                     <div class="settings-sidebar">
                         <div class="settings-search">
@@ -1099,7 +1099,6 @@
                 });
             }
 
-            // 同步所有同名开关
             function syncSwitches(name, isOn, extra) {
                 document.querySelectorAll(`[data-switch="${name}"]`).forEach(sw => {
                     if (name === 'lang') {
@@ -1121,7 +1120,6 @@
 
                 htmlElement.setAttribute('data-theme', currentTheme);
 
-                // 同步所有开关状态
                 syncSwitches('themeDark', currentTheme === 'dark');
                 syncSwitches('glassMode', glassEnabled && !minecraftEnabled);
                 syncSwitches('liquidGlassMode', liquidGlassEnabled && !minecraftEnabled);
@@ -1276,7 +1274,6 @@
                 });
             });
 
-            // 设置关闭按钮（可能有多个）
             document.querySelectorAll('[data-role="settings-close"]').forEach(btn => {
                 btn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
             });
@@ -1319,7 +1316,6 @@
 
             document.addEventListener('keydown', e => { if(e.key === 'Escape') { toggleMenu(false); closeAllModals(); } });
 
-            // 绑定所有开关
             document.querySelectorAll('[data-switch="themeDark"]').forEach(sw => {
                 sw.addEventListener('click', () => {
                     currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
