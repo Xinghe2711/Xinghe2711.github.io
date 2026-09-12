@@ -363,19 +363,22 @@
         body.concept-mode .settings-overlay,
         body.concept-mode .calc-overlay,
         body.concept-mode .dialpad-overlay,
-        body.concept-mode .more-overlay {
+        body.concept-mode .more-overlay,
+        body.concept-mode .webmc-overlay {
             background: transparent !important; pointer-events: none !important;
             padding: 0 !important; align-items: flex-start !important; justify-content: flex-start !important;
         }
         body.concept-mode .settings-overlay.visible,
         body.concept-mode .calc-overlay.visible,
         body.concept-mode .dialpad-overlay.visible,
-        body.concept-mode .more-overlay.visible { pointer-events: none !important; }
+        body.concept-mode .more-overlay.visible,
+        body.concept-mode .webmc-overlay.visible { pointer-events: none !important; }
 
         body.concept-mode .settings-modal,
         body.concept-mode .calc-modal,
         body.concept-mode .dialpad-modal,
-        body.concept-mode .more-modal {
+        body.concept-mode .more-modal,
+        body.concept-mode .webmc-modal {
             pointer-events: auto !important; position: fixed !important;
             margin: 0 !important; transform: none !important; transition: none !important;
             overflow: hidden; border-radius: 14px !important;
@@ -389,7 +392,8 @@
         [data-theme="dark"] body.concept-mode .settings-modal,
         [data-theme="dark"] body.concept-mode .calc-modal,
         [data-theme="dark"] body.concept-mode .dialpad-modal,
-        [data-theme="dark"] body.concept-mode .more-modal {
+        [data-theme="dark"] body.concept-mode .more-modal,
+        [data-theme="dark"] body.concept-mode .webmc-modal {
             background: linear-gradient(135deg, rgba(60, 60, 68, 0.68) 0%, rgba(35, 35, 42, 0.55) 40%, rgba(50, 50, 58, 0.62) 100%) !important;
             border-color: rgba(255, 255, 255, 0.14) !important;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 8px 24px rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.14), inset -1px -1px 0 rgba(255, 255, 255, 0.05) !important;
@@ -405,11 +409,13 @@
         body.concept-mode .calc-modal { width: 340px !important; max-width: 340px !important; padding: 0 !important; }
         body.concept-mode .dialpad-modal { width: 320px !important; max-width: 320px !important; padding: 0 !important; }
         body.concept-mode .more-modal { width: 400px !important; max-width: 400px !important; padding: 0 !important; }
+        body.concept-mode .webmc-modal { width: 900px !important; max-width: min(900px, calc(100vw - 40px)) !important; height: 620px !important; max-height: calc(100vh - 60px) !important; padding: 0 !important; }
 
         body.concept-mode .settings-modal.fullscreen,
         body.concept-mode .calc-modal.fullscreen,
         body.concept-mode .dialpad-modal.fullscreen,
-        body.concept-mode .more-modal.fullscreen {
+        body.concept-mode .more-modal.fullscreen,
+        body.concept-mode .webmc-modal.fullscreen {
             top: 0 !important; left: 0 !important;
             width: 100vw !important; height: 100vh !important;
             max-width: 100vw !important; max-height: 100vh !important;
@@ -482,8 +488,18 @@
         body.concept-mode .calc-modal .macos-window-content { padding: 14px; }
         body.concept-mode .dialpad-modal .macos-window-content { padding: 14px; }
         body.concept-mode .more-modal .macos-window-content { padding: 14px; overflow-y: auto; }
+        body.concept-mode .webmc-modal .macos-window-content { padding: 0; }
         body.concept-mode .calc-modal .calc-display { border-radius: 12px; margin-bottom: 12px; }
         body.concept-mode .dialpad-modal .dial-actions { margin-top: 12px; }
+
+        /* 网页版MC iframe */
+        .webmc-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+            display: block;
+        }
 
         @keyframes macosWindowOpen { 0% { opacity: 0; transform: scale(0.85) translateY(30px); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) translateY(0); } }
         .macos-window-opening { animation: macosWindowOpen 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
@@ -492,6 +508,7 @@
 
         @media (max-width: 780px) {
             body.concept-mode .settings-modal { width: calc(100vw - 20px) !important; max-width: 720px !important; height: 78vh !important; max-height: calc(100vh - 40px) !important; }
+            body.concept-mode .webmc-modal { width: calc(100vw - 20px) !important; max-width: 900px !important; height: 70vh !important; max-height: calc(100vh - 60px) !important; }
             .settings-sidebar { width: 160px; }
         }
         @media (max-width: 520px) {
@@ -502,6 +519,7 @@
             .dock-item { width: 46px; height: 46px; font-size: 22px; border-radius: 12px; }
             .macos-dock { gap: 8px; padding: 8px 10px 10px; }
             body.concept-mode .more-modal { width: calc(100vw - 20px) !important; max-width: 400px !important; }
+            body.concept-mode .webmc-modal { width: calc(100vw - 10px) !important; max-width: 900px !important; height: 75vh !important; }
         }
         @media (max-width:480px) {
             .site-title { font-size:0.9rem; }
@@ -857,6 +875,22 @@
         </div>
     </div>
 
+    <!-- 网页版MC 窗口（概念版） -->
+    <div class="webmc-overlay" id="webmcOverlay">
+        <div class="webmc-modal" id="webmcModal">
+            <div class="macos-window-bar">
+                <div class="macos-traffic-lights">
+                    <button class="traffic-light close" data-role="close"></button>
+                    <button class="traffic-light max" data-role="max"></button>
+                </div>
+                <div class="macos-window-title" data-i18n="webMC">网页版MC</div>
+            </div>
+            <div class="macos-window-content">
+                <iframe class="webmc-iframe" id="webmcIframe" src="about:blank" allow="fullscreen" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <div class="macos-dock" id="macosDock">
         <div class="dock-item" data-app="webmc" title="网页版MC">🌐<span class="dock-label" data-i18n="webMC">网页版MC</span></div>
         <div class="dock-item" data-app="ojang" title="ojang pe下载">⬇️<span class="dock-label" data-i18n="ojangDownload">ojang pe下载</span></div>
@@ -951,6 +985,9 @@
             const dialpadModal = $('dialpadModal');
             const moreOverlay = $('moreOverlay');
             const moreModal = $('moreModal');
+            const webmcOverlay = $('webmcOverlay');
+            const webmcModal = $('webmcModal');
+            const webmcIframe = $('webmcIframe');
             const navItems = document.querySelectorAll('.settings-nav-item');
             const panels = document.querySelectorAll('.settings-panel');
             const themeThumbs = document.querySelectorAll('.theme-thumb');
@@ -969,9 +1006,8 @@
             let dialValue = '';
             let calcFirstOperand = null, calcOperator = null, calcShouldResetDisplay = false;
             let versionClickCount = 0;
-
-            // 多窗口 z-index 计数
             let windowZCounter = 7000;
+            let webmcLoaded = false;
 
             const MUSIC_URLS = [
                 'https://github.com/Xinghe2711/Xinghe2711.github.io/raw/refs/heads/main/Sweden%20(Caution%20&%20Crisis%20Remix).mp3',
@@ -1119,7 +1155,7 @@
             }
 
             function checkFullscreenState() {
-                const anyFullscreen = document.querySelector('.settings-modal.fullscreen, .calc-modal.fullscreen, .dialpad-modal.fullscreen, .more-modal.fullscreen');
+                const anyFullscreen = document.querySelector('.settings-modal.fullscreen, .calc-modal.fullscreen, .dialpad-modal.fullscreen, .more-modal.fullscreen, .webmc-modal.fullscreen');
                 const isActive = !!anyFullscreen;
                 const wasActive = document.body.classList.contains('fullscreen-active');
                 document.body.classList.toggle('fullscreen-active', isActive);
@@ -1128,17 +1164,15 @@
                 }
             }
 
-            // 提升窗口层级
             function bringToFront(modal) {
-                const overlay = modal.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay');
+                const overlay = modal.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay, .webmc-overlay');
                 if (!overlay) return;
                 windowZCounter++;
                 overlay.style.zIndex = windowZCounter;
             }
 
-            // 关闭最上层窗口
             function closeTopWindow() {
-                const overlays = Array.from(document.querySelectorAll('.settings-overlay.visible, .calc-overlay.visible, .dialpad-overlay.visible, .more-overlay.visible'));
+                const overlays = Array.from(document.querySelectorAll('.settings-overlay.visible, .calc-overlay.visible, .dialpad-overlay.visible, .more-overlay.visible, .webmc-overlay.visible'));
                 if (overlays.length === 0) return;
                 let topOverlay = overlays[0];
                 let maxZ = parseInt(topOverlay.style.zIndex) || 0;
@@ -1147,7 +1181,7 @@
                     if (z > maxZ) { maxZ = z; topOverlay = o; }
                 });
                 topOverlay.classList.remove('visible');
-                const modal = topOverlay.querySelector('.settings-modal, .calc-modal, .dialpad-modal, .more-modal');
+                const modal = topOverlay.querySelector('.settings-modal, .calc-modal, .dialpad-modal, .more-modal, .webmc-modal');
                 if (modal) modal.classList.remove('fullscreen');
                 checkFullscreenState();
             }
@@ -1208,7 +1242,6 @@
             hamburgerBtn.addEventListener('click', () => toggleMenu());
             menuOverlay.addEventListener('click', () => toggleMenu(false));
 
-            // 关闭所有窗口（仅非概念版使用）
             function closeAllModals(includeConcept) {
                 if (conceptEnabled && !includeConcept) return;
                 settingsOverlay.classList.remove('visible');
@@ -1217,6 +1250,7 @@
                 calcOverlay.classList.remove('visible');
                 easterEggOverlay.classList.remove('visible');
                 moreOverlay.classList.remove('visible');
+                webmcOverlay.classList.remove('visible');
             }
 
             function makeDraggable(win) {
@@ -1269,40 +1303,42 @@
                 win.dataset.positioned = 'true';
             }
 
-            // 打开窗口：概念版下支持多窗口并存
             function openWindow(overlay, modal) {
                 if (conceptEnabled) {
-                    // 已打开则只提升层级
                     if (overlay.classList.contains('visible')) {
                         bringToFront(modal);
                         return;
                     }
-                    // 计算当前已打开的窗口数用于偏移
-                    const openCount = document.querySelectorAll('.settings-overlay.visible, .calc-overlay.visible, .dialpad-overlay.visible, .more-overlay.visible').length;
-                    // 打开新窗口
+                    const openCount = document.querySelectorAll('.settings-overlay.visible, .calc-overlay.visible, .dialpad-overlay.visible, .more-overlay.visible, .webmc-overlay.visible').length;
                     overlay.classList.add('visible');
                     windowZCounter++;
                     overlay.style.zIndex = windowZCounter;
-                    // 重新计算位置（每次都错开）
                     positionWindow(modal, openCount);
-                    // 播放动画
                     modal.classList.remove('macos-window-opening');
                     void modal.offsetWidth;
                     modal.classList.add('macos-window-opening');
                     setTimeout(() => modal.classList.remove('macos-window-opening'), 500);
                 } else {
-                    // 非概念版：一次只打开一个
                     closeAllModals(true);
                     overlay.classList.add('visible');
                 }
             }
 
-            [settingsModal, calcModal, dialpadModal, moreModal].forEach(win => {
+            // 打开网页版MC窗口（概念版）
+            function openWebmcWindow() {
+                if (!webmcLoaded) {
+                    webmcIframe.src = 'https://mcjs.link';
+                    webmcLoaded = true;
+                }
+                openWindow(webmcOverlay, webmcModal);
+            }
+
+            [settingsModal, calcModal, dialpadModal, moreModal, webmcModal].forEach(win => {
                 makeDraggable(win);
                 const closeBtn = win.querySelector('.traffic-light.close');
                 const maxBtn = win.querySelector('.traffic-light.max');
                 if (closeBtn) closeBtn.addEventListener('click', () => {
-                    const ov = win.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay');
+                    const ov = win.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay, .webmc-overlay');
                     if (ov) ov.classList.remove('visible');
                     win.classList.remove('fullscreen');
                     checkFullscreenState();
@@ -1311,7 +1347,6 @@
                     win.classList.toggle('fullscreen');
                     checkFullscreenState();
                 });
-                // 点击窗口内容提升层级
                 win.addEventListener('mousedown', () => {
                     if (conceptEnabled) bringToFront(win);
                 });
@@ -1359,12 +1394,20 @@
             dialpadOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === dialpadOverlay) dialpadOverlay.classList.remove('visible'); });
 
             moreOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === moreOverlay) moreOverlay.classList.remove('visible'); });
+            webmcOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === webmcOverlay) webmcOverlay.classList.remove('visible'); });
 
             macosDock.addEventListener('click', e => {
                 const item = e.target.closest('.dock-item');
                 if (!item) return;
                 const app = item.getAttribute('data-app');
-                if (app === 'webmc') return void window.open('https://mcjs.cc', '_blank');
+                if (app === 'webmc') {
+                    if (conceptEnabled) {
+                        openWebmcWindow();
+                    } else {
+                        window.open('https://mcjs.link', '_blank');
+                    }
+                    return;
+                }
                 if (app === 'ojang') return void window.open('https://share.feijipan.com/s/Pw8OwB3N', '_blank');
                 if (app === 'settings') { openWindow(settingsOverlay, settingsModal); updateUI(); return; }
                 if (app === 'calc') { openWindow(calcOverlay, calcModal); return; }
@@ -1449,13 +1492,13 @@
                 sw.addEventListener('click', () => {
                     conceptEnabled = !conceptEnabled;
                     localStorage.setItem('conceptMode', conceptEnabled ? 'enabled' : 'disabled');
-                    // 关闭概念版时把概念版窗口全部关闭
                     if (!conceptEnabled) {
                         settingsOverlay.classList.remove('visible');
                         calcOverlay.classList.remove('visible');
                         dialpadOverlay.classList.remove('visible');
                         moreOverlay.classList.remove('visible');
-                        [settingsModal, calcModal, dialpadModal, moreModal].forEach(w => w.classList.remove('fullscreen'));
+                        webmcOverlay.classList.remove('visible');
+                        [settingsModal, calcModal, dialpadModal, moreModal, webmcModal].forEach(w => w.classList.remove('fullscreen'));
                         macosDock.classList.remove('dock-visible');
                     }
                     updateUI();
