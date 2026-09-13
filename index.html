@@ -40,7 +40,6 @@
             --version-label-color: #1a1a1a;
         }
         [data-theme="dark"] {
-            /* ↓↓↓ 改动：深色模式默认壁纸与浅色模式一致 ↓↓↓ */
             --default-bg-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80');
             --bg: #121212;
             --text: #f0f0f0;
@@ -436,6 +435,8 @@
         body.concept-mode .ojang-modal {
             pointer-events: auto !important; position: fixed !important;
             margin: 0 !important; transform: none !important; transition: none !important;
+            transform-origin: center center;
+            will-change: transform;
             overflow: hidden; border-radius: 14px !important;
             display: flex; flex-direction: column; max-height: none;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.38) 40%, rgba(255, 255, 255, 0.52) 100%) !important;
@@ -1174,9 +1175,9 @@
 
             const translations = {
                 'zh-CN': { siteTitle:'一架国泰航空A330官方网站', settings:'设置', menu:'菜单', calculator:'计算器', about:'关于', more:'更多', aboutText:'这是一架国泰航空A330官方网站', versionLabel:'版本号', versionNumber:'7.0.1', links:'链接', webMC:'网页版MC', ojangDownload:'ojang pe下载', dialpad:'拨号盘', officialWebsite:'官方网站', theme:'主题模式', darkMode:'深色模式', displayMode:'显示模式', glassMode:'透明模式', liquidGlassMode:'液态玻璃', retroMode:'怀旧模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', wallpaper:'壁纸选择', defaultWallpaper:'默认', creeperSleep:'苦力怕娘睡觉', minecart:'矿车', tnt:'TNT！', blueArchive1:'蔚蓝档案1', rowing:'划船', blueArchive2:'蔚蓝档案2', waterDrop:'水滴壁纸', whiteWallpaper:'白色壁纸', language:'语言', close:'关闭', welcome:'欢迎来到<br>一架国泰航空A330官方网站', bilibili:'我的 bilibili', fanGroup:'加入粉丝群', announcementTitle:'公告栏', announcementSubtitle:'支持多语言', bilibiliDownload:'bilibili国际版3.19.2下载', netEaseDownload:'网易云音乐极速版1.0.0下载', kuGouDownload:'酷狗概念版2.4.2下载', jianYingDownload:'剪映5.7.0下载', download:'下载', delete:'删除', footer:'Cathay Pacific • A330 • Minimal' },
-                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', more:'更多', aboutText:'這是一架國泰航空A330官方網站', versionLabel:'版本號', versionNumber:'7.0.1', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥號盤', officialWebsite:'官方網站', theme:'主題模式', darkMode:'深色模式', displayMode:'顯示模式', glassMode:'透明模式', liquidGlassMode:'液態玻璃', retroMode:'懷舊模式', minecraftMode:'Minecraft模式', conceptMode:'概念版模式', wallpaper:'壁紙選擇', defaultWallpaper:'預設', creeperSleep:'苦力怕娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', waterDrop:'水滴桌布', whiteWallpaper:'白色桌布', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
+                'zh-TW': { siteTitle:'一架國泰航空A330官方網站', settings:'設置', menu:'選單', calculator:'計算機', about:'關於', more:'更多', aboutText:'這是一架國泰航空A330官方網站', versionLabel:'版本號', versionNumber:'7.0.1', links:'連結', webMC:'網頁版MC', ojangDownload:'ojang pe下載', dialpad:'撥です號盤', officialWebsite:'官方網站', theme',:'主題模式', darkMode:'深色模式 version', displayMode:'顯示模式', glassMode:'透明Label模式', liquidGlassMode:'液:'態玻璃', retroMode:'懷舊模式', mineバcraftMode:'Minecraft模式', conceptModeージ:'概念版模式', wallpaper:'壁ョ紙選擇', defaultWallpaper:'預設', cンreeperSleep:'苦力怕',娘睡覺', minecart:'礦車', tnt:'TNT！', blueArchive1:'蔚藍檔案1', rowing:'划船', blueArchive2:'蔚藍檔案2', waterDrop:'水滴桌布', whiteWallpaper:'白色桌布', language:'語言', close:'關閉', welcome:'歡迎來到<br>一架國泰航空A330官方網站', bilibili:'我的 bilibili', fanGroup:'加入粉絲群', announcementTitle:'公告欄', announcementSubtitle:'支援多語言', bilibiliDownload:'bilibili國際版3.19.2下載', netEaseDownload:'網易雲音樂極速版1.0.0下載', kuGouDownload:'酷狗概念版2.4.2下載', jianYingDownload:'剪映5.7.0下載', download:'下載', delete:'刪除', footer:'Cathay Pacific • A330 • Minimal' },
                 'en': { siteTitle:'Cathay Pacific A330 Official Website', settings:'Settings', menu:'Menu', calculator:'Calculator', about:'About', more:'More', aboutText:'This is Cathay Pacific A330 Official Website', versionLabel:'Version', versionNumber:'7.0.1', links:'Links', webMC:'Web MC', ojangDownload:'ojang pe Download', dialpad:'Dial Pad', officialWebsite:'Official Website', theme:'Theme', darkMode:'Dark Mode', displayMode:'Display Mode', glassMode:'Glass Mode', liquidGlassMode:'Liquid Glass', retroMode:'Retro Mode', minecraftMode:'Minecraft Mode', conceptMode:'Concept Mode', wallpaper:'Wallpaper Selection', defaultWallpaper:'Default', creeperSleep:'Creeper Girl Sleeping', minecart:'Minecart', tnt:'TNT!', blueArchive1:'Blue Archive 1', rowing:'Rowing', blueArchive2:'Blue Archive 2', waterDrop:'Water Drop', whiteWallpaper:'White Wallpaper', language:'Language', close:'Close', welcome:'Welcome to<br>Cathay Pacific A330 Official Website', bilibili:'My bilibili', fanGroup:'Join Fan Group', announcementTitle:'Announcement', announcementSubtitle:'Supports multiple languages', bilibiliDownload:'bilibili International 3.19.2 Download', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 Download', kuGouDownload:'KuGou Concept 2.4.2 Download', jianYingDownload:'JianYing 5.7.0 Download', download:'Download', delete:'Delete', footer:'Cathay Pacific • A330 • Minimal' },
-                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', more:'その他', aboutText:'これはキャセイパシフィックA330公式サイトです', versionLabel:'バージョン', versionNumber:'7.0.1', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', officialWebsite:'公式サイト', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', minecraftMode:'Minecraftモード', conceptMode:'コンセプトモード', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', waterDrop:'水滴の壁紙', whiteWallpaper:'白い壁紙', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
+                'ja': { siteTitle:'キャセイパシフィックA330公式サイト', settings:'設定', menu:'メニュー', calculator:'電卓', about:'について', more:'その他', aboutText:'これはキャセイパシフィックA330公式サイト versionNumber:'7.0.1', links:'リンク', webMC:'ウェブ版MC', ojangDownload:'ojang peダウンロード', dialpad:'ダイヤルパッド', officialWebsite:'公式サイト', theme:'テーマ', darkMode:'ダークモード', displayMode:'表示モード', glassMode:'グラスモード', liquidGlassMode:'リキッドグラス', retroMode:'レトロモード', minecraftMode:'Minecraftモード', conceptMode:'コンセプトモード', wallpaper:'壁紙選択', defaultWallpaper:'デフォルト', creeperSleep:'クリーパー娘の睡眠', minecart:'トロッコ', tnt:'TNT！', blueArchive1:'ブルーアーカイブ1', rowing:'ボート', blueArchive2:'ブルーアーカイブ2', waterDrop:'水滴の壁紙', whiteWallpaper:'白い壁紙', language:'言語', close:'閉じる', welcome:'ようこそ<br>キャセイパシフィックA330公式サイトへ', bilibili:'My bilibili', fanGroup:'ファングループに参加', announcementTitle:'お知らせ', announcementSubtitle:'多言語対応', bilibiliDownload:'bilibili国際版3.19.2ダウンロード', netEaseDownload:'NetEase Cloud Music Lite 1.0.0ダウンロード', kuGouDownload:'KuGou Concept 2.4.2ダウンロード', jianYingDownload:'JianYing 5.7.0ダウンロード', download:'ダウンロード', delete:'削除', footer:'Cathay Pacific • A330 • Minimal' },
                 'ko': { siteTitle:'캐세이퍼시픽 A330 공식 웹사이트', settings:'설정', menu:'메뉴', calculator:'계산기', about:'정보', more:'더 보기', aboutText:'이것은 캐세이퍼시픽 A330 공식 웹사이트입니다', versionLabel:'버전', versionNumber:'7.0.1', links:'링크', webMC:'웹 MC', ojangDownload:'ojang pe 다운로드', dialpad:'다이얼 패드', officialWebsite:'공식 웹사이트', theme:'테마', darkMode:'다크 모드', displayMode:'디스플레이 모드', glassMode:'글래스 모드', liquidGlassMode:'리퀴드 글래스', retroMode:'레트로 모드', minecraftMode:'Minecraft 모드', conceptMode:'컨셉트 모드', wallpaper:'배경화면 선택', defaultWallpaper:'기본값', creeperSleep:'크리퍼 소녀 수면', minecart:'광차', tnt:'TNT!', blueArchive1:'블루 아카이브 1', rowing:'조정', blueArchive2:'블루 아카이브 2', waterDrop:'물방울 배경화면', whiteWallpaper:'흰색 배경화면', language:'언어', close:'닫기', welcome:'환영합니다<br>캐세이퍼시픽 A330 공식 웹사이트', bilibili:'My bilibili', fanGroup:'팬 그룹 가입', announcementTitle:'공지사항', announcementSubtitle:'다국어 지원', bilibiliDownload:'bilibili 국제판 3.19.2 다운로드', netEaseDownload:'NetEase Cloud Music Lite 1.0.0 다운로드', kuGouDownload:'KuGou Concept 2.4.2 다운로드', jianYingDownload:'JianYing 5.7.0 다운로드', download:'다운로드', delete:'삭제', footer:'Cathay Pacific • A330 • Minimal' }
             };
 
@@ -1341,13 +1342,19 @@
                 });
                 topOverlay.classList.remove('visible');
                 const modal = topOverlay.querySelector('.settings-modal, .calc-modal, .dialpad-modal, .more-modal, .webmc-modal, .bilibili-modal, .website-modal, .ojang-modal');
-                if (modal) modal.classList.remove('fullscreen');
+                if (modal) {
+                    modal.classList.remove('fullscreen');
+                    resetModalScale(modal);
+                }
                 checkFullscreenState();
             }
 
             function closeWindow(overlay, modal) {
                 overlay.classList.remove('visible');
-                if (modal) modal.classList.remove('fullscreen');
+                if (modal) {
+                    modal.classList.remove('fullscreen');
+                    resetModalScale(modal);
+                }
                 if (overlay === webmcOverlay) {
                     try { webmcIframe.src = 'about:blank'; } catch(e) {}
                     webmcLoaded = false;
@@ -1457,6 +1464,7 @@
                 attachRippleToElements();
             }
 
+            // ==================== 菜单相关 ====================
             function toggleMenu(force) {
                 isMenuOpen = force !== undefined ? force : !isMenuOpen;
                 if (hamburgerBtn) hamburgerBtn.classList.toggle('active', isMenuOpen);
@@ -1477,6 +1485,90 @@
                     return;
                 }
             }, false);
+            // ================================================
+
+            // ==================== 概念版：双指缩放窗口 ====================
+            const modalScales = new WeakMap();
+            const MIN_SCALE = 0.4;
+            const MAX_SCALE = 3;
+            let pinchStartDist = 0;
+            let pinchStartScale = 1;
+            let pinchTargetModal = null;
+
+            function getModalFromTouchPoint(clientX, clientY) {
+                const el = document.elementFromPoint(clientX, clientY);
+                if (!el || !el.closest) return null;
+                return el.closest('.settings-modal, .calc-modal, .dialpad-modal, .more-modal, .webmc-modal, .bilibili-modal, .website-modal, .ojang-modal');
+            }
+
+            function setModalScale(modal, scale) {
+                const clamped = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
+                modalScales.set(modal, clamped);
+                modal.style.setProperty('transform', 'scale(' + clamped + ')', 'important');
+                // 缩放到 1 附近时，去掉内联样式，回到默认（无 transform）
+                if (Math.abs(clamped - 1) < 0.001) {
+                    modal.style.removeProperty('transform');
+                    modalScales.delete(modal);
+                }
+            }
+
+            function resetModalScale(modal) {
+                if (!modal) return;
+                modal.style.removeProperty('transform');
+                modalScales.delete(modal);
+            }
+
+            document.addEventListener('touchstart', function(e) {
+                if (!conceptEnabled) return;
+                if (e.touches.length !== 2) {
+                    pinchTargetModal = null;
+                    return;
+                }
+                // 用第一个手指确定所触摸的 modal
+                let modal = getModalFromTouchPoint(e.touches[0].clientX, e.touches[0].clientY);
+                if (!modal) {
+                    modal = getModalFromTouchPoint(e.touches[1].clientX, e.touches[1].clientY);
+                }
+                if (!modal) {
+                    pinchTargetModal = null;
+                    return;
+                }
+                pinchTargetModal = modal;
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                pinchStartDist = Math.hypot(dx, dy) || 1;
+                pinchStartScale = modalScales.get(modal) || 1;
+            }, { passive: true });
+
+            document.addEventListener('touchmove', function(e) {
+                if (!conceptEnabled || !pinchTargetModal) return;
+                if (e.touches.length !== 2) return;
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                const dist = Math.hypot(dx, dy);
+                if (dist < 1) return;
+                const ratio = dist / pinchStartDist;
+                const newScale = pinchStartScale * ratio;
+                setModalScale(pinchTargetModal, newScale);
+                e.preventDefault();
+            }, { passive: false });
+
+            document.addEventListener('touchend', function(e) {
+                if (e.touches.length < 2) {
+                    pinchTargetModal = null;
+                }
+            }, { passive: true });
+
+            document.addEventListener('touchcancel', function() {
+                pinchTargetModal = null;
+            }, { passive: true });
+
+            // 关闭/重置时清理缩放
+            const allModalElements = [settingsModal, calcModal, dialpadModal, moreModal, webmcModal, bilibiliModal, websiteModal, ojangModal];
+            function resetAllModalScales() {
+                allModalElements.forEach(m => resetModalScale(m));
+            }
+            // ============================================================
 
             function closeAllModals(includeConcept) {
                 if (conceptEnabled && !includeConcept) return;
@@ -1498,6 +1590,7 @@
                 bilibiliLoaded = false;
                 websiteLoaded = false;
                 ojangLoaded = false;
+                resetAllModalScales();
             }
 
             function makeDraggable(win) {
@@ -1505,6 +1598,8 @@
                 if (!handle) return;
                 let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
                 function onStart(e) {
+                    // 双指触摸时不触发拖动（避免与缩放冲突）
+                    if (e.touches && e.touches.length > 1) return;
                     if (win.classList.contains('fullscreen')) return;
                     if (e.target.closest && e.target.closest('.traffic-light')) return;
                     if (e.target.closest && e.target.closest('input, textarea, iframe')) return;
@@ -1638,33 +1733,77 @@
             });
 
             document.querySelectorAll('[data-role="settings-close"]').forEach(btn => {
-                btn.addEventListener('click', () => settingsOverlay.classList.remove('visible'));
+                btn.addEventListener('click', () => {
+                    settingsOverlay.classList.remove('visible');
+                    resetModalScale(settingsModal);
+                });
             });
 
             settingsTrigger.addEventListener('click', () => { if (!conceptEnabled) toggleMenu(false); openWindow(settingsOverlay, settingsModal); updateUI(); });
-            settingsOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === settingsOverlay) settingsOverlay.classList.remove('visible'); });
+            settingsOverlay.addEventListener('click', e => {
+                if(!conceptEnabled && e.target === settingsOverlay) {
+                    settingsOverlay.classList.remove('visible');
+                    resetModalScale(settingsModal);
+                }
+            });
 
             aboutTrigger.addEventListener('click', () => { closeAllModals(true); toggleMenu(false); aboutOverlay.classList.add('visible'); });
             aboutCloseBtn.addEventListener('click', () => aboutOverlay.classList.remove('visible'));
             aboutOverlay.addEventListener('click', e => { if(e.target === aboutOverlay) aboutOverlay.classList.remove('visible'); });
 
             calcTrigger.addEventListener('click', () => { if (!conceptEnabled) toggleMenu(false); openWindow(calcOverlay, calcModal); });
-            calcOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === calcOverlay) calcOverlay.classList.remove('visible'); });
+            calcOverlay.addEventListener('click', e => {
+                if(!conceptEnabled && e.target === calcOverlay) {
+                    calcOverlay.classList.remove('visible');
+                    resetModalScale(calcModal);
+                }
+            });
 
             dialpadTrigger.addEventListener('click', () => { if (!conceptEnabled) toggleMenu(false); openWindow(dialpadOverlay, dialpadModal); });
             dialClose.addEventListener('click', () => {
                 dialpadOverlay.classList.remove('visible');
                 dialValue = '';
                 dialpadDisplay.textContent = '';
+                resetModalScale(dialpadModal);
             });
             dialDelete.addEventListener('click', () => { dialValue = dialValue.slice(0,-1); dialpadDisplay.textContent = dialValue; });
-            dialpadOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === dialpadOverlay) dialpadOverlay.classList.remove('visible'); });
+            dialpadOverlay.addEventListener('click', e => {
+                if(!conceptEnabled && e.target === dialpadOverlay) {
+                    dialpadOverlay.classList.remove('visible');
+                    resetModalScale(dialpadModal);
+                }
+            });
 
-            moreOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === moreOverlay) moreOverlay.classList.remove('visible'); });
-            webmcOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === webmcOverlay) webmcOverlay.classList.remove('visible'); });
-            bilibiliOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === bilibiliOverlay) bilibiliOverlay.classList.remove('visible'); });
-            websiteOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === websiteOverlay) websiteOverlay.classList.remove('visible'); });
-            ojangOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === ojangOverlay) ojangOverlay.classList.remove('visible'); });
+            moreOverlay.addEventListener('click', e => {
+                if(!conceptEnabled && e.target === moreOverlay) {
+                    moreOverlay.classList.remove('visible');
+                    resetModalScale(moreModal);
+                }
+            });
+            webmcOverlay.addEventListener('click', e => {
+                if(!conceptEnabled && e.target === webmcOverlay) {
+                    webmcOverlay.classList.remove('visible');
+                    resetModalScale(webmcModal);
+                }
+            });
+            bilibiliOverlay.addEventListener('click', e => {
+                if(!conceptEnabled && e.target === bilibiliOverlay) {
+                    bilibiliOverlay.classList.remove('visible');
+                    resetModalScale(bilibiliModal);
+                }
+            });
+            websiteOverlay.addEventListener('click', e => {
+                if(!conceptEnabled && e.target === websiteOverlay) {
+                    websiteOverlay.classList.remove('visible');
+                    resetModalScale(websiteModal);
+                }
+            });
+            ojangOverlay.addEventListener('click', e => {
+                if(!conceptEnabled && e.target === ojangOverlay) {
+                    ojangOverlay.classList.remove('visible');
+                    resetModalScale(ojangModal);
+                }
+            });
 
             macosDock.addEventListener('click', e => {
                 const item = e.target.closest('.dock-item');
@@ -1781,6 +1920,7 @@
                         websiteLoaded = false;
                         ojangLoaded = false;
                         macosDock.classList.remove('dock-visible');
+                        resetAllModalScales();
                     }
                     updateUI();
                 });
