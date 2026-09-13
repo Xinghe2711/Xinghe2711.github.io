@@ -40,8 +40,9 @@
             --version-label-color: #1a1a1a;
         }
         [data-theme="dark"] {
+            /* ↓↓↓ 改动：深色模式默认壁纸与浅色模式一致 ↓↓↓ */
+            --default-bg-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80');
             --bg: #121212;
-            --default-bg-image: none;
             --text: #f0f0f0;
             --text-secondary: #888888;
             --divider: #3a3a3a;
@@ -337,7 +338,6 @@
         body.concept-mode .top-bar,
         body.concept-mode .sidebar-menu,
         body.concept-mode .menu-overlay { display: none !important; }
-        /* 概念版：隐藏菜单按钮 */
         body.concept-mode .hamburger-btn { display: none !important; }
         body.concept-mode .button-group,
         body.concept-mode .download-group { display: none !important; }
@@ -385,7 +385,6 @@
             pointer-events: none;
         }
 
-        /* 更多图标：浅色 / 深色 双图切换 */
         .dock-icon-more-light { display: block; }
         .dock-icon-more-dark  { display: none; }
         [data-theme="dark"] .dock-icon-more-light { display: none; }
@@ -1458,7 +1457,6 @@
                 attachRippleToElements();
             }
 
-            // ==================== 菜单相关 ====================
             function toggleMenu(force) {
                 isMenuOpen = force !== undefined ? force : !isMenuOpen;
                 if (hamburgerBtn) hamburgerBtn.classList.toggle('active', isMenuOpen);
@@ -1466,7 +1464,6 @@
                 if (menuOverlay) menuOverlay.classList.toggle('visible', isMenuOpen);
             }
 
-            // 事件委托：hamburger 与 overlay
             document.addEventListener('click', function(e) {
                 if (!e.target || !e.target.closest) return;
                 if (e.target.closest('#hamburgerBtn')) {
@@ -1480,7 +1477,6 @@
                     return;
                 }
             }, false);
-            // ================================================
 
             function closeAllModals(includeConcept) {
                 if (conceptEnabled && !includeConcept) return;
