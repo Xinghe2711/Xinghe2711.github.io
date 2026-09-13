@@ -87,8 +87,27 @@
         }
         .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1005; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; }
-        .hamburger-line { display:block; width:22px; height:2.5px; background-color:var(--accent); border-radius:4px; transition:all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); }
+        .hamburger-btn {
+            position:fixed;
+            top:calc((var(--topbar-height) - 44px)/2);
+            right:20px;
+            z-index:1005;
+            background:transparent;
+            border:none;
+            cursor:pointer;
+            padding:10px;
+            border-radius:50%;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            gap:5px;
+            width:44px;
+            height:44px;
+            pointer-events:auto !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hamburger-line { display:block; width:22px; height:2.5px; background-color:var(--accent); border-radius:4px; transition:all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); pointer-events:none; }
         .hamburger-btn.active .hamburger-line:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
         .hamburger-btn.active .hamburger-line:nth-child(2) { opacity:0; }
         .hamburger-btn.active .hamburger-line:nth-child(3) { transform:translateY(-7.5px) rotate(-45deg); }
@@ -318,8 +337,7 @@
         body.concept-mode .top-bar,
         body.concept-mode .sidebar-menu,
         body.concept-mode .menu-overlay { display: none !important; }
-        /* 概念版下 hamburger 用 visibility 隐藏，避免从 localStorage 恢复时死锁 */
-        body.concept-mode .hamburger-btn { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+        /* 概念版：hamburger 仍可见，点击会自动退出概念版并打开菜单 */
         body.concept-mode .button-group,
         body.concept-mode .download-group { display: none !important; }
 
@@ -575,7 +593,7 @@
         <div class="site-title" data-i18n="siteTitle">一架国泰航空A330官方网站</div>
     </header>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单">
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单" type="button">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -1071,6 +1089,13 @@
 
     <script>
         (function() {
+            'use strict';
+
+            // ==================== 全局错误捕获（便于排查） ====================
+            window.addEventListener('error', function(ev) {
+                console.error('[页面错误]', ev.message, 'at', ev.filename, ':', ev.lineno);
+            });
+
             const $ = id => document.getElementById(id);
             const hamburgerBtn = $('hamburgerBtn'), sidebarMenu = $('sidebarMenu'), menuOverlay = $('menuOverlay');
             const settingsTrigger = $('settingsTrigger'), settingsOverlay = $('settingsOverlay');
@@ -1167,6 +1192,7 @@
             function buildDialpad() {
                 dialKeys.forEach(key => {
                     const btn = document.createElement('button');
+                    btn.type = 'button';
                     btn.className = 'dial-key';
                     btn.innerHTML = key.digit + (key.sub ? `<span class="sub">${key.sub}</span>` : '');
                     btn.addEventListener('click', () => { dialValue += key.digit; dialpadDisplay.textContent = dialValue; });
@@ -1333,7 +1359,8 @@
             }
 
             document.addEventListener('click', (e) => {
-                const closeBtn = e.target.closest && e.target.closest('.traffic-light.close');
+                if (!e.target || !e.target.closest) return;
+                const closeBtn = e.target.closest('.traffic-light.close');
                 if (!closeBtn) return;
                 e.stopPropagation();
                 e.preventDefault();
@@ -1344,7 +1371,8 @@
             }, true);
 
             document.addEventListener('click', (e) => {
-                const maxBtn = e.target.closest && e.target.closest('.traffic-light.max');
+                if (!e.target || !e.target.closest) return;
+                const maxBtn = e.target.closest('.traffic-light.max');
                 if (!maxBtn) return;
                 e.stopPropagation();
                 e.preventDefault();
@@ -1423,19 +1451,37 @@
             // ==================== 菜单相关 ====================
             function toggleMenu(force) {
                 isMenuOpen = force !== undefined ? force : !isMenuOpen;
-                hamburgerBtn.classList.toggle('active', isMenuOpen);
-                sidebarMenu.classList.toggle('open', isMenuOpen);
-                menuOverlay.classList.toggle('visible', isMenuOpen);
+                if (hamburgerBtn) hamburgerBtn.classList.toggle('active', isMenuOpen);
+                if (sidebarMenu) sidebarMenu.classList.toggle('open', isMenuOpen);
+                if (menuOverlay) menuOverlay.classList.toggle('visible', isMenuOpen);
+                console.log('[菜单] 状态:', isMenuOpen ? '打开' : '关闭');
             }
 
-            hamburgerBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleMenu();
-            });
-            menuOverlay.addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleMenu(false);
-            });
+            // ★ 关键修复：用 document 级事件委托绑定 hamburger 与 overlay
+            //   这样无论元素本身有什么事件监听，只要点击目标在按钮内，就一定能触发
+            document.addEventListener('click', function(e) {
+                if (!e.target || !e.target.closest) return;
+
+                // hamburger 点击（点到线条也算）
+                if (e.target.closest('#hamburgerBtn')) {
+                    e.preventDefault();
+                    // 如果是概念版模式，点击 hamburger 就先退出概念版，再打开菜单
+                    if (conceptEnabled) {
+                        conceptEnabled = false;
+                        localStorage.setItem('conceptMode', 'disabled');
+                        updateUI();
+                    }
+                    toggleMenu();
+                    return;
+                }
+
+                // menu overlay 点击关闭
+                if (e.target.id === 'menuOverlay') {
+                    e.preventDefault();
+                    toggleMenu(false);
+                    return;
+                }
+            }, false);
             // ================================================
 
             function closeAllModals(includeConcept) {
@@ -1866,18 +1912,20 @@
                             case 'percent': calcPercent(); break;
                             case 'add': calcSetOperator('add'); break;
                             case 'subtract': calcSetOperator('subtract'); break;
-                            case 'multiply':e calcSetOperator('multiply'); break;
-                            case 'divide.target': calcSetOperator('divide'); break;
-                            case 'equals.cl': calcEquals(); break;
+                            case 'multiply': calcSetOperator('multiply'); break;
+                            case 'divide': calcSetOperator('divide'); break;
+                            case 'equals': calcEquals(); break;
                         }
                     }
-osest                });
+                });
             });
 
             buildDialpad();
-            update &&UI();
+            updateUI();
             attachRippleToElements();
-            initMusicOnFirstInteraction e();
+            initMusicOnFirstInteraction();
+
+            console.log('[初始化完成] hamburger 元素:', !!hamburgerBtn, '| 当前概念版:', conceptEnabled);
         })();
     </script>
 </body>
