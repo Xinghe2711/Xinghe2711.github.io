@@ -87,7 +87,7 @@
         }
         .top-bar { position: fixed; top:0; left:0; right:0; height: var(--topbar-height); background-color: var(--bg); border-bottom: 1px solid var(--divider); z-index: 1003; display: flex; align-items: center; padding: 0 20px; }
         .site-title { font-size:1.05rem; font-weight:400; color:var(--text); letter-spacing:0.04em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1005; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; overflow:hidden; }
+        .hamburger-btn { position:fixed; top:calc((var(--topbar-height) - 44px)/2); right:20px; z-index:1005; background:transparent; border:none; cursor:pointer; padding:10px; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; }
         .hamburger-line { display:block; width:22px; height:2.5px; background-color:var(--accent); border-radius:4px; transition:all 0.4s cubic-bezier(0.68,-0.55,0.27,1.55); }
         .hamburger-btn.active .hamburger-line:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
         .hamburger-btn.active .hamburger-line:nth-child(2) { opacity:0; }
@@ -316,9 +316,10 @@
 
         body.concept-mode { padding-top: 1rem !important; }
         body.concept-mode .top-bar,
-        body.concept-mode .hamburger-btn,
         body.concept-mode .sidebar-menu,
         body.concept-mode .menu-overlay { display: none !important; }
+        /* 概念版下 hamburger 用 visibility 隐藏，避免从 localStorage 恢复时死锁 */
+        body.concept-mode .hamburger-btn { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
         body.concept-mode .button-group,
         body.concept-mode .download-group { display: none !important; }
 
@@ -1228,6 +1229,7 @@
 
             function createRipple(e) {
                 const target = e.currentTarget;
+                if (!target || !target.getBoundingClientRect) return;
                 const rect = target.getBoundingClientRect();
                 let clientX, clientY;
                 if (e.touches && e.touches[0]) { clientX = e.touches[0].clientX; clientY = e.touches[0].clientY; }
@@ -1244,8 +1246,9 @@
                 ripple.addEventListener('animationend', () => ripple.remove());
             }
 
+            // 注意：这里刻意排除 .hamburger-btn，避免涟漪干扰按钮原生点击行为
             function attachRippleToElements() {
-                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action, .hamburger-btn, .easter-egg-close, .dock-item, .settings-nav-item, .theme-thumb, .more-link, .more-download, .more-download-action, [data-role="settings-close"]';
+                const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action, .easter-egg-close, .dock-item, .settings-nav-item, .theme-thumb, .more-link, .more-download, .more-download-action, [data-role="settings-close"]';
                 document.querySelectorAll(clickableSelector).forEach(el => {
                     if (el.dataset.rippleBound === 'true') return;
                     el.dataset.rippleBound = 'true';
@@ -1256,10 +1259,10 @@
 
             function syncSwitches(name, isOn, extra) {
                 document.querySelectorAll(`[data-switch="${name}"]`).forEach(sw => {
-                    if (name === 'laylang') {
-                        sw.classList.toggle('on,', sw.getAttribute('data-lang') . === extra);
+                    if (name === 'lang') {
+                        sw.classList.toggle('on', sw.getAttribute('data-lang') === extra);
                     } else {
-                        sw.classListcalc.toggle('on', !!isOn);
+                        sw.classList.toggle('on', !!isOn);
                     }
                 });
             }
@@ -1330,18 +1333,18 @@
             }
 
             document.addEventListener('click', (e) => {
-                const closeBtn = e.target.closest('.traffic-light.close');
+                const closeBtn = e.target.closest && e.target.closest('.traffic-light.close');
                 if (!closeBtn) return;
                 e.stopPropagation();
                 e.preventDefault();
-                const overlay = closeBtn.closest('.settings-over-overlay, .dialpad-overlay, .more-overlay, .webmc-overlay, .bilibili-overlay, .website-overlay, .ojang-overlay');
+                const overlay = closeBtn.closest('.settings-overlay, .calc-overlay, .dialpad-overlay, .more-overlay, .webmc-overlay, .bilibili-overlay, .website-overlay, .ojang-overlay');
                 if (!overlay) return;
                 const modal = overlay.querySelector('.settings-modal, .calc-modal, .dialpad-modal, .more-modal, .webmc-modal, .bilibili-modal, .website-modal, .ojang-modal');
                 closeWindow(overlay, modal);
             }, true);
 
             document.addEventListener('click', (e) => {
-                const maxBtn = e.target.closest('.traffic-light.max');
+                const maxBtn = e.target.closest && e.target.closest('.traffic-light.max');
                 if (!maxBtn) return;
                 e.stopPropagation();
                 e.preventDefault();
@@ -1417,6 +1420,7 @@
                 attachRippleToElements();
             }
 
+            // ==================== 菜单相关 ====================
             function toggleMenu(force) {
                 isMenuOpen = force !== undefined ? force : !isMenuOpen;
                 hamburgerBtn.classList.toggle('active', isMenuOpen);
@@ -1424,8 +1428,15 @@
                 menuOverlay.classList.toggle('visible', isMenuOpen);
             }
 
-            hamburgerBtn.addEventListener('click', () => toggleMenu());
-            menuOverlay.addEventListener('click', () => toggleMenu(false));
+            hamburgerBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleMenu();
+            });
+            menuOverlay.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleMenu(false);
+            });
+            // ================================================
 
             function closeAllModals(includeConcept) {
                 if (conceptEnabled && !includeConcept) return;
@@ -1455,8 +1466,8 @@
                 let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
                 function onStart(e) {
                     if (win.classList.contains('fullscreen')) return;
-                    if (e.target.closest('.traffic-light')) return;
-                    if (e.target.closest('input, textarea, iframe')) return;
+                    if (e.target.closest && e.target.closest('.traffic-light')) return;
+                    if (e.target.closest && e.target.closest('input, textarea, iframe')) return;
                     dragging = true;
                     const p = e.touches ? e.touches[0] : e;
                     startX = p.clientX; startY = p.clientY;
@@ -1557,12 +1568,12 @@
                 makeDraggable(win);
                 win.addEventListener('mousedown', (e) => {
                     if (!conceptEnabled) return;
-                    if (e.target.closest('.traffic-light')) return;
+                    if (e.target.closest && e.target.closest('.traffic-light')) return;
                     bringToFront(win);
                 });
                 win.addEventListener('touchstart', (e) => {
                     if (!conceptEnabled) return;
-                    if (e.target.closest('.traffic-light')) return;
+                    if (e.target.closest && e.target.closest('.traffic-light')) return;
                     bringToFront(win);
                 }, { passive: true });
             });
@@ -1620,35 +1631,23 @@
                 if (!item) return;
                 const app = item.getAttribute('data-app');
                 if (app === 'website') {
-                    if (conceptEnabled) {
-                        openWebsiteWindow();
-                    } else {
-                        window.open('https://xinghe2711.github.io', '_blank');
-                    }
+                    if (conceptEnabled) openWebsiteWindow();
+                    else window.open('https://xinghe2711.github.io', '_blank');
                     return;
                 }
                 if (app === 'webmc') {
-                    if (conceptEnabled) {
-                        openWebmcWindow();
-                    } else {
-                        window.open('https://playmcjscc.pages.dev/1.8.8', '_blank');
-                    }
+                    if (conceptEnabled) openWebmcWindow();
+                    else window.open('https://playmcjscc.pages.dev/1.8.8', '_blank');
                     return;
                 }
                 if (app === 'bilibili') {
-                    if (conceptEnabled) {
-                        openBilibiliWindow();
-                    } else {
-                        window.open('https://www.bilibili.com', '_blank');
-                    }
+                    if (conceptEnabled) openBilibiliWindow();
+                    else window.open('https://www.bilibili.com', '_blank');
                     return;
                 }
                 if (app === 'ojang') {
-                    if (conceptEnabled) {
-                        openOjangWindow();
-                    } else {
-                        window.open(OJANG_URL, '_blank');
-                    }
+                    if (conceptEnabled) openOjangWindow();
+                    else window.open(OJANG_URL, '_blank');
                     return;
                 }
                 if (app === 'settings') { openWindow(settingsOverlay, settingsModal); updateUI(); return; }
@@ -1666,12 +1665,8 @@
 
             document.addEventListener('keydown', e => {
                 if(e.key === 'Escape') {
-                    if (conceptEnabled) {
-                        closeTopWindow();
-                    } else {
-                        toggleMenu(false);
-                        closeAllModals(true);
-                    }
+                    if (conceptEnabled) closeTopWindow();
+                    else { toggleMenu(false); closeAllModals(true); }
                 }
             });
 
@@ -1780,8 +1775,8 @@
                     easterEggOverlay.classList.add('visible');
                 }
             }
-            versionArea.addEventListener('click', triggerEasterEgg);
-            versionAreaSettings.addEventListener('click', triggerEasterEgg);
+            if (versionArea) versionArea.addEventListener('click', triggerEasterEgg);
+            if (versionAreaSettings) versionAreaSettings.addEventListener('click', triggerEasterEgg);
             easterEggClose.addEventListener('click', () => easterEggOverlay.classList.remove('visible'));
             easterEggOverlay.addEventListener('click', e => { if (e.target === easterEggOverlay) easterEggOverlay.classList.remove('visible'); });
 
@@ -1871,18 +1866,18 @@
                             case 'percent': calcPercent(); break;
                             case 'add': calcSetOperator('add'); break;
                             case 'subtract': calcSetOperator('subtract'); break;
-                            case 'multiply': calcSetOperator('multiply'); break;
-                            case 'divide': calcSetOperator('divide'); break;
-                            case 'equals': calcEquals(); break;
+                            case 'multiply':e calcSetOperator('multiply'); break;
+                            case 'divide.target': calcSetOperator('divide'); break;
+                            case 'equals.cl': calcEquals(); break;
                         }
                     }
-                });
+osest                });
             });
 
             buildDialpad();
-            updateUI();
+            update &&UI();
             attachRippleToElements();
-            initMusicOnFirstInteraction();
+            initMusicOnFirstInteraction e();
         })();
     </script>
 </body>
