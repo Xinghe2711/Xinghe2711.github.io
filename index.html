@@ -337,7 +337,8 @@
         body.concept-mode .top-bar,
         body.concept-mode .sidebar-menu,
         body.concept-mode .menu-overlay { display: none !important; }
-        /* 概念版：hamburger 仍可见，点击会自动退出概念版并打开菜单 */
+        /* 概念版：隐藏菜单按钮 */
+        body.concept-mode .hamburger-btn { display: none !important; }
         body.concept-mode .button-group,
         body.concept-mode .download-group { display: none !important; }
 
@@ -1091,7 +1092,6 @@
         (function() {
             'use strict';
 
-            // ==================== 全局错误捕获（便于排查） ====================
             window.addEventListener('error', function(ev) {
                 console.error('[页面错误]', ev.message, 'at', ev.filename, ':', ev.lineno);
             });
@@ -1272,7 +1272,6 @@
                 ripple.addEventListener('animationend', () => ripple.remove());
             }
 
-            // 注意：这里刻意排除 .hamburger-btn，避免涟漪干扰按钮原生点击行为
             function attachRippleToElements() {
                 const clickableSelector = '.menu-item, .btn, .download-btn-action, .ios-switch, .wallpaper-btn, .settings-close-btn, .about-close-btn, .calc-key, .dial-key, .dial-action, .easter-egg-close, .dock-item, .settings-nav-item, .theme-thumb, .more-link, .more-download, .more-download-action, [data-role="settings-close"]';
                 document.querySelectorAll(clickableSelector).forEach(el => {
@@ -1454,28 +1453,16 @@
                 if (hamburgerBtn) hamburgerBtn.classList.toggle('active', isMenuOpen);
                 if (sidebarMenu) sidebarMenu.classList.toggle('open', isMenuOpen);
                 if (menuOverlay) menuOverlay.classList.toggle('visible', isMenuOpen);
-                console.log('[菜单] 状态:', isMenuOpen ? '打开' : '关闭');
             }
 
-            // ★ 关键修复：用 document 级事件委托绑定 hamburger 与 overlay
-            //   这样无论元素本身有什么事件监听，只要点击目标在按钮内，就一定能触发
+            // 事件委托：hamburger 与 overlay
             document.addEventListener('click', function(e) {
                 if (!e.target || !e.target.closest) return;
-
-                // hamburger 点击（点到线条也算）
                 if (e.target.closest('#hamburgerBtn')) {
                     e.preventDefault();
-                    // 如果是概念版模式，点击 hamburger 就先退出概念版，再打开菜单
-                    if (conceptEnabled) {
-                        conceptEnabled = false;
-                        localStorage.setItem('conceptMode', 'disabled');
-                        updateUI();
-                    }
                     toggleMenu();
                     return;
                 }
-
-                // menu overlay 点击关闭
                 if (e.target.id === 'menuOverlay') {
                     e.preventDefault();
                     toggleMenu(false);
@@ -1924,8 +1911,6 @@
             updateUI();
             attachRippleToElements();
             initMusicOnFirstInteraction();
-
-            console.log('[初始化完成] hamburger 元素:', !!hamburgerBtn, '| 当前概念版:', conceptEnabled);
         })();
     </script>
 </body>
