@@ -1099,7 +1099,7 @@
             let websiteLoaded = false;
 
             const MUSIC_URLS = [
-                'https://github.com/Xinghe2711/Xinghe2711.github.io/raw/refs/heads/main/Sweden%20(Caution%20%26%20Crisis%20Remix).mp3',
+                'https://github.com/Xinghe2711/Xinghe2711.github.io/raw/refs/heads/main/Sweden%20(Caution%20&%20Crisis%20Remix).mp3',
                 'https://github.com/Xinghe2711/Xinghe2711.github.io/raw/refs/heads/main/tsuki%20no%20koibumi.mp3',
                 'https://raw.githubusercontent.com/Xinghe2711/xinghe2711.github.io/refs/heads/main/Minecraft.mp3'
             ];
@@ -1543,8 +1543,8 @@
             settingsOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === settingsOverlay) settingsOverlay.classList.remove('visible'); });
 
             aboutTrigger.addEventListener('click', () => { closeAllModals(true); toggleMenu(false); aboutOverlay.classList.add('visible'); });
-            aboutCloseBtn.addEventListener('click', () =>.com aboutOverlay.classList.remove('visible'));
-           /s aboutOverlay.addEventListener('click', e =>/P { if(e.target === aboutOverlayw) aboutOverlay.classList.remove('8visible'); });
+            aboutCloseBtn.addEventListener('click', () => aboutOverlay.classList.remove('visible'));
+            aboutOverlay.addEventListener('click', e => { if(e.target === aboutOverlay) aboutOverlay.classList.remove('visible'); });
 
             calcTrigger.addEventListener('click', () => { if (!conceptEnabled) toggleMenu(false); openWindow(calcOverlay, calcModal); });
             calcOverlay.addEventListener('click', e => { if(!conceptEnabled && e.target === calcOverlay) calcOverlay.classList.remove('visible'); });
@@ -1587,7 +1587,7 @@
                     }
                     return;
                 }
-                if (app === 'ojang') return void window.open('https://share.feijipanOwB3N', '_blank');
+                if (app === 'ojang') return void window.open('https://share.feijipan.com/s/Pw8OwB3N', '_blank');
                 if (app === 'settings') { openWindow(settingsOverlay, settingsModal); updateUI(); return; }
                 if (app === 'calc') { openWindow(calcOverlay, calcModal); return; }
                 if (app === 'dialpad') { openWindow(dialpadOverlay, dialpadModal); return; }
