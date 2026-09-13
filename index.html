@@ -385,6 +385,12 @@
             pointer-events: none;
         }
 
+        /* 更多图标：浅色 / 深色 双图切换 */
+        .dock-icon-more-light { display: block; }
+        .dock-icon-more-dark  { display: none; }
+        [data-theme="dark"] .dock-icon-more-light { display: none; }
+        [data-theme="dark"] .dock-icon-more-dark  { display: block; }
+
         .dock-item .dock-label {
             position: absolute; bottom: 100%; left: 50%;
             transform: translateX(-50%) translateY(6px) scale(0.7);
@@ -1053,7 +1059,12 @@
             <span style="display:none">🔢</span>
             <span class="dock-label" data-i18n="calculator">计算器</span>
         </div>
-        <div class="dock-item" data-app="more" title="更多">⋯<span class="dock-label" data-i18n="more">更多</span></div>
+        <div class="dock-item" data-app="more" title="更多">
+            <img class="dock-icon-img dock-icon-more-light" src="https://s3-new.macosicons.com/macosicons/parse/Apps__Tahoe_Light__try71dvRAx_iOS-8079e3499b.png" alt="更多" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <img class="dock-icon-img dock-icon-more-dark" src="https://s3-new.macosicons.com/macosicons/parse/low_res_Apps__Golden_Gate_Dark__m7MoJeaLur-162ff5ef5c.png?qq_aio_chat_type=3" alt="更多" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span style="display:none">⋯</span>
+            <span class="dock-label" data-i18n="more">更多</span>
+        </div>
     </div>
 
     <div class="container">
